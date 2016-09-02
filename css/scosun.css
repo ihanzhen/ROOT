@@ -1,0 +1,16 @@
+.banner-content h2 {
+    color: #333;
+    font-size: 3em;
+}
+
+.da-slide h2 {
+    font-weight: 600;
+    text-shadow: none;
+}
+.banner-content p {
+    color: #666;
+    font-size: 1.5em;
+    font-style: normal;
+    font-weight: normal;
+    text-shadow: none;
+}

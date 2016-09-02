@@ -1,0 +1,232 @@
+/* Write your styles */
+
+.am-header-default {
+    background-color: #343434;
+}
+.am-navbar-default .am-navbar-nav {
+    background-color: #343434;
+}
+
+body {
+  background:#3d3d3d;
+  color:#969696;
+}
+.am-list-news-default .am-list-date {
+    color: #e2e2e2;
+}
+.am-navbar-nav a .am-navbar-label {
+    display: block;
+    font-size: 10px;
+    line-height: 1;
+    overflow: hidden;
+    padding-top: 4px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+a {
+    color: #fff;
+}
+.am-list-news-default .am-list > li {
+    border-color: #444444;
+    background:#3d3d3d;
+    font-size:14px;
+    color:#969696;
+}
+
+.am-list-news-hd a {
+    color:#dadada;
+}
+
+.am-list-news-more{
+    color:#969696;
+}
+.am-list .am-list-item-dated a {
+		color:#bcbcbc;
+}
+/*pos 123*/
+
+.am-list-date-2 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 4px;
+    top: 1.1rem;
+    border-radius:4px;
+}
+.am-list-date-1 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 42px;
+    top: 1.1rem;
+    border-radius:4px;
+}
+.am-list-date-3 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 80px;
+    top: 1.1rem;
+    border-radius:4px;
+}
+.am-list-date-value {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 118px;
+    top: 1.1rem;
+    border-radius:4px;
+    width:110px;
+}
+.am-list-date-value-1 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 88px;
+    top: 1.1rem;
+    border-radius:4px;
+    width:140px;
+}
+.am-list-date-value-2 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 7px;
+    top: 1.1rem;
+    border-radius:4px;
+    width:220px;
+}
+.am-list-date-value-double {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 7px;
+    top: 0.6rem;
+    border-radius:4px;
+    width:220px;
+    hight:15px;
+    line-height:15px;
+}
+.am-list-date-user {
+    font-size: 1.3rem;
+    position: absolute;
+    left: 80px;
+    top: 2rem;
+    border-radius:4px;
+    width:220px;
+    hight:20px;
+    line-height:20px;
+}
+#c-red{color:#e74c3c;}
+#c-green{color:#27ae60;}
+#c-orange{color:#e67e22;}
+#c-grap{color:#999;}
+#c-black{color:#666666;}
+#c-date{font-size:1rem;color:#666666;}
+#c-tip{font-size:1rem;}
+#c-menu{font-size:1.2rem;}
+/*pos 1234*/
+.am-list-date-4 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 174px;
+    top: 1.1rem;
+    border-radius:4px;
+}
+.am-list-date-5 {
+    font-size: 1.3rem; 
+    position: absolute;
+    right: 135px;
+    top: 1.1rem;
+    border-radius:4px;
+}
+.am-list-date-6 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 70px;
+    top: 1.1rem;
+    border-radius:4px;
+}
+.am-list-date-7 {
+    font-size: 1.3rem;
+    position: absolute;
+    right: 5px;
+    top: 1.1rem;
+    border-radius:4px;
+}
+/*color*/
+.bg-green{
+		background:#27ae60;
+		padding:0 4px ;
+		color:#e2e2e2;
+}
+.bg-red{
+		background:#e74c3c;
+		padding:0 4px ;
+		color:#FFF;
+        line-height: 20px;        
+}
+.bg-orange{
+		background:#e67e22;
+		padding:0 4px ;
+		color:#e2e2e2;
+}
+.bg-grap{
+    background:#666666;
+    padding:0 4px ;
+    color:#e2e2e2;
+}
+
+.am-navbar-default a {
+    color: #969696;
+}
+.am-navbar-default .active {
+    color: #fff;
+}
+.am-navbar-default .active a {
+    color: #fff;
+}
+.am-text-center {
+    line-height: 15px;
+}
+small {
+    font-size: 70%;
+}
+.nobold{
+    font-weight: 600;
+    font-size: 1.1rem;
+    color:#969696;
+}
+.color-red{
+    color:#e74c3c;
+}
+.color-green{
+    color:#27ae60;
+}
+.color-orange{
+    color:#e67e22;
+}
+
+/*web*/
+body {
+  font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
+}
+
+.bs-example:after {
+    content: "实例：" !important;
+}
+
+.bs-docs-section > p, .bs-docs-section > ul, 
+.bs-docs-section > ol, .bs-callout > p, 
+.bs-callout > ol, .bs-callout > ul {
+    font-size: 16px;
+    line-height: 1.75;
+    margin-bottom: 1em;
+}
+
+.bs-callout *:last-child {
+    margin-bottom: 0;
+}
+.menu_mgr{margin-left:-15px;}
+.menu_font{font-size:1.3rem;}
+#round {
+    padding:0px; width:60px; height:60px;
+    /*border:2px solid #555;*/
+    -moz-border-radius: 7px;      /* Gecko browsers */
+    -webkit-border-radius: 7px;   /* Webkit browsers */
+    border-radius:7px;            /* W3C syntax */
+}
