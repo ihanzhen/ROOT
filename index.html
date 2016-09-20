@@ -6,6 +6,19 @@
 <html lang="en-gb" class="no-js">
 <!--<![endif]-->
 <head>
+<script>
+function isMobile() {
+if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) 
+return true;
+else
+return false;
+}
+var urlMobile='/stock/index.html';//手机跳转的页面
+if(isMobile() !== false)
+window.location.href=urlMobile;
+</script>
+	
+	
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <!--[if lt IE 9]> 
@@ -696,7 +709,7 @@
 		<div class="row">
 			<div class="col-sm-12 text-center">
 				Copyright &copy; 2016 hanzhendata.com All rights reserved.
-				京ICP备1928475928号
+				京ICP备16047626号
 			</div>
 		</div>
 		<!-- / .row -->

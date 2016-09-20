@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 asset js/css文件
 login 注册
 reg   登录
@@ -12,4 +13,20 @@ wait.html 信号
 web.html 
 suanfa.html
 scosun.html
+=======
+asset js/css文件
+login 注册
+reg   登录
+home.html 首页
+dapan.html web 首页
+index.html 大盘
+list.html
+order.html 持仓
+trade.html 自选
+user.html 用户
+wait.html 信号
+web.html 
+suanfa.html
+scosun.html
+>>>>>>> 8d4c775c27abb4ab486ad770c485dbf77f8a1f21
 ema.php
