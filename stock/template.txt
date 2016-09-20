@@ -1,0 +1,15 @@
+asset js/css文件
+login 注册
+reg   登录
+home.html 首页
+dapan.html web 首页
+index.html 大盘
+list.html
+order.html 持仓
+trade.html 自选
+user.html 用户
+wait.html 信号
+web.html 
+suanfa.html
+scosun.html
+ema.php
