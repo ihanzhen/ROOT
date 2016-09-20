@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<header>
+	    <meta charset="utf-8">
+	    <!-- 引入 ECharts 文件 -->
+	    <script src="echarts-all.js"></script>
+	    <script src='jquery-2.2.3.js'></script>
+	</header>
+	<body>
+	    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+	    <div id="main" style="width: 600px;height:400px;"></div>
+	</body>
+	 <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        myChart.setOption({
+				        title: {
+				            text: 'k线'
+				        },
+				        tooltip: {
+				        	trigger: 'axis',
+					        formatter: function (params) {
+					            var res = params[0].seriesName + ' ' + params[0].name;
+					            res += '<br/>  开盘 : ' + params[0].value[0] + '  最高 : ' + params[0].value[3];
+					            res += '<br/>  收盘 : ' + params[0].value[1] + '  最低 : ' + params[0].value[2];
+					            return res;
+					        }
+				        },
+				        legend: {
+				            data:['涨幅']
+				        },
+				        xAxis: {
+				        	type:'category',
+				        	boundaryGap:true,
+				        	axisTick:{onGap:false},
+				        	splitLine:{show:false},
+				            data: []
+				        },
+				        yAxis: {
+				        	type:'value',
+				        	scale:true,
+				        	boundaryGap:[0.01,0.01]
+				        },
+				        series: [{
+				            name: 'k线指数',
+				            type: 'k',
+				            data: []
+				        }]
+	    			});
+        //指定图表的配置项和数据
+        $(function(){
+        	$.ajax({
+        		url:'http://123.57.150.251/kgfjfg/test/',
+        		dataType:'jsonp',
+        		async:false,
+        		type:'get',
+        		jsonp:'jsoncallback',
+        		jsonpCallback:'?',
+        		success:function(data){
+        			for(var temp in data){
+        				myChart.setOption({
+					        xAxis: {
+					            data: temp;
+					        },
+					        series: [{
+					            // 根据名字对应到相应的系列
+					            name: '销量',
+					            data: data[temp];
+					        }]
+					    });
+        			}
+	        		
+
+        		}
+        	})
+        })
+      
+    </script>
+</html>

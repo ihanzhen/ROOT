@@ -2,8 +2,8 @@
 document.write('  <ul class="am-navbar-nav am-cf am-avg-sm-4">');
 document.write('    <li>');
 document.write('      <a href="home.html">');
-document.write('        <span class="am-icon-bar-chart active"></span>');
-document.write('        <span class="am-navbar-label active">大盘</span>');
+document.write('        <span class="am-icon-home active"></span>');
+document.write('        <span class="am-navbar-label active">首页</span>');
 document.write('      </a>');
 document.write('    </li>');
 document.write('    <li>');

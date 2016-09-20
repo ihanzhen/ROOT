@@ -1,0 +1,84 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script src="assets/js/head.js"></script>
+  <script src="assets/js/echarts.min.js"></script> 
+</head>
+<body>
+<!-- Header -->
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+      <a href="#left-link" class="">
+	      <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
+      </a>
+  </div>	
+  <h1 class="am-header-title">
+    <a href="#title-link">
+      <div style="margin-left:-103px;margin-top:2px"><embed src="../images/hanzhenfff.svg" type="image/svg+xml" style="height:20px;"/></div>
+      <div style="margin-top:-52px;margin-left:20px">至赢<span class="color-red">┽</span>禅心</div>   
+    </a>    
+  </h1>
+  <div class="am-header-right am-header-nav" style="margin-right:40px">
+      <a href="#left-link" class="">
+	      <i class="am-header-icon am-icon-refresh" style="font-size:1.5rem;color:#999" id="KEY_FRESH"></i>
+      </a>
+  </div>	
+</header>
+<!-- Menu -->
+<script src="assets/js/menu.js"></script>   
+
+<!--index-->
+<style type="text/css">
+.kline,.macd,.kdj{
+    height: 140px;
+    margin-top: 15px;
+    padding:0 10px;
+    width: 100%;
+}  
+</style>
+<div id="main" class="kline"></div>
+<div id="main2" class="macd"></div>
+<div id="main3" class="kdj"></div>
+<script src="assets/js/dp_kline.js"></script>
+<script src="assets/js/dp_kline_1.js"></script>
+<script src="assets/js/dp_kline_1.js"></script>
+
+
+<!--footer-->
+<footer class="am-margin-top">
+  <p class="am-text-center ft">
+    <small>
+    <embed src="../images/hzsf.svg" type="image/svg+xml" style="height:23px;"/><span style="font-size:0.8rem;">®</span><br>      
+    Powered By &copy; 2016 <b>HANZHEN</b> DataTech ™<br/>
+    京ICP备16032663号&nbsp;&nbsp;京公网安备37010202000817号<br/>
+    www.hanzhendata.com<br/>
+    </small>
+  </p>
+</footer>
+
+<!-- Navbar -->
+<script src="assets/js/navbar.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/echarts.js"></script>
+<script>
+//页面加载时绑定按钮点击事件
+$(function(){
+    $("#KEY_FRESH").click(function(){
+        refresh();
+    });
+});
+//点击按钮调用的方法
+function refresh(){
+    window.location.reload();//刷新当前页面.
+     
+    //或者下方刷新方法
+    //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+    // opener.location.reload()刷新父窗口对象（用于单开窗口
+   //top.location.reload()刷新最顶端对象（用于多开窗口）
+}
+</script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
+</body>
+</html>

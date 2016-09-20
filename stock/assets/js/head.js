@@ -11,7 +11,7 @@ document.write('<meta name="msapplication-TileImage" content="apple-touch-icon-p
 document.write('<meta name="msapplication-TileColor" content="#007AFF">');
 document.write('<link rel="shortcut icon" type="image/x-icon" href="{DT_PATH}favicon.ico"/>');
 document.write('<meta http-equiv="X-UA-Compatible" content="IE=edge">');
-document.write('<title>函真数据</title>');
+document.write('<title>函真数据 ®</title>');
 document.write('<meta name="description" content="">');
 document.write('<meta name="keywords" content="">');
 document.write('<meta name="renderer" content="webkit">');
