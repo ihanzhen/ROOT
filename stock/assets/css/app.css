@@ -403,14 +403,16 @@ body {
     top: -8px;
     left: 70px;
 }
-.login-triangle-group{
+
+.login-triangle-group {
     top: -8px;
-    left:235px
+    left: 235px;
 }
 /*retrievepassword page*/
 .mg-top-25 {
     margin-top: 25px;
 }
+/* used in setting page and retrievepassword page*/
 
 .pd-left-78 {
     padding-left: 78px !important;
@@ -442,6 +444,7 @@ body {
 .pd-right-81 {
     padding-right: 81px !important;
 }
+
 #retrievepd-container label {
     font-weight: 500 !important;
     font-size: 1.5rem;
@@ -480,4 +483,9 @@ body {
 
 .mg-left-15 {
     margin-left: 15px;
+}
+
+/*setting page*/
+.mg-top-2-5rem {
+    margin-top: 2.5rem;
 }

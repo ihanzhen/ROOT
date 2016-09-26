@@ -26,7 +26,6 @@ var RetrievePDManagement = function () {
         _vm.canVerify = ko.observable(false);
         _vm.canRetrieve = ko.observable(false);
         _vm.verificationClick = function () {
-            //判断手机号是否合法，合法传给后台，否则return
             var phoneNumber = this.username().trim();
             $('#my-confirm').modal({
                 onConfirm: function (options) {
