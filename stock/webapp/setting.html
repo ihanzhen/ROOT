@@ -46,7 +46,22 @@
     </header>
 
     <div id="setting-container">
-
+        <div class="am-u-sm-12">
+            <button type="button" class="am-btn am-btn-danger am-btn-block" data-bind="click:logoutClick">退出登录</button>
+        </div>
+        <!--遮罩层-->
+        <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+            <div class="am-modal-dialog">
+                <!--<div class="am-modal-hd">提示</div>-->
+                <div class="am-modal-bd">
+                   是否确定退出登录？
+                </div>
+                <div class="am-modal-footer">
+                    <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                    <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <footer class="am-margin-top">
@@ -64,6 +79,6 @@
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/amazeui.min.js"></script>
     <script src="../assets/js/knockout-3.1.0.js"></script>
-    <script src="../assets/js/usercenter.js"></script>
+    <script src="../assets/js/setting.js"></script>
 </body>
 </html>
