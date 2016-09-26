@@ -1,6 +1,6 @@
 $(function () {
     if (localStorage.token) {
-        window.location.href = "../home.html";//已登录会跳转到这个页面
+        window.location.href = "usercenter.html";//已登录会跳转到这个页面
     }
     else {
         var accountManagement = new AccountManagement();
@@ -12,7 +12,7 @@ function initValidation() {
         $.AMUI.validator.patterns.mobile = /^1((3|5|8){1}\d{1}|70|77|71)\d{8}$/;
         $.AMUI.validator.patterns.nickname = /^[0-9a-zA-Z\u4e00-\u9fa5_]{1,8}$/;
         $.AMUI.validator.patterns.password = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
-        $.AMUI.validator.patterns.vcode = /^\d{4}$/;
+        $.AMUI.validator.patterns.vcode = /^\d{5}$/;
     }
 }
 initValidation();
@@ -90,7 +90,10 @@ var AccountManagement = function () {
                         dataType: 'json',
                         context: null,
                         success: function (data) {
-                            //localStorage.token = "";
+                            var info = data.data;
+                            localStorage.token = info.token;
+                            localStorage.nickName = info.nickName;
+                            localStorage.loginName = info.loginName;
                             window.location.href = "usercenter.html";//登陆成功后跳转到这个页面
                         }
                     });
@@ -119,7 +122,7 @@ var AccountManagement = function () {
             }
         });
         _vm.registerVM.verificationCode.subscribe(function (newValue) {
-            var pRegex = /^\d{4}$/;
+            var pRegex = /^\d{5}$/;
             if (pRegex.test(newValue.trim())) {
                 _vm.registerVM.canRegister(true);
             }

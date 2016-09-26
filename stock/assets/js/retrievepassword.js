@@ -1,6 +1,6 @@
 $(function () {
     if (localStorage.token) {
-        window.location.href = "../home.html";//已登录会跳转到这个页面
+        window.location.href = "usercenter.html";//已登录会跳转到这个页面
     }
     else {
         var retrievepdManagement = new RetrievePDManagement();
@@ -11,7 +11,7 @@ function initValidation() {
     if ($.AMUI && $.AMUI.validator) {
         $.AMUI.validator.patterns.mobile = /^1((3|5|8){1}\d{1}|70|77|71)\d{8}$/;
         $.AMUI.validator.patterns.password = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
-        $.AMUI.validator.patterns.vcode = /^\d{4}$/;
+        $.AMUI.validator.patterns.vcode = /^\d{5}$/;
     }
 }
 initValidation();
