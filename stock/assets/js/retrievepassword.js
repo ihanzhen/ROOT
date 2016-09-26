@@ -1,6 +1,6 @@
 $(function () {
     if (localStorage.token) {
-        window.location.href = "../home.html";//已登录会跳转到这个页面
+        window.location.href = "usercenter.html";//已登录会跳转到这个页面
     }
     else {
         var retrievepdManagement = new RetrievePDManagement();

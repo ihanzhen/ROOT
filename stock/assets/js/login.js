@@ -1,6 +1,6 @@
 $(function () {
     if (localStorage.token) {
-        window.location.href = "../home.html";//已登录会跳转到这个页面
+        window.location.href = "usercenter.html";//已登录会跳转到这个页面
     }
     else {
         var accountManagement = new AccountManagement();
@@ -90,7 +90,10 @@ var AccountManagement = function () {
                         dataType: 'json',
                         context: null,
                         success: function (data) {
-                            //localStorage.token = "";
+                            var info = data.data;
+                            localStorage.token = info.token;
+                            localStorage.nickName = info.nickName;
+                            localStorage.loginName = info.loginName;
                             window.location.href = "usercenter.html";//登陆成功后跳转到这个页面
                         }
                     });
