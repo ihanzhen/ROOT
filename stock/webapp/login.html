@@ -1,0 +1,151 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="{$site_name}" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="128x128" href="apple-touch-icon-precomposed.png">
+    <meta name="msapplication-TileImage" content="apple-touch-icon-precomposed.png">
+    <meta name="msapplication-TileColor" content="#007AFF">
+    <link rel="shortcut icon" type="image/x-icon" href="{DT_PATH}favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>函真数据</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="../assets/i/favicon.png">
+    <link rel="stylesheet" href="../assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="../../font/css/font-awesome.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body>
+    <!--header-->
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="usercenter.html" class="">
+                <!--<i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>-->
+                <i class="fa fa-chevron-left" aria-hidden="true" style="font-size:1.7rem;color:#999"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">
+            <a href="#title-link">至赢<span class="color-red">┽</span>禅心</a>
+        </h1>
+        <!--<div class="am-header-right am-header-nav" style="margin-right:40px">
+            <a href="#left-link" class="">
+                <i class="am-header-icon am-icon-refresh" style="font-size:1.5rem;color:#999"></i>
+            </a>
+        </div>-->
+    </header>
+    <div id="account-container">
+        <div class="btn-group login-bg">
+            <canvas id="canvas"></canvas>
+            <button id="register-btn" type="button" class="btn-bg-transparent" data-bind="click:registerClick">注册</button>
+            <button id="login-btn" type="button" class="btn-bg-transparent" data-bind="click:loginClick">登录</button>
+        </div>
+        <div class="pr register-triangle-group" data-bind="visible:isRegister()">
+            <div id="triangle"></div>
+            <div id="triangle-inner"></div>
+        </div>
+        <div class="pr login-triangle-group" data-bind="visible:!isRegister()">
+            <div id="triangle"></div>
+            <div id="triangle-inner"></div>
+        </div>
+        <form id="register-form" class="am-form am-form-horizontal" data-bind="visible:isRegister(),with:registerVM">
+            <div class="am-form-group mg-bottom-0">
+                <div class="am-u-sm-12" data-am-validator>
+                    <label for="doc-ipt-1" class="am-u-sm-3 am-form-label pd-top-0-3em pa">昵称</label>
+                    <input type="text" id="doc-ipt-1" placeholder="请起个名字，8个字以内" class="js-pattern-nickname pd-left-60" data-bind="value:nickName" required>
+                </div>
+            </div>
+
+            <div class="am-form-group mg-bottom-0">
+                <div class="am-u-sm-12" data-am-validator>
+                    <label for="doc-ipt-pwd-2" class="am-u-sm-3 am-form-label pd-top-0-3em pa">密码</label>
+                    <input type="password" id="doc-ipt-pwd-2" placeholder="需包含数字和字母，8-16位" class="js-pattern-password pd-left-60" data-bind="value:password" required>
+                </div>
+            </div>
+
+            <div class="am-form-group mg-bottom-0">
+                <div class="am-u-sm-12 pr" data-am-validator>
+                    <label for="doc-ipt-2" class="am-u-sm-3 am-form-label pd-top-0-3em pa">+86</label>
+                    <input type="text" id="doc-ipt-2" placeholder="请输入手机号" class="js-pattern-mobile pd-left-60" data-bind="value:username,valueUpdate:'keyup'" required>
+                    <button type="button" class="yanzheng-btn mg-right-12" data-bind="enable:canVerify(),click:verificationClick">发送验证码</button>
+                </div>
+            </div>
+
+            <div class="am-form-group mg-bottom-0">
+                <div class="am-u-sm-12" data-am-validator>
+                    <label for="doc-ipt-3" class="am-u-sm-3 am-form-label pd-left-5 pd-top-0-3em pa">验证码</label>
+                    <input type="text" id="doc-ipt-3" placeholder="请输入四位验证码" class="js-pattern-vcode pd-left-60" data-bind="value:verificationCode,valueUpdate:'keyup'" required>
+                </div>
+            </div>
+
+            <div class="am-form-group mg-bottom-0 mg-top-40">
+                <div class="am-u-sm-12 am-u-sm-offset-2 mg-left-0">
+                    <button type="submit" class="am-btn am-btn-block blue-btn" data-bind="enable:canRegister,click:registerSubmitClick">注册</button>
+                </div>
+            </div>
+        </form>
+
+        <form id="login-form" class="am-form am-form-horizontal" data-bind="visible:!isRegister(),with:loginVM">
+            <div class="am-form-group mg-bottom-0">
+                <div class="am-u-sm-12" data-am-validator>
+                    <label for="doc-ipt-4" class="am-u-sm-3 am-form-label pd-top-0-3em pa">账号</label>
+                    <input type="text" id="doc-ipt-4" class="js-pattern-mobile pd-left-60" placeholder="输入手机号" data-bind="value:username" required>
+                </div>
+            </div>
+
+            <div class="am-form-group mg-bottom-0">
+                <div class="am-u-sm-12" data-am-validator>
+                    <label for="doc-ipt-pwd-2" class="am-u-sm-3 am-form-label pd-top-0-3em pa">密码</label>
+                    <input type="password" id="doc-ipt-pwd-2" placeholder="请输入登录密码" class="pd-left-60 js-pattern-password" data-bind="value:password,valueUpdate:'keyup'" required>
+                </div>
+            </div>
+            <a href="retrievepassword.html" class="forgetpd"><span>忘记密码</span></a>
+
+            <div class="am-form-group mg-top-70">
+                <div class="am-u-sm-12 am-u-sm-offset-2 mg-left-0">
+                    <button type="submit" class="am-btn am-btn-block blue-btn" data-bind="enable:canLogin,click:loginSubmitClick">登录</button>
+                </div>
+            </div>
+        </form>
+        <!--遮罩层-->
+        <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">提示</div>
+                <div class="am-modal-bd">
+                    短信验证码将发送到<br />
+                    +86&nbsp;<span data-bind="text:registerVM.username()"></span>
+                </div>
+                <div class="am-modal-footer">
+                    <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                    <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="am-margin-top">
+        <p class="am-text-center ft">
+            <small>
+                京ICP备010666888<br />
+                Powered by &copy; <b>HANZHEN</b> DataTech Co.Ltd<br />
+                www.ihanzhen.com
+            </small>
+        </p>
+    </footer>
+
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/amazeui.min.js"></script>
+    <script src="../assets/js/knockout-3.1.0.js"></script>
+    <script src="../assets/js/login.js"></script>
+</body>
+</html>
