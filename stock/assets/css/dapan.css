@@ -46,6 +46,10 @@
     padding-top:10px;
 }
 
+.br-o{
+    border-radius:15px;
+    opacity:0.1;
+}
 .zhishuTitle {
     text-align: center;
     margin: 0 auto;
