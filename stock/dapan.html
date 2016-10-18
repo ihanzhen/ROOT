@@ -13,13 +13,18 @@
             <a href="home.html">
                 <i class="am-header-icon am-icon-arrow-left titlei"></i>
             </a>
+        </div>
+        <div class="am-header-nav" style="margin-left: 40px;">
             <span class="titleSpan">大盘预测</span>
+        </div>
+        <div class="am-header-right am-header-nav">
+            <a href="bankuai.html">板块分析</a>
         </div>
     </header>
     <div id="dapan-container">
         <ul class="am-avg-sm-3 ulStyle" data-bind="foreach:items">
             <li class="liStyle">
-                <a href="http://www.qgfan.com/tmp/stock/kline.html">
+                <a href="#">
                     <div class="zhishuTitle" data-bind="text:marketName">上证指数</div>
                     <div class="zhishuNum" data-bind="style:{color:price()>oldPrice?'#e74c3c':'#27ae60'}"><span class="am-icon-caret-up" data-bind="css:{'am-icon-caret-up':price()>oldPrice,'am-icon-caret-down':price()<oldPrice}">&nbsp;</span><span data-bind="text:price">1325.35</span></div>
 
@@ -27,7 +32,7 @@
                         <ul class="am-avg-sm-2">
                             <li>
                                 <div class="advise">
-                                    <span class="am-badge am-badge-danger am-radius proposalFont" data-bind="text:property">中期看涨</span>
+                                    <span class="am-badge am-radius proposalFont" data-bind="text:property,css:{'am-badge-danger':property().search(/涨/)!=-1,'am-badge-success':property().search(/跌/)!=-1}">中期看涨</span>
                                 </div>
                             </li>
                             <li>
@@ -38,51 +43,47 @@
                         </ul>
                     </div>
                     <div class="imgDiv">
-                        <div><embed src="../images/dot.svg" type="image/svg+xml" class="embedStyle" data-bind="attr:{src:url}" /></div>
+                        <div><img type="image/svg+xml" class="embedStyle" data-bind="attr:{src:url}" /></div>
                     </div>
                 </a>
             </li>
         </ul>
+        <!-- ko with:proposalPredictionsVM -->
         <!-- List -->
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
-            <div class="am-list-news-hd am-cf">
-                <a href="##" class="">
-                    <h2>
-                        <span class="am-icon-bar-chart color-red"></span>
-                        仓位建议
-                        <span class="nobold">&nbsp;Position proposal</span>
-                    </h2>
-                    <!--span class="am-list-news-more am-fr"><span style="font-weight:bold">设置</span> &raquo;</span-->
-                    <!--span class="am-list-news-more am-fr am-icon-bullseye"> 大盘预测</span-->
-                </a>
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
+            <div class="am-list-news-hd am-cf" style="padding-top:0">
+                <h2>
+                    <span class="am-icon-bar-chart color-red"></span>
+                    仓位建议
+                    <span class="nobold">&nbsp;Position proposal</span>
+                </h2>
+                <!--span class="am-list-news-more am-fr"><span style="font-weight:bold">设置</span> &raquo;</span-->
+                <!--span class="am-list-news-more am-fr am-icon-bullseye"> 大盘预测</span-->
             </div>
-            <div class="am-list-news-bd" style="font-size:1.3rem;color:#fff;">
-                <a href="dapan_datails.html">
-                    <div class="progressbar_1" style="margin:0 auto">
-                        <div class="bar" style="width: 60%;text-align:right;padding-right:10px;color:#ddd">60%</div>
-                    </div>
-                </a>
+            <div class="am-list-news-bd barDiv">
+                <div class="progressbar_1 centerBar">
+                    <div class="bar proposalBar" data-bind="text:position,style:{width:parseInt(position())<20?'20%':position}"></div>
+                </div>
             </div>
         </div>
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
             <div class="am-list-news-hd am-cf">
-                <a href="##" class="">
-                    <h2>
-                        <span class="am-icon-newspaper-o color-green"></span>
-                        主力动向
-                        <span class="nobold">&nbsp;Predictions</span>
-                    </h2>
-                    <!--span class="am-list-news-more am-fr">more &raquo;</span-->
-                </a>
+                <h2>
+                    <span class="am-icon-newspaper-o color-green"></span>
+                    主力动向
+                    <span class="nobold">&nbsp;Predictions</span>
+                </h2>
+                <!--span class="am-list-news-more am-fr">more &raquo;</span-->
             </div>
-            <div class="am-list-news-bd" style="font-size:1.3rem;color:#fff">
+            <div class="am-list-news-bd barDiv" data-bind="text:prediction">
                 本周大盘企稳，蓄势待发，周线呈现牛市多头的趋势，未来1-2周将会有明显上涨行情。
             </div>
         </div>
+        <!-- /ko -->
         <!-- List -->
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
             <div class="am-list-news-hd am-cf">
-                <a href="##" class="">
+                <a href="##">
                     <h2>
                         <span class="am-icon-bar-chart color-red"></span>
                         裂缝指数
@@ -92,23 +93,23 @@
             </div>
         </div>
         <div id="main" class="index"></div>
-
-        <!-- Loading -->
-        <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
-            <div class="am-modal-dialog">
-                <div class="am-modal-hd">正在载入...</div>
-                <div class="am-modal-bd">
-                    <span class="am-icon-spinner am-icon-spin"></span>
-                </div>
+    </div>
+    <!-- Loading -->
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">正在载入...</div>
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
             </div>
         </div>
     </div>
-    <script src="assets/js/dp_index.js"></script>
+
 
     <!-- Navbar -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/dp_index.js"></script>
     <script src="assets/js/dapan.js"></script>
     <script>
         //页面加载时绑定按钮点击事件

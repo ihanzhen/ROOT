@@ -21,56 +21,10 @@
     //  });
 
     var dapanVM = new DapanVM();
-    $('#my-modal-loading').modal('open');
-    $.get('/ihanzhendata/stock/market_forecast', function (result) {
-        $('#my-modal-loading').modal('close');
-        var data = result.data;
-        for (var i = 0; i < data.length; i++) {
-            dapanVM.items().push(new Market(data[i].close_price,data[i].market_name,data[i].property,data[i].position,data[i].tendency_price,data[i].old_close_price));
-        }
-    });
-
-    ////fake data
-    //result = {
-    //    "status": 1,
-    //    "msg": "查询成功",
-    //    "data": [
-    //      {
-    //          "uid": null,
-    //          "market_name": "上证指数",
-    //          "position": 50,
-    //          "tendency_url": null,
-    //          "property": "中期看涨",
-    //          "close_price": 1234.23,
-    //          "old_close_price": 1111.34
-    //      },
-    //      {
-    //          "uid": null,
-    //          "market_name": "中证500",
-    //          "position": 30,
-    //          "tendency_url": null,
-    //          "property": "短期看涨",
-    //          "close_price": 1112.25,
-    //          "old_close_price": 1111.45
-    //      },
-    //      {
-    //          "uid": null,
-    //          "market_name": "创业板指",
-    //          "position": 20,
-    //          "tendency_url": null,
-    //          "property": "长期看涨",
-    //          "close_price": 1356.36,
-    //          "old_close_price": 1567.45
-    //      }
-    //    ]
-    //};
-    //var data = result.data;
-    //for (var i = 0; i < data.length; i++) {
-    //    dapanVM.items().push(new Market(data[i].close_price, data[i].market_name, data[i].property, data[i].position / 10 + '成仓', data[i].tendency_price, data[i].old_close_price));
-    //}
+    getPageData(dapanVM);
     ko.applyBindings(dapanVM, $("#dapan-container")[0]);
+   
 })
-
 //view model
 function Market(price, name, property, position, url, oldPrice) {
     this.price = ko.observable(price);
@@ -83,7 +37,36 @@ function Market(price, name, property, position, url, oldPrice) {
 function DapanVM() {
     _vm = this;
     _vm.items = ko.observableArray([]);
+    _vm.proposalPredictionsVM = {
+        position: ko.observable(''),
+        prediction: ko.observable('')
+    };
 }
+var dapanAjax = function () {
+    $('#my-modal-loading').modal('open');
+    return $.get('/ihanzhendata/stock/market_forecast');
+}
+var proposalPredictionAjax = function () {
+    $('#my-modal-loading').modal('open');
+    return $.get('/ihanzhendata/stock/main_position');
+}
+var getPageData = function (vm) {
+    $('#my-modal-loading').modal('open');
+    $.when(dapanAjax(), proposalPredictionAjax())
+        .done(function (dapanResult, proposalResult) {
+            $('#my-modal-loading').modal('close');
+            var dapanData = JSON.parse(dapanResult[2].responseText).data;
+            for (var i = 0; i < dapanData.length; i++) {
+                vm.items.push(new Market(dapanData[i].close_price, dapanData[i].market_name, dapanData[i].property, dapanData[i].position / 10 + '成仓', dapanData[i].tendency_url, dapanData[i].old_close_price));
+            }
+            var proposalData = JSON.parse(proposalResult[2].responseText).data;
+            vm.proposalPredictionsVM.position(proposalData.main_position + '%');
+            vm.proposalPredictionsVM.prediction(proposalData.main_tendency);
+        }).fail(function () {
+            console.log('fail');
+        });
+}
+
 
 
 
