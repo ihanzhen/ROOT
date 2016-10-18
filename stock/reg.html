@@ -1,0 +1,137 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script src="assets/js/head.js"></script>
+  <meta name="apple-touch-fullscreen" content="yes">
+</head>
+<body>
+<!-- Header -->
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+      <a href="#left-link" class="">
+	      <i class="am-header-icon am-icon-chevron-left" style="font-size:1.7rem;color:#999"></i>
+      </a>
+  </div>	
+  <h1 class="am-header-title">
+    <a href="#title-link">
+      <span style="font-size:1.8rem">注册会员</span>    
+    </a>    
+  </h1>
+  <div class="am-header-right am-header-nav">
+      <a href="login.html" class="">
+	     登录
+      </a>
+  </div>	
+</header>
+
+<style>
+.am-form input[type="text"],.am-form input[type="email"],.am-form input[type="password"]
+{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;height:45px;}
+.am-form input[type='text']:focus,.am-form input[type='email']:focus,.am-form input[type='password']:focus
+{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;}
+.am-btn-default:focus,.am-btn-default:active{box-shadow: none;}
+.am-form input[type='button']:focus{box-shadow: none;}
+.am-form input[type='button']:hover{box-shadow: none;}
+</style>
+<div id="register-container">
+    <form class="am-form am-form-horizontal">
+        <div class="am-g">
+            <div class="am-u-md-8 am-u-sm-centered">
+                <fieldset class="am-form-set">
+                    <input type="email" placeholder="电子邮箱" data-bind="value:email">
+                    <input type="password" placeholder="密码" data-bind="value:password">
+                    <input type="text" placeholder="+86" data-bind="value:phone,valueUpdate:'keyup'" required>
+                    <button id="verifyBtn" type="button" class="am-btn am-btn-default am-radius" style="position:relative;z-index:2;float:right;margin-top:-39px;height:30px;line-height: 14px;font-size:12px" data-bind="enable:canVerify(),text:verifyText,click:verifyClick">获取验证码</button>
+                    <input type="text" placeholder="验证码" data-bind="value:vcode">
+                </fieldset>
+                <button type="submit" class="am-btn am-btn-danger am-btn-block am-radius" data-bind="click:registerSubmitClick">注册账号</button>
+                <div style="margin-top: 5px;">
+                    <i class="am-header-icon am-icon-check-square-o" style="font-size:1.2rem;color:#999;">
+                        我已阅读并同意相关服务条款和隐私政策
+                    </i>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="am-g">
+        <div class="am-u-md-8 am-u-sm-centered">
+            <fieldset class="am-form-set">
+                <div style="margin-top: 50px;border-top: 1px solid #444;"></div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="am-g" style="position:relative;z-index:1;text-align: center;font-size:12px;width:70px;height:10px;background: #3d3d3d;margin-top: -25px">社交登录</div>
+    <ul class="am-avg-sm-3" style="margin-top:20px">
+        <li>
+            <a href="javascript:void(0)">
+                <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-wechat" style="line-height:50px;width:50px;height:50px;background: #27ae60;color:#fff;border-radius:50px;"></div></div>
+                <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">微信</div>
+            </a>
+        </li>
+        <li>
+            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-qq" style="line-height:50px;width:50px;height:50px;background: #12b7f5;color:#fff;border-radius:50px;"></div></div>
+            <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">QQ</div>
+        </li>
+        <li>
+            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-weibo" style="line-height:50px;width:50px;height:50px;background: #f05e4b;color:#fff;border-radius:50px;"></div></div>
+            <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">微博</div>
+        </li>
+    </ul>
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm" style="margin-top:-100px">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">注册成功</div>
+            <div class="am-modal-bd" style="font-size:12px">
+                欢迎您加入至赢禅心量化交易平台！
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel style="width:50%;color:#f05e4b">返回首页</span>
+                <span class="am-modal-btn" data-am-modal-confirm style="width:50%;color:#f05e4b">会员中心</span>
+            </div>
+        </div>
+    </div>
+    <!--遮罩层-->
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="send-confirm">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">提示</div>
+            <div class="am-modal-bd">
+                短信验证码将发送到<br />
+                +86&nbsp;<span data-bind="text:phone()"></span>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">正在载入...</div>
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 输入格式不正确模态窗口提示 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">提示</div>
+            <div class="am-modal-bd" data-bind="text:notice"></div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Navbar -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/knockout-3.1.0.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
+<script src="assets/js/reg.js"></script>
+</body>
+</html>

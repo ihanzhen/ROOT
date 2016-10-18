@@ -6,12 +6,12 @@ document.write('        <span class="am-icon-bar-chart"></span>');
 document.write('        <span class="am-navbar-label">大盘</span>');
 document.write('      </a>');
 document.write('    </li>');
-document.write('    <li>');
+/*document.write('    <li>');
 document.write('      <a href="order.html">');
 document.write('        <span class="am-icon-inbox"></span>');
 document.write('        <span class="am-navbar-label">持仓</span>');
 document.write('      </a>');
-document.write('    </li>');
+document.write('    </li>');*/
 document.write('    <li>');
 document.write('      <a href="wait.html">');
 document.write('        <span class="am-icon-eye active"></span>');

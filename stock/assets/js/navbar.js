@@ -6,12 +6,12 @@ document.write('        <span class="am-icon-home active"></span>');
 document.write('        <span class="am-navbar-label active">首页</span>');
 document.write('      </a>');
 document.write('    </li>');
-document.write('    <li>');
+/*document.write('    <li>');
 document.write('      <a href="order.html">');
 document.write('        <span class="am-icon-inbox"></span>');
 document.write('        <span class="am-navbar-label">持仓</span>');
 document.write('      </a>');
-document.write('    </li>');
+document.write('    </li>');*/
 document.write('    <li>');
 document.write('      <a href="wait.html">');
 document.write('        <span class="am-icon-eye"></span>');

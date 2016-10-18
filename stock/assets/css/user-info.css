@@ -1,0 +1,103 @@
+/** {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Î¢ÈíÑÅºÚ";
+}*/
+
+/*#box {
+    width: 80%;
+    height: 600px;
+    border: 2px solid red;
+    position: relative;
+    margin: 100px auto;
+}*/
+
+#upload {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 200px;
+    height: 85px;
+    margin: auto;
+}
+
+    #upload a {
+        display: block;
+        width: 200px;
+        height: 50px;
+        background: #3399ff;
+        background-position: 50px 13px;
+        border-radius: 5px;
+        text-decoration: none;
+        position: relative;
+    }
+
+        #upload a input {
+            width: 200px;
+            height: 50px;
+            opacity: 0;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        #upload a span {
+            font-size: 20px;
+            color: #fff;
+            position: absolute;
+            left: 94px;
+            top: 10px;
+        }
+
+    #upload p {
+        margin-top: 10px;
+        color: #ccc;
+        text-align: center;
+    }
+
+#imgs {
+    width: 100%;
+    height: 600px;
+    overflow-y: auto;
+}
+
+.imgBox {
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    margin: 10px;
+    float: left;
+}
+
+.bg {
+    width: 150px;
+    height: 130px;
+}
+
+.imgBox p {
+    text-align: center;
+}
+
+.newUpload {
+    width: 150px;
+    height: 150px;
+    background: #ccc;
+    background-position: 50px 20px;
+    border: #bbb;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    line-height: 200px;
+    position: relative;
+}
+
+    .newUpload #btn {
+        width: 150px;
+        height: 150px;
+        opacity: 0;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }

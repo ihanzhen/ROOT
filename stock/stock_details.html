@@ -1,0 +1,275 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script src="assets/js/head.js"></script>
+  <script src="assets/js/echarts.min.js"></script> 
+  <link rel="stylesheet" href="assets/css/style.css"> <!-- Resource style -->
+</head>
+<body>
+<!-- Header -->
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+      <a href="user.html" class="">
+        <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
+      </a>
+      <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">
+        <span style="position: relative;top:-6px;font-size:1.6rem">新城股份<br>
+          <span style="font-size:11px;position: relative;top:-36px;left:60px;color:#777">000656.SH</span>      
+      </span>
+      
+      
+  </div> 
+  <div class="am-header-right am-header-nav" style="margin-right:40px">
+      <a href="#left-link" class="">
+        <i class="am-header-icon am-icon-flash" style="font-size:2rem;color:#999" id="KEY_FRESH"></i>
+      </a>
+  </div>
+  <div class="am-header-right am-header-nav">
+      <a href="#left-link" class="">
+        <i class="am-header-icon am-icon-plus-square" style="font-size:2rem;color:#f05e4b" id="KEY_FRESH"></i>
+      </a>
+  </div>    
+</header>
+
+
+<!-- List -->
+<div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
+  <div class="am-list-news-hd am-cf">
+      <a href="##" class="">
+        <h2>
+          <span class="am-icon-tachometer color-red"></span>
+          指标
+          <span class="nobold">&nbsp;Index Data</span>
+        </h2>
+      </a>
+  </div>
+</div>
+
+<div class="am-tabs" data-am-tabs style="margin: -11px 0 10px 0;font-size:14px">
+  <ul class="am-avg-sm-4 am-tabs-nav am-nav am-nav-tabs" style="padding:2px 0 1px 0;border-top:1px solid #444">
+    <li>
+      <span style="position: relative;font-size:12px;">市盈率<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">10%</span>
+    </li>
+    <li>
+      <span style="position: relative;font-size:12px;">量比<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">1.13</span>
+    </li>
+    <li>
+      <span style="position: relative;font-size:12px;">量比<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">6.62%</span>
+    </li>
+    <li>
+      <span style="position: relative;font-size:12px;">振幅<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">10%</span>
+    </li>
+  </ul>
+  <ul class="am-avg-sm-4 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:2px 0 1px 0">
+    <li>
+      <span style="position: relative;font-size:12px;">市净值<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">-44.66</span>
+    </li>
+    <li>
+      <span style="position: relative;font-size:12px;">每股收益<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">-0.18</span>
+    </li>
+    <li>
+      <span style="position: relative;font-size:12px;">成交额<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">3.54亿</span>
+    </li>
+    <li>
+      <span style="position: relative;font-size:12px;">总市值<br>
+      <span style="font-size:14px;position: relative;top:-5px;color:#eee;">6.87亿</span>
+    </li>
+  </ul>  
+</div>
+
+
+<!--style type="text/css">
+.zline{height: 180px;margin-top:-15px;padding:0 10px;width: 100%;}  
+</style>
+<div id="main" class="zline"></div>
+<script src="assets/js/dp_zline.js"></script-->
+
+<!--tabs-->
+<style type="text/css">
+.am-tabs-bd{border: none;}
+.am-nav-tabs >li > a{color:#aaa;}
+.am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {background: none;border:none;color:#fff;margin-top: 1px;margin-left: 1px;font-weight: bold}
+.am-tabs-nav > li{background: none;text-align: center;}
+.am-tabs-nav > li >a{position: relative;top:-8px;left:3px;}
+.am-nav-tabs {border:none;}
+.am-list > li {background: none;border-color: #444;}
+.am-nav > li > a:focus,.am-nav > li > a:hover{background: none;border:none;}
+</style>
+
+
+<div class="am-tabs" data-am-tabs>
+  <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
+    <li class="am-active" style="height:25px"><a href="#tab1">基本面</a></li>
+    <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px"><a href="#tab2">新闻</a></li>
+    <li style="height:25px"><a href="#tab3">重大事件</a></li>
+  </ul>
+
+  <div class="am-tabs-bd" >
+    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+      
+      <!-- List -->
+      <div style="border-top:1px solid #444"></div>
+      <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px;">
+        <div class="am-list-news-hd am-cf">
+            <a href="##" class="">
+              <h2 style="position:relative;left:-10px;">
+                <span class="am-icon-balance-scale color-red" style="width:18px"></span>
+                操作建议
+              </h2>
+            </a>
+        </div>
+      </div>
+      
+      <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px;">
+        <div class="am-list-news-hd am-cf">
+            <a href="##" class="">
+              <h2 style="position:relative;left:-10px;">
+                <span class="am-icon-line-chart color-red"></span>
+                同比增长率
+              </h2>
+            </a>
+        </div>
+      </div>      
+
+      <style type="text/css">
+      .zline{height: 180px;margin-top:-15px;padding:0 10px;width: 100%;}  
+      </style>
+
+      <div class="am-tabs" data-am-tabs>
+        <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="font-size: 13px;">
+          <li class="am-active" style="height:15px"><a href="#tab-4-1">净利润</a></li>
+          <li style="border-right: 1px solid #555;border-left: 1px solid #555;height:15px"><a href="#tab-4-2">营业收入</a></li>
+          <li style="height:15px"><a href="#tab-4-3">每股收益</a></li>
+        </ul>
+        <div class="am-tabs-bd am-tabs-bd-ofv" style="margin-top: 15px">
+          <div class="am-tab-panel am-active" id="tab-4-1"><div id="main" class="zline"></div>
+          </div>
+          <div class="am-tab-panel" id="tab-4-2"><div id="main1" class="zline"></div>
+          </div>
+          <div class="am-tab-panel" id="tab-4-3">
+          </div>
+        </div>
+      </div>
+         <script src="assets/js/dp_jlr.js"></script>
+
+    </div>
+    <div class="am-tab-panel am-fade" id="tab2">
+      <div class="am-list-news-bd">
+        <ul class="am-list">
+            <li class="am-g am-list-item-dated">
+              <a href="##" class="am-list-item-hd"> 
+                <span class="am-header-icon am-icon-arrow-circle-up" style="color:#f05e4b"> 
+                  <span style="color:#fff">三季度十大预增王 预增546倍夺冠</span>
+                </span>
+              </a>
+            </li>
+            <li class="am-g am-list-item-dated">
+              <a href="##" class="am-list-item-hd"> 
+                <span class="am-header-icon am-icon-arrow-circle-up" style="color:#f05e4b"> 
+                  <span style="color:#fff">三季度十大预增王 预增546倍夺冠</span>
+                </span>
+              </a>
+            </li>
+            <li class="am-g am-list-item-dated">
+              <a href="##" class="am-list-item-hd"> 
+                <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
+              </a>
+            </li>        
+            <li class="am-g am-list-item-dated">
+              <a href="##" class="am-list-item-hd"> 
+                <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
+              </a>
+            </li>        
+            <li class="am-g am-list-item-dated">
+              <a href="##" class="am-list-item-hd"> 
+                <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
+              </a>
+            </li>        
+            <li class="am-g am-list-item-dated">
+              <a href="##" class="am-list-item-hd"> 
+                <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
+              </a>
+            </li>        
+            <li class="am-g am-list-item-dated">
+              <a href="##" class="am-list-item-hd"> 
+                <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
+              </a>
+            </li>        
+        </ul>
+      </div> 
+    </div>   
+    <div class="am-tab-panel am-fade" id="tab3">
+      <div style="border-bottom: 1px solid #444"></div>
+      <section id="cd-timeline" class="cd-container">
+        <div class="cd-timeline-block">
+          <div class="cd-timeline-img cd-picture"></div>
+          <div class="cd-timeline-content">
+            <h2>
+              <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016-10-01</span>
+              业绩披露
+            </h2>
+            <p>16中报：每股收益-0.1754元，每股净资产-0.1798元，不分配（决案）。</p>
+          </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block">
+          <div class="cd-timeline-img cd-movie"></div> <!-- cd-timeline-img -->
+
+          <div class="cd-timeline-content">
+            <h2>
+              <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016-09-10</span>
+              复牌
+            </h2>
+            <p>公司就终止重大自查重组相关情况与投资者进行互动交流和沟通，并就投资者普遍关注的问题进行了回答。今日复牌</p>
+          </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+
+        <div class="cd-timeline-block">
+          <div class="cd-timeline-img cd-picture"></div> <!-- cd-timeline-img -->
+
+          <div class="cd-timeline-content">
+            <h2>
+              <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016-08-29</span>
+              业绩披露
+            </h2>
+            <p>15年报：每股收益-0.1754元，每股净资产-0.1798元。继续停牌。</p>
+          </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+      </section> <!-- cd-timeline -->
+      <!-- List -->
+    </div>
+  </div>
+</div>
+
+
+<!-- Navbar -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script>
+//页面加载时绑定按钮点击事件
+$(function(){
+    $("#KEY_FRESH").click(function(){
+        refresh();
+    });
+});
+//点击按钮调用的方法
+function refresh(){
+    window.location.reload();//刷新当前页面.
+     
+    //或者下方刷新方法
+    //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+    // opener.location.reload()刷新父窗口对象（用于单开窗口
+   //top.location.reload()刷新最顶端对象（用于多开窗口）
+}
+</script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
+</body>
+</html>

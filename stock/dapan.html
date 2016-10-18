@@ -1,264 +1,132 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="no-js">
 <head>
-  <meta charset="utf-8">
-  <script src="assets/js/head.js"></script>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="assets/css/dapan.css" />
+    <script src="assets/js/head.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
 </head>
 <body>
-<!-- Header -->
-<header data-am-widget="header" class="am-header am-header-default">
-  <h1 class="am-header-title">
-    <a href="#title-link">至赢<span class="color-red">┽</span>禅心</a>
-  </h1>
-</header>
+    <!-- Header -->
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="home.html">
+                <i class="am-header-icon am-icon-arrow-left titlei"></i>
+            </a>
+            <span class="titleSpan">大盘预测</span>
+        </div>
+    </header>
+    <div id="dapan-container">
+        <ul class="am-avg-sm-3 ulStyle" data-bind="foreach:items">
+            <li class="liStyle">
+                <a href="http://www.qgfan.com/tmp/stock/kline.html">
+                    <div class="zhishuTitle" data-bind="text:marketName">上证指数</div>
+                    <div class="zhishuNum" data-bind="style:{color:price()>oldPrice?'#e74c3c':'#27ae60'}"><span class="am-icon-caret-up" data-bind="css:{'am-icon-caret-up':price()>oldPrice,'am-icon-caret-down':price()<oldPrice}">&nbsp;</span><span data-bind="text:price">1325.35</span></div>
 
-<!-- Menu -->
-<script src="assets/js/menu.js"></script>
+                    <div class="colorDiv">
+                        <ul class="am-avg-sm-2">
+                            <li>
+                                <div class="advise">
+                                    <span class="am-badge am-badge-danger am-radius proposalFont" data-bind="text:property">中期看涨</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="position">
+                                    <span class="am-badge am-badge-warning am-radius proposalFont" data-bind="text:position">6成仓</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="imgDiv">
+                        <div><embed src="../images/dot.svg" type="image/svg+xml" class="embedStyle" data-bind="attr:{src:url}" /></div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <!-- List -->
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
+            <div class="am-list-news-hd am-cf">
+                <a href="##" class="">
+                    <h2>
+                        <span class="am-icon-bar-chart color-red"></span>
+                        仓位建议
+                        <span class="nobold">&nbsp;Position proposal</span>
+                    </h2>
+                    <!--span class="am-list-news-more am-fr"><span style="font-weight:bold">设置</span> &raquo;</span-->
+                    <!--span class="am-list-news-more am-fr am-icon-bullseye"> 大盘预测</span-->
+                </a>
+            </div>
+            <div class="am-list-news-bd" style="font-size:1.3rem;color:#fff;">
+                <a href="dapan_datails.html">
+                    <div class="progressbar_1" style="margin:0 auto">
+                        <div class="bar" style="width: 60%;text-align:right;padding-right:10px;color:#ddd">60%</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
+            <div class="am-list-news-hd am-cf">
+                <a href="##" class="">
+                    <h2>
+                        <span class="am-icon-newspaper-o color-green"></span>
+                        主力动向
+                        <span class="nobold">&nbsp;Predictions</span>
+                    </h2>
+                    <!--span class="am-list-news-more am-fr">more &raquo;</span-->
+                </a>
+            </div>
+            <div class="am-list-news-bd" style="font-size:1.3rem;color:#fff">
+                本周大盘企稳，蓄势待发，周线呈现牛市多头的趋势，未来1-2周将会有明显上涨行情。
+            </div>
+        </div>
+        <!-- List -->
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
+            <div class="am-list-news-hd am-cf">
+                <a href="##" class="">
+                    <h2>
+                        <span class="am-icon-bar-chart color-red"></span>
+                        裂缝指数
+                        <span class="nobold">&nbsp;Market vs Plate</span>
+                    </h2>
+                </a>
+            </div>
+        </div>
+        <div id="main" class="index"></div>
 
-<!-- List -->
-<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
-  <div class="am-list-news-hd am-cf">
-      <a href="##" class="">
-        <h2>
-          <span class="am-icon-bar-chart color-red"></span>
-          大盘指数
-          <span class="nobold">&nbsp;Market Index</span>
-        </h2>
-        <span class="am-list-news-more am-fr">more &raquo;</span>
-      </a>
-  </div>
-  <div class="am-list-news-bd">
-    <ul class="am-list">
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">上证指数</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">文化财经</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">美元指数</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">现货黄金</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>                
-    </ul>
-  </div>  
-  <div class="am-list-news-hd am-cf">
-      <a href="##" class="">
-        <h2>
-          <span class="am-icon-bar-chart color-red"></span>
-          板块指数
-          <span class="nobold">&nbsp;Sub Index</span>
-        </h2>
-        <span class="am-list-news-more am-fr">more &raquo;</span>
-      </a>
-  </div>
-  <div class="am-list-news-bd">
-    <ul class="am-list">
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">工业品</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">农业品</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">煤炭板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">有色板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">建材板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>                        
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">化工板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>                        
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">油脂板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>                        
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">软商板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>                        
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">谷物板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>                        
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">饲料板块</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>                                              
-    </ul>
-  </div>   
-  <!--div class="am-list-news-hd am-cf">
-      <a href="##" class="">
-        <h2>
-        	<span class="am-icon-bar-chart color-red"></span>
-        	沪深股市大盘
-        	<span class="nobold">&nbsp;DSI</span>
-        </h2>
-        <span class="am-list-news-more am-fr">more &raquo;</span>
-      </a>
-  </div>
-  <div class="am-list-news-bd">
-    <ul class="am-list">
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">上证指数</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">沪深300</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">中证500</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">创业板指</a>
-            <span class="am-list-date bg-red am-list-date-3">上升</span>
-            <span class="am-list-date bg-green am-list-date-1">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-2">加三</span>
-        </li>
-    </ul>
-  </div>
-  <div class="am-list-news-hd am-cf">
-      <a href="##" class="">
-        <h2>
-        	<span class="am-icon-bar-chart color-red"></span>
-        	商品期市大盘
-        	<span class="nobold">&nbsp;CFI</span>
-        </h2>
-        <span class="am-list-news-more am-fr">more &raquo;</span>
-      </a>
-  </div>
-  <div class="am-list-news-bd">
-    <ul class="am-list">
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">文化指数</a>
-            <span class="am-list-date bg-red am-list-date-4">上升</span>
-            <span class="am-list-date bg-green am-list-date-5">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-6">买多加三</span>
-           <span class="am-list-date bg-orange am-list-date-7">卖空清仓</span>            
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">农业品</a>
-            <span class="am-list-date bg-red am-list-date-4">上升</span>
-            <span class="am-list-date bg-green am-list-date-5">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-6">买多加三</span>
-           <span class="am-list-date bg-orange am-list-date-7">卖空清仓</span>  
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">工业品</a>
-            <span class="am-list-date bg-red am-list-date-4">上升</span>
-            <span class="am-list-date bg-green am-list-date-5">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-6">买多加三</span>
-           <span class="am-list-date bg-orange am-list-date-7">卖空清仓</span>  
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">原油</a>
-            <span class="am-list-date bg-red am-list-date-4">上升</span>
-            <span class="am-list-date bg-green am-list-date-5">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-6">买多加三</span>
-           <span class="am-list-date bg-orange am-list-date-7">卖空清仓</span>  
-        </li>
-    </ul>
-  </div> 
-  <div class="am-list-news-hd am-cf">
-      <a href="##" class="">
-        <h2>
-        	<span class="am-icon-bar-chart color-red"></span>
-        	境外市场大盘
-        	<span class="nobold">&nbsp;OMI</span>
-        </h2>
-        <span class="am-list-news-more am-fr">more &raquo;</span>
-      </a>
-  </div>
-  <div class="am-list-news-bd">
-    <ul class="am-list">
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">伦敦金</a>
-            <span class="am-list-date bg-red am-list-date-4">上升</span>
-            <span class="am-list-date bg-green am-list-date-5">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-6">买多加三</span>
-           <span class="am-list-date bg-orange am-list-date-7">卖空清仓</span>            
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">原油</a>
-            <span class="am-list-date bg-red am-list-date-4">上升</span>
-            <span class="am-list-date bg-green am-list-date-5">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-6">买多加三</span>
-           <span class="am-list-date bg-orange am-list-date-7">卖空清仓</span>  
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="##" class="am-list-item-hd ">美股ETF</a>
-            <span class="am-list-date bg-red am-list-date-4">上升</span>
-            <span class="am-list-date bg-green am-list-date-5">熊空</span>
-            <span class="am-list-date bg-orange am-list-date-6">买多加三</span>
-           <span class="am-list-date bg-orange am-list-date-7">卖空清仓</span>  
-        </li>
-    </ul>
-  </div-->    
-</div>
+        <!-- Loading -->
+        <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">正在载入...</div>
+                <div class="am-modal-bd">
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/dp_index.js"></script>
 
-<footer class="am-margin-top">
-  <p class="am-text-center ft">
-    <small>
-    京ICP备010666888<br/>
-    Powered by &copy; <b>HANZHEN</b> DataTech Co.Ltd<br/> 
-	www.ihanzhen.com
-    </small>
-  </p>
-</footer>
+    <!-- Navbar -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/dapan.js"></script>
+    <script>
+        //页面加载时绑定按钮点击事件
+        $(function () {
+            $("#KEY_FRESH").click(function () {
+                refresh();
+            });
+        });
+        //点击按钮调用的方法
+        function refresh() {
+            window.location.reload();//刷新当前页面.
 
-<!-- Navbar -->
-<script src="assets/js/navbar.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
+            //或者下方刷新方法
+            //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+            // opener.location.reload()刷新父窗口对象（用于单开窗口
+            //top.location.reload()刷新最顶端对象（用于多开窗口）
+        }
+    </script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
 </body>
 </html>

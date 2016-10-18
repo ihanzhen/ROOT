@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script src="assets/js/head.js"></script>
+</head>
+<body>
+<!-- Header -->
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+      <a href="user.html" class="">
+        <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
+      </a>
+      <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">邀请好友</span>
+  </div>
+</header>
+    <div id="invite-container">
+        <div class="am-g">
+            <div class="am-u-md-8 am-u-sm-centered">
+                <div style="margin: 10px 0;">
+                    <i class="am-header-icon am-icon-exclamation-circle" style="font-size:1.2rem;color:#999;">
+                        说明：成功邀请1位好友注册并成为试用会员，可延长会员试用期6个月，成功邀请5位以上好友，可优先获得最新功能内测名额。
+                    </i>
+                </div>
+                <div style="text-align: center;padding-bottom:20px">
+                    成功邀请&nbsp;<span style="font-size:30px;color:orange;font-weight: bold" data-bind="text:friendsCount"></span>&nbsp;位好友<br>
+                    <span style="font-size:12px;color:#eee" data-bind="visible:friendsCount()>=1">您已经达到兑换条件，可到卡券中心进行兑换。</span>
+                    <span style="font-size:12px;color:#eee" data-bind="visible:!(friendsCount()>=1)">您还未达到兑换条件，不能进行兑换。</span>
+                </div>
+            </div>
+        </div>
+        <form class="am-form am-form-horizontal">
+            <div class="am-g">
+                <div class="am-u-md-8 am-u-sm-centered">
+                    <button style="margin-bottom: 15px" data-am-modal="{target: '#my-actions'}" type="button" id="doc-confirm-toggle" class="am-btn am-btn-danger am-btn-block am-radius">点击邀请好友</button>
+                    <button type="button" class="am-btn am-btn-success am-btn-block am-radius" data-bind="click:redirectCardClick">前往卡券中心</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Loading -->
+        <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+            <div class="am-modal-dialog">
+                <div class="am-modal-hd">正在载入...</div>
+                <div class="am-modal-bd">
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+            </div>
+        </div>
+
+        <!--modal-->
+        <div class="am-modal-actions" id="my-actions">
+            <div class="am-modal-actions-group">
+                <ul class="am-avg-sm-4" style="background: #fff;padding:30px 0 25px 0;border-radius:2px;">
+                    <li data-bind="click:wechatClick">
+                        <div style="text-align: center;font-size: 3rem"><div class="am-icon-wechat" style="line-height:50px;width:50px;height:50px;background: #27ae60;color:#fff;border-radius:5px;"></div></div>
+                        <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#666;">微信好友</div>
+                    </li>
+                    <li data-bind="click:qqClick">
+                        <div style="text-align: center;font-size: 3rem"><div class="am-icon-qq" style="line-height:50px;width:50px;height:50px;background: #12b7f5;color:#fff;border-radius:5px;"></div></div>
+                        <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#666;">QQ好友</div>
+                    </li>
+                    <li data-bind="click:weiboClick">
+                        <div style="text-align: center;font-size: 3rem"><div class="am-icon-weibo" style="line-height:50px;width:50px;height:50px;background: #f05e4b;color:#fff;border-radius:5px;"></div></div>
+                        <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#666;">新浪微博</div>
+                    </li>
+                    <li data-bind="click:copyClick">
+                        <div style="text-align: center;font-size: 3rem"><div class="am-icon-link" style="line-height:50px;width:50px;height:50px;background: #aaa;color:#fff;border-radius:5px;"></div></div>
+                        <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#666;">复制地址</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="am-modal-actions-group">
+                <button class="am-btn am-btn-success am-btn-block" data-am-modal-close style="border-radius:2px;">取消</button>
+            </div>
+        </div>
+
+    </div>
+<!-- Navbar -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/knockout-3.1.0.js"></script>
+<script src="assets/js/user-invite.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script src="assets/js/head.js"></script>
+</head>
+<body>
+<!-- Header -->
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+      <a href="user.html" class="">
+        <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
+      </a>
+      <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">意见反馈</span>
+  </div>  
+</header>
+
+<style>
+.am-form input[type="text"],.am-form input[type="email"],.am-form input[type="password"]
+{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;height:45px;}
+.am-form input[type='text']:focus,.am-form input[type='email']:focus,.am-form input[type='password']:focus
+{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;}
+.am-form textarea{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;}
+.am-form textarea:focus{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;}
+.am-btn-default:focus,.am-btn-default:active{box-shadow: none;}
+.am-form input[type='button']:focus{box-shadow: none;}
+.am-form input[type='button']:hover{box-shadow: none;}
+</style>
+<div id="opinion-container">
+    <form class="am-form am-form-horizontal">
+        <div class="am-g">
+            <div class="am-u-md-8 am-u-sm-centered">
+                <fieldset class="am-form-set">
+                    <input type="text" placeholder="标题" data-bind="value:title">
+                    <textarea rows="7" id="doc-ta-1" placeholder="内容（200字以内）" data-bind="value:content"></textarea>
+                </fieldset>
+                <button type="submit" class="am-btn am-btn-danger am-btn-block am-radius" data-bind="click:submitClick">提交意见</button>
+                <div style="margin-top: 15px;">
+                    <i class="am-header-icon am-icon-exclamation-circle" style="font-size:1.2rem;color:#999;">
+                        重要提示：我们十分重视用户的意见反馈，如果您在本平台使用过程中，遇有任何问题需要解决帮助，或者对本平台功能设置方面有好的建议，都可通过本页面进行提交，我们保证在一个工作日内给予反馈，并在后期平台升级过程中采纳好的意见建议。十分感谢您的参与！
+                    </i>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Loading -->
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">正在提交...</div>
+        <div class="am-modal-bd">
+            <span class="am-icon-spinner am-icon-spin"></span>
+        </div>
+    </div>
+</div>
+<!-- submit success -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="my-confirm" style="margin-top:-100px">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">提交成功</div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn" data-am-modal-cancel style="width:50%;color:#f05e4b">返回首页</span>
+            <span class="am-modal-btn" data-am-modal-confirm style="width:50%;color:#f05e4b">会员中心</span>
+        </div>
+    </div>
+</div>
+<!-- Navbar -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/knockout-3.1.0.js"></script>
+<script src="assets/js/user-opinion.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
+</body>
+</html>

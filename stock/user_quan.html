@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script src="assets/js/head.js"></script>
+</head>
+<body>
+<!-- Header -->
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+      <a href="user.html" class="">
+        <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
+      </a>
+      <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">卡券中心</span>
+  </div>
+  <div class="am-header-right am-header-nav" style="">
+      <a href="#left-link" class="">
+        <i class="am-header-icon am-icon-refresh" style="font-size:1.5rem;color:#999"></i>
+      </a>
+  </div>   
+</header>
+
+<!-- List -->
+<div id="ticket-container" data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top: 0px">
+    <div class="am-list-news-bd">
+        <ul class="am-list" data-bind="foreach:items">
+            <li class="am-g am-list-item-dated" style="border-top: none;">
+                <a href="#" style="height:45px">
+                    <span style="font-size:11px" data-bind="visible:!hasUsed(),style: { color: hasUsed()? '#bcbcbc' : 'orange' }">[未使用]</span>
+                    <span style="font-size:11px" data-bind="visible:hasUsed(),style: { color: hasUsed()? '#bcbcbc' : 'orange' }">[已使用]</span>
+                    <span class="am-list-item-hd" style="font-size:16px;color:orange" data-bind="text:content(),style: { color: hasUsed()? '#bcbcbc' : 'orange' }">
+                        免费6个月试用券
+                    </span>
+                </a>
+                <span style="float: right;margin-top:-34px" data-bind="text:mdate">09/29</span>
+            </li>
+            <!--<li class="am-g am-list-item-dated">
+                <a href="#" style="height:45px">
+                    <span class="am-list-item-hd" style="font-size:16px;">
+                        <span style="font-size:11px">[已使用]</span>
+                        免费1个月试用券
+                    </span>
+                </a>
+                <span style="float: right;margin-top:-34px">09/20</span>
+            </li>-->
+        </ul>
+    </div>
+</div>
+
+<!-- Navbar -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/knockout-3.1.0.js"></script>
+<script src="assets/js/user-quan.js"></script>
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
+</body>
+</html>

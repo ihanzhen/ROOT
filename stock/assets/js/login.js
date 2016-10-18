@@ -1,88 +1,38 @@
-$(function () {
+ï»¿$(function () {
     if (localStorage.token) {
-        window.location.href = "usercenter.html";//ÒÑµÇÂ¼»áÌø×ªµ½Õâ¸öÒ³Ãæ
+        window.location.href = "user.html";//å·²ç™»å½•ä¼šè·³è½¬åˆ°è¿™ä¸ªé¡µé¢
     }
     else {
-        var accountManagement = new AccountManagement();
-        accountManagement.init();
-    }
-})
-function initValidation() {
-    if ($.AMUI && $.AMUI.validator) {
-        $.AMUI.validator.patterns.mobile = /^1((3|5|8){1}\d{1}|70|77|71)\d{8}$/;
-        $.AMUI.validator.patterns.nickname = /^[0-9a-zA-Z\u4e00-\u9fa5_]{1,8}$/;
-        $.AMUI.validator.patterns.password = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
-        $.AMUI.validator.patterns.vcode = /^\d{5}$/;
-    }
-}
-initValidation();
-var AccountManagement = function () {
-    var _this = this;
-    var ViewModel = function () {
-        var _vm = this;
-        _vm.isRegister = ko.observable(false);
-        _vm.registerClick = function () {
-            _vm.isRegister(true);
-        };
-        _vm.loginClick = function () {
-            _vm.isRegister(false);
-        };
-        _vm.registerVM = {
-            nickName: ko.observable(''),
-            password: ko.observable(''),
-            username: ko.observable(''),
-            verificationCode: ko.observable(''),
-            canVerify: ko.observable(false),
-            canRegister: ko.observable(false),
-            verificationClick: function () {
-                var phoneNumber = this.username();
-                $('#my-confirm').modal({
-                    onConfirm: function (options) {
-                        $.ajax({
-                            url: "/ihanzhendata/user/" + phoneNumber + "/sendsms",
-                            type: "Get",
-                            context: null,
-                            success: function (data) {
-
-                            }
-                        });
-                    },
-                    onCancel: function () {
-                    }
-                });
-            },
-            registerSubmitClick: function () {
-                if (this.nickName() && this.password() && this.username() && this.verificationCode() && !$('#register-form input').hasClass('am-field-error')) {
-                    var registerInfo = {
-                        nickName: _vm.registerVM.nickName().trim(),
-                        passWord: _vm.registerVM.password().trim(),
-                        vcode: _vm.registerVM.verificationCode().trim()
-                    }
-                    $.ajax({
-                        url: "/ihanzhendata/user/" + registerInfo.loginName + "/regist",
-                        type: "Post",
-                        data: registerInfo,
-                        dataType: 'json',
-                        context: null,
-                        success: function (data) {
-                            window.location.href = "login.html";
-                        }
-                    });
-                }
-            }
-        };
-        _vm.loginVM = {
+        var loginVM = {
             username: ko.observable(''),
             password: ko.observable(''),
-            canLogin: ko.observable(false),
+            notice: ko.observable(''),
             loginSubmitClick: function () {
-                var loginName = this.username().trim(), passWord = this.password().trim();
-                if (loginName && passWord && !$('#login-form input').hasClass('am-field-error')) {
-                    console.log("can login");
+                var _vm = loginVM,cantLogin=true;
+                var loginName = _vm.username().trim(),
+                    passWord = _vm.password().trim();
+                //var eRegex = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/,
+                //    passRegex = /^[0-9A-Za-z]{6,16}$/,
+                //    pRegex = /^1((3|5|8){1}\d{1}|70|77|71)\d{8}$/;
+                if (!loginName) {
+                    _vm.notice('è´¦å·ä¸èƒ½ä¸ºç©º');
+                }
+                else if (!passWord) {
+                    _vm.notice('å¯†ç ä¸èƒ½ä¸ºç©º');
+                }
+                //else if (!eRegex.test(username) || !pRegex.test(username)) {
+                //    _vm.notice('æ‚¨è¾“å…¥çš„è´¦å·æ ¼å¼ä¸æ­£ç¡®ï¼Œè¯·é‡æ–°æ ¸å¯¹åŽå†è¾“å…¥');
+                //}
+                //else if (!passRegex.test(passWord)) {
+                //    _vm.notice('æ‚¨è¾“å…¥çš„å¯†ç æ ¼å¼ä¸æ­£ç¡®ï¼Œè¯·è¾“å…¥6-16ä¸ªæ•°å­—æˆ–å­—æ¯');
+                //}
+                else {
+                    cantLogin = false;
                     var loginInfo = {
                         loginName: loginName,
                         passWord: passWord
                     }
+                    $('#my-modal-loading').modal('open');
                     $.ajax({
                         url: "/ihanzhendata/user/login",
                         type: "Post",
@@ -94,183 +44,19 @@ var AccountManagement = function () {
                             localStorage.token = info.token;
                             localStorage.nickName = info.nickName;
                             localStorage.loginName = info.loginName;
-                            window.location.href = "usercenter.html";//µÇÂ½³É¹¦ºóÌø×ªµ½Õâ¸öÒ³Ãæ
+                            $('#my-modal-loading').modal('close');
+                            window.location.href = "home.html";//ç™»é™†æˆåŠŸåŽè·³è½¬åˆ°è¿™ä¸ªé¡µé¢
                         }
                     });
                 }
-                else {
-                    console.log("can't login");
+                if (cantLogin) {
+                    $('#my-alert').modal('open');
                 }
             }
         };
-        _vm.loginVM.password.subscribe(function (newValue) {
-            var pRegex = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
-            if (pRegex.test(newValue.trim())) {
-                _vm.loginVM.canLogin(true);
-            }
-            else {
-                _vm.loginVM.canLogin(false);
-            }
-        });
-        _vm.registerVM.username.subscribe(function (newValue) {
-            var pRegex = /^1((3|5|8){1}\d{1}|70|77|71)\d{8}$/;
-            if (pRegex.test(newValue.trim())) {
-                _vm.registerVM.canVerify(true);
-            }
-            else {
-                _vm.registerVM.canVerify(false);
-            }
-        });
-        _vm.registerVM.verificationCode.subscribe(function (newValue) {
-            var pRegex = /^\d{5}$/;
-            if (pRegex.test(newValue.trim())) {
-                _vm.registerVM.canRegister(true);
-            }
-            else {
-                _vm.registerVM.canRegister(false);
-            }
-        });
-    };
+        ko.applyBindings(loginVM, $("#login-container")[0]);
+    }
+})
 
-    _this.init = function () {
-        _this.viewModel = new ViewModel();
-        ko.applyBindings(_this.viewModel, $('#account-container')[0]);
-    };
 
-    //±³¾°
-    (function () {
-        window.requestAnimFrame = (function () {
-            return window.requestAnimationFrame ||
-            window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            function (callback) {
-                window.setTimeout(callback, 1000 / 60);
-            }
-        })();
 
-        var can = document.getElementById("canvas"),
-            ctx = can.getContext("2d"),
-            cw = window.innerWidth,
-            ch = 100,
-            fireworks = [],//ÑÌ»¨ÏßÌõ¼¯ºÏ
-            particles = [],//ÑÌ»¨Á£×Ó¼¯ºÏ
-            hue = 120,//³õÊ¼É«µ÷
-            limiterTotal = 5,//µã»÷²úÉúÑÌ»¨µÄÊ±¼ä¼ä¸ô
-            limiterTick = 0,//µã»÷µÄ³õÊ¼Ê±¼ä
-            timerTotal = 80,//×Ô¶¯²úÉúÑÌ»¨µÄÊ±¼ä¼ä¸ô
-            timerTick = 0,
-            mousedown = false,
-            mx, my;
-        can.width = cw;
-        can.height = ch;
-
-        //¹´¹É¶¨Àí¼ÆËãÑÌ»¨ÏßÌõÒÆ¶¯µÄ¾àÀë
-        function calculateDistance(x1, y1, x2, y2) {
-            var xDistance = x1 - x2,
-                yDistance = y1 - y2;
-            return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
-        }
-        //Éú³ÉÒ»¸öËæ»úÊý
-        function random(min, max) {
-            return Math.random() * (max - min) + min
-        }
-        //ÑÌ»¨ÏßÌõ
-        function Firework(sx, sy, tx, ty) {
-            this.x = sx;//ÐÂµÄ×ø±êÎ»ÖÃ¸³Öµ¸ø¿ªÊ¼×ø±ê
-            this.y = sy;
-            this.sx = sx;//¿ªÊ¼×ø±ê
-            this.sy = sy;
-            this.tx = tx;//Ä¿±êÎ»ÖÃ
-            this.ty = ty;
-            this.distanceTotarget = calculateDistance(sx, sy, tx, ty);//×ÜµÄ¾àÀë
-            this.distanceTraveled = 0;//µ±Ç°ËùÒÆ¶¯µÄ¾àÀë
-            this.coordinates = [];//×ø±êµã¼¯ºÏ
-            this.coordinateCount = 3;//×ø±êµã¸öÊý
-            while (this.coordinateCount--)//Ìí¼Ó×ø±êµãµ½Êý×é
-            {
-                this.coordinates.push([this.x, this.y]);
-            }
-
-            this.angle = Math.atan2(ty - sy, tx - sx);//¼ÆËãÑÌ»¨ÒÆ¶¯¹ì¼£ºÍxÖáµÄ½Ç¶È
-            this.speed = 2;//¿ªÊ¼ËÙ¶È
-            this.acceleration = 1.05;//¼ÓËÙ¶È
-            this.brightness = random(50, 70);//ÑÌ»¨ÑÕÉ«µÄÁÁ¶È
-            this.targetRadius = 1;//µ½´ïÄ¿±êÎ»ÖÃ²úÉúÒ»¸ö°ë¾¶Îª1µÄÔ²
-        }
-        //Ìí¼ÓÑÌ»¨ÏßÌõµÄ¹¦ÄÜ
-        Firework.prototype.update = function (i) {//¸üÐÂ×ø±ê
-            this.coordinates.pop();//ÒÆ³ý×îºóÒ»¸ö×ø±êµã
-            this.coordinates.unshift([this.x, this.y]);//°Ñ×îÐÂµÄ×ø±êµãÌí¼Óµ½Êý×é×îÇ°Ãæ
-            this.speed *= this.acceleration;//ÓÐ¼ÓËÙ¶ÈµÄËÙ¶ÈÖµ
-            var vx = Math.cos(this.angle) * this.speed;//x·½ÏòµÄËÙ¶È
-            var vy = Math.sin(this.angle) * this.speed;//y·½ÏòµÄËÙ¶È
-            this.distanceTraveled = calculateDistance(this.sx, this.sy, this.x + vx, this.y + vy);
-            //µ±ÑÌ»¨ÏßÌõµ½´ïÖÕµãµÄÊ±ºò¾ÍÏûÊ§
-            if (this.distanceTraveled >= this.distanceTotarget) {
-                //Ìí¼ÓÑÌ»¨Á£×Ó
-                fireworks.splice(i, 1);
-            } else {
-                this.x += vx;
-                this.y += vy;
-            }
-            //Ä¿±êÎ»ÖÃÌáÊ¾Ô²ÐÎµÄ°ë¾¶
-            if (this.targetRadius < 8) {
-                this.targetRadius += 0.3;
-            } else {
-                this.targetRadius = 1;
-            }
-        }
-        //»æÖÆ³öÑÌ»¨ÏßÌõ
-        Firework.prototype.draw = function () {
-            //»æÖÆÑÌ»¨ÏßÌõ
-            ctx.beginPath();
-            //´Ó×ø±êÊý×éÀïÃæµÄ×îºóÒ»¸ö×ø±ê»æÖÆµ½×îÐÂµÄ×ø±êÎ»ÖÃ
-            ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
-            ctx.lineTo(this.x, this.y);
-            ctx.closePath();
-            ctx.strokeStyle = "hsl(" + hue + ",100%," + this.brightness + "%)";
-            ctx.stroke();
-            //»æÖÆÄ¿±êµãµÄÌáÊ¾Ô²
-            ctx.beginPath();
-            ctx.arc(this.tx, this.ty, this.targetRadius, 0, 360, false);
-            ctx.stroke();
-        }
-
-        //Õû¸ö¶¯»­
-        function loop() {//Ñ­»·²úÉúÑÌ»¨
-            requestAnimFrame(loop);//Ã¿16.7msÇëÇó¼ÓÔØÒ»´Îloop
-            hue += 0.5;
-            ctx.globalCompositeOperation = "destination-out";//Ô´Í¼ÏñÍ¸Ã÷
-            ctx.fillStyle = "rgba(0,0,0,1)";
-            ctx.fillRect(0, 0, cw, ch);
-            ctx.globalCompositeOperation = "lighter";//ÏÔÊ¾µþ¼Ó²¿·Ö
-            var i = fireworks.length;
-            //»æÖÆ¾ßÌåµÄÃ¿¸öÑÌ»¨¶ÔÏó
-            while (i--) {
-                fireworks[i].draw();
-                fireworks[i].update(i);
-            }
-            //Êó±êµã»÷²úÉúÑÌ»¨
-            if (limiterTick >= limiterTotal) {
-                if (mousedown) {//Ìí¼ÓÐÂµÄÑÌ»¨¶ÔÏóµ½ÑÌ»¨ÏßÌõÊý×é¼¯ºÏ
-                    fireworks.push(new Firework(cw / 2, ch, mx, my));
-                    limiterTick = 0;
-                }
-            } else {
-                limiterTick++;
-            }
-            //×Ô¶¯²úÉúÑÌ»¨
-            if (timerTick >= timerTotal) {
-                if (!mousedown)//ÅÐ¶ÏÊÇ²»ÊÇÊó±êµã»÷
-                {
-                    fireworks.push(new Firework(cw / 2, ch, random(0, cw), random(0, ch / 2)));
-                    timerTick = 0;
-                }
-            } else {
-                timerTick++;
-            }
-        }
-
-        window.onload = loop;
-    }());
-}
