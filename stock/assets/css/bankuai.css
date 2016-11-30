@@ -1,0 +1,84 @@
+.iconLeft {
+    font-size: 1.7rem !important;
+    color: #999;
+    position: relative;
+    top: -1px;
+}
+
+.titleSpan {
+    font-size: 1.8rem;
+    border-left: 1px solid #444;
+    padding-left: 15px;
+    margin-left: 3px;
+}
+
+.plateDiv {
+    margin-top: -2px;
+}
+
+.ulStyle {
+    margin-top: -10px;
+    padding: 5px 0;
+    border-bottom: 1px solid #444;
+    border-top: 1px solid #444;
+}
+
+.liStyle {
+    border-right: 1px solid #444;
+    padding-right: -1px;
+    border-bottom: 1px solid #444;
+}
+
+.plateName {
+    /*text-align: center !important;*/
+    margin: 0 auto;
+    /*font-size: 12px !important;*/
+    color: #fff;
+}
+
+.borderDiv {
+    text-align: center;
+    margin: 0 auto;
+    border-top: 1px solid #444;
+    padding-bottom: 5px;
+    width: 90%;
+}
+
+.stockGroup {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 10px;
+    color: #999;
+}
+
+.stockName {
+    display: inline-block !important;
+    text-align: left;
+    margin-left: 6px;
+    font-size: 11px;
+    color: #999;
+    line-height: 15px;
+}
+
+.propertyGroup {
+    position: absolute;
+    right: 0;
+    display: inline !important;
+    text-align: right;
+    padding-top: 5px;
+    font-size: 11px !important;
+    color: #e74c3c !important;
+    margin-right: 6px;
+    padding-top: 2px;
+}
+
+.fullWidth {
+    position: relative;
+    width: 100% !important;
+    line-height: 15px;
+}
+
+.propertyStyle {
+    text-align: center;
+    width: 12px;
+}

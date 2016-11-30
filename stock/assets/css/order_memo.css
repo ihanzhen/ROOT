@@ -1,0 +1,50 @@
+.am-form input[type="text"], .am-form input[type="email"], .am-form input[type="password"] {
+    color: #fff;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #444;
+    height: 45px;
+}
+
+    .am-form input[type='text']:focus, .am-form input[type='email']:focus, .am-form input[type='password']:focus {
+        color: #fff;
+        background: none;
+        border: none;
+        box-shadow: none;
+        border-bottom: 1px solid #444;
+    }
+
+.am-form textarea {
+    color: #fff;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #444;
+}
+
+    .am-form textarea:focus {
+        color: #fff;
+        background: none;
+        border: none;
+        box-shadow: none;
+        border-bottom: 1px solid #444;
+    }
+
+.am-btn-default:focus, .am-btn-default:active {
+    box-shadow: none;
+}
+
+.am-form input[type='button']:focus {
+    box-shadow: none;
+}
+
+.am-form input[type='button']:hover {
+    box-shadow: none;
+}
+
+.selectStyle {
+    background-color: #3d3d3d !important;
+    color: #fff !important;
+    border: none !important;
+}

@@ -40,12 +40,22 @@
                         dataType: 'json',
                         context: null,
                         success: function (data) {
-                            var info = data.data;
-                            localStorage.token = info.token;
-                            localStorage.nickName = info.nickName;
-                            localStorage.loginName = info.loginName;
+                            $('#my-modal-loading').modal('open');
+                            if (data.status == 1) {
+                                cantLogin = true;
+                                var info = data.data;
+                                localStorage.token = info.token;
+                                localStorage.nickName = info.nickName;
+                                localStorage.loginName = info.loginName;
+                                $('#my-modal-loading').modal('close');
+                                window.location.href = "home.html";//登陆成功后跳转到这个页面
+                            } else {
+                                console.log(data.msg);
+                            }
+                        },
+                        error: function () {
+                            console.log('login fail');
                             $('#my-modal-loading').modal('close');
-                            window.location.href = "home.html";//登陆成功后跳转到这个页面
                         }
                     });
                 }
@@ -57,6 +67,4 @@
         ko.applyBindings(loginVM, $("#login-container")[0]);
     }
 })
-
-
 

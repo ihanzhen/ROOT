@@ -25,19 +25,19 @@
         <ul class="am-avg-sm-3 ulStyle" data-bind="foreach:items">
             <li class="liStyle">
                 <a href="#">
-                    <div class="zhishuTitle" data-bind="text:marketName">上证指数</div>
-                    <div class="zhishuNum" data-bind="style:{color:price()>oldPrice?'#e74c3c':'#27ae60'}"><span class="am-icon-caret-up" data-bind="css:{'am-icon-caret-up':price()>oldPrice,'am-icon-caret-down':price()<oldPrice}">&nbsp;</span><span data-bind="text:price">1325.35</span></div>
+                    <div class="zhishuTitle" data-bind="text:marketName"></div>
+                    <div class="zhishuNum" data-bind="style:{color:price()>oldPrice()?'#e74c3c':'#27ae60'}"><span data-bind="css:{'am-icon-caret-up':price()>oldPrice(),'am-icon-caret-down':price()<oldPrice()}">&nbsp;</span><span data-bind="text:price"></span></div>
 
                     <div class="colorDiv">
                         <ul class="am-avg-sm-2">
                             <li>
                                 <div class="advise">
-                                    <span class="am-badge am-radius proposalFont" data-bind="text:property,css:{'am-badge-danger':property().search(/涨/)!=-1,'am-badge-success':property().search(/跌/)!=-1}">中期看涨</span>
+                                    <span class="am-badge am-radius proposalFont" data-bind="text:property,css:{'am-badge-danger':property().search(/涨/)!=-1,'am-badge-success':property().search(/跌/)!=-1}"></span>
                                 </div>
                             </li>
                             <li>
                                 <div class="position">
-                                    <span class="am-badge am-badge-warning am-radius proposalFont" data-bind="text:position">6成仓</span>
+                                    <span class="am-badge am-badge-warning am-radius proposalFont" data-bind="text:position"></span>
                                 </div>
                             </li>
                         </ul>
@@ -114,6 +114,10 @@
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
     <script src="assets/js/dp_index.js"></script>
+    <script src="http://hq.sinajs.cn/list=sh000001"></script>
+    <script src="http://hq.sinajs.cn/list=sz399905"></script>
+    <script src="http://hq.sinajs.cn/list=sz399006"></script>
+    <!--<script src="http://hq.sinajs.cn/list=M0"></script>-->
     <script src="assets/js/dapan.js"></script>
     <script>
         //页面加载时绑定按钮点击事件

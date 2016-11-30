@@ -23,7 +23,7 @@
     }
 
 .titlei {
-    font-size: 1.7rem;
+    font-size: 1.7rem !important;
     color: #999;
     position: relative;
     top: -1px;

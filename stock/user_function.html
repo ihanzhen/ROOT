@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html class="no-js">
 <head>
   <meta charset="utf-8">
@@ -11,7 +11,7 @@
       <a href="user.html" class="">
         <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
       </a>
-      <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">功能选购</span>
+      <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">产品购买</span>
   </div>
   <div class="am-header-right am-header-nav">
       <a href="reg.html" class="">
@@ -19,72 +19,303 @@
       </a>
   </div>  
 </header>
-
+<style type="text/css">
+  .uf-w-r{
+    margin:10px;
+    margin-bottom:30px;
+    height:330px;
+    border-radius:10px;
+    background: #444;
+    box-shadow: 0 0 3px #333;
+  }
+  .am-slider-a1 {
+      box-shadow: none;
+      background:transparent;
+  }
+  .am-table>tbody>tr>td, .am-table>tbody>tr>th, .am-table>tfoot>tr>td, .am-table>tfoot>tr>th, .am-table>thead>tr>td, .am-table>thead>tr>th {
+    line-height: 10px;
+    border-top: 1px solid #555;
+  }
+  .am-table>thead>tr>th {
+    border-bottom: 1px solid #555;
+  }
+  .am-slider-a1 .am-control-nav li a.am-active {
+    background-color: #e74c3c;
+  }
+  .am-table {
+    margin-bottom: 0;
+  }
+  .icon14{
+    width:14px;text-align: center
+  }
+</style>
 <div class="am-g">
   <div class="am-u-md-8 am-u-sm-centered">
-      <div style="margin: 10px 0;">
+      <div style="margin: 10px 0 0 0;">
           <i class="am-header-icon am-icon-exclamation-circle" style="font-size:1.2rem;color:#999;">
-            选购说明：为了保证量化系统的服务品质，在平台试用期间，即对所有的功能模块进行收费。后期，将陆续开放其他功能模块供会员订阅和购买。
+            说明：请微信进行在线支付，内测和众筹版采用一次性方式支付，正式和机构版采用年费方式支付。
           </i>
       </div>      
   </div>
 </div> 
-<!-- icon menu -->
-<div id="function-container" style="padding-bottom:4px">
-    <ul class="am-avg-sm-3" style="padding:0;border-bottom:1px solid #444;border-top:1px solid #444;height: 76px;">
-        <li style="border-right:1px solid #444;margin-bottom: -30px">
-            <a href="bankuai.html">
-                <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-th-large" style="line-height:50px;width:50px;height:50px;background: none;color:#4262a2;border-radius:50px;"></div></div>
-                <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">板块分析</div>
-                <!--<embed src="../images/sales.svg" type="image/svg+xml" style="height:30px;position: relative;top:-75px;float:right"/>-->
-            </a>
-        </li>
-        <li style="border-right:1px solid #444;margin-bottom: -30px">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-random" style="line-height:50px;width:50px;height:50px;background: none;color:#e67e22;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">买卖信号</div>
-            <!--<embed src="../images/sales.svg" type="image/svg+xml" style="height:30px;position: relative;top:-75px;float:right"/>-->
-        </li>
-        <li style="margin-bottom: -30px">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-pie-chart" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">资金持仓管理</div>
-        </li>
-    </ul>
-    <ul class="am-avg-sm-3" style="padding:0">
-        <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-newspaper-o" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">基本面精选</div>
-        </li>
-        <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-globe" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">全球市场预测</div>
-        </li>
-        <li style="border-bottom:1px solid #444;">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-retweet" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">交易回测</div>
-        </li>
-    </ul>
-    <ul class="am-avg-sm-3" style="padding:0">
-        <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-shopping-basket" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">自定义股池</div>
-        </li>
-        <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-area-chart" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">资金曲线</div>
-        </li>
-        <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
-            <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-plus-square-o" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
-            <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">待新增</div>
-        </li>
-    </ul>
+
+<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{directionNav:false,slideshow: false}'>
+  <ul class="am-slides">
+    <li>
+      <div class="uf-w-r">
+        <div style="text-align: center;padding-top:10px">
+          <span style="color:#fff">内测版</span>　|　
+          <span style="">RMB </span> 
+          <span style="font-size:30px;font-weight:bold" class="color-red">199</span>
+          <span style="font-size:16px;">元</span>
+        </div>
+        <table class="am-table" style="font-size:12px;padding:10px">
+            <thead>
+                <tr>
+                    <th>功能</th>
+                    <th>权限</th>
+                    <th>首次试用</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="am-icon-line-chart icon14"></span> 大盘预测</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-th-large icon14"></span> 板块分析</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-database icon14"></span> 系统推荐股池</td>
+                    <td><span class="am-icon-close color-red"></span></td>
+                    <td>限免15天</td>
+                </tr>                                                                                                 
+                <tr>
+                    <td><span class="am-icon-exchange icon14"></span> 模拟交易</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-eye icon14"></span> 买卖信号</td>
+                    <td><span class="am-icon-close color-red"></span></td>
+                    <td>限免15天</td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-star icon14"></span> 自选股</td>
+                    <td><span class="am-icon-close color-red"></span></td>
+                    <td>限免15天</td>
+                </tr>                
+            </tbody>
+        </table>
+        <button data-am-modal="{target: '#my-confirm'}" type="button" id="doc-confirm-toggle" class="am-btn am-btn-danger am-btn-block am-radius" style="width:90%;margin:auto;">立即购买</button>      
+      </div>
+    </li>
+    <li>
+      <div class="uf-w-r">
+        <div style="text-align: center;padding-top:10px">
+          <span style="color:#fff">众筹版</span>　|　
+          <span style="">RMB </span> 
+          <span style="font-size:30px;font-weight:bold" class="color-red">999</span>
+          <span style="font-size:16px;">元</span>
+        </div>
+        <table class="am-table" style="font-size:12px;padding:10px">
+            <thead>
+                <tr>
+                    <th>功能</th>
+                    <th>权限</th>
+                    <th>首次试用</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="am-icon-line-chart icon14"></span> 大盘预测</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-th-large icon14"></span> 板块分析</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-database icon14"></span> 系统推荐股池</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>                                                                                                
+                <tr>
+                    <td><span class="am-icon-exchange icon14"></span> 模拟交易</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-eye icon14"></span> 买卖信号</td>
+                    <td><span class="am-icon-close color-red"></span></td>
+                    <td>限免15天</td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-star icon14"></span> 自选股</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>                
+            </tbody>
+        </table>
+        <button data-am-modal="{target: '#my-confirm'}" type="button" id="doc-confirm-toggle" class="am-btn am-btn-danger am-btn-block am-radius" style="width:90%;margin:auto;">立即购买</button>      
+      </div>
+    </li>
+    <li>
+      <div class="uf-w-r">
+        <div style="text-align: center;padding-top:10px">
+          <span style="color:#fff">正式版</span>　|　
+          <span style="">RMB </span> 
+          <span style="font-size:30px;font-weight:bold" class="color-red">10</span>
+          <span style="font-size:16px;">万元/年</span><br>
+        </div>
+        <table class="am-table" style="font-size:12px;padding:10px">
+            <thead>
+                <tr>
+                    <th>服务</th>
+                    <th>权限</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="am-icon-user icon14"></span> 个人VIP会员</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td>单账号</td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-puzzle-piece icon14"></span> 全功能</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-desktop icon14"></span> 多客户端</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td>Win/Mac/Web/Wechat</td>
+                </tr>  
+                <tr>
+                    <td><span class="am-icon-headphones icon14"></span> 私人投顾</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td>交易时间</td>
+                </tr>                                                                                                                            
+            </tbody>
+        </table>
+        <button data-am-modal="{target: '#my-confirm'}" type="button" id="doc-confirm-toggle" class="am-btn am-btn-success am-btn-block am-radius" style="width:90%;margin:auto;">立即预订</button>
+        <div style="font-size:14px;text-align: center;margin-top:5px">限售<span class="color-red">2000</span> 套，已有 2340 人预订</div>    
+      </div>
+    </li> 
+    <li>
+      <div class="uf-w-r">
+        <div style="text-align: center;padding-top:10px">
+          <span style="color:#fff">机构版</span>　|　
+          <span style="">RMB </span> 
+          <span style="font-size:30px;font-weight:bold" class="color-red">30</span>
+          <span style="font-size:16px;">万元/年</span><br>
+        </div>
+        <table class="am-table" style="font-size:12px;padding:10px">
+            <thead>
+                <tr>
+                    <th>服务</th>
+                    <th>权限</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="am-icon-user icon14"></span> 机构VIP会员</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td>多账号1托2可增加</td>
+                </tr>                
+                <tr>
+                    <td><span class="am-icon-puzzle-piece icon14"></span> 全功能</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-desktop icon14"></span> 多客户端</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td>Win/Mac/Web/Wechat</td>
+                </tr> 
+                <tr>
+                    <td><span class="am-icon-plug icon14"></span> 定制接口</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td>自定义模型量化</td>
+                </tr>
+                <tr>
+                    <td><span class="am-icon-users icon14"></span> 团队支持</td>
+                    <td><span class="am-icon-check color-green"></span></td>
+                    <td>交易时间</td>
+                </tr>                      
+            </tbody>
+        </table>
+        <button data-am-modal="{target: '#my-confirm'}" type="button" id="doc-confirm-toggle" class="am-btn am-btn-success am-btn-block am-radius" style="width:90%;margin:auto;">立即预订</button>      
+        <div style="font-size:14px;text-align: center;margin-top:5px">限售<span class="color-red">1000</span> 套，已有 2340 人预订</div>   
+      </div>
+    </li>        
+  </ul>
 </div>
+
+
+
+
+<!-- icon menu -->
+<!--div style="padding-bottom:4px">
+<ul class="am-avg-sm-3" style="padding:0;border-bottom:1px solid #444;border-top:1px solid #444;">
+  <li style="border-right:1px solid #444;margin-bottom: -30px">
+    <a href="bankuai.html">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-th-large" style="line-height:50px;width:50px;height:50px;background: none;color:#4262a2;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">板块分析</div>
+    <embed src="../images/sales.svg" type="image/svg+xml" style="height:30px;position: relative;top:-75px;float:right"/>
+    </a>
+  </li>
+  <li style="border-right:1px solid #444;margin-bottom: -30px">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-random" style="line-height:50px;width:50px;height:50px;background: none;color:#e67e22;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">买卖信号</div>
+    <embed src="../images/sales.svg" type="image/svg+xml" style="height:30px;position: relative;top:-75px;float:right"/>  
+  </li>
+  <li style="margin-bottom: -30px">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-pie-chart" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">资金持仓管理</div>  
+  </li>
+</ul>
+<ul class="am-avg-sm-3" style="padding:0">   
+  <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-newspaper-o" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">基本面精选</div>  
+  </li>  
+  <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-globe" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">全球市场预测</div>  
+  </li>
+  <li style="border-bottom:1px solid #444;">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-retweet" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">交易回测</div>  
+  </li>
+</ul>
+<ul class="am-avg-sm-3" style="padding:0">  
+  <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-shopping-basket" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">自定义股池</div>  
+  </li>
+  <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-area-chart" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">资金曲线</div>  
+  </li>
+  <li style="border-right:1px solid #444;border-bottom:1px solid #444;">
+    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-plus-square-o" style="line-height:50px;width:50px;height:50px;background: none;color:#999;border-radius:50px;"></div></div>
+    <div style="text-align: center;font-size: 1.1rem;line-height: 10px;color:#969696;height:25px;">待新增</div>  
+  </li>
+</ul>
+</div-->
 
 <!-- Navbar -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
-<script src="assets/js/knockout-3.1.0.js"></script>
-<script src="assets/js/user-function.js"></script>
-<!--<script>
+<script>
 //页面加载时绑定按钮点击事件
 $(function(){
     $("#KEY_FRESH").click(function(){
@@ -100,7 +331,7 @@ function refresh(){
     // opener.location.reload()刷新父窗口对象（用于单开窗口
    //top.location.reload()刷新最顶端对象（用于多开窗口）
 }
-</script>-->
+</script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
 </body>
 </html>
