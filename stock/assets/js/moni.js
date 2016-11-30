@@ -731,6 +731,7 @@ var MoniPage = function () {
         ko.applyBindings(_this.priceVM, $('#price-modal')[0]);
         ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
         ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
+        _this.initStockCode();
         _this.refresh();
         if (queryString && queryString.tab == 'tab5') {
             //从买卖原因标记页面返回到search Tab, url带参数
@@ -751,7 +752,6 @@ var MoniPage = function () {
             }
             //不带参数  正常进入页面
             _this.moniVM.tabVM.buyClick();
-            _this.initStockCode();
         }
     }
     _this.getCancelListData = function () {
