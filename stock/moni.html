@@ -323,7 +323,7 @@
             <div class="am-modal-bd" style="padding: 5px 7px 1px 7px">
                 <ul data-bind="foreach:items" style="list-style:none;padding-left: 0px;">
                     <li>
-                        <button class="am-btn am-btn-danger am-radius" data-bind="click:priceClick" style="font-weight: normal;font-size:14px;width: 90%;margin:2px auto;text-align: left">
+                        <button class="am-btn am-radius" data-bind="click:priceClick,css:{'am-btn-danger':$parent.priceType()=='买单盘口','am-btn-success':$parent.priceType()=='卖单盘口'}" style="font-weight: normal;font-size:14px;width: 90%;margin:2px auto;text-align: left">
                             <span data-bind="text:order"></span>&nbsp;
                             <span data-bind="text:price"></span>&nbsp;&nbsp;
                             <span data-bind="text:countLabel"></span>&nbsp;
@@ -374,23 +374,6 @@
     <script src="assets/js/common.js"></script>
     <script src="assets/js/moni.js"></script>
     <script src="assets/js/notice.js"></script>
-    <script>
-        ////页面加载时绑定按钮点击事件
-        //$(function () {
-        //    $("#KEY_FRESH").click(function () {
-        //        refresh();
-        //    });
-        //});
-        ////点击按钮调用的方法
-        //function refresh() {
-        //    window.location.reload();//刷新当前页面.
-
-        //    //或者下方刷新方法
-        //    //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
-        //    // opener.location.reload()刷新父窗口对象（用于单开窗口
-        //    //top.location.reload()刷新最顶端对象（用于多开窗口）
-        //}
-    </script>
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
 </body>
 </html>
