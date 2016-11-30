@@ -34,7 +34,6 @@ var MoniPage = function () {
     var _this = this;
     _this.pageNumber = 1;
     var pageSize = 10;
-    //_this.isFirstLoad = true;
     _this.moniVM = new MoniVM();
     _this.priceVM = new PriceModelVM();
     _this.noticeVM = {
@@ -111,11 +110,12 @@ var MoniPage = function () {
         that.countLabel = ko.observable(countLabel);
         that.count = ko.observable(count);
         that.priceClick = function (item) {
-            if (_this.priceVM.priceType() == '卖价') {
+            var tab = $('li.am-active>a')[0].id;
+            if (tab == 't1') {
                 _this.moniVM.buyVM.inputPrice(item.price());
                 _this.moniVM.buyVM.message('当前价格最多能买' + item.count() + '手');
             }
-            else if (_this.priceVM.priceType() == '买价') {
+            else if (tab == 't2') {
                 _this.moniVM.saleVM.inputPrice(item.price());
             }
             $('#price-modal').modal('close');
@@ -148,7 +148,7 @@ var MoniPage = function () {
                     timeout: 2000,
                     success: function (data, textStatus, jqXHR) {
                         $('#my-modal-loading').modal('close');
-                        _this.priceVM.priceType('卖价');
+                        _this.priceVM.priceType('卖单盘口');
                         var resultArr = eval('hq_str_' + parameter).split(',');
                         _this.priceVM.items.push(new Price('涨停', (resultArr[2] * 1.1).toFixed(3), '', ''));
                         _this.priceVM.items.push(new Price('卖一', resultArr[21], '挂单量', resultArr[20]));
@@ -178,7 +178,7 @@ var MoniPage = function () {
                     timeout: 2000,
                     success: function (data, textStatus, jqXHR) {
                         $('#my-modal-loading').modal('close');
-                        _this.priceVM.priceType('买价');
+                        _this.priceVM.priceType('买单盘口');
                         var resultArr = eval('hq_str_' + parameter).split(',');
                         _this.priceVM.items.push(new Price('涨停', (resultArr[2] * 1.1).toFixed(3), '', ''));
                         _this.priceVM.items.push(new Price('买一', resultArr[11], '挂单量', resultArr[10]));
@@ -354,7 +354,7 @@ var MoniPage = function () {
         this.averagePrice = ko.observable(averagePrice);
         this.delegateCount = ko.observable(delegateCount);
         this.dealCount = ko.observable(dealCount);
-        this.status = ko.observable(status);//three status:(1，买入未成交)'10'-->"color:#f05e4b;"  (2，卖出未成交)'20'-->"color:#27ae60"  （3，其他，包括买入撤单11，卖出撤单21，全部买入12，全部卖出22）-->"color:#969696"
+        this.status = ko.observable(status);
         this.statusText = ko.observable(statusText);
         this.hasMarked = ko.observable(false);
         this.listClick = function (item) {
@@ -400,21 +400,13 @@ var MoniPage = function () {
         var _vm = this;
         _vm.tabVM = {
             buyClick: function () {
-                //if ($('li.am-active>a')[0].id == 't1' && _this.isFirstLoad == false) {
-                //    return;
-                //}
                 $('.nomore').hide();
                 _this.pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
                 _this.moniVM.buyVM.items([]);
                 _this.getDealListData();
-                //_this.isFirstLoad = false;
-                //_this.downRefreshTable();
             },
             saleClick: function () {
-                //if ($('li.am-active>a')[0].id == 't2') {
-                //    return;
-                //}
                 $('.nomore').hide();
                 _this.pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
@@ -422,9 +414,6 @@ var MoniPage = function () {
                 _this.getDealListData();
             },
             cancelClick: function () {
-                //if ($('li.am-active>a')[0].id == 't3') {
-                //    return;
-                //}
                 $('.nomore').hide();
                 _this.pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
@@ -432,9 +421,6 @@ var MoniPage = function () {
                 _this.getCancelListData();
             },
             holdClick: function () {
-                //if ($('li.am-active>a')[0].id == 't4') {
-                //    return;
-                //}
                 $('.nomore').hide();
                 _this.pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
@@ -448,15 +434,11 @@ var MoniPage = function () {
                 _this.getDealListData();
             },
             searchClick: function () {
-                //if ($('li.am-active>a')[0].id == 't5') {
-                //    return;
-                //}
                 $('.nomore').hide();
                 _this.pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
                 _this.moniVM.searchVM.items([]);
                 _this.getSearchListData();
-                //$(".swiper-container").css('height', '100%');
             },
             profitClick: function () {
                 $('#my-modal-loading').modal('open');
@@ -526,7 +508,6 @@ var MoniPage = function () {
             minChars: 1,
             serviceUrl: '/ihanzhendata/stock/matchStocks',
             onSelect: function (suggestion) {
-                // _this.priceVM.items([]);
                 _this.moniVM.buyVM.inputPrice(0);
                 _this.moniVM.buyVM.message('');
                 _this.moniVM.buyVM.stockLabel(suggestion.data + "  " + suggestion.value);
@@ -580,7 +561,6 @@ var MoniPage = function () {
             minChars: 1,
             serviceUrl: '/ihanzhendata/stock/matchStocks',
             onSelect: function (suggestion) {
-                //_this.priceVM.items([]);
                 _this.moniVM.saleVM.inputPrice(0);
                 _this.moniVM.saleVM.message('');
                 _this.moniVM.saleVM.stockLabel(suggestion.data + "  " + suggestion.value);
@@ -607,24 +587,6 @@ var MoniPage = function () {
             noSuggestionNotice: '没有匹配的结果'
         });
     };
-    //_this.processSearchListData = function (searchArr) {
-    //    if (searchArr && searchArr.length > 0) {
-    //        for (var k = 0; k < searchArr.length; k++) {
-    //            var statusText = '', dealType = '';
-    //            switch (searchArr[k].sorder_status) {
-    //                case '10': dealType = '买入'; statusText = '未成交'; break;
-    //                case '11': dealType = '买入'; statusText = '撤单'; break;
-    //                case '12': dealType = '买入'; statusText = '全部成功'; break;
-    //                case '20': dealType = '卖出'; statusText = '未成交'; break;
-    //                case '21': dealType = '卖出'; statusText = '撤单'; break;
-    //                case '22': dealType = '卖出'; statusText = '全部成功'; break;
-    //            }
-    //            var item = new CancelList(searchArr[k].sorder_id, dealType, searchArr[k].stock_code, searchArr[k].stock_name, searchArr[k].sorder_updatetime.substr(5), parseFloat(searchArr[k].price).toFixed(3), parseFloat(searchArr[k].price).toFixed(3), searchArr[k].amount, searchArr[k].amount, searchArr[k].sorder_status, statusText);
-    //            item.hasMarked(Boolean(Number(searchArr[k].is_bj)));
-    //            _this.moniVM.searchVM.items.push(item);
-    //        }
-    //    }
-    //}
     _this.processCancelListData = function (cancelArr) {
         //处理从后台获取的撤单Tab页面的列表数据
         if (cancelArr && cancelArr.length > 0) {
@@ -661,7 +623,6 @@ var MoniPage = function () {
                     _this.moniVM.searchVM.items.push(item);
                 }
             }
-            //$(".swiper-container").css('height', '100%');
         }
     };
     _this.processBuySaleListData = function (result) {
@@ -673,7 +634,6 @@ var MoniPage = function () {
             //获取实时数据,与后台获取数据组合,拼成买入、卖出和持仓Tab页下面的列表
             var parameterStr = parameterArr.join(',');
             var url = 'http://hq.sinajs.cn/list=' + parameterStr;
-            //$('#my-modal-loading').modal('open');
             $.ajax({
                 cache: true,
                 url: url,
@@ -681,7 +641,6 @@ var MoniPage = function () {
                 dataType: 'script',
                 timeout: 2000,
                 success: function (data, textStatus, jqXHR) {
-                    //$('#my-modal-loading').modal('close');
                     var resultArr = [];//二维数组
                     for (var i = 0; i < parameterArr.length; i++) {
                         resultArr[i] = eval('hq_str_' + parameterArr[i]).split(',');
@@ -703,10 +662,8 @@ var MoniPage = function () {
                         }
                     }
                     $('.loadspan').hide();
-                    //$(".swiper-container").css('height', '100%');
                 }
             }).error(function () {
-                //$('#my-modal-loading').modal('close');
                 $('.loadspan').hide();
             });
         }
@@ -769,16 +726,14 @@ var MoniPage = function () {
         return $.get('/ihanzhendata/stock/main_position');
     }
     _this.init = function () {
-        //从个股详情页面跳转过来url带参数的情况
         var queryString = $.request(location.href).queryString;
-        //_this.getListData();
         ko.applyBindings(_this.moniVM, $("#moni-container")[0]);
         ko.applyBindings(_this.priceVM, $('#price-modal')[0]);
         ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
         ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
-        //_this.downRefreshTable();
         _this.refresh();
         if (queryString && queryString.tab == 'tab5') {
+            //从买卖原因标记页面返回到search Tab, url带参数
             $('ul.am-nav-tabs > li').removeClass('am-active');
             $('.am-tabs-bd .am-tab-panel').removeClass('am-active').removeClass('am-in');
             $('#t5').parent().addClass('am-active');
@@ -786,6 +741,7 @@ var MoniPage = function () {
             _this.moniVM.tabVM.searchClick();
         } else {
             if (queryString && queryString.stockCode) {
+                //从个股详情页面跳转过来url带参数的情况
                 var stockCode = queryString.stockCode,
                     stockName = queryString.stockName;
                 _this.moniVM.buyVM.stockLabel(stockCode + "  " + stockName);
@@ -793,9 +749,9 @@ var MoniPage = function () {
                 _this.moniVM.buyVM.stockName(stockName);
                 //to do ...获取建议手数
             }
+            //不带参数  正常进入页面
             _this.moniVM.tabVM.buyClick();
             _this.initStockCode();
-            //初始化加载第一页数据  
         }
     }
     _this.getCancelListData = function () {
@@ -849,7 +805,7 @@ var MoniPage = function () {
         });
         _this.pageNumber++; //页码自动增加，保证下次调用时为新的一页。 
     }
-    _this.refresh = function () {
+    _this.refresh = function () {//点击右上角刷新当前Tab页数据
         $("#KEY_FRESH").click(function () {
             var tab = $('li.am-active>a')[0].id;
             switch (tab) {
@@ -883,69 +839,4 @@ var MoniPage = function () {
     //定义鼠标滚动事件  
     $(window).scroll(scrollHandler);
     //==============上拉加载核心代码=============  
-    //==============下拉刷新核心代码=============
-    _this.downRefreshTable = function () {
-        var holdPosition = 0;
-        var mySwiper = new Swiper('.swiper-container', {
-            //slidesPerView: 'auto',
-            mode: 'vertical',
-            autoHeight: true,
-            height: '100%',
-            setWrapperSize: true,
-            scrollbarDraggable: true,
-            watchActiveIndex: true,
-            onTouchStart: function () {
-                holdPosition = 0;
-            },
-            onResistanceBefore: function (s, pos) {
-                holdPosition = pos;
-            },
-            onTouchEnd: function () {
-                if (holdPosition > 100) {
-                    mySwiper.setWrapperTranslate(0, 100, 0);
-                    mySwiper.params.onlyExternal = true;
-
-                    $('.preloader').addClass('visible').show();
-                    $(".swiper-container").delay(300).slideUp(100, function () {
-                        //$('.preloader').removeClass('visible').hide();
-                        //$(".swiper-wrapper").css('transform', 'translate3d(0px, 0px, 0px)');
-                        //$(".swiper-container").show();
-                        ////$('.swiper-wrapper').css('top', '-50px');
-                        //var tab = $('li.am-active>a')[0].id;
-                        //switch (tab) {
-                        //    case 't1': _this.moniVM.tabVM.buyClick(); break;
-                        //    case 't2': _this.moniVM.tabVM.saleClick(); break;
-                        //    case 't3': _this.moniVM.tabVM.cancelClick(); break;
-                        //    case 't4': _this.moniVM.tabVM.holdClick(); break;
-                        //    case 't5': _this.moniVM.tabVM.searchClick(); break;
-                        //    case 't6': _this.moniVM.tabVM.profitClick(); break;
-                        //}
-                        //_this.downRefreshTable();
-                        window.location.reload();
-                    });
-                }
-            }
-        })
-    }
-    //==============下拉刷新核心代码=============
-
-    //_this.getListData = function () {//获取各个Tab页面的数据
-    //    //if (_this.isFirstLoad == true) {
-    //    //    $('#my-modal-loading').modal('open');
-    //    //    _this.isFirstLoad = false;
-    //    //}
-    //    //$.when(_this.querySorder(1, pageSize), _this.queryUserDayProfit()).done(function (stockData, profitData) {// _this.queryBuyAndSell(), _this.queryUserAsset(),//cancelData, assetData,
-    //    //    //处理买入和卖出Tab页面的列表数据
-    //    //    _this.processBuySaleListData(stockData[0].data);
-    //    //    //处理从后台获取的撤单Tab页面的列表数据
-    //    //    //_this.processCancelListData(cancelData[0].data);
-    //    //    //处理持仓Tab页面上部分列表数据
-    //    //    //_this.processUserAssetData(assetData[0].data);
-    //    //    //处理收益Tab页面折线图数据
-    //    //    _this.processDayProfitData(profitData[0].data);
-    //    //}).fail(function () {
-    //    //    $('#my-modal-loading').modal('close');
-    //    //    //console.log('get list data failed');
-    //    //});
-    //}
 }
