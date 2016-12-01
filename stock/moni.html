@@ -144,7 +144,6 @@
                                                 <input type="text" id="autocomplete-ajax-sale" placeholder="股票代码" data-bind="value:stockLabel" style="position: absolute; z-index: 2;" />
                                                 <input type="text" id="autocomplete-ajax-x-sale" disabled="disabled" style="color: #CCC; background: transparent; z-index: 1;" />
                                             </div>
-                                            <!--<div class="ui-wiidget"><input id="scodeSale" type="text" placeholder="股票代码" data-bind="value:stockLabel" /></div>-->
                                             <span type="button" class="am-btn am-btn-default am-radius" style="position:relative;z-index:1;float:right;padding-right:5px;margin-top:-39px;height:30px;line-height: 14px;font-size:16px;background:none;border:none;color:#eee">股票名称</span>
                                             <input type="number" placeholder="价格" data-bind="value:inputPrice">
                                             <button type="button" class="am-btn am-btn-default am-radius" data-bind="event:{click:getRecommendClick.bind($data,'sale')}" style="position:relative;z-index:1000;float:right;padding-right:5px;margin-top:-39px;height:30px;line-height: 14px;font-size:16px;background:none;border:none;color:#eee">获取买价</button>
@@ -323,7 +322,7 @@
             <div class="am-modal-bd" style="padding: 5px 7px 1px 7px">
                 <ul data-bind="foreach:items" style="list-style:none;padding-left: 0px;">
                     <li>
-                        <button class="am-btn am-radius" data-bind="click:priceClick,css:{'am-btn-danger':$parent.priceType()=='买单盘口','am-btn-success':$parent.priceType()=='卖单盘口'}" style="font-weight: normal;font-size:14px;width: 90%;margin:2px auto;text-align: left">
+                        <button class="am-btn am-radius" data-bind="click:priceClick,css:{'am-btn-danger':$parent.priceType()=='卖单盘口','am-btn-success':$parent.priceType()=='买单盘口'}" style="font-weight: normal;font-size:14px;width: 90%;margin:2px auto;text-align: left">
                             <span data-bind="text:order"></span>&nbsp;
                             <span data-bind="text:price"></span>&nbsp;&nbsp;
                             <span data-bind="text:countLabel"></span>&nbsp;
@@ -374,6 +373,5 @@
     <script src="assets/js/common.js"></script>
     <script src="assets/js/moni.js"></script>
     <script src="assets/js/notice.js"></script>
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=58435013" charset="UTF-8"></script>
 </body>
 </html>
