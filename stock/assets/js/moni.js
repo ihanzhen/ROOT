@@ -6,8 +6,8 @@
         alert('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.');
         return;
     }
-    //var token = localStorage.token, uid = localStorage.uid;
-    var token = 'fb984967dd654d179158abe02618458f', uid = '4a0e6c4378f34828b6e8891ff2986b64';
+    var token = localStorage.token, uid = localStorage.uid;
+    //var token = 'fb984967dd654d179158abe02618458f', uid = '4a0e6c4378f34828b6e8891ff2986b64';
     if (!token || !uid) {
         window.location.href = "login.html";
     }
