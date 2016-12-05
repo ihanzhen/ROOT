@@ -101,3 +101,33 @@
         left: 0px;
         top: 0px;
     }
+
+.code {
+    display:inline-block;
+    background: url(../images/code_bg.jpg) !important;
+    font-family: Arial;
+    font-style: italic;
+    color: blue;
+    font-size: 15px;
+    border: 0;
+    padding: 2px 3px;
+    letter-spacing: 3px;
+    font-weight: bolder;
+    float: right;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/*a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #288bc4;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }*/

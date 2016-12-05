@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script src="assets/js/head.js"></script>
+  <meta name="apple-touch-fullscreen" content="yes">
+</head>
+<body>
+<!-- Header -->
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+      <a href="#left-link" class="">
+        <i class="am-header-icon am-icon-chevron-left" style="font-size:1.7rem;color:#999"></i>
+      </a>
+  </div>  
+  <h1 class="am-header-title">
+    <a href="#title-link">
+      <!--div style="margin-left:-103px;margin-top:2px"><embed src="../images/hanzhenfff.svg" type="image/svg+xml" style="height:20px;"/></div>
+      <div style="margin-top:-52px;margin-left:20px">至赢<span class="color-red">┽</span>禅心</div-->
+      <span style="font-size:1.8rem">微信登录</span>    
+    </a>    
+  </h1>
+  <div class="am-header-right am-header-nav">
+      <a href="reg.html" class="">
+       注册
+      </a>
+  </div>  
+<!-- Menu -->
+</header>
+<!--script src="assets/js/menu.js"></script-->   
+
+<style>
+.am-form input[type="text"],.am-form input[type="email"],.am-form input[type="password"]
+{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;height:45px;}
+.am-form input[type='text']:focus,.am-form input[type='email']:focus,.am-form input[type='password']:focus
+{color:#fff;background: none;border: none;box-shadow: none;border-bottom:1px solid #444;}
+.am-btn-default:focus,.am-btn-default:active{box-shadow: none;}
+.am-form input[type='button']:focus{box-shadow: none;}
+.am-form input[type='button']:hover{box-shadow: none;}
+</style>
+
+<div style="text-align: center;margin:20px 0 30px">
+    <embed src="http://www.hanzhendata.com/stock/assets/images/404icon.svg" type="image/svg+xml" style="height:80px;" />
+    <p style="font-size:14px;line-height:18px;padding:0 10px;color:#fff">
+    我们是最NB的量化交易平台，没有之一！<br>
+    We are the most awesome quantitative trading platform, Nothing else !
+    </p>
+</div>
+
+<form class="am-form am-form-horizontal">
+<div class="am-g">
+  <div class="am-u-md-8 am-u-sm-centered">
+      <button type="submit" class="am-btn am-btn-success am-btn-block am-radius" data-bind="click:loginClick"><span class="am-icon-wechat"></span> 微信授权登录</button>
+      <div style="margin-top: 10px;float:right;font-size:12px;">
+          <a href="wechatlogin.html">更多</a>
+      </div>      
+      <div style="margin-top: 10px;float:left;font-size:12px;">
+          <a href="pswlogin.html">使用密码登录</a>
+      </div>      
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/wechatlogin.js"></script>
+<script>
+//页面加载时绑定按钮点击事件
+$(function(){
+    $("#KEY_FRESH").click(function(){
+        refresh();
+    });
+});
+//点击按钮调用的方法
+function refresh(){
+    window.location.reload();//刷新当前页面.
+     
+    //或者下方刷新方法
+    //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+    // opener.location.reload()刷新父窗口对象（用于单开窗口
+   //top.location.reload()刷新最顶端对象（用于多开窗口）
+}
+</script>
+</body>
+</html>

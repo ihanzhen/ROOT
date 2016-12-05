@@ -316,3 +316,7 @@ body {
     color: #fff;
     padding: 10px;
 }
+
+.am-modal-bd {
+    border-bottom: none !important;
+}

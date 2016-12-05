@@ -61,12 +61,24 @@ var UserInfoPage = function () {
     _this.openId = "";
     _this.accessToken = "";
     _this.headimgurl = "";
+    _this.tempCode = '';
+    _this.noticeVM = {
+        notice: ko.observable('')
+    };
+    _this.comfirmVM = {
+        bodyText: ko.observable(''),
+        cancelText: ko.observable(''),
+        confirmText: ko.observable(''),
+    };
     _this.init = function () {
         var queryString = $.request(location.href).queryString;
         _this.openId = queryString.openId;
         _this.accessToken = queryString.accessToken;
         _this.wxcheck();
         ko.applyBindings(userInfoVM, $("#userinfo-container")[0]);
+        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
+        ko.applyBindings(_this.comfirmVM, $('#success-confirm')[0]);
+        userInfoVM.createCodeClick();
     };
     _this.wxcheck = function () {
         $('#my-modal-loading').modal('open');
@@ -76,6 +88,17 @@ var UserInfoPage = function () {
         }, function (data) {
             $('#my-modal-loading').modal('close');
             if (data.status == 2001) {
+                _this.comfirmVM.bodyText(' 请到会员中心填写您个人资料，完成会员注册');
+                _this.comfirmVM.cancelText('返回首页');
+                _this.confirmVM.confirmText('下一步');
+                $('#success-confirm').modal({
+                    onConfirm: function (options) {
+                     
+                    },
+                    onCancel: function () {
+                        window.location.href = 'home.html';
+                    }
+                })
                 var user = data.data;
                 _this.headimgurl = user.headImgUrl;
                 userInfoVM.nickName(user.nickname);
@@ -83,12 +106,16 @@ var UserInfoPage = function () {
                     userInfoVM.sex('男');
                 } else if (user.sex == 2) {
                     userInfoVM.sex('女');
-                }else if(user.sex==0){
+                } else if (user.sex == 0) {
                     userInfoVM.sex('保密');
                 }
                 userInfoVM.portrait('url(' + user.headImgUrl + ') 100% 100%');
             } else if (data.status == 2002) {
-                window.location.href = 'home.html';
+                window.location.href = 'user.html';
+            } else if (data.stutus == 2000) {
+                window.location.href = 'wechat_follow.html';
+                //_this.noticeVM.notice('请用微信关注 函真投资/函真数据，及时消息不错过！');
+                //$('#notice-alert').modal('open');
             }
         }).error(function () {
             $('#my-modal-loading').modal('close');
@@ -104,8 +131,27 @@ var UserInfoPage = function () {
         verifyText: ko.observable('发送验证码'),
         region: ko.observable(''),
         motto: ko.observable(''),
+        showCode: ko.observable(''),
+        canInputPhone: ko.observable(false),
+        inputPhotoCode: ko.observable(''),
         portrait: ko.observable(''),//url('../images/user.jpg')
         canVerify: ko.observable(false),
+        createCodeClick: function () {
+            var codeLength = 6; //验证码的长度
+            var checkCode = $("#checkCode")[0];
+            _this.tempCode = '';
+            var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+            'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+            for (var i = 0; i < codeLength; i++) {
+                var charNum = Math.floor(Math.random() * 52);
+                _this.tempCode += codeChars[charNum];
+            }
+            if (checkCode) {
+                checkCode.className = "code";
+                userInfoVM.showCode(_this.tempCode);
+            }
+        },
         verifyClick: function () {
             var phone = this.phone().trim();
             $('#send-confirm').modal({
@@ -142,10 +188,10 @@ var UserInfoPage = function () {
         saveClick: function () {
             var sex;
             userInfoVM.region($("#demo2").val());
-            switch(userInfoVM.sex()){
-                case '男':sex='1';break;
-                case '保密':sex='0';break;
-                case '女':sex='2';break;
+            switch (userInfoVM.sex()) {
+                case '男': sex = '1'; break;
+                case '保密': sex = '0'; break;
+                case '女': sex = '2'; break;
             }
             var userInfo = {
                 openid: _this.openId,
@@ -154,32 +200,41 @@ var UserInfoPage = function () {
                 email: userInfoVM.email(),
                 vcode: userInfoVM.vcode(),
                 address: userInfoVM.region(),
-                //motto: userInfoVM.motto(),
+                signature: userInfoVM.motto(),
                 headimgurl: _this.headimgurl,
-                passWord:"123456"
+                passWord: "123456"
             };
-            //do ajax
             $('#my-modal-loading').modal('open');
             $.post('/ihanzhendata/user/' + userInfoVM.phone() + '/regist', userInfo, function (data) {
                 $('#my-modal-loading').modal('close');
                 if (data.status == 1) {
                     localStorage.token = data.data.token;
                     localStorage.uid = data.data.uid;
-                    $('#success-confirm').modal({
-                        onConfirm: function () {
-                            window.location.href = "user.html";
-                        },
-                        onCancel: function () {
-                            window.location.href = "home.html";
-                        }
-                    });
+                    window.location.href = "user.html";
                 }
-                
             }).error(function () {
                 $('#my-modal-loading').modal('close');
             });
         }
     }
+    userInfoVM.inputPhotoCode.subscribe(function (newValue) {
+        var inputCode = userInfoVM.inputPhotoCode();
+        if (inputCode.length <= 0) {
+            _this.noticeVM.notice('请输入验证码！');
+            $('#notice-alert').modal('open');
+            userInfoVM.canInputPhone(false);
+        }
+        else if (inputCode.toUpperCase() != _this.tempCode.toUpperCase()) {
+            userInfoVM.inputPhotoCode('');
+            _this.noticeVM.notice('验证码输入有误！');
+            $('#notice-alert').modal('open');
+            userInfoVM.createCodeClick();
+            userInfoVM.canInputPhone(false);
+        }
+        else {
+            userInfoVM.canInputPhone(true);
+        }
+    });
     userInfoVM.phone.subscribe(function (newValue) {
         var pRegex = /^1((3|5|8){1}\d{1}|70|77|71)\d{8}$/;
         if (pRegex.test(newValue.trim())) {
@@ -210,20 +265,23 @@ var UserInfoPage = function () {
             return;
         }
         else if (!obj.value.match(/.jpg|.gif|.png|.bmp|.jpeg/i)) {
-            alert("请选择图片文件！");
+            _this.noticeVM.notice('请选择图片文件！');
+            $('#notice-alert').modal('open');
         } else {
             pushImg(obj);
         }
     }
     function pushImg(obj) {
-        var url = "upload/"; //访问控制器是upload，后面必须加'/'否则会报错"org.apache.catalina.connector.RequestFacade cannot be cast to org.springframework.web.multipart.Mult...",但是如果是多级的URL【例如XX/XXX/00/upload/0】又没问题了.
+        //var url = "upload/"; //访问控制器是upload，后面必须加'/'否则会报错"org.apache.catalina.connector.RequestFacade cannot be cast to org.springframework.web.multipart.Mult...",但是如果是多级的URL【例如XX/XXX/00/upload/0】又没问题了.
+        var url = "www.hanzhendata.com/ihanzhendata/user/4a0e6c4378f34828b6e8891ff2986b64/headpicture";
         var files = $("#fileBtn").get(0).files[0]; //获取file控件中的内容
         if (files.size > 5 * 1024 * 1024) {
-            alert("max size is 5M");
+            _this.noticeVM.notice('图片最大为5M！');
+            $('#notice-alert').modal('open');
             return;
         }
         var fd = new FormData();
-        fd.append("errPic", files);
+        fd.append("clientHeadPicture", files);
         $('#my-modal-loading').modal('open');
         $.ajax({
             type: "POST",
@@ -231,13 +289,15 @@ var UserInfoPage = function () {
             processData: false, //必须false才会自动加上正确的Content-Type 
             url: url,
             data: fd,
-            success: function (msg) {
-                $('#my-modal-loading').modal('close');
-                var jsonString = JSON.stringify(msg);
-                //$("#txtTd").text(jsonString)
-                alert(jsonString);
-                var fileurl = window.URL.createObjectURL(obj.files[0]);
-                $("#portrait").css({ 'background': 'url(' + fileurl + ') no-repeat center', 'background-size': '100% 100%' });
+            success: function (data) {
+                if (data.status == 1) {
+                    $('#my-modal-loading').modal('close');
+                    var jsonString = JSON.stringify(data);
+                    //$("#txtTd").text(jsonString)
+                    console.log(jsonString);
+                    var fileurl = window.URL.createObjectURL(obj.files[0]);
+                    $("#portrait").css({ 'background': 'url(' + fileurl + ') no-repeat center', 'background-size': '100% 100%' });
+                }
             },
             error: function (msg) {
                 $('#my-modal-loading').modal('close');
