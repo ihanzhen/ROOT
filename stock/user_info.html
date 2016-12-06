@@ -24,7 +24,7 @@
                 <li class="am-g am-list-item-dated" style="height:80px;border-top:none;margin-top:-9px">
                     <a class="am-list-item-hd" style="font-size:16px;position: relative;top:18px">头像</a>
                     <div id="upload">
-                        <form action="/" method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             <div id="portrait" style="border-radius:7px;position: relative;top:40px" data-bind="style:{background:portrait}">
                                 <input type="file" style="display:inline-block;height:60px;width:60px;opacity:0;position: relative;right:10px" id="fileBtn" onchange="uploads(this)" />
                             </div>
@@ -35,7 +35,7 @@
                     <a href="javascript:void(0)">
                         <span class="am-list-item-hd" style="font-size:16px">昵称</span>
                     </a>
-                    <input style="float:right;text-align: right;background: none;border:none;margin-top:-35px;" data-bind="value:nickName" placeholder="请输入昵称" />
+                    <input style="float:right;text-align: right;background: none;border:none;margin-top:-35px;" data-bind="value:nickname" placeholder="请输入昵称" />
 
                 </li>
                 <li class="am-g am-list-item-dated">
@@ -76,31 +76,10 @@
                     </a>
                     <input style="float:right;text-align: right;background: none;border:none;margin-top:-35px;" data-bind="value:email" placeholder="请输入电子邮箱" />
                 </li>
-                <!--<li class="am-g am-list-item-dated">
-                    <a href="javascript:void(0)" style="height:45px">
-                        <span class="am-list-item-hd" style="font-size:16px">验证码</span>
-                    </a>
-                    <input style="float:right;text-align: right;background: none;border:none;margin-top:-35px;margin-right:85px;" placeholder="图形验证码" data-bind="value:inputPhotoCode,valueUpdate:'change'" />
-                    <div class="code" id="checkCode" data-bind="click:createCodeClick,text:showCode"></div>
-                </li>
-                <li class="am-g am-list-item-dated">
-                    <a href="javascript:void(0)" style="height:45px">
-                        <span class="am-list-item-hd" style="font-size:16px;">手机号</span>
-                    </a>
-                    <input type="text" placeholder="+86" data-bind="enable:canInputPhone(),value:phone,valueUpdate:'keyup'" required style="float:right;text-align: right;background: none;border:none;margin-top:-35px;margin-right:90px;">
-                    <button id="verifyBtn" type="button" class="am-btn am-btn-default am-radius" style="    float: right;width: 70px;height: 25px;line-height: 20px;margin-top: -35px;font-size:12px;padding:0;color:#3d3d3d" data-bind="enable:canVerify(),text:verifyText,click:verifyClick">获取验证码</button>
-                </li>
-                <li class="am-g am-list-item-dated">
-                    <a href="javascript:void(0)" style="height:45px">
-                        <span class="am-list-item-hd" style="font-size:16px;">验证码</span>
-                    </a>
-                    <input type="text" style="float:right;text-align: right;background: none;border:none;margin-top:-35px;" placeholder="短信验证码" data-bind="value:vcode">
-                </li>-->
                 <li class="am-g am-list-item-dated">
                     <a href="sms_check.html" style="height:45px">
                         <span class="am-list-item-hd" style="font-size:16px;">手机号</span>
-                        <input type="text" placeholder="+86" data-bind="enable:canInputPhone(),value:phone,valueUpdate:'keyup'" required style="float:right;text-align: right;background: none;border:none;margin-top:-35px;margin-right:90px;">
-                        <!--<button id="verifyBtn" type="button" class="am-btn am-btn-default am-radius" style="    float: right;width: 70px;height: 25px;line-height: 20px;margin-top: -35px;font-size:12px;padding:0;color:#3d3d3d" data-bind="enable:canVerify(),text:verifyText,click:verifyClick">获取验证码</button>-->
+                        <input type="text" placeholder="+86" data-bind="value:phone,valueUpdate:'keyup'" required style="float:right;text-align: right;background: none;border:none;margin-top:-35px;margin-right:90px;">
                     </a>
                 </li>
                 <li class="am-g am-list-item-dated">
@@ -118,13 +97,13 @@
                     <input style="float:right;text-align: right;background: none;border:none;margin-top:-35px;" data-bind="value:motto" />
                 </li>
             </ul>
-            <button type="submit" class="am-btn am-btn-danger am-btn-block am-radius" data-bind="click:saveClick">注册会员</button>
+            <button type="submit" class="am-btn am-btn-danger am-btn-block am-radius" data-bind="click:saveClick">保存</button>
             <br />
         </div>
         <!-- Loading -->
         <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
-            <div class="am-modal-dialog">
-                <!--<div class="am-modal-hd">正在载入...</div>-->
+            <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
+                <!--div class="am-modal-hd">正在载入...</div-->
                 <div class="am-modal-bd">
                     <span class="am-icon-spinner am-icon-spin"></span>
                 </div>
@@ -156,14 +135,14 @@
             </div>
         </div>
     </div>
-    <!-- submit success /  微信用户授权登录后提示-->
+    <!-- submit success-->
     <div class="am-modal am-modal-confirm" tabindex="-1" id="success-confirm" style="margin-top:-100px">
         <div class="am-modal-dialog">
             <div class="am-modal-hd">系统提示</div>
-            <div class="am-modal-bd" data-bind="text:bodyText"></div>
+            <div class="am-modal-bd" >用户信息保存成功！</div>
             <div class="am-modal-footer">
-                <span class="am-modal-btn" data-am-modal-cancel data-bind="text:cancelText">前往首页</span>
-                <span class="am-modal-btn" data-am-modal-confirm data-bind="text:comfirmText">用户中心</span>
+                <span class="am-modal-btn" data-am-modal-cancel >前往首页</span>
+                <span class="am-modal-btn" data-am-modal-confirm >用户中心</span>
             </div>
         </div>
     </div>

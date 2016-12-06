@@ -193,7 +193,7 @@ var MoniPage = function () {
                     _this.confirmVM.count(_this.moniVM.buyVM.inputCount());
                     _this.confirmVM.question('您是否确认以上买入委托？');
                     _this.confirmVM.ajaxItem = {
-                        uid: '123456',//fake data
+                        uid: localStorage.uid,//fake data
                         sorder_id: '',
                         stock_code: _this.moniVM.buyVM.stockCode(),
                         stock_name: _this.moniVM.buyVM.stockName(),
@@ -230,7 +230,7 @@ var MoniPage = function () {
                     _this.confirmVM.count(_this.moniVM.saleVM.inputCount());
                     _this.confirmVM.question('您是否确认以上卖出委托？');
                     _this.confirmVM.ajaxItem = {
-                        uid: '123456',//fake data
+                        uid: localStorage.uid,//fake data
                         sorder_id: '',
                         stock_code: _this.moniVM.saleVM.stockCode(),
                         stock_name: _this.moniVM.saleVM.stockName(),
@@ -341,7 +341,7 @@ var MoniPage = function () {
             if (item.status() == '10' || item.status() == '12') {
                 //进行买入撤单操作
                 _this.confirmVM.ajaxItem = {
-                    uid: '123456',//fake data
+                    uid: localStorage.uid,//fake data
                     sorder_id: item.sorderId,
                     stock_code: item.stockCode,
                     stock_name: item.stockName(),
@@ -353,7 +353,7 @@ var MoniPage = function () {
             else if (item.status() == '20' || item.status() == '22') {
                 //进行卖出撤单操作
                 _this.confirmVM.ajaxItem = {
-                    uid: '123456',//fake data
+                    uid: localStorage.uid,//fake data
                     sorder_id: item.sorderId,
                     stock_code: item.stockCode,
                     stock_name: item.stockName(),
@@ -660,7 +660,7 @@ var MoniPage = function () {
         myChart.setOption(option);
     }
     _this.queryUserDayProfit = function (startDate, endDate) {//查询收益
-        var ajaxItem = { uid: '123456' };
+        var ajaxItem = { uid: localStorage.uid };
         if (startDate && endDate) {
             var start = new Date(startDate);
             var end = new Date(endDate);
@@ -668,7 +668,7 @@ var MoniPage = function () {
             end.setDate(end.getDate() + 1);
             endDate = end.Format('YYYY-MM-DD');
             ajaxItem = {
-                uid: '123456',
+                uid: localStorage.uid,
                 startDate: startDate,
                 endDate: endDate
             }
@@ -682,15 +682,15 @@ var MoniPage = function () {
             var tomorrow = new Date(now.setDate(now.getDate() + 1));
             endDate = tomorrow.Format('YYYY-MM-DD');
         }
-        return $.get('/ihanzhendata/stockOrderMn/queryBuyAndSell', { uid: '123456', startDate: startDate, endDate: endDate, pageNumber: pageNumber, pageSize: pageSize }, function (data) { });
+        return $.get('/ihanzhendata/stockOrderMn/queryBuyAndSell', { uid: localStorage.uid, startDate: startDate, endDate: endDate, pageNumber: pageNumber, pageSize: pageSize }, function (data) { });
     }
     _this.queryUserAsset = function () {//资产情况
-        return $.get('/ihanzhendata/stockOrderMn/queryUserAsset', { uid: '123456' }, function (data) { });
+        return $.get('/ihanzhendata/stockOrderMn/queryUserAsset', { uid: localStorage.uid }, function (data) { });
     }
     _this.querySorder = function (pageNumber, pageSize) {//买入卖出List
-        var ajaxItem = { uid: '123456', pageNumber: pageNumber, pageSize: pageSize };
+        var ajaxItem = { uid: localStorage.uid, pageNumber: pageNumber, pageSize: pageSize };
         if (!pageNumber && !pageSize) {
-            ajaxItem = { uid: '123456' };
+            ajaxItem = { uid: localStorage.uid };
         }
         return $.get('/ihanzhendata/stockOrderMn/querySorder', ajaxItem, function (result) { });
     }
