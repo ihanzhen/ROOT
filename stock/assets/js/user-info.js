@@ -35,7 +35,7 @@ var UserInfoPage = function () {
             var userInfo = {
                 nickName: userInfoVM.nickname(),
                 sex: sex,
-                //email: userInfoVM.email(),
+                email: userInfoVM.email(),
                 address: userInfoVM.region(),
                 signature: userInfoVM.motto(),
             };
@@ -70,9 +70,8 @@ var UserInfoPage = function () {
             case '2': userInfoVM.sex('女'); break;
             case '0': userInfoVM.sex('保密'); break;
         };
-        if (localStorage.country && localStorage.province && localStorage.city) {
-            var address = localStorage.country + " " + localStorage.province + " " + localStorage.city;
-            userInfoVM.region(address);
+        if (localStorage.address) {
+            userInfoVM.region(localStorage.address);
         }
     }
     _this.initRegion = function () { //region select

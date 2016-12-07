@@ -2,6 +2,8 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
+    <script src="assets/js/wecheck.js"></script>
+    <script src="assets/js/verifylogin.js"></script>
     <script src="assets/js/head.js"></script>
 </head>
 <body>
@@ -24,7 +26,6 @@
 
     <!-- Menu -->
     <!--<script src="assets/js/menu.js"></script>-->
-
     <!-- List -->
     <div data-am-widget="list_news" class="am-list-news am-list-news-default">
 
@@ -32,9 +33,9 @@
             <ul class="am-list">
                 <li class="am-g am-list-item-dated" style="margin-top:-10px;border-top:none;padding:0">
                     <a href="user_info.html" class="am-list-item-hd ">
-                        <img src="../images/user1.jpg" width=60 height=60 id="round">
+                        <img width=60 height=60 id="round">
                         <span class="am-list-date am-list-date-user">
-                            <span style="font-size:16px">iamhaitao</span><br>
+                            <span id="nickname" style="font-size:16px">iamhaitao</span><br>
                             <span id="c-orange">试用用户</span><span style="font-size:1.1rem">（剩余35天）</span>
                         </span>
                         <span class="am-list-date am-list-date-2 am-icon-angle-right" style="font-size:2rem;top:2.5rem"></span>
@@ -95,6 +96,7 @@
     <script>
         $(function () {
             $('img').attr('src', localStorage.headImgUrl);
+            $('#nickname').text(localStorage.nickname);
         })
     </script>
 </body>

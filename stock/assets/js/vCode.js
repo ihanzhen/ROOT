@@ -96,8 +96,8 @@
 
         var f = function () {
             this.len = 4;
-            this.fontSizeMin = 20;
-            this.fontSizeMax = 36;// 48;
+            this.fontSizeMin = 12;//20
+            this.fontSizeMax = 18;// 48;
             this.colors = [
                 "green",
                 "red",
@@ -116,7 +116,7 @@
                 "tahoma",
                 "Hiragino Sans GB"
             ];
-            this.lines = 8;
+            this.lines = 8;//8
             this.lineColors = [
                 "#888888",
                 "#FF7744",
@@ -125,9 +125,9 @@
             ];
 
             this.lineHeightMin = 1;
-            this.lineHeightMax = 3;
+            this.lineHeightMax = 3;//3
             this.lineWidthMin = 1;
-            this.lineWidthMax = 60;
+            this.lineWidthMax = 60;//60
         };
 
         this.options = new f();
@@ -210,7 +210,7 @@
                 "-webkit-transform:rotate(" + randint(-30, 30) + "deg)",
                 "-o-transform:rotate(" + randint(-30, 30) + "deg)",
                 "font-family:" + this.options.fonts[randint(0, this.options.fonts.length - 1)],
-                "font-weight:" + randint(400, 900)
+                "font-weight:" + randint(400, 700)
             ].join(";");
             this.dom.appendChild(dom);
 

@@ -2,76 +2,7 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/common.js"></script>
-    <script>
-        (function () {
-            var homepage = new HomePage();
-            homepage.init();
-        })();
-        function HomePage() {
-            var _this = this;
-            _this.init = function () {
-                var queryString = $.request(location.href).queryString;
-                _this.openId = queryString.openId;
-                _this.accessToken = queryString.accessToken;
-                if (localStorage.token && localStorage.uid) {
-                    return;
-                }
-                else if (!localStorage.uid && !localStorage.token && !_this.openId && !_this.accessToken) {
-                    window.location.href = "http://hanzhendata.com/ihanzhendata/user/wxlogin";
-                } else if (!!_this.accessToken && !!_this.openId) {
-                    _this.wxcheck();
-                }
-            }
-            _this.wxcheck = function () {
-                //$('#my-modal-loading').modal('open');
-                $.post('/ihanzhendata/user/wxcheck', {
-                    openId: _this.openId,
-                    accessToken: _this.accessToken
-                }, function (data) {
-                    //$('#my-modal-loading').modal('close');
-                    if (data && data.status) {
-                        if (data.status == 2000) {//未关注微信号
-                            window.location.href = 'wechat_follow.html';
-                        }
-                        else if (data.status == 2001) {//首次接触，显示welcome.html
-                            _this.initLocalStorage(data.data);
-                            window.location.href = "welcome.html";
-                        }
-                        else if (data.status == 2002) {//未填写手机号
-                            _this.initLocalStorage(data.data);
-                            window.location.href = "sms_check.html";
-                        }
-                        else if (data.status == 2003) {//老用户
-                            _this.initLocalStorage(data.data);
-                            localStorage.token = data.data.token;
-                        }
-                        else {
-                            window.location.href = '404.html';
-                        }
-                    }
-                    else {
-                        window.location.href = '404.html';
-                    }
-
-                }).error(function () {
-                    window.location.href = '404.html';
-                    //$('#my-modal-loading').modal('close');
-                });
-            }
-            _this.initLocalStorage = function (user) {
-                localStorage.uid = user.uid;
-                localStorage.headImgUrl = user.headImgUrl;
-                localStorage.sex = user.sex;
-                localStorage.city = user.city;
-                localStorage.country = user.country;
-                localStorage.nickname = user.nickname;
-                localStorage.province = user.province;
-            }
-        };
-    </script>
-    <!--<script src="assets/js/verifylogin.js"></script>-->
+    <script src="assets/js/wecheckhome.js"></script>
     <script src="assets/js/head.js"></script>
     <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
     <meta name="apple-touch-fullscreen" content="yes">
@@ -258,7 +189,7 @@
 
     <!-- Navbar -->
     <script src="assets/js/navbar.js"></script>
-
+    <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
     <script src="assets/js/notice.js"></script>

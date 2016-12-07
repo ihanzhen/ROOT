@@ -24,11 +24,18 @@ var PhoneManagement = function () {
         msgvcode: ko.observable(''),
         verifyText: ko.observable('发送验证码'),
         //showCode: ko.observable(''),
-        //canInputPhone: ko.observable(true),
-        //inputPhotoCode: ko.observable(''),
+        canInputPhone: ko.observable(false),
+        graphcode: ko.observable(''),
         canVerify: ko.observable(false),
         verifyClick: function () {
             var phone = this.phone().trim();
+            if (_this.code2.verify(phoneVM.graphcode()) == false) {
+                _this.noticeVM.notice('图形验证码输入有误！');
+                $('#notice-alert').modal('open');
+                $("#vCode2").click();
+                phoneVM.graphcode('');
+                return;
+            }
             $('#send-confirm').modal({
                 onConfirm: function (options) {
                     $.ajax({
@@ -60,16 +67,20 @@ var PhoneManagement = function () {
             });
         },
         saveClick: function () {
-            if (document.getElementById("code2").value == "") {
-                _this.noticeVM.notice('请输入图形验证码！');
-                $('#notice-alert').modal('open');
-                return;
-            }
-            if (_this.code2.verify(document.getElementById("code2").value) == false) {
-                _this.noticeVM.notice('图形验证码输入有误！');
-                $('#notice-alert').modal('open');
-                return;
-            }
+            //if (document.getElementById("code2").value == "") {
+            //    _this.noticeVM.notice('请输入图形验证码！');
+            //    $('#notice-alert').modal('open');
+            //    $("#vCode2").click();
+            //phoneVM.graphcode('');
+            //    return;
+            //}
+            //if (_this.code2.verify(document.getElementById("code2").value) == false) {
+            //    _this.noticeVM.notice('图形验证码输入有误！');
+            //    $('#notice-alert').modal('open');
+            //    $("#vCode2").click();
+            //phoneVM.graphcode('');
+            //    return;
+            //}
             $('#my-modal-loading').modal('open');
             $.post('/ihanzhendata/user/' + phoneVM.phone() + '/regist', {
                 vcode: phoneVM.msgvcode(),
@@ -91,39 +102,41 @@ var PhoneManagement = function () {
             });
         }
     }
-    //phoneVM.inputPhotoCode.subscribe(function (newValue) {
-    //    var inputCode = phoneVM.inputPhotoCode();
-    //    if (inputCode.length <= 0) {
-    //        _this.noticeVM.notice('请输入图形验证码！');
-    //        $('#notice-alert').modal('open');
-    //        phoneVM.canInputPhone(false);
-    //    }
-    //    else if (inputCode.toUpperCase() != _this.tempCode.toUpperCase()) {
-    //        phoneVM.inputPhotoCode('');
-    //        _this.noticeVM.notice('图形验证码输入有误！');
-    //        $('#notice-alert').modal('open');
-    //        phoneVM.createCodeClick();
-    //        phoneVM.canInputPhone(false);
-    //    }
-    //    else {
-    //        phoneVM.canInputPhone(true);
-    //    }
-    //});
+    phoneVM.graphcode.subscribe(function (newValue) {
+        var inputCode = phoneVM.graphcode();
+        if (inputCode.length = 0) {
+            _this.noticeVM.notice('请输入图形验证码！');
+            $('#notice-alert').modal('open');
+            phoneVM.canInputPhone(false);
+            $("#vCode2").click();
+            phoneVM.graphcode('');
+        }
+        else if (_this.code2.verify(inputCode) == false) {
+            _this.noticeVM.notice('图形验证码输入有误！');
+            $('#notice-alert').modal('open');
+            phoneVM.canInputPhone(false);
+            $("#vCode2").click();
+            phoneVM.graphcode('');
+        }
+        else if (_this.code2.verify(inputCode) == true) {
+            phoneVM.canInputPhone(true);
+        }
+    });
     phoneVM.phone.subscribe(function (newValue) {
         var pRegex = /^1((3|5|8){1}\d{1}|70|77|71)\d{8}$/;
         if (pRegex.test(newValue.trim())) {
             phoneVM.canVerify(true);
-            $("#verifyBtn").addClass('am-btn-warning');
+            //$("#verifyBtn").addClass('am-btn-warning');
         }
         else {
             phoneVM.canVerify(false);
-            $("#verifyBtn").removeClass('am-btn-warning');
+            //$("#verifyBtn").removeClass('am-btn-warning');
         }
     });
     var initGraphCode = function () {
         var container2 = document.getElementById("vCode2");
         _this.code2 = new vCode(container2, {
-            len: 4,
+            len: 5,
             bgColor: "#444444",
             colors: [
                 "#DDDDDD",
