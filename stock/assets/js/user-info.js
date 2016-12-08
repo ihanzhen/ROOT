@@ -63,6 +63,24 @@ var UserInfoPage = function () {
         }
     }
     _this.initUserInfo = function () {
+        _this.initInfoByStorage();
+        _this.initInfoByAjax();
+    }
+    _this.initInfoByAjax = function () {
+        $('#my-modal-loading').modal('open');
+        $.get('/ihanzhendata/user/userinfo/' + localStorage.uid, function (data) {
+            $('#my-modal-loading').modal('close');
+            if (data.status == 1) {
+                var user = data.data;
+                userInfoVM.email(user.email);
+                userInfoVM.phone(user.loginName);
+                userInfoVM.motto(user.signature);
+            }
+        }).error(function () {
+            $('#my-modal-loading').modal('close');
+        });
+    }
+    _this.initInfoByStorage = function () {
         $("#portrait").css({ 'background': 'url(' + localStorage.headImgUrl + ') no-repeat center', 'background-size': '100% 100%' });
         userInfoVM.nickname(localStorage.nickname);
         switch (localStorage.sex) {
