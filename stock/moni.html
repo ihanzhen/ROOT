@@ -101,7 +101,7 @@
                                     <form class="am-form">
                                         <fieldset class="am-form-set">
                                             <div class="ui-wiidget">
-                                                <input type="text" id="autocomplete-ajax" placeholder="股票代码" data-bind="value:stockLabel" style="position: absolute; z-index: 2;"/>
+                                                <input type="text" id="autocomplete-ajax" placeholder="股票代码" data-bind="value:stockLabel" style="position: absolute; z-index: 2;" />
                                                 <input type="text" id="autocomplete-ajax-x" disabled="disabled" style="color: #CCC; background: transparent; z-index: 1;" />
                                             </div>
                                             <span type="button" class="am-btn am-btn-default am-radius" style="position:relative;z-index:1;float:right;padding-right:5px;margin-top:-39px;height:30px;line-height: 14px;font-size:16px;background:none;border:none;color:#eee">股票名称</span>
@@ -234,6 +234,23 @@
                                         <span style="position: relative;font-size:12px;">本周收益</span>
                                         <br>
                                         <span style="font-size:14px;position: relative;top:-5px;color:#eee;" data-bind="text:weekProfit">1.75%</span>
+                                    </li>
+                                </ul>
+                                <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="padding:2px 0 1px 0;">
+                                    <li>
+                                        <span style="position: relative;font-size:12px;">总市值(元)</span>
+                                        <br>
+                                        <span style="font-size:14px;position: relative;top:-5px;color:#eee;" data-bind="text:marketValue"></span>
+                                    </li>
+                                    <li>
+                                        <span style="position: relative;font-size:12px;">可用资产(元)</span>
+                                        <br>
+                                        <span style="font-size:14px;position: relative;top:-5px;color:#eee;" data-bind="text:availableAssets"></span>
+                                    </li>
+                                    <li>
+                                        <span style="position: relative;font-size:12px;">浮动盈亏(元)</span>
+                                        <br>
+                                        <span style="font-size:14px;position: relative;top:-5px;color:#eee;" data-bind="text:floatProfit"></span>
                                     </li>
                                 </ul>
                             </div>

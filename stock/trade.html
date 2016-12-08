@@ -1,357 +1,136 @@
 ﻿<!doctype html>
 <html class="no-js">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
     <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
-  <script src="assets/js/head.js"></script>
+    <script src="assets/js/head.js"></script>
+    <link rel="stylesheet" href="assets/css/trade.css" type="text/css" />
 </head>
 <body>
-<!-- Header -->
-<header data-am-widget="header" class="am-header am-header-default" data-am-sticky>
-  <div class="am-header-left am-header-nav">
-      <a href="search.html" class="">
-        <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
-      </a>
-  </div>  
-  <h1 class="am-header-title">
-    <a href="#title-link">至赢<span class="color-red">┽</span>禅心</a>
-  </h1>
-  <div class="am-header-right am-header-nav" style="/*margin-right:40px*/">
-      <a href="#left-link" class="">
-        <i class="am-header-icon am-icon-cog" style="font-size:1.8rem;color:#999"></i>
-      </a>
-  </div>
-  <div class="am-header-right am-header-nav" style="margin-right:40px">
-      <a href="#left-link" class="">
-        <i class="am-header-icon am-icon-refresh" style="font-size:1.6rem;color:#999"></i>
-      </a>
-  </div>       
-</header>
 
-<!-- Menu -->
-<!--script src="assets/js/menu.js"></script-->
+    <!-- Header -->
+    <header data-am-widget="header" class="am-header am-header-default" data-am-sticky>
+        <div class="am-header-left am-header-nav">
+            <a href="search.html" class="">
+                <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
+            </a>
+        </div>
+        <h1 class="am-header-title">
+            <a href="#title-link">至赢<span class="color-red">┽</span>禅心</a>
+        </h1>
+        <div class="am-header-right am-header-nav" style="/*margin-right:40px*/">
+            <a href="#left-link" class="">
+                <i class="am-header-icon am-icon-cog" style="font-size:1.8rem;color:#999"></i>
+            </a>
+        </div>
+        <div class="am-header-right am-header-nav" style="margin-right:40px">
+            <a href="#left-link" class="">
+                <i class="am-header-icon am-icon-refresh" style="font-size:1.6rem;color:#999"></i>
+            </a>
+        </div>
+    </header>
 
-<!--tabs-->
-<style type="text/css">
-.am-tabs-bd{border: none;}
-.am-nav-tabs >li > a{color:#aaa;}
-.am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {background: none;border:none;color:#fff;margin-top: 1px;margin-left: 1px;font-weight: bold}
-.am-tabs-nav > li{background: none;text-align: center;}
-.am-tabs-nav > li >a{position: relative;top:-8px;left:3px;}
-.am-nav-tabs {border:none;}
-.am-list > li {background: none;border-color: #444;}
-.am-nav > li > a:focus,.am-nav > li > a:hover{background: none;border:none;}
-.am-tabs-bd .am-tab-panel {
--webkit-transition: -webkit-transform 0.0001s;
-transition: transform 0.0001s;
-}　
-.ft12{font-size:10px;}
-.am-list-date-value-double{
-  top:0.7rem;
-  right: 0px
-}
-.icon2{
-  text-align: center;
-  width:12px;
-  color:#e74c3c;
-}
-.am-tabs-bd .am-tab-panel{
-  padding: 0 10px 15px;
-}
-</style>
-
-<div class="am-tabs" data-am-tabs>
-  <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0" data-am-sticky="{top:49}">
-    <li class="am-active" style="height:25px">
-      <a href="#tab1" style="font-size:14px;position: relative;top:-12px;">自选 1<br>
-      <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777">可加七个字备注</span></a>
-    </li>
-    <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px">
-      <a href="#tab2" style="font-size:14px;position: relative;top:-12px;">自选 2<br>
-      <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777">坊间传闻</span></a>
-    </li>
-    <li style="height:25px">
-      <a href="#tab3" style="font-size:14px;position: relative;top:-12px;">自选 3<br>
-      <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777">机构消息</span></a>
-    </li>
-  </ul>
-
-  <div class="am-tabs-bd" style="margin-top:7px">
-    <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="background:#3d3d3d"> 
-      <div class="am-list-news-bd">
-        <ul class="am-list">
-            <li class="am-g am-list-item-dated" style="border-top:0 none;">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>+26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span>    
+    <!-- Menu -->
+    <!--script src="assets/js/menu.js"></script-->
+    <!--tabs-->
+    <div id="trade-container" class="am-tabs" data-am-tabs>
+        <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0" data-am-sticky="{top:49}" data-bind="with:tab">
+            <li class="am-active" style="height:25px">
+                <a href="#tab1" style="font-size:14px;position: relative;top:-12px;">
+                    自选 1<br>
+                    <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777" data-bind="text:firstRemark">可加七个字备注</span>
+                </a>
             </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">兰花科创<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">600123.SH</span>
-                </a> 
-                <span class="am-list-date bg-red am-list-date-1">看多</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : B　　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
+            <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px">
+                <a href="#tab2" style="font-size:14px;position: relative;top:-12px;">
+                    自选 2<br>
+                    <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777" data-bind="text:secondRemark">坊间传闻</span>
+                </a>
             </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-orange am-list-date-1">看平</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
+            <li style="height:25px">
+                <a href="#tab3" style="font-size:14px;position: relative;top:-12px;">
+                    自选 3<br>
+                    <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777" data-bind="text:thirdRemark">机构消息</span>
+                </a>
             </li>
         </ul>
-      </div> 
+
+        <div class="am-tabs-bd" style="margin-top:7px">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="background:#3d3d3d">
+                <div class="am-list-news-bd">
+                    <ul class="am-list" data-bind="foreach:firstStocks">
+                        <li class="am-g am-list-item-dated" style="border-top:0 none;">
+                            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
+                                <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                                <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                            </a>
+                            <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
+                            <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date am-list-date-value-double">
+                                <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
+                                <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
+                                <span id="c-date" style="color:#aaa">估值 : <span data-bind="text:valuation">A＋</span>　　</span>
+                                <span class="am-icon-eye icon2" data-bind="visible:isSelect"></span>&nbsp;
+                                <span class="am-icon-star icon2" data-bind="visible:isRecommend"></span>&nbsp;
+                                <span class="am-icon-bookmark icon2" data-bind="visible:isValuable"></span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="am-tab-panel am-fade" id="tab2" style="background:#3d3d3d">
+                <div class="am-list-news-bd">
+                    <ul class="am-list" data-bind="foreach:secondStocks">
+                        <li class="am-g am-list-item-dated" style="border-top:0 none;">
+                            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
+                                <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                                <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                            </a>
+                            <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
+                            <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date am-list-date-value-double">
+                                <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
+                                <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
+                                <span id="c-date" style="color:#aaa">估值 : <span data-bind="text:valuation">A＋</span>　　</span>
+                                <span class="am-icon-eye icon2" data-bind="visible:isSelect"></span>&nbsp;
+                                <span class="am-icon-star icon2" data-bind="visible:isRecommend"></span>&nbsp;
+                                <span class="am-icon-bookmark icon2" data-bind="visible:isValuable"></span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="am-tab-panel am-fade" id="tab3" style="background:#3d3d3d">
+                <div class="am-list-news-bd">
+                    <ul class="am-list" data-bind="foreach:thirdStocks">
+                        <li class="am-g am-list-item-dated" style="border-top:0 none;">
+                            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
+                                <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                                <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                            </a>
+                            <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
+                            <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date am-list-date-value-double">
+                                <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
+                                <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
+                                <span id="c-date" style="color:#aaa">估值 : <span data-bind="text:valuation">A＋</span>　　</span>
+                                <span class="am-icon-eye icon2" data-bind="visible:isSelect"></span>&nbsp;
+                                <span class="am-icon-star icon2" data-bind="visible:isRecommend"></span>&nbsp;
+                                <span class="am-icon-bookmark icon2" data-bind="visible:isValuable"></span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="am-tab-panel am-fade" id="tab2" style="background:#3d3d3d">
-      <div class="am-list-news-bd">
-        <ul class="am-list">
-            <li class="am-g am-list-item-dated" style="border-top:0 none;">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-        </ul>
-      </div> 
-    </div>
-    <div class="am-tab-panel am-fade" id="tab3" style="background:#3d3d3d">
-      <div class="am-list-news-bd">
-        <ul class="am-list">
-            <li class="am-g am-list-item-dated" style="border-top:0 none;">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-1">看空</span>
-                <span class="am-list-date bg-grap am-list-date-2">详情</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-                  <span style="color:#666"> / </span>-26.12<br>
-                  <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-                  <span class="am-icon-eye icon2"></span>&nbsp;
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
-            </li>
-        </ul>
-      </div> 
-    </div>   
-  </div>
-</div>
-
-<!-- Navbar -->
-<script src="assets/js/navbar-trade.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
+    <!-- Navbar -->
+    <script src="assets/js/navbar-trade.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
     <script src="assets/js/notice.js"></script>
+    <script src="assets/js/trade.js"></script>
 </body>
 </html>

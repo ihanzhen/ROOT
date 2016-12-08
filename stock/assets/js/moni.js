@@ -435,6 +435,9 @@ var MoniPage = function () {
             monthProfit: ko.observable(''),
             successRatio: ko.observable(''),
             weekProfit: ko.observable(''),
+            marketValue: ko.observable('--'),
+            availableAssets: ko.observable('--'),
+            floatProfit: ko.observable('--'),
             items: ko.observableArray([])//dealList
         };
         _vm.searchVM = {

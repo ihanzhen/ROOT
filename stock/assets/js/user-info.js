@@ -63,7 +63,7 @@ var UserInfoPage = function () {
         }
     }
     _this.initUserInfo = function () {
-        _this.initInfoByStorage();
+        //_this.initInfoByStorage();
         _this.initInfoByAjax();
     }
     _this.initInfoByAjax = function () {
@@ -75,23 +75,31 @@ var UserInfoPage = function () {
                 userInfoVM.email(user.email);
                 userInfoVM.phone(user.loginName);
                 userInfoVM.motto(user.signature);
+                userInfoVM.region(user.address);
+                $("#portrait").css({ 'background': 'url(' + user.headImgUrl + ') no-repeat center', 'background-size': '100% 100%' });
+                userInfoVM.nickname(user.nickname);
+                switch (user.sex) {
+                    case '1': userInfoVM.sex('男'); break;
+                    case '2': userInfoVM.sex('女'); break;
+                    case '0': userInfoVM.sex('保密'); break;
+                };
             }
         }).error(function () {
             $('#my-modal-loading').modal('close');
         });
     }
-    _this.initInfoByStorage = function () {
-        $("#portrait").css({ 'background': 'url(' + localStorage.headImgUrl + ') no-repeat center', 'background-size': '100% 100%' });
-        userInfoVM.nickname(localStorage.nickname);
-        switch (localStorage.sex) {
-            case '1': userInfoVM.sex('男'); break;
-            case '2': userInfoVM.sex('女'); break;
-            case '0': userInfoVM.sex('保密'); break;
-        };
-        if (localStorage.address) {
-            userInfoVM.region(localStorage.address);
-        }
-    }
+    //_this.initInfoByStorage = function () {
+    //    $("#portrait").css({ 'background': 'url(' + localStorage.headImgUrl + ') no-repeat center', 'background-size': '100% 100%' });
+    //    userInfoVM.nickname(localStorage.nickname);
+    //    switch (localStorage.sex) {
+    //        case '1': userInfoVM.sex('男'); break;
+    //        case '2': userInfoVM.sex('女'); break;
+    //        case '0': userInfoVM.sex('保密'); break;
+    //    };
+    //    if (localStorage.address) {
+    //        userInfoVM.region(localStorage.address);
+    //    }
+    //}
     _this.initRegion = function () { //region select
         var area2 = new LArea();
         area2.init({
