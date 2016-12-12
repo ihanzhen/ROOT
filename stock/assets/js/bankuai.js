@@ -1,24 +1,4 @@
 ﻿$(function () {
-    //var store = $.AMUI.store;
-    //if (!store.enabled) {
-    //    alert('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.');
-    //    return;
-    //}
-    //var token = localStorage.token, uid = localStorage.uid;
-    //if (!token || !uid) {
-    //    window.location.href = "login.html";
-    //}
-    //$('#my-modal-loading').modal('open');
-    //$.post('/',
-    //  { token: token, uid: uid },
-    //  function (data, textStatus) {
-    //      $('#my-modal-loading').modal('close');
-    //      if (textStatus == "success") {
-    //        
-    //      } else {
-    //          window.location.href = "login.html";
-    //      }
-    //  });
     var bankuaiManagement = new BankuaiManagement();
     bankuaiManagement.init();
 })
@@ -34,7 +14,6 @@ var BankuaiManagement = function () {
         ko.applyBindings(_this.strongVM, $("#strongPlate")[0]);
         ko.applyBindings(_this.anticipationVM, $("#anticipationPlate")[0]);
         //var int = self.setInterval(_this.updatePlateAsync, 5 * 1000);
-
     }
     function Stock(stockCode, stockName) {
         this.stockCode = ko.observable(stockCode);

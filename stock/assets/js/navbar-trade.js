@@ -14,7 +14,7 @@ document.write('      </a>');
 document.write('    </li>');
 document.write('    <li>');
 document.write('      <a href="wait.html">');
-document.write('        <img src="assets/images/timer.svg" style="width:22px;height:27px">');
+document.write('        <img src="assets/images/ring.svg" style="width:22px;height:27px">');
 document.write('        <span class="am-navbar-label">预警</span>');
 document.write('      </a>');
 document.write('    </li>');

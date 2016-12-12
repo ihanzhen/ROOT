@@ -18,8 +18,8 @@ function NoticeManagement() {
     _this.init = function () {
         _this.insertHtml();
         var scroolVM = new ScroolViewModel();
-        _this.getNoticeData(scroolVM);
         ko.applyBindings(scroolVM, $('#scrollContainer')[0]);
+        _this.getNoticeData(scroolVM);
         setInterval('_this.AutoScroll("#scrollDiv")', 4000);
     };
     _this.insertHtml = function () {
@@ -36,18 +36,41 @@ function NoticeManagement() {
         $('header').after(scroll);
     }
     _this.AutoScroll = function (obj) {
+        if ($(obj).find("li").length <= 1) {
+            return;
+        }
         $(obj).find("ul:first").animate({
             marginTop: "-25px"
         }, 500, function () {
             $(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
         });
     };
+    _this.proposalPredictionAjax = function () {
+        return $.get('/ihanzhendata/stock/main_position');
+    };
+    _this.noticeAjax = function () {
+        return $.get('/ihanzhendata/stock/notifies');
+    };
     _this.getNoticeData = function (vm) {
-        $.get('/ihanzhendata/stock/notifies', function (result) {
-            var data = result.data;
-            for (var i = 0; i < data.length; i++) {
-                vm.items.push(new Notice(data[i].notify_title));
+        $.when(_this.proposalPredictionAjax(), _this.noticeAjax()).done(function (proposal, notice) {
+            var noticeData = notice[0].data;
+            for (var i = 0; i < noticeData.length; i++) {
+                vm.items.push(new Notice(noticeData[i].notify_title));
             }
+            var proposalData = proposal[0].data;
+            var positionstr = ' 当前大盘建议仓位为' + proposalData.main_position / 10 + '成仓';
+            vm.items.push(new Notice(positionstr));
+            var tendency = proposalData.main_tendency;
+            if (tendency.length >= 19) {
+                tendency = tendency.substr(0, 18) + "...";
+            }
+            vm.items.push(new Notice(tendency));
         });
+        //$.get('/ihanzhendata/stock/notifies', function (result) {
+        //    var data = result.data;
+        //    for (var i = 0; i < data.length; i++) {
+        //        vm.items.push(new Notice(data[i].notify_title));
+        //    }
+        //});
     }
 }

@@ -11,7 +11,7 @@
 
     <!-- Header -->
     <header data-am-widget="header" class="am-header am-header-default" data-am-sticky>
-        <div class="am-header-left am-header-nav">
+        <div id="searchBtn" class="am-header-left am-header-nav">
             <a href="search.html" class="">
                 <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
             </a>
@@ -19,12 +19,12 @@
         <h1 class="am-header-title">
             <a href="#title-link">至赢<span class="color-red">┽</span>禅心</a>
         </h1>
-        <div class="am-header-right am-header-nav" style="/*margin-right:40px*/">
+        <div id="settingBtn" class="am-header-right am-header-nav" style="/*margin-right:40px*/">
             <a href="#left-link" class="">
                 <i class="am-header-icon am-icon-cog" style="font-size:1.8rem;color:#999"></i>
             </a>
         </div>
-        <div class="am-header-right am-header-nav" style="margin-right:40px">
+        <div id="refreshBtn" class="am-header-right am-header-nav" style="margin-right:40px">
             <a href="#left-link" class="">
                 <i class="am-header-icon am-icon-refresh" style="font-size:1.6rem;color:#999"></i>
             </a>
@@ -36,19 +36,19 @@
     <!--tabs-->
     <div id="trade-container" class="am-tabs" data-am-tabs>
         <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0" data-am-sticky="{top:49}" data-bind="with:tab">
-            <li class="am-active" style="height:25px">
+            <li class="am-active" style="height:25px" data-bind="click:selectOneClick">
                 <a href="#tab1" style="font-size:14px;position: relative;top:-12px;">
                     自选 1<br>
                     <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777" data-bind="text:firstRemark">可加七个字备注</span>
                 </a>
             </li>
-            <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px">
+            <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px" data-bind="click:selectTwoClick">
                 <a href="#tab2" style="font-size:14px;position: relative;top:-12px;">
                     自选 2<br>
                     <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777" data-bind="text:secondRemark">坊间传闻</span>
                 </a>
             </li>
-            <li style="height:25px">
+            <li style="height:25px" data-bind="click:selectThreeClick">
                 <a href="#tab3" style="font-size:14px;position: relative;top:-12px;">
                     自选 3<br>
                     <span style="font-size:10px;position: relative;top:-8px;font-weight: normal;color:#777" data-bind="text:thirdRemark">机构消息</span>
@@ -67,6 +67,7 @@
                             </a>
                             <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
                             <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:deleteClick">删除</span>
                             <span class="am-list-date am-list-date-value-double">
                                 <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
                                 <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
@@ -89,6 +90,7 @@
                             </a>
                             <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
                             <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:deleteClick">删除</span>
                             <span class="am-list-date am-list-date-value-double">
                                 <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
                                 <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
@@ -111,6 +113,7 @@
                             </a>
                             <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
                             <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:deleteClick">删除</span>
                             <span class="am-list-date am-list-date-value-double">
                                 <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
                                 <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
@@ -122,6 +125,43 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </div>
+    <!-- setting modal -->
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">自选备注设置</div>
+            <div class="am-modal-bd">
+                <ul class="am-list">
+                    <li style="text-align:left;padding-left:20px;"><span>自选一备注：</span><input data-bind="text:firstMark" /></li>
+                    <li style="text-align:left;padding-left:20px;"><span>自选二备注：</span><input data-bind="text:secondMark" /></li>
+                    <li style="text-align:left;padding-left:20px;"><span>自选三备注：</span><input data-bind="text:thirdMark" /></li>
+                </ul>
+                <p>您是否确定保存以上设置？</p>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" >取消</span>
+                <span class="am-modal-btn" data-bind="click:confirmClick">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- Loading -->
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
+            <!--div class="am-modal-hd">正在载入...</div-->
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+    <!-- 保存成功模态窗口提示 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="notice-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">系统提示</div>
+            <div class="am-modal-bd" data-bind="text:notice"></div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-confirm style="color:#fff">确定</span>
             </div>
         </div>
     </div>

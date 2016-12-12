@@ -26,11 +26,11 @@
     .header-i{color:#666;margin-top:-2px;}
     .mgn-0-10{margin:0 -10px;}
     .h20{height:20px;}
-    .span-top4{position:relative;top:4px}
+    .span-top4{position:relative;top:-2px}
     .span-f18{font-size:18px}
     .icon-red{color:#dd514c}
     .tip-red{background:#dd514c;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:1px 2px}
-    .mgn-top7{margin-top:-7px}
+    .mgn-top7{margin-top:-3px}
     .mgn-top2{margin-top:-2px}
     .zindexmax{z-index:99999;}
     .combox{font-size:16px;color:#fff}
@@ -54,7 +54,7 @@
     .bg-b{background:#373737}
     .f08rem{font-size:0.8rem;}
     .h23{height:23px;}
-    .fc-a{color:#e74c3c;font-size:12px;}     
+    .fc-a{color:#e74c3c;font-size:13px;}     
     .progressbar_1 {
     background-color: #393939;
     height: 22px;

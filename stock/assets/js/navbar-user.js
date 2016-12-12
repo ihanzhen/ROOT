@@ -14,7 +14,7 @@ document.write('      </a>');
 document.write('    </li>');
 document.write('    <li>');
 document.write('      <a href="wait.html">');
-document.write('        <embed src="assets/images/timer.svg" type="image/svg+xml" style="margin-top:6px;margin-bottom:-1px;height:22px">');
+document.write('        <embed src="assets/images/ring.svg" type="image/svg+xml" style="margin-top:6px;margin-bottom:-1px;height:22px">');
 document.write('        <span class="am-navbar-label">信号</span>');
 document.write('      </a>');
 document.write('    </li>');

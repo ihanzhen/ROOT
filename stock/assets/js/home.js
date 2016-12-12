@@ -9,7 +9,8 @@ function HomeManagement() {
         _vm = this;
         _vm.proposalPredictionsVM = {
             position: ko.observable(''),
-            prediction : ko.observable('')
+            prediction: ko.observable(''),
+            updataTime:ko.observable('')
         }
         _vm.iconVM = {
             dapanClick: function () {
@@ -57,6 +58,21 @@ function HomeManagement() {
             var proposalData = proposalResult.data;
             vm.proposalPredictionsVM.position(proposalData.main_position + '%');
             vm.proposalPredictionsVM.prediction(proposalData.main_tendency);
+            var arr = proposalData.updatetime.split(/[- : ]/);
+            var updateTime = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]);
+            var nowTime = new Date();
+            var past = parseInt(nowTime.getTime()) - parseInt(updateTime.getTime());
+            if (past / 1000 / 60 < 60) {
+                vm.proposalPredictionsVM.updataTime(Math.floor(past / 1000 / 60).toString()+"分钟");
+            } else if (past / 1000 / 60 / 60 < 24) {
+                vm.proposalPredictionsVM.updataTime(Math.floor(past / 1000 / 60 / 60).toString() + "小时");
+            } else if (past / 1000 / 60 / 60 / 24 < 30) {
+                vm.proposalPredictionsVM.updataTime(Math.floor(past / 1000 / 60 / 60 / 24).toString() + "天");
+            } else  if(past / 1000 / 60 / 60 / 24 / 30<12) {
+                vm.proposalPredictionsVM.updataTime(Math.floor(past / 1000 / 60 / 60 / 24 / 30).toString() + "月");
+            } else {
+                vm.proposalPredictionsVM.updataTime(Math.floor(past / 1000 / 60 / 60 / 24 / 30 / 12).toString() + "年");
+            }
         }).fail(function () {
             $('#my-modal-loading').modal('close');
             console.log('fail');

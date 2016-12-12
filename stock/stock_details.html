@@ -23,8 +23,8 @@
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default">
   <div class="am-header-left am-header-nav">
-      <a href="bankuai_details.html" class="">
-        <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
+      <a href="javascript:history.back();" class="">
+          <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
       </a>
       <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">
         <span style="position: relative;top:-6px;font-size:1.6rem">新城股份<br>
@@ -294,13 +294,32 @@
             <div class="am-modal-hd">系统提示</div>
             <div class="am-modal-bd">
                 <p>请选择加入以下哪个自选？</p>
-                <div><input type="radio" name="selfSelect" value="zx1" data-bind="checked: select" /> 自选一</div>
-                <div><input type="radio" name="selfSelect" value="zx2" data-bind="checked: select" /> 自选二</div>
-                <div><input type="radio" name="selfSelect" value="zx3" data-bind="checked: select" /> 自选三</div>
+                <div><input type="radio" name="selfSelect" value="1" data-bind="checked: select" /> 自选一<span data-bind="text:firstMark"></span></div>
+                <div><input type="radio" name="selfSelect" value="2" data-bind="checked: select" /> 自选二<span data-bind="text:secondMark"></span></div>
+                <div><input type="radio" name="selfSelect" value="3" data-bind="checked: select" /> 自选三<span data-bind="text:thirdMark"></span></div>
             </div>
             <div class="am-modal-footer">
                 <span class="am-modal-btn" data-bind="click:cancelClick">取消</span>
                 <span class="am-modal-btn" data-bind="click:confirmClick">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- 保存成功模态窗口提示 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="notice-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">系统提示</div>
+            <div class="am-modal-bd" data-bind="text:notice"></div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-confirm style="color:#fff">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- Loading -->
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
+            <!--div class="am-modal-hd">正在载入...</div-->
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
             </div>
         </div>
     </div>

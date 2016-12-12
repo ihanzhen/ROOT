@@ -1,24 +1,4 @@
 ﻿$(function () {
-    //var store = $.AMUI.store;
-    //if (!store.enabled) {
-    //    alert('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.');
-    //    return;
-    //}
-    //var token = localStorage.token, uid = localStorage.uid;
-    //if (!token || !uid) {
-    //    window.location.href = "login.html";
-    //}
-    //$('#my-modal-loading').modal('open');
-    //$.post('/',
-    //  { token: token, uid: uid },
-    //  function (data, textStatus) {
-    //      $('#my-modal-loading').modal('close');
-    //      if (textStatus == "success") {
-    //        
-    //      } else {
-    //          window.location.href = "login.html";
-    //      }
-    //  });
     var dapanManagement = new DapanManagement();
     dapanManagement.init();
 })
@@ -29,7 +9,6 @@ var DapanManagement = function () {
         _this.getPageData();
         ko.applyBindings(_this.dapanVM, $("#dapan-container")[0]);
         var int=self.setInterval(_this.updatePriceAsync, Math.ceil(Math.random() * 5) * 1000);
-        
     }
     //view model
     var Market = function (price, name, property, position, url, oldPrice) {
