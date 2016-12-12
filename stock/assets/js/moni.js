@@ -644,12 +644,15 @@ var MoniPage = function () {
         }
     };
     _this.processUserAssetData = function (asset) {
-        _this.moniVM.holdVM.totalAssets(asset.user_asset);
-        _this.moniVM.holdVM.totalProfit((asset.totalprofit * 100).toFixed(2) + '%');
+        _this.moniVM.holdVM.totalAssets(asset.total_asset);
+        _this.moniVM.holdVM.totalProfit((asset.total_rofitlv * 100).toFixed(2) + '%');
         _this.moniVM.holdVM.monthTrade(asset.m_tradetimes);
         _this.moniVM.holdVM.monthProfit((asset.m_profit * 100).toFixed(2) + '%');
         _this.moniVM.holdVM.successRatio((asset.success * 100).toFixed(2) + '%');
         _this.moniVM.holdVM.weekProfit((asset.w_profit * 100).toFixed(2) + '%');
+        _this.moniVM.holdVM.floatProfit(asset.total_profit);
+        _this.moniVM.holdVM.availableAssets(asset.user_asset);
+        _this.moniVM.holdVM.marketValue(asset.total_value);
     };
     _this.processDayProfitData = function (profit) {
         var dateArr = [], profitArr = [];

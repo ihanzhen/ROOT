@@ -1,0 +1,175 @@
+.wrap {
+    font-size: 12px;
+}
+
+.progressbar_1 {
+    background-color: #666;
+    height: 18px;
+    width: 70%;
+    border: 1px solid #666;
+    color: #222;
+    border-radius: 15px;
+}
+
+    .progressbar_1 .bar {
+        background-color: #444;
+        height: 16px;
+        width: 0;
+        border-radius: 15px;
+        line-height: 17px;
+        background-image: -moz-linear-gradient(top, #555, #444);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #555), color-stop(1, #444));
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#555', endColorstr='#444', GradientType='0');
+    }
+
+.titlei {
+    font-size: 1.7rem;
+    color: #999;
+    position: relative;
+    top: -1px;
+}
+
+.titleSpan {
+    font-size: 1.8rem;
+    border-left: 1px solid #444;
+    padding-left: 15px;
+    margin-left: 3px;
+}
+
+.ulStyle {
+    border-bottom: 1px solid #444;
+}
+
+.liStyle {
+    border-right: 1px solid #444;
+    padding-right: -1px;
+    padding-bottom: 8px;
+    padding-top: 10px;
+}
+
+.br-o {
+    border-radius: 15px;
+    opacity: 0.1;
+}
+
+.zhishuTitle {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 12px;
+    color: #fff;
+}
+
+.zhishuNum {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 15px;
+}
+
+.advise {
+    text-align: left;
+    margin-left: 4px;
+    padding: 3px 0;
+}
+
+.position {
+    text-align: right;
+    margin-right: 4px;
+    padding: 3px 0;
+}
+
+.proposalFont {
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    padding: .25em .4em !important;
+}
+
+.colorDiv {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 10px;
+    color: #999;
+}
+
+.imgDiv {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 10px;
+    color: #999;
+    margin-bottom: -5px;
+}
+
+.embedStyle {
+    width: 95%;
+}
+
+.index {
+    height: 180px;
+    margin-top: -15px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.centerBar {
+    margin: 0 auto !important;
+}
+
+
+#mg-t {
+    margin: -5px;
+}
+
+.barDiv {
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.proposalBar {
+    width: 60%;
+    text-align: right;
+    padding-right: 10px;
+    color: #ddd;
+}
+
+ul, li {
+    margin: 0;
+    padding: 0 !important;
+}
+
+ul {
+    list-style: none;
+}
+
+#scrollDiv {
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+}
+
+    #scrollDiv li {
+        padding-left: 10px;
+        margin-top: -5px !important;
+    }
+
+.wrap {
+    font-size: 12px;
+}
+
+.progressbar_1 {
+    background-color: #666;
+    height: 18px;
+    width: 70%;
+    border: 1px solid #666;
+    color: #222;
+    border-radius: 15px;
+}
+
+    .progressbar_1 .bar {
+        background-color: #444;
+        height: 16px;
+        width: 0;
+        border-radius: 15px;
+        line-height: 17px;
+        background-image: -moz-linear-gradient(top, #555, #444);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #555), color-stop(1, #444));
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#555', endColorstr='#444', GradientType='0');
+    }

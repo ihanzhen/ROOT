@@ -6,8 +6,24 @@ document.write('  <div class="am-offcanvas">');
 document.write('    <div class="am-offcanvas-bar">');
 document.write('      <ul class="am-menu-nav sm-block-grid-1">');
 document.write('        <li class="am-parent">');
-document.write('          <a href="##">期货行情 <span id="c-menu">[ 239 ]</span></a>');
-document.write('          <ul class="am-menu-sub am-collapse am-avg-sm-2">');
+document.write('          <a href="##">筛选条件 <!--span id="c-menu">[ 239 ]</span--></a>');
+/*
+document.write('          <ul class="am-menu-sub am-collapse am-avg-sm-1">');
+*/
+document.write('          <ul class="am-menu-sub am-avg-sm-1">');
+document.write('            <li class="">');
+document.write('              <div style="font-size:16px;margin-top:20px;color:#fff">市场 <span style="font-size:12px;color:#666">/ Market</span></div>');
+document.write('              <ul class="am-avg-sm-3"><li style="height:30px;line-height:30px">中小创业板</li><li style="height:30px;line-height:30px">中证500</li><li style="height:30px;line-height:30px">沪深300</li></ul>');
+document.write('            </li>');
+document.write('            <li class="">');
+document.write('              <div style="font-size:16px;margin-top:20px;color:#fff">市值 <span style="font-size:12px;color:#666">/ Amount</span></div>');
+document.write('              <ul class="am-avg-sm-3"><li style="height:30px;line-height:30px">小于300亿</li><li style="height:30px;line-height:30px">小于500亿</li></ul>');
+document.write('            </li>');
+document.write('            <li class="">');
+document.write('              <div style="font-size:16px;margin-top:20px;color:#fff">星级 <span style="font-size:12px;color:#666">/ Grade</span></div>');
+document.write('              <ul class="am-avg-sm-3"><li style="height:30px;line-height:30px">三星</li><li style="height:30px;line-height:30px">四星</li><li style="height:30px;line-height:30px">五星</li></ul><br>');
+document.write('            </li>');
+/*
 document.write('            <li class="">');
 document.write('              <a href="##">主力合约</a>');
 document.write('            </li>');
@@ -26,11 +42,6 @@ document.write('            </li>');
 document.write('            <li class="">');
 document.write('              <a href="##">商品分类指数</a>');
 document.write('            </li>');
-document.write('          </ul>');
-document.write('        </li>');
-document.write('        <li class="am-parent">');
-document.write('          <a href="##">外盘市场 <span id="c-menu">[ 1500 ]</span></a>');
-document.write('          <ul class="am-menu-sub am-collapse am-avg-sm-2">');
 document.write('            <li class="">');
 document.write('              <a href="##">外盘主力合约</a>');
 document.write('            </li>');
@@ -79,8 +90,10 @@ document.write('            </li>');
 document.write('            <li class="">');
 document.write('              <a href="##">商品分类指数</a>');
 document.write('            </li>');
+*/
 document.write('          </ul>');
 document.write('        </li>');
+/*
 document.write('        <li class="am-parent">');
 document.write('          <a href="#c3">自选收藏 <span id="c-menu">[ 29 ]</span></a>');
 document.write('          <ul class="am-menu-sub am-collapse am-avg-sm-2">');
@@ -112,6 +125,7 @@ document.write('              <a href="##">设置</a>');
 document.write('            </li>');
 document.write('          </ul>');
 document.write('        </li>');
+*/
 document.write('      </ul>');
 document.write('    </div>');
 document.write('  </div>');

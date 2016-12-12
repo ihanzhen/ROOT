@@ -54,7 +54,7 @@ var PhoneManagement = function () {
                         }
                         else {
                             o.canVerify(false);
-                            o.verifyText('重新获取（' + wait.toString() + '）');
+                            o.verifyText(wait.toString() + '秒后重发');
                             wait--;
                             setTimeout(function () {
                                 time(o);

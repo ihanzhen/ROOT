@@ -26,7 +26,7 @@
 .liStyle {
     border-right: 1px solid #444;
     padding-right: -1px;
-    border-bottom: 1px solid #444;
+    height:76px !important;
 }
 
 .plateName {
@@ -42,6 +42,7 @@
     border-top: 1px solid #444;
     padding-bottom: 5px;
     width: 90%;
+
 }
 
 .stockGroup {
@@ -49,6 +50,7 @@
     margin: 0 auto;
     font-size: 10px;
     color: #999;
+
 }
 
 .stockName {
@@ -70,6 +72,8 @@
     color: #e74c3c !important;
     margin-right: 6px;
     padding-top: 2px;
+    height:200px !important;
+    
 }
 
 .fullWidth {

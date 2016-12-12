@@ -13,17 +13,14 @@
 }*/
 
 #upload {
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    width: 200px;
-    height: 85px;
-    margin: auto;
+    position: relative;
+    top:-75px;
+    left:0;
+    z-index: 999999;
+    float:right;
 }
 
-    #upload a {
+/*    #upload a {
         display: block;
         width: 200px;
         height: 50px;
@@ -56,7 +53,7 @@
         color: #ccc;
         text-align: center;
     }
-
+*/
 #imgs {
     width: 100%;
     height: 600px;
@@ -103,31 +100,19 @@
     }
 
 .code {
-    display:inline-block;
-    background: url(../images/code_bg.jpg) !important;
+    /*background: url(../images/code_bg.jpg) !important;*/
+    border:1px solid #444;
     font-family: Arial;
     font-style: italic;
-    color: blue;
+    color: #e84c3d;
     font-size: 15px;
-    border: 0;
-    padding: 2px 3px;
-    letter-spacing: 3px;
     font-weight: bolder;
     float: right;
-    cursor: pointer;
-    width: 100px;
-    height: 40px;
-    line-height: 40px;
+    width: 70px;
     text-align: center;
+    height: 25px;
+    line-height: 25px;
     vertical-align: middle;
+    margin-top: -35px;
+    border-radius: 3px;
 }
-
-/*a {
-    text-decoration: none;
-    font-size: 12px;
-    color: #288bc4;
-}
-
-    a:hover {
-        text-decoration: underline;
-    }*/

@@ -282,5 +282,7 @@
 }
 .am-list>li{
     text-align:left;
-    padding-left:20px;
+    padding-left:30px;
+    border: 0 none;
 }
+.am-modal-bd > p{padding:0;margin:0;}

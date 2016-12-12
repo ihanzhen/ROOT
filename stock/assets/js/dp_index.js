@@ -100,17 +100,17 @@ option = {
             name:'资金指数',
             type:'line',
             smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            itemStyle: {normal: {areaStyle: {type: 'default'},lineStyle:{width:0.5}}},
             data:[
                 10, 12, 21, 54, 260, 830, 710, 666, 555, 444,
                 333, 222, 111, 0, 111, 333, 555, 777, 999, 777
-            ]
+            ],
         },
         {
             name:'强势指数',
             type:'line',
             smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            itemStyle: {normal: {areaStyle: {type: 'default'},lineStyle:{width:0.5}}},
             data:[
                 30, 182, 434, 791, 390, 300, 200, 100, 50, 100, 
                 200, 300, 400, 500, 400, 300, 200, 100, 50, 0 
@@ -120,7 +120,7 @@ option = {
             name:'蓄势指数',
             type:'line',
             smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            itemStyle: {normal: {areaStyle: {type: 'default'},lineStyle:{width:0.5}}},
             data:[
                 250, 350, 450, 550, 405, 305, 250, 150, 10, 50,
                 20, 152, 404, 751, 330, 350, 250, 150, 10, 160

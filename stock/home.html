@@ -8,66 +8,118 @@
     <meta name="apple-touch-fullscreen" content="yes">
 </head>
 <body>
-    <!-- Header -->
     <header data-am-widget="header" class="am-header am-header-default">
-        <!--<div class="am-header-left am-header-nav">
-            <a href="#left-link" class="">
-                <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
-            </a>
-        </div>-->
-        <h1 class="am-header-title">
-            <a href="home.html">
-                <div style="margin-left:-103px;margin-top:2px"><embed src="assets/images/hanzhenfff.svg" type="image/svg+xml" style="height:20px;" /></div>
-                <div style="margin-top:-52px;margin-left:20px">至赢<span class="color-red">┽</span>禅心</div>
-                <!--span style="font-size:1.8rem">至赢<span class="color-red">┽</span>禅心<span style="font-size:1rem;color:#999;font-weight:bold"> V1.0</span></span-->
-            </a>
-        </h1>
-        <!--<div class="am-header-right am-header-nav" style="/*margin-right:40px*/">
-            <a href="#left-link" class="">
-                <i class="am-header-icon am-icon-refresh" style="font-size:1.5rem;color:#999" id="KEY_FRESH"></i>
-            </a>
-        </div>-->
-        <!-- Menu -->
-    </header>
-    <!--script src="assets/js/menu.js"></script-->
-    <!--<div id="scrollContainer" class="am-alert am-alert-danger" data-am-alert style="margin-top:0px;margin-bottom:0px;" data-bind="visible:canVisible">
-        <button type="button" class="am-close" style="margin-top:-7px" data-bind="click:closeClick">&times;</button>
-        <div id="scrollDiv" style="height:15px;">
-            <ul data-bind="foreach:items">
-                <li><span class="am-icon-bell"></span><span data-bind="text:noticeText"></span></li>
-            </ul>
-        </div>
-    </div>-->
-    <div id="home-container">
-        <!-- Slider -->
-        <!--<div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{&quot;directionNav&quot;:false}'>
-            <ul class="am-slides" style="overflow: hidden;height:90px">
-                <li><img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"></li>
-                <li><img src="http://s.amazeui.org/media/i/demos/bing-2.jpg"></li>
-                <li><img src="http://s.amazeui.org/media/i/demos/bing-3.jpg"></li>
-                <li><img src="http://s.amazeui.org/media/i/demos/bing-4.jpg"></li>
-            </ul>
-        </div>-->
-        <!-- List -->
+       <div class="am-header-left am-header-nav">
+          <a href="search.html" class="">
+            <i class="am-header-icon am-icon-search header-i" style="font-size:1.7rem;position:relative;z-index:999999"></i>
+          </a>
+       </div>  
+       <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
+        <button class="am-btn am-btn-primary am-dropdown-toggle mgn-top7" data-am-dropdown-toggle>
+          <span class="span-top4">
+            <embed src="assets/images/hanzhenfff.svg" type="image/svg+xml" class="h20"/>
+          </span>
+          <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span> 
+          <span class="am-badge-danger am-radius tip-red">A股量化</span> 
+          <span class="am-icon-caret-down"></span>
+        </button>
+        <ul class="mdl1 am-dropdown-content zindexmax">
+          <li><a href="#"><span class="combox">国内大宗商品<span></a></li> 
+          <li><a href="#"><span class="combox">股指期货<span></a></li>
+          <li><a href="#"><span class="combox">现货贵金属<span></a></li>
+          <li><a href="#"><span class="combox">现货原油<span></a></li>
+          <li><a href="#"><span class="combox">美股ETF<span></a></li>
+          <li><a href="#"><span class="combox">A股期权<span></a></li>  
+          <li><a href="#"><span class="combox">我的实盘日记<span> <span class="am-badge-danger am-radius tip-red">免费</span> </a></li>                          
+        </ul>
+      </div>
+      <div class="am-header-right am-header-nav">
+          <a href="user_message.html" class="">
+            <i class="am-header-icon am-icon-envelope header-i" style="font-size:1.7rem;"></i>
+          </a>
+      </div>    
+    </header> 
+    
+    <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{directionNav:false,controlNav:false,animation: "fade"}' >
+      <ul class="am-slides slidesul">
+        <li>
+          <ul class="am-avg-sm-3 sliderbd">
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">上证指数</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>3241.35</div>
+              <div class="slider-a3 cgrap"></span>-7.22 -0.22%</div>
+            </li>
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">中证500</div>
+              <div class="slider-a2 cgreen"><span class="am-icon-caret-down">&nbsp;</span>2725.35</div>
+              <div class="slider-a3 cgrap"></span>-7.22 -0.22%</div>
+            </li>
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">创业板指</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>1325.35</div>
+              <div class="slider-a3 cgrap"></span>-7.22 -0.22%</div>
+            </li>
+          </ul>      
+        </li>
+        <li>
+          <ul class="am-avg-sm-3 sliderbd">
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">家电</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>2.84%</div>
+              <div class="slider-a3 cgrap"></span>格力电器</div>
+            </li>
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">广东自贸区</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>1.93%</div>
+              <div class="slider-a3 cgrap"></span>深圳华强</div>
+            </li>
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">航天国防</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>1.06%</div>
+              <div class="slider-a3 cgrap"></span>中国卫星</div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ul class="am-avg-sm-3 sliderbd">
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">宁波东力</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>10.05%</div>
+              <div class="slider-a3 cgrap"></span>技术面</div>
+            </li>
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">康莱德</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>10.03%</div>
+              <div class="slider-a3 cgrap"></span>基本面</div>
+            </li>
+            <li class="sliderli">
+              <div class="slider-a1 cwhite">长城电脑</div>
+              <div class="slider-a2 cred"><span class="am-icon-caret-up">&nbsp;</span>10.02%</div>
+              <div class="slider-a3 cgrap"></span>事件驱动</div>
+            </li>
+          </ul>
+        </li>    
+      </ul>
+    </div>
 
+    <div id="home-container">
         <div data-bind="with:proposalPredictionsVM">
             <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
                 <div class="am-list-news-hd am-cf" style="padding-top:0">
                     <a>
                         <h2>
-                            <span class="am-icon-bar-chart color-red"></span>
-                            仓位建议
+                            <span class="am-icon-sliders color-red"></span>
+                            建议仓位
                             <span class="nobold">&nbsp;Position proposal</span>
                         </h2>
                     </a>
                     <a href="dapan.html" class="">
-                        <!--span class="am-list-news-more am-fr"><span style="font-weight:bold">设置</span> &raquo;</span-->
-                        <span class="am-list-news-more am-fr am-icon-bullseye"> 大盘预测</span>
+                        <!--span class="am-list-news-more am-fr am-icon-bullseye"> 大盘预测</span-->
+                        <span class="am-list-news-more am-fr am-icon-clock-o"> 1天前发布</span>
                     </a>
                 </div>
                 <a href="dapan.html">
                     <div class="am-list-news-bd barDiv">
-
                         <div class="progressbar_1 centerBar">
                             <div class="bar proposalBar" data-bind="text:position,style:{width:parseInt(position())<20?'20%':position}"></div>
                         </div>
@@ -76,140 +128,145 @@
             </div>
             <a href="dapan.html">
                 <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
-                    <!--<div class="am-list-news-hd am-cf">
-                    <a>
-                        <h2>
-                            <span class="am-icon-newspaper-o color-green"></span>
-                            主力动向
-                            <span class="nobold">&nbsp;Predictions</span>
-                        </h2>
-                    </a>-->
-                    <!--span class="am-list-news-more am-fr">more &raquo;</span-->
-                    <!--</div>-->
-                    <div class="am-list-news-bd barDiv" data-bind="text:prediction">
-                        本周大盘企稳，蓄势待发，周线呈现牛市多头的趋势，未来1-2周将会有明显上涨行情。
+                    <div class="am-list-news-bd barDiv">
+                        <i class="am-header-icon am-icon-map-signs fc-a">&nbsp;</i>
+                        <span data-bind="text:prediction">本周大盘企稳，蓄势待发，周线呈现牛市多头的趋势，未来1-2周将会有明显上涨行情。</span>
                     </div>
                 </div>
             </a>
         </div>
 
         <!-- icon menu -->
-        <div style="/*border-bottom:1px solid #444;border-top:1px solid #444;*/padding-bottom:4px">
-            <ul class="am-avg-sm-4" style="margin-top:5px">
-                <li>
-                    <a href="bankuai.html">
-                        <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-th-large" style="line-height:50px;width:50px;height:50px;background: #4262a2;color:#fff;border-radius:50px;"></div></div>
-                        <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">板块分析</div>
-                    </a>
+        <div style="padding-bottom:4px" data-bind="with:iconVM">
+            <ul class="am-avg-sm-4" style="padding:0">
+                <li class="bg-a" data-bind="click:dapanClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #e74c3c;color:#fff;border-radius:50px;margin:10px auto 5px">
+                        <img src="assets/images/explore.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">大盘预测</div>
                 </li>
-                <li>
-                    <a href="stock_sort.html">
-                        <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-random" style="line-height:50px;width:50px;height:50px;background: #e67e22;color:#fff;border-radius:50px;"></div></div>
-                        <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">推荐股</div>
-                    </a>
+                <li class="bg-a" data-bind="click:bankuaiClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #4262a2;color:#fff;border-radius:50px;margin:10px auto 5px">
+                        <img src="assets/images/layers.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">板块分析</div>
                 </li>
-                <li>
-                    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-pie-chart" style="line-height:50px;width:50px;height:50px;background: #fea356;color:#fff;border-radius:50px;"></div></div>
-                    <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">资金持仓管理</div>
-                </li>
-                <li>
-                    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-newspaper-o" style="line-height:50px;width:50px;height:50px;background: #12b7f5;color:#fff;border-radius:50px;"></div></div>
-                    <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">基本面精选</div>
-                </li>
+                <li class="bg-a" data-bind="click:customStocksClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #27ae60;color:#fff;border-radius:50px;margin:10px auto 5px">
+                        <img src="assets/images/filter-tilt-shift.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">资金持仓管理</div>
+                </li> 
+                <li class="bg-a" data-bind="click:selectedStocksClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #ff6d00;color:#fff;border-radius:50px;margin:10px auto 5px">
+                        <img src="assets/images/note.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">股市头条</div>
+                </li>                                             
             </ul>
-            <ul class="am-avg-sm-4" style="margin-top:5px">
-                <li>
-                    <a href="globle_markets.html">
-                        <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-globe" style="line-height:50px;width:50px;height:50px;background: #27ae60;color:#fff;border-radius:50px;"></div></div>
-                        <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">全球市场预测</div>
-                    </a>
+            <ul class="am-avg-sm-4" style="padding:0">
+                <li class="bg-a" data-bind="click:recommendStocksClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #ffa018;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/local-attraction.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">技术面股池</div>
                 </li>
-                <li>
-                    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-retweet" style="line-height:50px;width:50px;height:50px;background: #f05e4b;color:#fff;border-radius:50px;"></div></div>
-                    <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">交易回测</div>
+                <li class="bg-a" data-bind="click:selectedStocksClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #ff614f;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/box.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">基本面股池</div>
                 </li>
-                <li>
-                    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-shopping-basket" style="line-height:50px;width:50px;height:50px;background: #999;color:#fff;border-radius:50px;"></div></div>
-                    <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">自定义股池</div>
-                </li>
-                <li>
-                    <div style="text-align: center;font-size: 2.4rem"><div class="am-icon-area-chart" style="line-height:50px;width:50px;height:50px;background: #e74c3c;color:#fff;border-radius:50px;"></div></div>
-                    <div style="text-align: center;font-size: 1.1rem;line-height: 25px;color:#969696;">资金曲线</div>
-                </li>
+                <li class="bg-a" data-bind="click:customStocksClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #ff772b;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/brightness-7.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">事件驱动股池</div>
+                </li> 
+                <li class="bg-a" data-bind="click:globalPredictClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #2c9ef7;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/data.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">大宗商品期货</div>
+                </li>                               
             </ul>
+            <ul class="am-avg-sm-4" style="padding:0">
+                <li class="bg-a" data-bind="click:recommendStocksClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #1fac7f;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/world.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">全球市场预测</div>
+                </li>
+                <li class="bg-a" data-bind="click:globalPredictClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #515369;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/message.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">机构研报</div>
+                </li>                 
+
+                <li class="bg-a" data-bind="click:backtestingClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #d16ef4;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/screen-rotation.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">交易回测</div>
+                </li>
+                <li class="bg-a" data-bind="click:captialCurveClick">
+                    <div class="ft24center">
+                      <div style="line-height:41px;width:46px;height:46px;background: #ffb139;color:#fff;border-radius:50px;margin:0 auto 5px">
+                        <img src="assets/images/swap-calls.svg" style="width:24px;height:24px;" >
+                      </div>
+                    </div>
+                    <div class="ft11center">资金曲线</div>
+                </li>                                 
+            </ul>            
         </div>
-        <!-- List -->
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-2px">
-            <div class="am-list-news-hd am-cf">
-                <a href="##" class="">
-                    <h2>
-                        <span class="am-icon-newspaper-o color-green"></span>
-                        头条参考
-                        <span class="nobold">&nbsp;Investment Reference</span>
-                    </h2>
-                    <!--span class="am-list-news-more am-fr"><span style="font-weight:bold">设置</span> &raquo;</span-->
-                    <span class="am-list-news-more am-fr">more &raquo;</span>
-                </a>
-            </div>
-            <div class="am-list-news-bd">
-                <ul class="am-list">
-                    <!--li class="am-g am-list-item-dated" style="padding:10px 0">
-                        <div style="text-align: center;margin:0 auto;font-size: 15px;color:#fff">习近平：中国有能力保持经济中高速增长</div>
-                        <div style="text-align: center;margin:0 auto;font-size: 12px;color:#999">非农不佳9月加息降温 欧美股市全线收高</div>
-                    </li-->
-                    <li class="am-g am-list-item-dated">
-                        <a href="##" class="am-list-item-hd">【焦点】央企改革大戏不断 合并机遇一览</a>
-                    </li>
-                    <li class="am-g am-list-item-dated">
-                        <a href="##" class="am-list-item-hd ">【季报】三季度十大预增王 预增546倍夺冠</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+
     </div>
-    <!-- Loading -->
     <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
-        <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
-            <!--div class="am-modal-hd">正在载入...</div-->
+        <div class="am-modal-dialog" style="border:0 none;color:#fff;background:transparent;box-shadow: none">
             <div class="am-modal-bd">
                 <span class="am-icon-spinner am-icon-spin"></span>
             </div>
         </div>
     </div>
-    <footer class="am-margin-top">
+    <footer class="am-margin-top" style="margin-top:0px">
         <p class="am-text-center ft">
             <small>
                 <embed src="assets/images/hzsf.svg" type="image/svg+xml" style="height:23px;" /><span style="font-size:0.8rem;">®</span><br>
                 Copyright &copy; 2016 <b>HANZHEN</b> DataTech ™<br />
-                京ICP备16047626号&nbsp;&nbsp;<img src="http://www.beian.gov.cn/img/ghs.png" width="10">京公网安备11010102002019号<br />
+                京ICP备16047626号&nbsp;&nbsp;京公网安备11010102002019号<br />
                 www.hanzhendata.com<br />
             </small>
         </p>
     </footer>
 
-    <!-- Navbar -->
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
     <script src="assets/js/notice.js"></script>
     <script src="assets/js/home.js"></script>
-    <script>
-        //页面加载时绑定按钮点击事件
-        $(function () {
-            $("#KEY_FRESH").click(function () {
-                refresh();
-            });
-        });
-        //点击按钮调用的方法
-        function refresh() {
-            window.location.reload();//刷新当前页面.
-
-            //或者下方刷新方法
-            //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
-            // opener.location.reload()刷新父窗口对象（用于单开窗口
-            //top.location.reload()刷新最顶端对象（用于多开窗口）
-        }
-    </script>
 </body>
 </html>

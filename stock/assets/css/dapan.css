@@ -43,7 +43,7 @@
     border-right: 1px solid #444;
     padding-right: -1px;
     padding-bottom:8px;
-    padding-top:10px;
+    padding-top:5px;
 }
 
 .br-o{
@@ -53,13 +53,13 @@
 .zhishuTitle {
     text-align: center;
     margin: 0 auto;
-    font-size: 12px;
+    font-size: 14px;
     color: #fff;
 }
 
 .zhishuNum {
     text-align: center;
-    margin: 0 auto;
+    margin: -3px auto 0;
     font-size: 15px;
 }
 

@@ -5,6 +5,7 @@
     <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
     <link type="text/css" rel="stylesheet" href="assets/css/dapan.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
     <script src="assets/js/head.js"></script>
     <script src="assets/js/echarts.min.js"></script>
 </head>
@@ -52,7 +53,7 @@
         </ul>
         <!-- ko with:proposalPredictionsVM -->
         <!-- List -->
-        <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
+        <!--div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
             <div class="am-list-news-hd am-cf" style="padding-top:0">
             	<a>
                 <h2>
@@ -61,21 +62,37 @@
                     <span class="nobold">&nbsp;Position proposal</span>
                 </h2>
                 </a>
-                <!--span class="am-list-news-more am-fr"><span style="font-weight:bold">设置</span> &raquo;</span-->
-                <!--span class="am-list-news-more am-fr am-icon-bullseye"> 大盘预测</span-->
             </div>
             <div class="am-list-news-bd barDiv">
                 <div class="progressbar_1 centerBar">
                     <div class="bar proposalBar" data-bind="text:position,style:{width:parseInt(position())<20?'20%':position}"></div>
                 </div>
             </div>
+        </div-->
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default mgn-top2">
+          <div class="am-list-news-hd am-cf" style="padding-top:0px">
+              <a href="dapan.html" class="">
+              <h2>
+                <span class="am-icon-sliders color-red"></span>
+                仓位建议
+                <span class="nobold">&nbsp;Position proposal</span>
+              </h2>
+              </a>
+          </div>
+          <ul class="am-avg-sm-3">
+            <li><div id="main-1" class="zline"></div></li>
+            <li><div id="main-2" class="zline"></div></li>
+            <li><div id="main-3" class="zline"></div></li>
+          </ul>
+          <script src="assets/js/jd_huan.js"></script>  
         </div>
+
         <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
             <div class="am-list-news-hd am-cf">
             	<a>
                 <h2>
                     <span class="am-icon-newspaper-o color-green"></span>
-                    主力动向
+                    操作建议
                     <span class="nobold">&nbsp;Predictions</span>
                 </h2>
                 </a>
@@ -99,6 +116,17 @@
             </div>
         </div>
         <div id="main" class="index"></div>
+        <div style="margin-top: 0;padding:0 15px 10px">
+            <i class="am-header-icon am-icon-exclamation-circle" style="font-size:1.2rem;color:#999;">
+                <span style="color:#fff;font-weight:bold">资金指数：</span>反应市场资金流入的积极性，作为反向指标使用，当市场上涨资金指数滞涨，往往预示着大盘将要回调，当市场处于回调或者震荡，资金指数上涨，往往预示着可以积极操作，市场将要上涨。
+            </i>
+            <i class="am-header-icon am-icon-exclamation-circle" style="font-size:1.2rem;color:#999;">
+                <span style="color:#fff;font-weight:bold">强势指数：</span>反应市场当前上涨的强度情况，当该指数出现滞涨，预示大盘即将下跌。
+            </i>
+            <i class="am-header-icon am-icon-exclamation-circle" style="font-size:1.2rem;color:#999;">
+                <span style="color:#fff;font-weight:bold">蓄势指数：</span>反应市场当前的超卖情况，当该指数上涨，将预示大盘正在积累反弹能量。
+            </i>                        
+        </div>        
     </div>
     <!-- Loading -->
     <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
@@ -116,28 +144,12 @@
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
     <script src="assets/js/dp_index.js"></script>
+    <script src="assets/js/dp_huan.js"></script>
     <script src="http://hq.sinajs.cn/list=sh000001"></script>
     <script src="http://hq.sinajs.cn/list=sz399905"></script>
     <script src="http://hq.sinajs.cn/list=sz399006"></script>
     <!--<script src="http://hq.sinajs.cn/list=M0"></script>-->
     <script src="assets/js/dapan.js"></script>
     <script src="assets/js/notice.js"></script>
-    <script>
-        //页面加载时绑定按钮点击事件
-        $(function () {
-            $("#KEY_FRESH").click(function () {
-                refresh();
-            });
-        });
-        //点击按钮调用的方法
-        function refresh() {
-            window.location.reload();//刷新当前页面.
-
-            //或者下方刷新方法
-            //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
-            // opener.location.reload()刷新父窗口对象（用于单开窗口
-            //top.location.reload()刷新最顶端对象（用于多开窗口）
-        }
-    </script>
 </body>
 </html>
