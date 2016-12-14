@@ -23,3 +23,18 @@ transition: transform 0.0001s;
 .am-tabs-bd .am-tab-panel{
   padding: 0 10px 15px;
 }
+.loadspan {
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -10px;
+}
+
+.nomore {
+    display: none;
+    position: absolute;
+    left: 50%;
+    margin-left: -66px;
+    margin-top: -10px;
+    font-size: 12px;
+}

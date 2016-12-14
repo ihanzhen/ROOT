@@ -4,9 +4,49 @@
 })
 function TradeManagement() {
     var _this = this;
+    var timeout;
     _this.noticeVM = {
         notice: ko.observable('')
     };
+    _this.mousedownVM = {
+        stockObj: {},
+        deleteClick: function () {
+            $('#mousedown-alert').modal('close');
+            $('#my-modal-loading').modal('open');
+            $.ajax({
+                url: '/ihanzhendata/selfStock/deleteSelfStock',
+                method: 'POST',
+                data: {
+                    uid: localStorage.uid,
+                    stock_code: _this.mousedownVM.stockObj.scode()
+                },
+                success: function (result) {
+                    $('#my-modal-loading').modal('close');
+                    if (result && result.status == 1) {
+                        _this.noticeVM.notice('自选股删除成功！');
+                        $('#notice-alert').modal('open');
+                        switch (_this.mousedownVM.stockObj.whichzx) {
+                            case 1: _this.tradeVM.tab.selectOneClick(); break;
+                            case 2: _this.tradeVM.tab.selectTwoClick(); break;
+                            case 3: _this.tradeVM.tab.selectThreeClick(); break;
+                        }
+                    } else {
+                        _this.noticeVM.notice('自选股删除失败！');
+                        $('#notice-alert').modal('open');
+                    }
+                },
+                error: function () {
+                    $('#my-modal-loading').modal('close');
+                    _this.noticeVM.notice('自选股删除失败！');
+                    $('#notice-alert').modal('open');
+                }
+            });
+        },
+        settopClick:function(){
+            //to do....置顶
+            $('#mousedown-alert').modal('close');
+        }
+    }
     _this.settingVM = {
         firstMark: ko.observable(''),
         secondMark: ko.observable(''),
@@ -75,7 +115,7 @@ function TradeManagement() {
         _vm.secondStocks = ko.observableArray([]);
         _vm.thirdStocks = ko.observableArray([]);
     }
-    function Stock(scode, sname, price, priceChange, valuation, isSelect, isRecommend, isValuable, trend) {
+    function Stock(scode, sname, price, priceChange, valuation, isSelect, isRecommend, isValuable, trend,which) {
         this.scode = ko.observable(scode);
         this.sname = ko.observable(sname);
         this.price = ko.observable(price);
@@ -85,74 +125,100 @@ function TradeManagement() {
         this.isRecommend = ko.observable(isRecommend);
         this.isValuable = ko.observable(isValuable);
         this.trend = ko.observable(trend);
+        this.whichzx = which;
+        this.stockMouseDown = function (data,event) {
+            timeout = setTimeout(function () {
+                //to do....
+                _this.mousedownVM.stockObj = data;
+                $('#mousedown-alert').modal();
+            }, 2000);
+        },
+        this.stockMouseOut = function (data, event) {
+            clearTimeout(timeout);
+        },
+        this.stockMouseUp = function (data, event) {
+            clearTimeout(timeout);
+        },
         this.detailsClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode();
         };
-        this.deleteClick = function (item) {
-            $('#my-modal-loading').modal('open');
-            $.ajax({
-                url: '/ihanzhendata/selfStock/deleteSelfStock',
-                type: 'DELETE',
-                data: {
-                    uid: localStorage.uid,
-                    stock_code: item.scode()
-                },
-                success: function (result) {
-                    $('#my-modal-loading').modal('close');
-                    if (result && result.status == 1) {
-                        _this.noticeVM.notice('自选股删除成功！');
-                        $('#notice-alert').modal('open');
-                    } else {
-                        _this.noticeVM.notice('自选股删除失败！');
-                        $('#notice-alert').modal('open');
-                    }
-                },
-                error: function () {
-                    $('#my-modal-loading').modal('close');
-                    _this.noticeVM.notice('自选股删除失败！');
-                    $('#notice-alert').modal('open');
-                }
-            });
-        }
     };
     _this.init = function () {
-        //_this.tradeVM.firstStocks.push(new Stock('000656.SH', '金科股份', 3058.51, +26.12, 'A+', true, true, true, '看空'));
-        //_this.tradeVM.secondStocks.push(new Stock('000656.SH', '金科股份', 3058.51, +26.12, 'A+', true, true, true, '看空'));
-        //_this.tradeVM.thirdStocks.push(new Stock('000656.SH', '金科股份', 3058.51, +26.12, 'A+', true, true, true, '看空'));
         ko.applyBindings(_this.tradeVM, $('#trade-container')[0]);
         ko.applyBindings(_this.settingVM, $('#confirm-alert')[0]);
         ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
+        ko.applyBindings(_this.mousedownVM, $('#mousedown-alert')[0]);
         _this.initPageData();
-        _this.initHeader();
+        _this.initEvent();
+        localStorage.removeItem("s_bz1");//这三行以后删掉
+        localStorage.removeItem("s_bz2");
+        localStorage.removeItem("s_bz3");
     };
     _this.getSelfStockWholeProcess = function (belongzx) {
-        $('#my-modal-loading').modal('open');
+        $('.loadspan').show();
         $.when(_this.getSelfStock(belongzx)).done(function (stockData) {
-            $('#my-modal-loading').modal('close');
             if (stockData.status == 1) {
-                _this.processStockData(stockData);
+                _this.processStockData(stockData.data, belongzx);
             }
         });
     }
     _this.getSelfStock = function (belongzx) {
-        $('#my-modal-loading').modal('open');
+        $('.loadspan').show();
         return $.get('/ihanzhendata/selfStock/getSelfStock', {
             uid: localStorage.uid,
             b_zx: belongzx,
             pageNumber: 1
         }, function (data) { });
     };
-    _this.processStockData = function (stockArr) {
-        for (var i = 0; i < stockArr.length; i++)
-            switch (belongzx) {
-                case 1: _vm.firstStocks.push(new Stock(stockArr[i].stock_code, stockArr[i].stock_name, '', '', stockArr[i].headstock_value), stockArr[i].is_zxg, stockArr[i].is_tjg, stockArr[i].is_jzg, '看？'); break;
-                case 2: _vm.secondStocks.push(new Stock(stockArr[i].stock_code, stockArr[i].stock_name, '', '', stockArr[i].headstock_value), stockArr[i].is_zxg, stockArr[i].is_tjg, stockArr[i].is_jzg, '看？'); break;
-                case 3: _vm.thirdStocks.push(new Stock(stockArr[i].stock_code, stockArr[i].stock_name, '', '', stockArr[i].headstock_value), stockArr[i].is_zxg, stockArr[i].is_tjg, stockArr[i].is_jzg, '看？'); break;
-                    //Stock(scode, sname, price, priceChange, valuation, isSelect, isRecommend, isValuable, trend)
+    _this.processStockData = function (stockArr, belongzx) {
+        if (stockArr.length > 0) {
+            var parameterArr = [];
+            for (var i = 0; i < stockArr.length; i++) {
+                parameterArr.push('s_' + stockArr[i].stock_code.substring(7, 9).toLowerCase() + stockArr[i].stock_code.substring(0, 6));
             }
+            //获取实时数据,与后台获取数据组合,拼成自选页下面的列表
+            var parameterStr = parameterArr.join(',');
+            var url = 'http://hq.sinajs.cn/list=' + parameterStr;
+            $.ajax({
+                cache: true,
+                url: url,
+                type: 'GET',
+                dataType: 'script',
+                timeout: 2000,
+                success: function (data, textStatus, jqXHR) {
+                    var resultArr = [];//二维数组
+                    for (var i = 0; i < parameterArr.length; i++) {
+                        resultArr[i] = eval('hq_str_' + parameterArr[i]).split(',');
+                    }
+                    for (var j = 0; j < resultArr.length; j++) {
+                        var scode = stockArr[j].stock_code,
+                            sname = stockArr[j].stock_name,
+                            currentPrice = resultArr[j][1],
+                            priceChange = resultArr[j][2],
+                            valuation = stockArr[j].headstock_value,
+                            isSelect = Boolean(parseInt(stockArr[j].is_zxg)),
+                            isRecommend = Boolean(parseInt(stockArr[j].is_tjg)),
+                            isValuable = Boolean(parseInt(stockArr[j].is_jzg)),
+                            trend = '';
+                        switch (belongzx) {
+                            case 1: _this.tradeVM.firstStocks.push(new Stock(scode, sname, currentPrice, priceChange, valuation, isSelect, isRecommend, isValuable, trend, belongzx)); break;
+                            case 2: _this.tradeVM.secondStocks.push(new Stock(scode, sname, currentPrice, priceChange, valuation, isSelect, isRecommend, isValuable, trend, belongzx)); break;
+                            case 3: _this.tradeVM.thirdStocks.push(new Stock(scode, sname, currentPrice, priceChange, valuation, isSelect, isRecommend, isValuable, trend, belongzx)); break;
+                                //Stock(scode, sname, price, priceChange, valuation, isSelect, isRecommend, isValuable, trend)
+                        }
+                    }
+                    $('.loadspan').hide();
+                }
+            }).error(function () {
+                $('.loadspan').hide();
+            });
+        } else {
+            $('.loadspan').hide();
+        }
     }
     _this.initPageData = function () {
         $('#my-modal-loading').modal('open');
+        $('.loadspan').show();
         $.when(_this.getSelfBz(), _this.getSelfStock(1)).done(function (beizhuData, stockData) {
             $('#my-modal-loading').modal('close');
             if (beizhuData && beizhuData[0].data) {
@@ -165,7 +231,7 @@ function TradeManagement() {
                 _this.tradeVM.tab.thirdRemark(localStorage.s_zx3);
             }
             if (stockData && stockData[0].data) {
-                _this.processStockData(stockData[0].data);
+                _this.processStockData(stockData[0].data, 1);
             }
         });
     }
@@ -173,7 +239,7 @@ function TradeManagement() {
         $('#my-modal-loading').modal('open');
         return $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) { });
     }
-    _this.initHeader = function () {
+    _this.initEvent = function () {
         $("searchBtn").click(function () {
             window.location.href = "search.html";
         });
@@ -186,5 +252,18 @@ function TradeManagement() {
             _this.settingVM.thirdMark(localStorage.s_zx3);
             $("#confirm-alert").modal();
         });
+        //$("li.am-list-item-dated").mousedown(function () {
+        //    timeout = setTimeout(function () {
+        //        $("#mydiv").text("in");
+        //    }, 2000);
+        //});
+
+        //$("li.am-list-item-dated").mouseup(function () {
+        //    clearTimeout(timeout);
+        //});
+
+        //$("li.am-list-item-dated").mouseout(function () {
+        //    clearTimeout(timeout);
+        //});
     }
 }
