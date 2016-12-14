@@ -61,8 +61,8 @@ function NoticeManagement() {
             var positionstr = ' 当前大盘建议仓位为' + proposalData.main_position / 10 + '成仓';
             vm.items.push(new Notice(positionstr));
             var tendency = proposalData.main_tendency;
-            if (tendency.length >= 19) {
-                tendency = tendency.substr(0, 18) + "...";
+            if (tendency.length >= 18) {
+                tendency = tendency.substr(0, 17) + "...";
             }
             vm.items.push(new Notice(tendency));
         });

@@ -21,30 +21,34 @@
             <ul class="am-list">
                 <li class="am-g am-list-item-dated" style="margin-top:-8px;border-top:none;">
                     <a href="javascript:void(0)" style="height:45px">
-                        <span class="am-list-item-hd" style="font-size:16px">图形验证</span>
+                        <span class="am-list-item-hd" style="font-size:16px;border-right:1px solid #444;padding-right:8px;width:40px">图形验证</span>
                     </a>
-                    <input id="code2" style="float:right;text-align: right;background: none;border:none;margin-top:-35px;margin-right:85px;height:25px" placeholder="验证码" data-bind="value:graphcode,valueUpdate:'change'" />
+                    <input id="code2" style="font-size:16px;float:left;text-align: left;background: none;border:none;margin-top:-38px;margin-left:80px;height:30px;width:100px;" placeholder="点击输入" data-bind="value:graphcode,valueUpdate:'keyup',hasFocus:isgraphCodeFocus" />
+                    <img src="assets/images/tanhao.svg" data-bind="visible:showTanhao" style="width:20px;height:20px; top: 13px; position: absolute; right: 110px;" />
+                    <img src="assets/images/zhengque.svg" data-bind="visible:showRight" style="width:20px;height:20px; top: 13px; position: absolute; right: 110px;" />
                     <div class="code" id="vCode2"></div>
                 </li>
                 <li class="am-g am-list-item-dated">
                     <a href="javascript:void(0)" style="height:45px">
-                        <span class="am-list-item-hd" style="font-size:16px;">手机号</span>
+                        <span class="am-list-item-hd" style="font-size:16px;border-right:1px solid #444;padding-right:25px;">手机号</span>
                     </a>
-                    <input type="tel" placeholder="+86" data-bind="enable:canInputPhone(),value:phone,valueUpdate:'keyup'" required style="float:right;text-align: right;background: none;border:none;margin-top:-35px;margin-right:90px;height:25px">
-                    <button id="verifyBtn" type="button" class="am-btn am-btn-default am-radius" style="float: right;width: 70px;height: 25px;line-height: 20px;margin-top: -35px;font-size:12px;padding:0;color:#3d3d3d" data-bind="enable:canVerify()&&canInputPhone(),text:verifyText,click:verifyClick,css:{'am-btn-warning':canVerify()&&canInputPhone()}">发送验证码</button>
+                    <input type="tel" placeholder="点击输入" data-bind="value:phone,valueUpdate:'keyup',hasFocus:isPhoneFocus" required style="width:175px;font-size:16px;float:left;text-align: left;background: none;border:none;margin-top:-37px;margin-left:80px;height:30px">
+                    <button id="verifyBtn" type="button" class="am-btn am-btn-default am-radius" style="float: right;width: 100px;height: 30px;line-height: 20px;margin-top: -37px;font-size:14px;padding:0;color:#3d3d3d" data-bind="enable:canVerify()&&showRight(),text:verifyText,click:verifyClick,css:{'am-btn-warning':canVerify()&&showRight()}">发送验证码</button>
                 </li>
                 <li class="am-g am-list-item-dated">
                     <a href="javascript:void(0)" style="height:45px">
-                        <span class="am-list-item-hd" style="font-size:16px;">短信验证</span>
+                        <span class="am-list-item-hd" style="font-size:16px;border-right:1px solid #444;padding-right:8px;width:40px">短信验证</span>
                     </a>
-                    <input type="number" style="float:right;text-align: right;background: none;border:none;margin-top:-35px;height:25px" placeholder="验证码" data-bind="value:msgvcode">
+                    <input type="number" style="font-size:16px;float:left;text-align: left;background: none;border:none;margin-top:-38px;margin-left:80px;height:30px" placeholder="点击输入" data-bind="value:msgvcode">
                 </li>
             </ul>
             <button type="submit" class="am-btn am-btn-danger am-btn-block am-radius" data-bind="click:saveClick">验证后绑定新手机</button>
             <br />
             <div style="text-align: center;font-size:14px">
-                若当前号码已不用/丢失，或无法收到验证码<br>
-                请联系客服：<span style="color:#dd514c">400-666-8888</span>
+                若当前号码已不用/丢失，或无法收到验证码，请在公众号<br>
+                输入：密码找回#原手机号码#新手机号码#身份证号码<br />
+                客服人员将与您核实并重置信息。
+                <!--请联系客服：<span style="color:#dd514c"></span>-->
             </div>
         </div>
 

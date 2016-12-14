@@ -72,6 +72,7 @@
         var dom = document.createElement("div");
         dom.style.cssText = [
             "width: 100%",
+            "font-size:16px",
             "height: 100%",
             "left: 0",
             "top: 0",
@@ -96,8 +97,8 @@
 
         var f = function () {
             this.len = 4;
-            this.fontSizeMin = 12;//20
-            this.fontSizeMax = 18;// 48;
+            this.fontSizeMin = 26;//20
+            this.fontSizeMax = 26;// 48;
             this.colors = [
                 "green",
                 "red",
@@ -108,13 +109,15 @@
             ];
             this.bgColor = "#FFF";
             this.fonts = [
-                "Times New Roman",
-                "Georgia",
-                "Serif",
-                "sans-serif",
-                "arial",
-                "tahoma",
-                "Hiragino Sans GB"
+                //"Times New Roman",
+                //"Georgia",
+                //"Serif",
+                //"sans-serif",
+                //"arial",
+                //"tahoma",
+                //"Hiragino Sans GB"
+                //"Microsoft YaHei"
+                "Helvetica Neue","Helvetica","Arial","Microsoft Yahei","Heiti SC"
             ];
             this.lines = 8;//8
             this.lineColors = [

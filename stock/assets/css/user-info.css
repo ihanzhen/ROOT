@@ -102,17 +102,19 @@
 .code {
     /*background: url(../images/code_bg.jpg) !important;*/
     border:1px solid #444;
-    font-family: Arial;
+    font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
     font-style: italic;
-    color: #e84c3d;
-    font-size: 15px;
+    color: #fff;
+    font-size: 40px;
     font-weight: bolder;
     float: right;
-    width: 70px;
+    width: 100px;
     text-align: center;
-    height: 25px;
-    line-height: 25px;
+    height: 30px;
+    line-height: 30px;
     vertical-align: middle;
-    margin-top: -35px;
+    margin-top: -38px;
     border-radius: 3px;
+    word-spacing:1px;
+    letter-spacing: 10px;
 }

@@ -18,9 +18,9 @@ var StockDetailsPage = function () {
             $('#my-modal-loading').modal('open');
             $.post('/ihanzhendata/selfStock/saveSelfStock', {
                 uid: localStorage.uid,
-                stock_code: '001155.SH',
-                stock_name: '新城控股',
-                b_zx: parseInt(_this.confirmVM.select())
+                stock_code: '600031.SH',
+                stock_name: '三一重工',
+                b_zx: _this.confirmVM.select()
             }, function (data) {
                 $('#my-modal-loading').modal('close');
                 if (data.status == 1) {
@@ -32,6 +32,7 @@ var StockDetailsPage = function () {
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
+                $('#my-modal-loading').modal('close');
                 _this.noticeVM.notice('添加自选失败！');
                 $('#notice-alert').modal('open');
             });
@@ -44,19 +45,27 @@ var StockDetailsPage = function () {
     //}
     _this.initHeader = function () {
         $("#addSelfSelect").click(function () {
-            $('#my-modal-loading').modal('open');
-            $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) {
-                $('#my-modal-loading').modal('close');
-                if (data && data.data) {
-                    var bzdata = data.data;
-                    _this.confirmVM.firstMark(bzdata.s_zx1);
-                    _this.confirmVM.secondMark(bzdata.s_zx2);
-                    _this.confirmVM.thirdMark(bzdata.s_zx3);
-                }
+            if (localStorage.s_zx1 != undefined && localStorage.s_zx2 != undefined && localStorage.s_zx3 != undefined) {
+                _this.confirmVM.firstMark(localStorage.s_zx1);
+                _this.confirmVM.secondMark(localStorage.s_zx2);
+                _this.confirmVM.thirdMark(localStorage.s_zx3);
                 $('#confirm-alert').modal();
-            }).error(function () {
-                $('#my-modal-loading').modal('close');
-            })
+            }
+            else {
+                $('#my-modal-loading').modal('open');
+                $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) {
+                    $('#my-modal-loading').modal('close');
+                    if (data && data.data) {
+                        var bzdata = data.data;
+                        _this.confirmVM.firstMark(bzdata.s_zx1);
+                        _this.confirmVM.secondMark(bzdata.s_zx2);
+                        _this.confirmVM.thirdMark(bzdata.s_zx3);
+                    }
+                    $('#confirm-alert').modal();
+                }).error(function () {
+                    $('#my-modal-loading').modal('close');
+                });
+            }
         });
         //$('#flashBuy').click(function () {
         //    window.location.href = "moni.html" + "?stockCode=001155.SH";
@@ -65,6 +74,7 @@ var StockDetailsPage = function () {
     _this.init = function () {
         ko.applyBindings(_this.stockVM, $('#stock-details')[0]);
         ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
+        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
         _this.initHeader();
     }
 }

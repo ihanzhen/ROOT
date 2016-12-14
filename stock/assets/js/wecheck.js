@@ -1,4 +1,4 @@
-(function () {
+ï»¿(function () {
     var wecheckManagement = new WeCheckManagement();
     wecheckManagement.init();
 })();
@@ -23,19 +23,19 @@ function WeCheckManagement() {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 var result = JSON.parse(xmlhttp.responseText);
                 if (result && result.status) {
-                    if (result.status == 2000) {//Î´¹Ø×¢Î¢ĞÅºÅ
+                    if (result.status == 2000) {//æœªå…³æ³¨å¾®ä¿¡å·
                         window.location.href = 'wechat_follow.html';
                     }
-                    else if (result.status == 2001) {//Ê×´Î½Ó´¥£¬ÏÔÊ¾welcome.html
+                    else if (result.status == 2001) {//é¦–æ¬¡æ¥è§¦ï¼Œæ˜¾ç¤ºwelcome.html
                         _this.initLocalStorage(result.data);
                         window.location.href = "welcome.html";
-                    } else if (result.status == 2002) {//Î´ÌîĞ´ÊÖ»úºÅ
+                    } else if (result.status == 2002) {//æœªå¡«å†™æ‰‹æœºå·
                         _this.initLocalStorage(result.data);
                         window.location.href = "sms_check.html";
-                    } else if (result.status == 2003) {//ÀÏÓÃ»§
+                    } else if (result.status == 2003) {//è€ç”¨æˆ·
                         _this.initLocalStorage(result.data);
                         localStorage.token = result.data.token;
-                    } else if (result.status == 2005) {//Ã»²é³öĞÅÏ¢À´
+                    } else if (result.status == 2005) {//æ²¡æŸ¥å‡ºä¿¡æ¯æ¥
                         window.location.href = "http://www.hanzhendata.com/ihanzhendata/user/wxlogin";
                     }
                     else {
