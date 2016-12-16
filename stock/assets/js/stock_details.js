@@ -26,8 +26,10 @@ var StockDetailsPage = function () {
                 if (data.status == 1) {
                     _this.noticeVM.notice('添加自选成功！');
                     $('#notice-alert').modal('open');
-                }
-                else {
+                } else if (data.status == 12008) {
+                    _this.noticeVM.notice('自选已存在，不用重复添加！');
+                    $('#notice-alert').modal('open');
+                }else {
                     _this.noticeVM.notice('添加自选失败！');
                     $('#notice-alert').modal('open');
                 }

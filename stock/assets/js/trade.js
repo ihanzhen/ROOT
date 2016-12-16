@@ -4,12 +4,18 @@
 })
 function TradeManagement() {
     var _this = this;
-    var timeout;
+    //var timeout;
     _this.noticeVM = {
         notice: ko.observable('')
     };
     _this.mousedownVM = {
-        stockObj: {},
+        stockObj: {
+            scode: ko.observable(''),
+            sname: ko.observable(''),
+            whichzx: 0,
+            movea: ko.observable(),
+            moveb:ko.observable()
+        },
         deleteClick: function () {
             $('#mousedown-alert').modal('close');
             $('#my-modal-loading').modal('open');
@@ -42,9 +48,42 @@ function TradeManagement() {
                 }
             });
         },
+        moveClick: function (moveto, data, event) {
+            $('#mousedown-alert').modal('close');
+            var b_zx='';
+            if (moveto == 'a') {
+                b_zx = _this.mousedownVM.stockObj.movea();
+            } else if (moveto == 'b') {
+                b_zx = _this.mousedownVM.stockObj.moveb();
+            }
+            $('#my-modal-loading').modal('open');
+            $.post('/ihanzhendata/selfStock/updateSelfStockB_zx', {
+                uid: localStorage.uid,
+                stock_code: _this.mousedownVM.stockObj.scode(),
+                b_zx: b_zx
+            }, function (data) {
+                $('#my-modal-loading').modal('close');
+                if (data.status == 1) {
+                    _this.noticeVM.notice('移动自选股成功！');
+                    $('#notice-alert').modal('open');
+                    switch (_this.mousedownVM.stockObj.whichzx) {
+                        case 1: _this.tradeVM.tab.selectOneClick(); break;
+                        case 2: _this.tradeVM.tab.selectTwoClick(); break;
+                        case 3: _this.tradeVM.tab.selectThreeClick(); break;
+                    }
+                } else {
+                    _this.noticeVM.notice('移动自选股失败！');
+                    $('#notice-alert').modal('open');
+                }
+            }).error(function () {
+                $('#my-modal-loading').modal('close');
+                _this.noticeVM.notice('移动自选股失败！');
+                $('#notice-alert').modal('open');
+            });
+        },
         settopClick:function(){
             //to do....置顶
-            $('#mousedown-alert').modal('close');
+           
         }
     }
     _this.settingVM = {
@@ -126,22 +165,36 @@ function TradeManagement() {
         this.isValuable = ko.observable(isValuable);
         this.trend = ko.observable(trend);
         this.whichzx = which;
-        this.stockMouseDown = function (data,event) {
-            timeout = setTimeout(function () {
-                //to do....
-                _this.mousedownVM.stockObj = data;
-                $('#mousedown-alert').modal();
-            }, 2000);
+        this.stockMouseDown = function (data, event) {
+            event.preventDefault();
+            _this.mousedownVM.stockObj.sname(data.sname());
+            _this.mousedownVM.stockObj.scode(data.scode());
+            _this.mousedownVM.stockObj.whichzx = data.whichzx;
+            switch (data.whichzx) {
+                case 1: _this.mousedownVM.stockObj.movea(2); _this.mousedownVM.stockObj.moveb(3); break;
+                case 2: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(3); break;
+                case 3: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(2); break;
+            }
+            $('#mousedown-alert').modal();
+            $('.am-header-title').click();
+            //timeout = setTimeout(function () {
+            //    //to do....
+               
+            //}, 0);
+            return false;
         },
         this.stockMouseOut = function (data, event) {
-            clearTimeout(timeout);
+           // clearTimeout(timeout);
         },
         this.stockMouseUp = function (data, event) {
-            clearTimeout(timeout);
+           // clearTimeout(timeout);
         },
         this.detailsClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode();
         };
+        this.touchStart = function (data, event) {
+            event.preventDefault();
+        }
     };
     _this.init = function () {
         ko.applyBindings(_this.tradeVM, $('#trade-container')[0]);
@@ -150,9 +203,6 @@ function TradeManagement() {
         ko.applyBindings(_this.mousedownVM, $('#mousedown-alert')[0]);
         _this.initPageData();
         _this.initEvent();
-        localStorage.removeItem("s_bz1");//这三行以后删掉
-        localStorage.removeItem("s_bz2");
-        localStorage.removeItem("s_bz3");
     };
     _this.getSelfStockWholeProcess = function (belongzx) {
         $('.loadspan').show();
@@ -252,18 +302,5 @@ function TradeManagement() {
             _this.settingVM.thirdMark(localStorage.s_zx3);
             $("#confirm-alert").modal();
         });
-        //$("li.am-list-item-dated").mousedown(function () {
-        //    timeout = setTimeout(function () {
-        //        $("#mydiv").text("in");
-        //    }, 2000);
-        //});
-
-        //$("li.am-list-item-dated").mouseup(function () {
-        //    clearTimeout(timeout);
-        //});
-
-        //$("li.am-list-item-dated").mouseout(function () {
-        //    clearTimeout(timeout);
-        //});
     }
 }
