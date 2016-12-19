@@ -617,7 +617,7 @@
 
             // Build suggestions inner HTML:
             $.each(that.suggestions, function (i, suggestion) {
-                html += '<div class="' + className + '" data-index="' + i + '">' + suggestion.data + '   ' + formatResult(suggestion, value) + '</div>';
+                html += '<div class="' + className + '" data-index="' + i + '">' + formatResult(suggestion, value)+ '   ' + suggestion.data  + '</div>';
             });
 
             this.adjustContainerWidth();

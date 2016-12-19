@@ -485,9 +485,9 @@ var MoniPage = function () {
             onSelect: function (suggestion) {
                 _this.moniVM.buyVM.inputPrice(0);
                 _this.moniVM.buyVM.message('');
-                _this.moniVM.buyVM.stockLabel(suggestion.data + "  " + suggestion.value);
-                _this.moniVM.buyVM.stockCode(suggestion.data);
-                _this.moniVM.buyVM.stockName(suggestion.value);
+                _this.moniVM.buyVM.stockLabel(suggestion.value + "  " + suggestion.data);
+                _this.moniVM.buyVM.stockCode(suggestion.value);
+                _this.moniVM.buyVM.stockName(suggestion.data);
                 //获取建议手数
                 $('#my-modal-loading').modal('open');
                 var parameter = 's_' + _this.moniVM.buyVM.stockCode().substring(7, 9).toLowerCase() + _this.moniVM.buyVM.stockCode().substring(0, 6);
@@ -538,9 +538,9 @@ var MoniPage = function () {
             onSelect: function (suggestion) {
                 _this.moniVM.saleVM.inputPrice(0);
                 _this.moniVM.saleVM.message('');
-                _this.moniVM.saleVM.stockLabel(suggestion.data + "  " + suggestion.value);
-                _this.moniVM.saleVM.stockCode(suggestion.data);
-                _this.moniVM.saleVM.stockName(suggestion.value);
+                _this.moniVM.saleVM.stockLabel(suggestion.value + "  " + suggestion.data);
+                _this.moniVM.saleVM.stockCode(suggestion.value);
+                _this.moniVM.saleVM.stockName(suggestion.data);
                 //获取建议手数
                 $('#my-modal-loading').modal('open');
                 $.when(_this.querySorder()).done(function (data) {

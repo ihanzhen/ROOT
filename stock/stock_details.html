@@ -2,7 +2,6 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
     <script src="assets/js/head.js"></script>
     <script src="assets/js/echarts.min.js"></script>
@@ -50,6 +49,11 @@
             background: none;
             border: none;
         }
+        .am-tabs-bd .am-tab-panel {
+        -webkit-transition: -webkit-transform 0.0001s;
+        transition: transform 0.0001s;
+        }　
+        .zline1{height: 180px;margin-top:-15px;padding:0 10px;width: 100%;}
     </style>
 </head>
 <body>
@@ -87,11 +91,11 @@
                         <span class="am-icon-sliders color-red" style="width:16px;text-align: center"></span>
                         综合评级
                         <span class="nobold">&nbsp;Grade&nbsp;&nbsp;</span>
-                        <span class="am-icon-star" style="color:yellow;width:16px;text-align: left"></span>
-                        <span class="am-icon-star" style="color:yellow;width:16px;text-align: left"></span>
-                        <span class="am-icon-star" style="color:yellow;width:16px;text-align: left"></span>
-                        <span class="am-icon-star-half-o" style="color:yellow;width:16px;text-align: left"></span>
-                        <span class="am-icon-star-o" style="color:yellow;width:16px;text-align: left"></span>
+                        <span class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <span class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <span class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <span class="am-icon-star-half-o color-red" style="width:16px;text-align: left"></span>
+                        <span class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
                     </h2>
                 </a>
             </div>
@@ -119,7 +123,7 @@
                 <a href="##" class="">
                     <h2>
                         <span class="am-icon-tachometer color-red"></span>
-                        操作建议
+                        个股简介
                         <span class="nobold">&nbsp;Index Data</span>
                     </h2>
                 </a>
@@ -127,7 +131,7 @@
         </div>
         <!--正文-->
         <div style="margin-top:-7px">
-            <div style="font-size:14px;line-height:16px;color:#aaa;padding:0 10px;border-bottom: 1px solid #444">
+            <div style="font-size:14px;line-height:16px;color:#aaa;padding:0 10px;">
                 <p style="text-indent: 2em;">
                     推荐购买指数0.85，该股业绩优秀，基本面有良好的支撑，技术形态符合上涨趋势特征。中期涨幅区间0.1~0.5之间。
                 </p>
@@ -140,13 +144,13 @@
         <script src="assets/js/dp_zline.js"></script-->
 
 
-        <div class="am-tabs" data-am-tabs style="margin-top:10px;">
-            <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs">
+        <div class="am-tabs" data-am-tabs style="">
+            <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0">
                 <li class="am-active" style="height:25px"><a href="#tab1">基本面</a></li>
                 <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px"><a href="#tab2">重大事件</a></li>
                 <li style="height:25px"><a href="#tab3">相关研报</a></li>
             </ul>
-            <div class="am-tabs-bd" style="border-top:1px solid #444;margin-top:10px">
+            <div class="am-tabs-bd">
                 <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="padding:0">
                     <div data-am-widget="list_news" class="am-list-news am-list-news-default" style="margin-top:-11px;padding: 10px 10px 0;">
                         <div class="am-list-news-hd am-cf">
@@ -159,52 +163,62 @@
                             </a>
                         </div>
                     </div>
-                    <div class="am-tabs" data-am-tabs style="margin: -11px 0 10px 0;font-size:14px;">
-                        <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="padding:2px 0 1px 0;">
+                    <div class="am-tabs" data-am-tabs style="margin: -7px 0 10px 0;font-size:14px;">
+                        <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="background:#373737;padding:5px 0 0 0;">
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     昨天收盘市值<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#eee;">10%</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">10%</span>
                             </li>
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     当期资产负债率<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#eee;">1.13</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">1.13</span>
                             </li>
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     当期营业收入<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#eee;">6.62%</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">6.62%</span>
                             </li>
                         </ul>
-                        <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:2px 0 1px 0">
+                        <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#343434;padding:2px 0 1px 0">
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     去年总营业收入<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#eee;">-44.66</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">-44.66</span>
                             </li>
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     市盈率<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#eee;">-0.18</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">-0.18</span>
                             </li>
                         </ul>
-                        <div class="am-tabs" style="margin-top:15px">
+                        <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#373737;padding:2px 0 1px 0">
+                            <li>
+                                <span style="font-size:12px;">&nbsp;&nbsp;净资产收益率 / 3年<br></span>
+                                <div id="main" class="zline" style="height:100px;margin-top:-5px"></div>
+                            </li>
+                            <li>
+                                <span style="font-size:12px;">&nbsp;&nbsp;毛利率 / 3年<br></span>
+                                <div id="main1" class="zline" style="height:100px;margin-top:-5px"></div>                               
+                            </li>
+                        </ul>                        
+                        <!--div class="am-tabs" style="margin-top:15px">
                             <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="font-size: 13px;">
-                                <li class="am-active" style="height:15px"><a href="#tab-4-1">净资产收益率</a></li>
+                                <li class="am-active" style="height:15px;"><a href="#tab-4-1">净资产收益率</a></li>
                                 <li style="border-left: 1px solid #555;height:15px"><a href="#tab-4-2">毛利率</a></li>
                             </ul>
                             <div class="am-tabs-bd am-tabs-bd-ofv" style="margin-top: 15px">
                                 <div class="am-tab-panel am-active" id="tab-4-1">
-                                    <div id="main" class="zline"></div>
+                                    <div id="main" class="zline" style="width:50%;height:100px"></div>
                                 </div>
                                 <div class="am-tab-panel" id="tab-4-2">
                                     <div id="main1" class="zline"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
-                    <div class="am-list-news am-list-news-default" style="margin-top:-40px;padding: 10px 10px 0">
+                    <div class="am-list-news am-list-news-default" style="margin-top:-23px;padding: 10px 10px 0">
                         <div class="am-list-news-hd am-cf">
                             <a href="##" class="">
                                 <h2 style="position:relative;left:-10px;">
@@ -224,7 +238,27 @@
                         }
                     </style>
                     <div class="am-tabs" data-am-tabs>
-                        <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="font-size: 13px;">
+                        <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="margin-top:-7px;background:#373737;padding:2px 0 1px 0">
+                            <li>
+                                <span style="font-size:12px;">净利润增长率 / 6季度<br></span>
+                                <div id="main5" class="zline" style="height:100px;margin-top:5px;"></div>
+                            </li>
+                            <li style="font-size:12px;position:relative;top:4px">
+                                <span>经营活动现金净流量<br></span><span style="position:relative;top:-6px">增长率 / 6季度</span>
+                                <div id="main2" class="zline" style="height:100px;margin-top:-12px"></div>                               
+                            </li>
+                        </ul>                         
+                        <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#343434;padding:2px 0 1px 0">
+                            <li>
+                                <span style="font-size:12px;">净利润现金含量 / 6季度<br></span>
+                                <div id="main3" class="zline" style="height:100px;margin-top:-5px;"></div>
+                            </li>
+                            <li>
+                                <span style="font-size:12px;">收入增长率 / 6季度<br></span>
+                                <div id="main4" class="zline" style="height:100px;margin-top:-5px"></div>                               
+                            </li>
+                        </ul>                                                 
+                        <!--ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="font-size: 13px;">
                             <li class="am-active" style="height:15px"><a href="#tab-5-1">净利润现金</a></li>
                             <li style="border-right: 1px solid #555;border-left: 1px solid #555;height:15px;"><a href="#tab-5-2">现金净流量</a></li>
                             <li style="height:15px"><a href="#tab-5-3">收入增长率</a></li>
@@ -239,7 +273,7 @@
                             <div class="am-tab-panel" id="tab-5-3">
                                 <div id="main4" class="zline"></div>
                             </div>
-                        </div>
+                        </div-->
                     </div>
                     <script src="assets/js/dp_jlr.js"></script>
                 </div>

@@ -66,23 +66,19 @@ var BankuaiManagement = function () {
             jsonpCallback: "jsonpcallback",
             timeout: 5000,
             type: "GET",
-            success: function (data) {
-                //return data.data;
-            }
+            success: function (data) {}
         });
     }
     _this.updateAnticipationPlateAsync = function () {
         $('#my-modal-loading').modal('open');
         return $.ajax({
-            url: '/',//接口未定
-            contentType: "application/json",
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/',
+            contentType: "application/javascript",
             dataType: "jsonp",
-            jsonpCallback: "jsonpcallback",
+            jsonpcallback: "jsonpcallback",
             timeout: 5000,
             type: "GET",
-            success: function (data) {
-                return data.data;
-            }
+            success: function (data) {}
         });
     }
 
@@ -174,22 +170,22 @@ var BankuaiManagement = function () {
     }
     _this.getPlateData = function () {
         $('#my-modal-loading').modal('open');
-        $.when(getRecommendPlate(), _this.updateStrongPlateAsync())//,_this.updateAnticipationPlateAsync()//把蓄势板块的去掉了
-            .done(function (recommendResult, strongResult) {//, anticipationResult
+        $.when(getRecommendPlate(), _this.updateStrongPlateAsync(), _this.updateAnticipationPlateAsync())
+            .done(function (recommendResult, strongResult,anticipationResult) {
                 var recommendData = JSON.parse(recommendResult[2].responseText).data;
                 var strongData = strongResult[0].data;
-                //var anticipationData = anticipationResult[0].data;
+                var anticipationData = anticipationResult[0].data;
                 handleRecommendData(recommendData);
                 handleStrongData(strongData);
-                //handleAnticipationData(anticipationData);
+                handleAnticipationData(anticipationData);
                 $.when(getStockProperty(_this.strongCodeList)).done(function (result) {
                     _this.strongStockList = result;
                 });
                 //还没有加上蓄势板块的
-                //_this.anticipationStockList = getStockProperty(_this.anticipationCodeList);
+                _this.anticipationStockList = getStockProperty(_this.anticipationCodeList);
             }).done(function () {
                 handlePropertyData(_this.strongVM);
-                //handlePropertyData(_this.anticipationVM);
+                handlePropertyData(_this.anticipationVM);
             }).done(function () {
                 $('#my-modal-loading').modal('close');
             }).fail(function () {

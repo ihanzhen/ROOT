@@ -1,4 +1,5 @@
 option = {
+    color:['#e84c3d'],
     tooltip: {
         trigger: 'axis'
     },
@@ -11,7 +12,8 @@ option = {
         }
     },
     legend: {
-        data:['净利润','行业均值'],
+        show:false,
+        data:['净资产收益率'],
         textStyle: {
             fontSize: 11,
             fontWeight: 'normal',
@@ -19,7 +21,7 @@ option = {
         }         
     },
     grid: {
-        left: '-6',
+        left: '0',
         right: '-10',
         bottom: '10%',
         top:'15%',
@@ -31,7 +33,7 @@ option = {
     xAxis: [
         {
             type: 'category',
-            data: ['1月','2月','3月','4月','5月','6月'],
+            data: ['2014','2015','2016'],
             splitLine: {
                 show: false
             },
@@ -56,9 +58,9 @@ option = {
     yAxis: [
         {
             type: 'value',
-            min: -250,
-            max: 250,
-            interval: 50,
+            min: -1,
+            max: 1,
+            interval: 0.5,
             splitLine: {
                 show: false
             },
@@ -100,16 +102,10 @@ option = {
     ],
     series: [
         {
-            name:'净利润',
+            name:'净资产收益率',
             type:'bar',
-            data:[-2.0, 4.9, -7.0, -23.2, 25.6, 76.7]
-        },
-
-        {
-            name:'行业均值',
-            type:'line',
-            yAxisIndex: 1,
-            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2]
+            data:[0.3, 0.4, 0.1],
+            barWidth: 15
         }
     ]
 };
@@ -117,6 +113,7 @@ myChart = echarts.init(document.getElementById('main'));
 myChart.setOption(option);
 
 option1 = {
+    color: ['#f08c2e'],
     tooltip: {
         trigger: 'axis'
     },
@@ -129,7 +126,8 @@ option1 = {
         }
     },
     legend: {
-        data:['营业收入','行业均值'],
+        show:false,
+        data:['毛利率'],
         textStyle: {
             fontSize: 11,
             fontWeight: 'normal',
@@ -137,7 +135,7 @@ option1 = {
         }         
     },
     grid: {
-        left: '-6',
+        left: '0',
         right: '-10',
         bottom: '10%',
         top:'15%',
@@ -149,7 +147,7 @@ option1 = {
     xAxis: [
         {
             type: 'category',
-            data: ['1月','2月','3月','4月','5月','6月'],
+            data: ['2014','2015','2016'],
             splitLine: {
                 show: false
             },
@@ -174,9 +172,9 @@ option1 = {
     yAxis: [
         {
             type: 'value',
-            min: -250,
-            max: 250,
-            interval: 50,
+            min: -1,
+            max: 1,
+            interval: 0.5,
             splitLine: {
                 show: false
             },
@@ -218,23 +216,18 @@ option1 = {
     ],
     series: [
         {
-            name:'营业收入',
+            name:'毛利率',
             type:'bar',
-            data:[-2.0, 4.9, -7.0, -23.2, 25.6, 76.7]
+            data:[-0.2, 0.5, 0.1],
+            barWidth: 15
         },
-
-        {
-            name:'行业均值',
-            type:'line',
-            yAxisIndex: 1,
-            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2]
-        }
     ]
 };
 myChart = echarts.init(document.getElementById('main1'));
 myChart.setOption(option1);
 
 option2 = {
+    color: ['#2fcc71'],
     tooltip: {
         trigger: 'axis'
     },
@@ -247,7 +240,8 @@ option2 = {
         }
     },
     legend: {
-        data:['营业收入','行业均值'],
+        show:false,
+        data:['经营活动现金净流量增长率'],
         textStyle: {
             fontSize: 11,
             fontWeight: 'normal',
@@ -255,10 +249,10 @@ option2 = {
         }         
     },
     grid: {
-        left: '-6',
+        left: '0',
         right: '-10',
         bottom: '10%',
-        top:'15%',
+        top:'10',
         containLabel: true
     },
     toolbox: {
@@ -267,7 +261,7 @@ option2 = {
     xAxis: [
         {
             type: 'category',
-            data: ['1月','2月','3月','4月','5月','6月'],
+            data: ['3','4','1','2','3','4'],
             splitLine: {
                 show: false
             },
@@ -292,9 +286,9 @@ option2 = {
     yAxis: [
         {
             type: 'value',
-            min: -250,
-            max: 250,
-            interval: 50,
+            /*min: -1,
+            max: 1,
+            interval: 0.5,*/
             splitLine: {
                 show: false
             },
@@ -317,9 +311,9 @@ option2 = {
         },
         {
             type: 'value',
-            min: 0,
+            /*min: 0,
             max: 25,
-            interval: 5,
+            interval: 5,*/
             splitLine: {
                 show: false
             },
@@ -336,16 +330,10 @@ option2 = {
     ],
     series: [
         {
-            name:'营业收入',
+            name:'经营活动现金净流量增长率',
             type:'bar',
-            data:[-2.0, 4.9, -7.0, -23.2, 25.6, 76.7]
-        },
-
-        {
-            name:'行业均值',
-            type:'line',
-            yAxisIndex: 1,
-            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2]
+            data:[0.5, 0.49, 0.9,0.5, 0.49, 0.9],
+            barWidth: 10
         }
     ]
 };
@@ -353,6 +341,7 @@ myChart = echarts.init(document.getElementById('main2'));
 myChart.setOption(option2);
 
 option3 = {
+    color:['#1bbc9d'],
     tooltip: {
         trigger: 'axis'
     },
@@ -365,7 +354,8 @@ option3 = {
         }
     },
     legend: {
-        data:['营业收入','行业均值'],
+        show:false,
+        data:['净利润现金含量'],
         textStyle: {
             fontSize: 11,
             fontWeight: 'normal',
@@ -373,8 +363,8 @@ option3 = {
         }         
     },
     grid: {
-        left: '-6',
-        right: '-10',
+        left: '0',
+        right: '-17',
         bottom: '10%',
         top:'15%',
         containLabel: true
@@ -385,7 +375,7 @@ option3 = {
     xAxis: [
         {
             type: 'category',
-            data: ['1月','2月','3月','4月','5月','6月'],
+            data: ['3','4','1','2','3','4'],
             splitLine: {
                 show: false
             },
@@ -410,9 +400,9 @@ option3 = {
     yAxis: [
         {
             type: 'value',
-            min: -250,
+            /*min: -250,
             max: 250,
-            interval: 50,
+            interval: 100,*/
             splitLine: {
                 show: false
             },
@@ -454,16 +444,10 @@ option3 = {
     ],
     series: [
         {
-            name:'营业收入',
+            name:'净利润现金含量',
             type:'bar',
-            data:[-2.0, 4.9, -7.0, -23.2, 25.6, 76.7]
-        },
-
-        {
-            name:'行业均值',
-            type:'line',
-            yAxisIndex: 1,
-            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2]
+            data:[153, 213, 111,153, 213, 111],
+            barWidth: 10
         }
     ]
 };
@@ -471,6 +455,7 @@ myChart = echarts.init(document.getElementById('main3'));
 myChart.setOption(option3);
 
 option4 = {
+    color:['#3398DB'],
     tooltip: {
         trigger: 'axis'
     },
@@ -483,7 +468,8 @@ option4 = {
         }
     },
     legend: {
-        data:['营业收入','行业均值'],
+        show:false,
+        data:['收入增长率'],
         textStyle: {
             fontSize: 11,
             fontWeight: 'normal',
@@ -491,8 +477,8 @@ option4 = {
         }         
     },
     grid: {
-        left: '-6',
-        right: '-10',
+        left: '0',
+        right: '-15',
         bottom: '10%',
         top:'15%',
         containLabel: true
@@ -503,7 +489,7 @@ option4 = {
     xAxis: [
         {
             type: 'category',
-            data: ['1月','2月','3月','4月','5月','6月'],
+            data: ['3','4','1','2','3','4'],
             splitLine: {
                 show: false
             },
@@ -528,9 +514,9 @@ option4 = {
     yAxis: [
         {
             type: 'value',
-            min: -250,
-            max: 250,
-            interval: 50,
+            /*min: -1,
+            max: 1,
+            interval: 0.5,*/
             splitLine: {
                 show: false
             },
@@ -572,18 +558,126 @@ option4 = {
     ],
     series: [
         {
-            name:'营业收入',
+            name:'收入增长率',
             type:'bar',
-            data:[-2.0, 4.9, -7.0, -23.2, 25.6, 76.7]
-        },
-
-        {
-            name:'行业均值',
-            type:'line',
-            yAxisIndex: 1,
-            data:[2.0, 2.2, 3.3, 4.5, 6.3, 10.2]
+            data:[0.3, 0.4, 0.1,0.3, 0.4, 0.1],
+            barWidth: 10
         }
     ]
 };
 myChart = echarts.init(document.getElementById('main4'));
 myChart.setOption(option4);
+
+option5 = {
+    color:['#df77d7'],
+    tooltip: {
+        trigger: 'axis'
+    },
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+        show:false,
+        data:['净利润增长率'],
+        textStyle: {
+            fontSize: 11,
+            fontWeight: 'normal',
+            color: '#ccc'          // 主标题文字颜色
+        }         
+    },
+    grid: {
+        left: '0',
+        right: '-15',
+        bottom: '10%',
+        top:'15%',
+        containLabel: true
+    },
+    toolbox: {
+        show : false
+    },          
+    xAxis: [
+        {
+            type: 'category',
+            data: ['3','4','1','2','3','4'],
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#aaa',          // 主标题文字颜色
+                    fontSize: 9,
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color: '#666'
+                }
+            },
+            axisTick:{
+                lineStyle:{
+                    color: '#666'
+                }             
+            } 
+        }
+    ],
+    yAxis: [
+        {
+            type: 'value',
+            /*min: -1,
+            max: 1,
+            interval: 0.5,*/
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#aaa',          // 主标题文字颜色
+                    fontSize: 9,
+                }
+            },
+            axisLine:{
+                lineStyle:{
+                    color: '#666'
+                }
+            },
+            axisTick:{
+                lineStyle:{
+                    color: '#666'
+                }             
+            }           
+        },
+        {
+            type: 'value',
+            min: 0,
+            max: 25,
+            interval: 5,
+            splitLine: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            },
+            axisLine:{
+                show: false 
+            },
+            axisTick:{
+                show: false              
+            }                                     
+        }
+    ],
+    series: [
+        {
+            name:'净利润增长率',
+            type:'bar',
+            data:[0.3, 0.4, 0.1,0.3, 0.4, 0.1],
+            barWidth: 10
+        }
+    ]
+};
+myChart = echarts.init(document.getElementById('main5'));
+myChart.setOption(option5);
