@@ -11,7 +11,7 @@
 <!-- Header -->
 <header data-am-widget="header" class="am-header am-header-default">
   <div class="am-header-left am-header-nav">
-      <a href="#" onClick="javascript:history.back(-1);">
+      <a href="javascript:history.back();">
         <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
       </a>
       <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">系统推荐股池</span>
@@ -35,16 +35,16 @@
 </style>
 
 
-<div class="am-tabs" data-am-tabs style="margin-top:10px">
-  <ul class="am-avg-sm-4 am-tabs-nav am-nav am-nav-tabs">
-    <li class="am-active" style="border-right: 1px solid #555;height:25px;"><a href="#tab1">强势</a></li>
-    <li style="border-right: 1px solid #555;height:25px;"><a href="#tab2">蓄势</a></li>
-    <li style="border-right: 1px solid #555;height:25px;"><a href="#tab3" style="padding-left:0;padding-right:0">突破Vol</a></li>
-    <li style="height:25px;"><a href="#tab4" style="padding-left:0;padding-right:0">突破中枢</a></li>
+<div class="am-tabs" data-am-tabs>
+  <ul class="am-avg-sm-4 am-tabs-nav am-nav am-nav-tabs" style="background:#444;border-top: 1px solid #444;padding:5px 0">
+    <li class="am-active" style="border-right: 1px solid #555;height:25px;padding-left:2px"><a href="#tab1">强势</a></li>
+    <li style="border-right: 1px solid #555;height:25px;padding-left:5px"><a href="#tab2">蓄势</a></li>
+    <li style="border-right: 1px solid #555;height:25px;padding-left:5px"><a href="#tab3" style="padding-left:0;padding-right:0">突破Vol</a></li>
+    <li style="height:25px;padding-left:5px"><a href="#tab4" style="padding-left:0;padding-right:0">突破中枢</a></li>
   </ul>
 
   <div class="am-tabs-bd">
-    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+    <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="margin-top:-11px">
       <div>
         <ul class="am-list">
           <li class="am-g am-list-item-dated">
@@ -90,7 +90,7 @@
         </ul>
       </div>
     </div>
-    <div class="am-tab-panel am-fade" id="tab2">
+    <div class="am-tab-panel am-fade" id="tab2" style="margin-top:-11px">
       <div>
         <ul class="am-list">
           <li class="am-g am-list-item-dated">
@@ -111,7 +111,7 @@
         </ul>
       </div>
     </div>
-    <div class="am-tab-panel am-fade" id="tab3">
+    <div class="am-tab-panel am-fade" id="tab3" style="margin-top:-11px">
       <div>
         <ul class="am-list">
           <li class="am-g am-list-item-dated">
@@ -132,7 +132,7 @@
         </ul>
       </div>
     </div>
-    <div class="am-tab-panel am-fade" id="tab4">
+    <div class="am-tab-panel am-fade" id="tab4" style="margin-top:-11px">
       <div>
         <ul class="am-list">
           <li class="am-g am-list-item-dated">

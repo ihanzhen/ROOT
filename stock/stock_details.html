@@ -65,24 +65,24 @@
             </a>
             <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">
                 <span style="position: relative;top:-6px;font-size:1.6rem">
-                    新城股份<br>
-                    <span style="font-size:11px;position: relative;top:-36px;left:60px;color:#777">000656.SH</span>
+                    <span id="stockName">新城股份</span><br>
+                    <span id="stockCode" style="font-size:11px;position: relative;top:-36px;left:60px;color:#777">000656.SH</span>
                 </span>
 
-
+            </span>
         </div>
         <div class="am-header-right am-header-nav" style="margin-right:40px">
-            <a href="#left-link" class="">
+            <a href="javascript:void(0);" class="">
                 <i class="am-header-icon am-icon-flash" style="font-size:2rem;color:#999" id="flashBuy"></i>
             </a>
         </div>
         <div class="am-header-right am-header-nav">
-            <a href="#left-link" class="">
+            <a href="javascript:void(0);" class="">
                 <i class="am-header-icon am-icon-plus-square" style="font-size:2rem;color:#f05e4b" id="addSelfSelect"></i>
             </a>
         </div>
     </header>
-    <div id="stock-details">
+    <div id="stockdetails-container">
         <!-- List -->
         <div class="am-list-news am-list-news-default" style="margin-top:-2px;">
             <div class="am-list-news-hd am-cf">
@@ -91,11 +91,17 @@
                         <span class="am-icon-sliders color-red" style="width:16px;text-align: center"></span>
                         综合评级
                         <span class="nobold">&nbsp;Grade&nbsp;&nbsp;</span>
-                        <span class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                        <span class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                        <span class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                        <span class="am-icon-star-half-o color-red" style="width:16px;text-align: left"></span>
-                        <span class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()>2" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()>3" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()>4" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()>5" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                        <!--<span class="am-icon-star-half-o color-red" style="width:16px;text-align: left"></span>-->
+                        <span data-bind="visible:stars()<2" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()<3" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()<4" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()<5" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                        <span data-bind="visible:stars()<6" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
                     </h2>
                 </a>
             </div>
@@ -115,7 +121,7 @@
         <!--正文-->
         <div style="margin-top:-7px">
             <div style="font-size:14px;line-height:16px;color:#aaa;padding:0 10px">
-                <p>板块1,版块2,版块3,版块4,版块5</p>
+                <p data-bind="text:boards">板块1,版块2,版块3,版块4,版块5</p>
             </div>
         </div>
         <div class="am-list-news am-list-news-default" style="margin-top: -5px;margin-bottom: 13px;">
@@ -133,7 +139,7 @@
         <div style="margin-top:-7px">
             <div style="font-size:14px;line-height:16px;color:#aaa;padding:0 10px;">
                 <p style="text-indent: 2em;">
-                    推荐购买指数0.85，该股业绩优秀，基本面有良好的支撑，技术形态符合上涨趋势特征。中期涨幅区间0.1~0.5之间。
+                    推荐购买指数0.85，该股业绩优秀，基本面有良好的支撑，技术形态符合上涨趋势特征。中期涨幅区间0.1~0.5之间。(个股简介需要接口获取真实数据)
                 </p>
             </div>
         </div>
@@ -168,29 +174,34 @@
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     昨天收盘市值<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">10%</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;" data-bind="text:yesterdayValue">10%</span>
+                                </span>
                             </li>
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     当期资产负债率<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">1.13</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;" data-bind="text:debtAssets">1.13</span>
+                                </span>
                             </li>
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     当期营业收入<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">6.62%</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;" data-bind="text:currentIncome">6.62%</span>
+                                </span>
                             </li>
                         </ul>
                         <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#343434;padding:2px 0 1px 0">
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     去年总营业收入<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">-44.66</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;" data-bind="text:lastYearTotalIncome">-44.66</span>
+                                </span>
                             </li>
                             <li>
                                 <span style="position: relative;font-size:12px;">
                                     市盈率<br>
-                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;">-0.18</span>
+                                    <span style="font-size:14px;position: relative;top:-5px;color:#fff;" data-bind="text:priceearning">-0.18</span>
+                                </span>
                             </li>
                         </ul>
                         <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#373737;padding:2px 0 1px 0">
@@ -410,6 +421,8 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/notice.js"></script>
     <script src="assets/js/stock_details.js"></script>
     <script>
         ////页面加载时绑定按钮点击事件

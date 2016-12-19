@@ -58,9 +58,9 @@ option = {
     yAxis: [
         {
             type: 'value',
-            min: -1,
+            /*min: -1,
             max: 1,
-            interval: 0.5,
+            interval: 0.5,*/
             splitLine: {
                 show: false
             },
@@ -172,9 +172,9 @@ option1 = {
     yAxis: [
         {
             type: 'value',
-            min: -1,
+            /*min: -1,
             max: 1,
-            interval: 0.5,
+            interval: 0.5,*/
             splitLine: {
                 show: false
             },

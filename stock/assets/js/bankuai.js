@@ -107,7 +107,7 @@ var BankuaiManagement = function () {
                 var stock = new Stock(apiStock.headstock_code, apiStock.headstock_name);
                 plate.stocks.push(stock);
                 var temp = {
-                    uid: '',
+                    uid: localStorage.uid,
                     stock_code: apiStock.headstock_code
                 };
                 stock.isValueble(Boolean(parseInt(apiStock.is_jzg)));
@@ -127,7 +127,7 @@ var BankuaiManagement = function () {
                 var stock = new Stock(apiStock.windcode, apiStock.name);
                 plate.stocks.push(stock);
                 var temp = {
-                    uid: '',
+                    uid: localStorage.uid,
                     stock_code: apiStock.windcode
                 };
                 stock.isRecommend(true);
@@ -146,7 +146,7 @@ var BankuaiManagement = function () {
                 var stock = new Stock(apiStock.windcode, apiStock.name);
                 plate.stocks.push(stock);
                 var temp = {
-                    uid: '',
+                    uid: localStorage.uid,
                     stock_code: apiStock.windcode
                 };
                 stock.isRecommend(true);
@@ -221,7 +221,7 @@ var BankuaiManagement = function () {
                         var stock = new Stock(apiStock.windcode, apiStock.name);
                         plate.stocks.push(stock);
                         var temp = {
-                            uid: '',
+                            uid: localStorage.uid,
                             stock_code: apiStock.windcode
                         };
                         stock.isRecommend(true);
@@ -235,7 +235,7 @@ var BankuaiManagement = function () {
                         var stock = new Stock(apiStock.windcode, apiStock.name);
                         plate.stocks.push(stock);
                         var temp = {
-                            uid: '',
+                            uid: localStorage.uid,
                             stock_code: apiStock.windcode
                         };
                         stock.isRecommend(true);
@@ -249,7 +249,7 @@ var BankuaiManagement = function () {
                         var stock = new Stock(apiStock.windcode, apiStock.name);
                         plate.stocks.push(stock);
                         var temp = {
-                            uid: '',
+                            uid: localStorage.uid,
                             stock_code: apiStock.windcode
                         };
                         stock.isRecommend(true);

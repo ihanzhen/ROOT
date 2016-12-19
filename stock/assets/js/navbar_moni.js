@@ -2,7 +2,7 @@
 document.write('  <ul class="am-navbar-nav am-cf am-avg-sm-4">');
 document.write('    <li>');
 document.write('      <a href="home.html">');
-document.write('        <img src="assets/images/home.svg" style="width:22px;height:27px">');
+document.write('          <img src="assets/images/home.svg" style="width:22px;height:27px">');
 document.write('        <span class="am-navbar-label">首页</span>');
 document.write('      </a>');
 document.write('    </li>');

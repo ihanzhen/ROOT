@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     var token = localStorage.token, uid = localStorage.uid;
     if (!token || !uid) {
         window.location.href = "http://www.hanzhendata.com/ihanzhendata/user/wxlogin";

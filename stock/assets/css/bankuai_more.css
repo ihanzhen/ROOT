@@ -38,7 +38,8 @@
 
 .am-list > li {
     background: none;
-    border-color: #444;
+    border: 0 none;
+    border-bottom:1px solid #444;
 }
 
 .arrowLeft {
@@ -66,7 +67,7 @@
 }
 
 .mg-top {
-    margin-top: -15px;
+    margin-top: -10px;
 }
 
 .aHeight {
@@ -91,4 +92,14 @@
 
 .coloraaa {
     color: #aaa !important;
+}
+.am-list-date-value-double {
+    font-size: 1.3rem;
+    position: absolute;
+    right: -25px;
+    top: 0.8rem;
+    border-radius: 4px;
+    width: 220px;
+    height: 15px;
+    line-height: 15px;
 }

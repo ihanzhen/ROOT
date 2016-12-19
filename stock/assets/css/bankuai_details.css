@@ -38,7 +38,8 @@
 
 .am-list > li {
     background: none;
-    border-color: #444;
+    border:0 none;
+    border-bottom:1px solid #444;
 }
 
 .arrowLeft {
@@ -90,4 +91,23 @@
 
 .coloraaa {
     color: #aaa !important;
+}
+.am-tabs-bd .am-tab-panel {
+    padding: 0 10px 15px;
+}
+#c-date {
+    font-size: 1rem;
+    color: #666666;
+    top:-15px;
+    position: relative;
+}
+.am-list-date-value-double {
+    font-size: 1.3rem;
+    position: absolute;
+    right: -20px;
+    top: 0.8rem;
+    border-radius: 4px;
+    width: 220px;
+    height: 15px;
+    line-height: 15px;
 }

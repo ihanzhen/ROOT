@@ -17,16 +17,19 @@
 }
 
 .ulStyle {
-    margin-top: -10px;
+    margin-top: -15px;
     padding: 5px 0;
-    border-bottom: 1px solid #444;
-    border-top: 1px solid #444;
+    /*border-bottom: 1px solid #444;
+    border-top: 1px solid #444;*/
 }
 
 .liStyle {
     border-right: 1px solid #444;
     padding-right: -1px;
-    height:76px !important;
+    height:85px !important;
+    border-top:1px solid #444;
+    margin-top:-1px;
+    border-bottom:1px solid #444;
 }
 
 .plateName {
