@@ -34,6 +34,8 @@ var PhoneManagement = function () {
             if (_this.code2.verify(phoneVM.graphcode()) == false) {
                 _this.noticeVM.notice('图形验证码输入有误！');
                 $('#notice-alert').modal('open');
+                phoneVM.showRight(false);
+                phoneVM.showTanhao(true);
                 return;
             }
             $('#send-confirm').modal({

@@ -36,7 +36,6 @@
                 “推荐意见”只适合推荐板块的板块详情，后台可以添加内容，其他板块隐藏该部分。
             </div>
         </div>
-
         <div data-am-widget="list_news" class="am-list-news am-list-news-default mg-t">
             <div class="am-list-news-hd am-cf">
                 <a href="##" class="">
@@ -59,7 +58,7 @@
             <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#444;border-top: 1px solid #444;padding:5px 0">
                 <li class="am-active" style="border-right: 1px solid #555;height:25px;padding-left:2px"><a href="#tab1">龙头股</a></li>
                 <li style="border-right: 1px solid #555;height:25px;padding-left:5px"><a href="#tab2">新闻</a></li>
-            </ul>            
+            </ul>
             <div class="am-tabs-bd">
                 <div class="am-tab-panel am-fade am-in am-active" id="tab1">
                     <div>
@@ -71,91 +70,38 @@
                                         <span class="codeStyle" data-bind="text:stockCode">000656.SH</span>
                                     </span>
                                 </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" data-bind="click:selectClick"> 加自选</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">
+                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">加自选</span></span>
+                                <!--<span class="am-list-date am-list-date-value-double" id="c-red">
                                     <span data-bind="visible:isRecommend">推荐</span>
                                     <span class="color666" data-bind="visible:isValueble"> / </span>
                                     <span data-bind="visible:isValueble">价值</span><br>
                                     <span class="color666" data-bind="visible:isSelfSelect"> / </span>
                                     <span data-bind="visible:isSelfSelect">自选</span><br>
                                     <span id="c-date" class="coloraaa">估值评级：<span data-bind="text:guzhi">A＋</span></span>
+                                </span>-->
+                                <span style=" position: absolute;top: 5px; left: 120px;">
+                                    <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()>2" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()>3" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()>4" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()>5" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()<2" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()<3" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()<4" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()<5" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                                    <span data-bind="visible:stars()<6" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
                                 </span>
+                                <div style="position: absolute;top: 20px;left: 130px;height:17px;margin-right:5px;color:#e74c3c;width:68px;text-align:right">
+                                    <img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isValueble">
+                                    <img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isValueble()">
+                                    <img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isRecommend">
+                                    <img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isRecommend()">
+                                    <img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect">
+                                    <img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()">
+                                    <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect">
+                                    <img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()">
+                                </div>
                             </li>
-                            <!--<li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        深赛格<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"
-                                      style="background:#f05e4b">已添加</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">推荐<span style="color:#666"><br><span id="c-date" style="color:#aaa">估值评级：B＋</span></span>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        新城股份<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 加自选</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">价值<br><span id="c-date" style="color:#aaa">估值评级：C</span></span>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        金科股份<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 加自选</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">推荐<span style="color:#666"> / </span>价值<br><span id="c-date" style="color:#aaa">估值评级：A＋</span></span>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        深赛格<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"
-                                      style="background:#f05e4b">已添加</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">推荐<span style="color:#666"><br><span id="c-date" style="color:#aaa">估值评级：B＋</span></span>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        新城股份<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 加自选</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">价值<br><span id="c-date" style="color:#aaa">估值评级：C</span></span>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        金科股份<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 加自选</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">推荐<span style="color:#666"> / </span>价值<br><span id="c-date" style="color:#aaa">估值评级：A＋</span></span>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        深赛格<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"
-                                      style="background:#f05e4b">已添加</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">推荐<span style="color:#666"><br><span id="c-date" style="color:#aaa">估值评级：B＋</span></span>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd" style="height:45px">
-                                    <span style="position: relative;top:-6px">
-                                        新城股份<br>
-                                        <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                                </a>
-                                <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 加自选</span>
-                                <span class="am-list-date am-list-date-value-double" id="c-red">价值<br><span id="c-date" style="color:#aaa">估值评级：C</span></span>
-                            </li>-->
                         </ul>
                     </div>
                 </div>
@@ -168,40 +114,56 @@
                                     <span style="color:#fff" data-bind="text:newsTitle,style:{color:isUp()?'#fff':'#bcbcbc'}">三季度十大预增王 预增546倍夺冠</span>
                                 </a>
                             </li>
-                            <!--<li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd">
-                                    <span class="am-header-icon am-icon-arrow-circle-up" style="color:#f05e4b"></span>
-                                    <span style="color:#fff" data-bind="text:temp">三季度十大预增王 预增546倍夺冠</span>
-                                </a>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd">
-                                    <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
-                                </a>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd">
-                                    <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
-                                </a>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd">
-                                    <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
-                                </a>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd">
-                                    <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
-                                </a>
-                            </li>
-                            <li class="am-g am-list-item-dated">
-                                <a href="##" class="am-list-item-hd">
-                                    <span class="am-header-icon am-icon-yy"> 三季度十大预增王 预增546倍夺冠</span>
-                                </a>
-                            </li>-->
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Modal-->
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">系统提示</div>
+            <div class="am-modal-bd">
+                <p>请选择加入以下哪个自选？</p>
+                <ul class="am-list">
+                    <li style="text-align:left;padding-left:20px;">
+                        <input type="radio" name="selfSelect" value="1" data-bind="checked: select" /> 自选一
+                        <div data-bind="text:firstMark"></div>
+                    </li>
+                    <li style="text-align:left;padding-left:20px;">
+                        <input type="radio" name="selfSelect" value="2" data-bind="checked: select" /> 自选二
+                        <div data-bind="text:secondMark"></div>
+                    </li>
+                    <li style="text-align:left;padding-left:20px;">
+                        <input type="radio" name="selfSelect" value="3" data-bind="checked: select" /> 自选三
+                        <div data-bind="text:thirdMark"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-bind="click:cancelClick">取消</span>
+                <span class="am-modal-btn" data-bind="click:confirmClick">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- 保存成功模态窗口提示 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="notice-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">系统提示</div>
+            <div class="am-modal-bd" data-bind="text:notice"></div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-confirm style="color:#fff">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- Loading -->
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
+            <!--div class="am-modal-hd">正在载入...</div-->
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
             </div>
         </div>
     </div>

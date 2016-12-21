@@ -35,130 +35,140 @@
 </style>
 
 
-<div class="am-tabs" data-am-tabs>
-  <ul class="am-avg-sm-4 am-tabs-nav am-nav am-nav-tabs" style="background:#444;border-top: 1px solid #444;padding:5px 0">
-    <li class="am-active" style="border-right: 1px solid #555;height:25px;padding-left:2px"><a href="#tab1">强势</a></li>
-    <li style="border-right: 1px solid #555;height:25px;padding-left:5px"><a href="#tab2">蓄势</a></li>
-    <li style="border-right: 1px solid #555;height:25px;padding-left:5px"><a href="#tab3" style="padding-left:0;padding-right:0">突破Vol</a></li>
-    <li style="height:25px;padding-left:5px"><a href="#tab4" style="padding-left:0;padding-right:0">突破中枢</a></li>
+<div id="jishu-container" class="am-tabs" data-am-tabs>
+  <ul class="am-avg-sm-4 am-tabs-nav am-nav am-nav-tabs" style="background:#444;border-top: 1px solid #444;padding:5px 0" data-bind="with:tabVM">
+    <li class="am-active" style="border-right: 1px solid #555;height:25px;padding-left:2px" data-bind="click:strongClick"><a href="#tab1">强势</a></li>
+    <li style="border-right: 1px solid #555;height:25px;padding-left:5px"><a href="#tab2" data-bind="click:readyClick">蓄势</a></li>
+    <li style="border-right: 1px solid #555;height:25px;padding-left:5px"><a href="#tab3" style="padding-left:0;padding-right:0" data-bind="click:volClick">突破Vol</a></li>
+    <li style="height:25px;padding-left:5px"><a href="#tab4" style="padding-left:0;padding-right:0" data-bind="click:centerClick">突破中枢</a></li>
   </ul>
 
   <div class="am-tabs-bd">
-    <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="margin-top:-11px">
+    <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="margin-top:-11px" data-bind="with:strongVM">
       <div>
-        <ul class="am-list">
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px"> 自选</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="background:#f05e4b"> 已加</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 自选</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 自选</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 自选</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-        </ul>
+          <ul class="am-list" data-bind="foreach:items">
+              <li class="am-g am-list-item-dated">
+                  <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:redirectClick">
+                      <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                      <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                  </a>
+                  <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
+                  <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
+                  <span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>
+              </li>
+          </ul>
       </div>
     </div>
-    <div class="am-tab-panel am-fade" id="tab2" style="margin-top:-11px">
-      <div>
-        <ul class="am-list">
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px"> 自选</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="background:#f05e4b"> 已加</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-        </ul>
+      <div class="am-tab-panel am-fade" id="tab2" style="margin-top:-11px" data-bind="with:readyVM">
+          <div>
+              <ul class="am-list" data-bind="foreach:items">
+                  <li class="am-g am-list-item-dated">
+                      <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:redirectClick">
+                          <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                          <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                      </a>
+                      <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
+                      <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
+                      <!--<span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>-->
+                      <span style=" position: absolute;top: 5px; left: 120px;">
+                          <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()>2" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()>3" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()>4" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()>5" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()<2" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()<3" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()<4" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()<5" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                          <span data-bind="visible:stars()<6" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                      </span>
+                  </li>
+              </ul>
+          </div>
       </div>
-    </div>
-    <div class="am-tab-panel am-fade" id="tab3" style="margin-top:-11px">
-      <div>
-        <ul class="am-list">
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px"> 自选</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="background:#f05e4b"> 已加</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-        </ul>
+      <div class="am-tab-panel am-fade" id="tab3" style="margin-top:-11px" data-bind="with:volVM">
+          <div>
+              <ul class="am-list" data-bind="foreach:items">
+                  <li class="am-g am-list-item-dated">
+                      <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:redirectClick">
+                          <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                          <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                      </a>
+                      <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
+                      <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
+                      <span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>
+                  </li>
+              </ul>
+          </div>
       </div>
-    </div>
-    <div class="am-tab-panel am-fade" id="tab4" style="margin-top:-11px">
-      <div>
-        <ul class="am-list">
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px"> 自选</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-          </li>
-          <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="background:#f05e4b"> 已加</span>
-            <span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="color:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>
-        </ul>
-      </div>
-    </div>        
+      <div class="am-tab-panel am-fade" id="tab4" style="margin-top:-11px" data-bind="with:centerVM">
+          <div>
+              <ul class="am-list" data-bind="foreach:items">
+                  <li class="am-g am-list-item-dated">
+                      <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:redirectClick">
+                          <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                          <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                      </a>
+                      <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
+                      <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
+                      <span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>
+                  </li>
+              </ul>
+          </div>
+      </div>        
   </div>
 </div>
-
+    <!-- Confirm Modal-->
+    <div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">系统提示</div>
+            <div class="am-modal-bd">
+                <p>请选择加入以下哪个自选？</p>
+                <ul class="am-list">
+                    <li style="text-align:left;padding-left:20px;">
+                        <input type="radio" name="selfSelect" value="1" data-bind="checked: select" /> 自选一
+                        <div data-bind="text:firstMark"></div>
+                    </li>
+                    <li style="text-align:left;padding-left:20px;">
+                        <input type="radio" name="selfSelect" value="2" data-bind="checked: select" /> 自选二
+                        <div data-bind="text:secondMark"></div>
+                    </li>
+                    <li style="text-align:left;padding-left:20px;">
+                        <input type="radio" name="selfSelect" value="3" data-bind="checked: select" /> 自选三
+                        <div data-bind="text:thirdMark"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-bind="click:cancelClick">取消</span>
+                <span class="am-modal-btn" data-bind="click:confirmClick">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- 保存成功模态窗口提示 -->
+    <div class="am-modal am-modal-alert" tabindex="-1" id="notice-alert">
+        <div class="am-modal-dialog">
+            <div class="am-modal-hd">系统提示</div>
+            <div class="am-modal-bd" data-bind="text:notice"></div>
+            <div class="am-modal-footer">
+                <span class="am-modal-btn" data-am-modal-confirm style="color:#fff">确定</span>
+            </div>
+        </div>
+    </div>
+    <!-- Loading -->
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
+            <!--div class="am-modal-hd">正在载入...</div-->
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
 
 <!-- Navbar -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/tuijian_jishu.js"></script>
 </body>
 </html>

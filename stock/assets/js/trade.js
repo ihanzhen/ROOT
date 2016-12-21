@@ -4,7 +4,7 @@
 })
 function TradeManagement() {
     var _this = this;
-    //var timeout;
+    var timeout;
     _this.noticeVM = {
         notice: ko.observable('')
     };
@@ -165,8 +165,12 @@ function TradeManagement() {
         this.isValuable = ko.observable(isValuable);
         this.trend = ko.observable(trend);
         this.whichzx = which;
+        this.detailsClick = function (item) {
+            window.location.href=="stock_details.html?stockCode="+item.scode()+"&stockName="+item.sname();
+        }
         this.stockMouseDown = function (data, event) {
             event.preventDefault();
+            timeout = setTimeout(function () {
             _this.mousedownVM.stockObj.sname(data.sname());
             _this.mousedownVM.stockObj.scode(data.scode());
             _this.mousedownVM.stockObj.whichzx = data.whichzx;
@@ -177,17 +181,14 @@ function TradeManagement() {
             }
             $('#mousedown-alert').modal();
             $('.am-header-title').click();
-            //timeout = setTimeout(function () {
-            //    //to do....
-               
-            //}, 0);
+            }, 50);
             return false;
         },
         this.stockMouseOut = function (data, event) {
-           // clearTimeout(timeout);
+            clearTimeout(timeout);
         },
         this.stockMouseUp = function (data, event) {
-           // clearTimeout(timeout);
+            clearTimeout(timeout);
         },
         this.detailsClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode();

@@ -75,12 +75,12 @@
                 <div class="am-list-news-bd">
                     <ul class="am-list" data-bind="foreach:firstStocks">
                         <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstart:touchStart,ontouchstartBubble:false}">
-                            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
+                            <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:detailsClick">
                                 <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
                                 <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
                             <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
-                            <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                             <span class="am-list-date am-list-date-value-double">
                                 <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
                                 <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
@@ -99,12 +99,12 @@
                 <div class="am-list-news-bd">
                     <ul class="am-list" data-bind="foreach:secondStocks">
                         <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstart:touchStart,ontouchstartBubble:false}">
-                            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
+                            <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:detailsClick">
                                 <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
                                 <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
                             <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
-                            <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                             <span class="am-list-date am-list-date-value-double">
                                 <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
                                 <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
@@ -123,12 +123,12 @@
                 <div class="am-list-news-bd">
                     <ul class="am-list" data-bind="foreach:thirdStocks">
                         <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstart:touchStart,ontouchstartBubble:false}">
-                            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
+                            <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:detailsClick">
                                 <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
                                 <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
                             <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
-                            <span class="am-list-date bg-grap am-list-date-2">详情</span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                             <span class="am-list-date am-list-date-value-double">
                                 <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
                                 <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
