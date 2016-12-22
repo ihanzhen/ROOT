@@ -6,8 +6,8 @@ var DapanManagement = function () {
     var _this = this;
     _this.init = function () {
         _this.dapanVM = new DapanVM();
-        _this.getPageData();
         ko.applyBindings(_this.dapanVM, $("#dapan-container")[0]);
+        _this.getPageData();
         var int=self.setInterval(_this.updatePriceAsync, Math.ceil(Math.random() * 5) * 1000);
     }
     //view model

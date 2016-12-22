@@ -79,28 +79,12 @@
                                     <span data-bind="visible:isSelfSelect">自选</span><br>
                                     <span id="c-date" class="coloraaa">估值评级：<span data-bind="text:guzhi">A＋</span></span>
                                 </span>-->
-                                <span style=" position: absolute;top: 5px; left: 120px;">
-                                    <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()>2" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()>3" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()>4" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()>5" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()<2" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()<3" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()<4" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()<5" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                                    <span data-bind="visible:stars()<6" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                                <span class="am-list-date am-list-date-value-double">
+                                    <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
                                 </span>
-                                <div style="position: absolute;top: 20px;left: 130px;height:17px;margin-right:5px;color:#e74c3c;width:68px;text-align:right">
-                                    <img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isValueble">
-                                    <img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isValueble()">
-                                    <img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isRecommend">
-                                    <img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isRecommend()">
-                                    <img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect">
-                                    <img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()">
-                                    <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect">
-                                    <img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()">
-                                </div>
+                                <span class="am-list-date am-list-date-value-double-1">
+                                    <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                                </span>
                             </li>
                         </ul>
                     </div>

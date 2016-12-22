@@ -32,6 +32,31 @@
 .am-tabs-nav > li >a{position: relative;top:-8px;}
 .am-nav-tabs {border:none;}
 .am-list > li {background: none;border-color: #444;}
+.am-list-date-value-double {
+    z-index:-111111;
+    font-size: 1.3rem;
+    position: absolute;
+    right: -20px;
+    top: 0.8rem;
+    border-radius: 4px;
+    width: 220px;
+    height: 15px;
+    line-height: 15px;
+}
+.am-list-date-value-double-1 {
+    z-index:-111111;
+    font-size: 1.3rem;
+    position: absolute;
+    right: -20px;
+    top: 2.3rem;
+    border-radius: 4px;
+    width: 220px;
+    height: 15px;
+    line-height: 15px;
+}
+.color-grap{
+    color:#383838;
+}
 </style>
 
 
@@ -54,7 +79,13 @@
                   </a>
                   <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
                   <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
-                  <span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>
+                  <!--<span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>-->
+                  <span class="am-list-date am-list-date-value-double">
+                      <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
+                  </span>
+                  <span class="am-list-date am-list-date-value-double-1">
+                      <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                  </span>
               </li>
           </ul>
       </div>
@@ -70,17 +101,11 @@
                       <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
                       <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
                       <!--<span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>-->
-                      <span style=" position: absolute;top: 5px; left: 120px;">
-                          <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()>2" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()>3" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()>4" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()>5" class="am-icon-star color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()<2" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()<3" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()<4" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()<5" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
-                          <span data-bind="visible:stars()<6" class="am-icon-star-o color-red" style="width:16px;text-align: left"></span>
+                      <span class="am-list-date am-list-date-value-double">
+                          <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
+                      </span>
+                      <span class="am-list-date am-list-date-value-double-1">
+                          <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
                       </span>
                   </li>
               </ul>
@@ -96,7 +121,13 @@
                       </a>
                       <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
                       <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
-                      <span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>
+                      <!--<span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>-->
+                      <span class="am-list-date am-list-date-value-double">
+                          <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
+                      </span>
+                      <span class="am-list-date am-list-date-value-double-1">
+                          <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                      </span>
                   </li>
               </ul>
           </div>
@@ -111,7 +142,13 @@
                       </a>
                       <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
                       <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
-                      <span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>
+                      <!--<span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>-->
+                      <span class="am-list-date am-list-date-value-double">
+                          <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
+                      </span>
+                      <span class="am-list-date am-list-date-value-double-1">
+                          <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                      </span>
                   </li>
               </ul>
           </div>

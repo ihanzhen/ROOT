@@ -6,7 +6,6 @@ var BankuaiDetailManagement = function () {
     var _this = this;
     _this.plateCode = '';
     _this.plateType = '';
-    _this.stockList = [];
     _this.codeList = [];
     _this.stockDetailsArr = [];
     _this.noticeVM = {
@@ -73,10 +72,10 @@ var BankuaiDetailManagement = function () {
         this.stockCode = ko.observable(stockCode);
         this.stockName = ko.observable(stockName);
         this.isSelfSelect = ko.observable(false);
-        this.isRecommend = ko.observable(false);
-        this.isValueble = ko.observable(false);
+        this.isTechnology = ko.observable(false);
+        this.isFundamental = ko.observable(false);
+        this.isEvent = ko.observable(false);
         this.stars = ko.observable(0);
-        this.isSelfSelect = ko.observable(false);
         this.stockDetailsClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.stockCode() + "&stockName=" + item.stockName();
         };
@@ -135,25 +134,6 @@ var BankuaiDetailManagement = function () {
             }
         }
     }
-    _this.getWordIconData = function () {
-        $('#my-modal-loading').modal('open');
-        $.when(getStockPropertyAjax(_this.codeList)).done(function (result) {
-            $('#my-modal-loading').modal('close');
-            _this.stockList = result;
-            for (var i = 0; i < _this.plateVM.stocks().length; i++) {
-                for (var j = 0; j < _this.stockList.length; j++) {
-                    if (_this.plateVM.stocks()[i].stockCode == _this.stockList[j].headstock_code) {
-                        _this.plateVM.stocks()[i].isSelfSelect(_this.stockList[j].is_zxg);
-                        _this.plateVM.stocks()[i].isValueble(_this.stockList[j].is_jzg);
-                        _this.plateVM.stocks()[i].guzhi(_this.stockList[j].value);
-                    }
-                }
-            }
-        }).fail(function () {
-            $('#my-modal-loading').modal('close');
-            console.log('fail');
-        })
-    }
     _this.getPlateData = function (palteType) {
         switch (palteType) {
             case 'recommend': _this.plateVM.isShowRecommend(true); break;
@@ -184,7 +164,7 @@ var BankuaiDetailManagement = function () {
         $('#my-modal-loading').modal('open');
         $.when(_this.getPlateData(_this.plateType))
             .done(function (result) {
-                if (result && result.data) {
+                if (result && result.data && result.data.length > 0) {
                     var data = result.data;
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].windcode == _this.plateCode) {
@@ -192,18 +172,13 @@ var BankuaiDetailManagement = function () {
                             var stocks = data[i].stockslist;
                             for (var j = 0; j < stocks.length; j++) {
                                 _this.plateVM.stocks.push(new Stock(stocks[j].windcode, stocks[j].name));
-                                _this.plateVM.stocks()[j].isRecommend(true);
-                                var temp = {
-                                    uid: localStorage.uid,
-                                    stock_code: stocks[j].windcode
-                                };
-                                _this.codeList.push(temp);
+                                _this.codeList.push(stocks[j].windcode);
                             }
                         }
                     }
-                    //_this.getWordIconData();
+                    getSelftSelectEvent(_this.codeList);
                     for (var i = 0; i < _this.codeList.length ; i++) {
-                        getStockDetailAjax(_this.codeList[i].stock_code);
+                        getStockDetailAjax(_this.codeList[i]);
                     }
                 }
             }).fail(function () {
@@ -211,9 +186,36 @@ var BankuaiDetailManagement = function () {
                 console.log('fail');
             });
     };
-    function getStockPropertyAjax(arr) {
+    function array2urlstr(arr, codenameStr) {
+        var tempArr = [];
+        for (var i = 0; i < arr.length; i++) {
+            var str = codenameStr + "=" + arr[i];
+            tempArr.push(str);
+        }
+        return tempArr.join("&");
+    }
+    //查询 是否自选 事件
+    function getSelftSelectEvent(arr) {
+        var url = '/ihanzhendata/logicstocks/selfstocks/' + localStorage.uid;
+        var sendData = array2urlstr(arr, "stock_code");
         $('#my-modal-loading').modal('open');
-        return $.post('/', JSON.stringify(arr));
+        $.get(url, sendData, function (data) {
+            //$('#my-modal-loading').modal('close');
+            if (data && data.data) {
+                var stockList = data.data;
+                for (var i = 0; i < _this.plateVM.stocks().length; i++) {
+                    for (var j = 0; j < stockList.length; j++) {
+                        if (_this.plateVM.stocks()[i].stockCode() == stockList[j].stock_code) {
+                            _this.plateVM.stocks()[i].isSelfSelect(Boolean(parseInt(stockList[j].is_zxg)));
+                            _this.plateVM.stocks()[i].isEvent(Boolean(parseInt(stockList[j].is_logic)));
+                            break;
+                        }
+                    }
+                }
+            }
+        }).error(function () {
+            $('#my-modal-loading').modal('close');
+        });
     }
     function getStockDetailAjax(stockCode) {
         $('#my-modal-loading').modal('open');
@@ -231,19 +233,20 @@ var BankuaiDetailManagement = function () {
                         stars: stock.stars
                     }
                     _this.stockDetailsArr.push(temp);
-                    if (_this.stockDetailsArr.length==_this.codeList.length) {
-                        var arr=_this.stockDetailsArr;
-                        for (var i = 0; i < arr.length; i++) {
+                    if (_this.stockDetailsArr.length == _this.codeList.length) {
+                        var arr = _this.stockDetailsArr;
+                        for (var i = 0; i < _this.plateVM.stocks().length; i++) {
                             for (var j = 0; j < arr.length; j++) {
                                 if (_this.plateVM.stocks()[i].stockCode() == arr[j].stockCode) {
                                     _this.plateVM.stocks()[i].stars(arr[j].stars);
+                                    break;
                                 }
                             }
                         }
                         $('#my-modal-loading').modal('close');
                     }
                 }
-                
+
             }
         });
     }
