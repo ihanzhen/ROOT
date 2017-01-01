@@ -39,7 +39,7 @@
         str = str.replace(/yyyy|YYYY/, this.getFullYear());
         str = str.replace(/yy|YY/, (this.getYear() % 100) > 9 ? (this.getYear() % 100).toString() : '0' + (this.getYear() % 100));
 
-        str = str.replace(/MM/, this.getMonth() + 1 > 9 ? (this.getMonth() + 1).toString() : '0' + this.getMonth()+1);
+        str = str.replace(/MM/, this.getMonth() + 1 > 9 ? (this.getMonth() + 1).toString() : '0' + this.getMonth() + 1);
         str = str.replace(/M/g, this.getMonth() + 1);
 
         str = str.replace(/w|W/g, Week[this.getDay()]);
@@ -58,3 +58,27 @@
         return str;
     }
 }(jQuery));
+
+$(function () {
+    var loadingDiv = $('<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">' +
+                  '   <div class="am-modal-dialog" style="box-shadow:none;background:transparent">' +
+                  '      <div class="am-modal-bd">' +
+                  '         <span class="am-icon-spinner am-icon-spin"></span>' +
+                  '      </div>' +
+                  '   </div>' +
+                  '</div>');
+    $('body').append(loadingDiv);
+});
+window.stock = {};
+window.stock.loading = function (isShow) {
+    if (isShow) {
+        $('#my-modal-loading').modal('open');
+    } else {
+        $('#my-modal-loading').modal('close');
+    }
+}
+window.stock.logmsg = function (data) {
+    if (data) {
+        console.log(data.msg + ",status:" + data.status);
+    } 
+}

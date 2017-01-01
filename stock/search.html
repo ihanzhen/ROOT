@@ -25,14 +25,14 @@
           <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-px;"></i>
       </a>
       <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">
-        <input type="text" class="" placeholder="请输入股票名称 / 代码" />
+        搜索股票
       </span>
-  </div>
+  </div>    
   <div class="am-header-right am-header-nav">
-      <a href="" class="">
-        搜索
+      <a href="home.html">
+        回首页
       </a>
-  </div>     
+  </div>   
 </header>
 
 <!--tabs-->
@@ -83,68 +83,62 @@ em {
     background:#f05e4b !important;
     color:#ffffff !important;
 }
+.am-list-date-value-double {
+    z-index:-111111;
+    font-size: 1.3rem;
+    position: relative;
+    float:right;
+    border-radius: 4px;
+    top:-36px;
+    right:-30px;
+}
+.am-list-date-value-double-1 {
+    z-index:-111111;
+    font-size: 1.3rem;
+    position: relative;
+    float:right;
+    border-radius: 4px;
+    top:-26px;
+    right:-78px;
+}
+.color-grap{
+    color:#383838;
+}
 </style>
 
+<div data-am-widget="header" class="am-header am-header-default" style="background:#2c2c2c;height:40px">
+  <div class="am-header-left am-header-nav" style="background:#343434;height:30px;border-radius:3px;margin-top:5px">
+      <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999;position: relative;left:12px;top:-10px"></i>
+      <span style="font-size:1.8rem;padding-left: 10px;position: relative;top:-9px">
+        <input type="text" class="" placeholder="输入代码/名称/首字母" />
+      </span>
+  </div>
+  <div class="am-header-right am-header-nav" style="margin-top:-4px">
+      <a href="" class="">
+        搜索
+      </a>
+  </div>     
+</div>
+
 <div class="am-tabs-bd" style="">
-  <div class="am-list-news-bd" style="padding:0 10px">
-    <ul class="am-list">
-        <li class="am-g am-list-item-dated" style="border-top:0 none;">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-green am-list-date-1">看空</span>
-            <span class="am-list-date bg-grap am-list-date-2">详情</span>
-            <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-              <span style="color:#666"> / </span>+26.12<br>
-              <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-              <span class="am-icon-eye icon2"></span>&nbsp;
-              <span class="am-icon-bookmark icon2"></span>
-            </span>    
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">兰花科创<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">600123.SH</span>
-            </a> 
-            <span class="am-list-date bg-red am-list-date-1">看多</span>
-            <span class="am-list-date bg-grap am-list-date-2">详情</span>
-            <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-              <span style="color:#666"> / </span>-26.12<br>
-              <span id="c-date" style="color:#aaa">估值 : B　　　</span>
-              <span class="am-icon-eye icon2"></span>&nbsp;
-              <span class="am-icon-bookmark icon2"></span>
-            </span> 
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-orange am-list-date-1">看平</span>
-            <span class="am-list-date bg-grap am-list-date-2">详情</span>
-            <span class="am-list-date am-list-date-value-double" id="c-red">3058.51
-              <span style="color:#666"> / </span>-26.12<br>
-              <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-              <span class="am-icon-eye icon2"></span>&nbsp;
-              <span class="am-icon-bookmark icon2"></span>
-            </span> 
-        </li>
-        <li class="am-g am-list-item-dated">
-            <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-              <span style="position: relative;top:-6px">金科股份<br>
-              <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-            </a> 
-            <span class="am-list-date bg-green am-list-date-1">看空</span>
-            <span class="am-list-date bg-grap am-list-date-2">详情</span>
-            <span class="am-list-date am-list-date-value-double" id="c-green">3058.51
-              <span style="color:#666"> / </span>-26.12<br>
-              <span id="c-date" style="color:#aaa">估值 : A＋　　</span>
-              <span class="am-icon-eye icon2"></span>&nbsp;
-              <span class="am-icon-bookmark icon2"></span>
-            </span> 
-        </li>
-    </ul>
+  <div class="am-list-news-bd" style="padding:0 10px"> 
+      <ul class="am-list" data-bind="foreach:items">
+          <li class="am-g am-list-item-dated" style="border-top:none;border-bottom: 1px soild #000;height:50px">
+              <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:redirectClick">
+                  <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                  <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
+              </a>
+              <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
+              <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
+              <!--<span style="position: absolute;left: 130px;top: 10px;color:#aaa"><span data-bind="text:change"></span><span style="color:#666"> / </span><span data-bind="text:value"></span></span>-->
+              <span class="am-list-date am-list-date-value-double">
+                  <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><!--span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span-->
+              </span>
+              <span class="am-list-date am-list-date-value-double-1">
+                  <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><!--img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"--><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><!--img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"--><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><!--img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"--><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><!--img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()"-->
+              </span>
+          </li>
+      </ul>
   </div>
 </div>
 

@@ -5,7 +5,7 @@
     <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
     <script src="assets/js/head.js"></script>
-    <script src="assets/js/echarts.min.js"></script>
+    <link href="assets/css/tuijian_shijian.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <!-- Header -->
@@ -14,50 +14,16 @@
             <a href="javascript:history.back();">
                 <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
             </a>
-            <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">事件逻辑驱动股池</span>
+            <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">事件逻辑股池</span>
+        </div>
+        <div class="am-header-right am-header-nav" style="margin-right:40px;">
+            <a href="javascript:void(0);" class="">
+                <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#999" id="KEY_FRESH"></i>
+            </a>
         </div>
     </header>
     <script src="assets/js/menu.js"></script>
     <!-- List -->
-    <!--tabs-->
-    <style type="text/css">
-        .am-tabs-bd {
-            border: none;
-        }
-
-        .am-nav-tabs > li > a {
-            color: #aaa;
-        }
-
-        .am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {
-            background: none;
-            border: none;
-            color: #fff;
-            margin-top: 1px;
-            margin-left: 1px;
-            font-weight: bold;
-        }
-
-        .am-tabs-nav > li {
-            background: none;
-            text-align: center;
-        }
-
-            .am-tabs-nav > li > a {
-                position: relative;
-                top: -8px;
-            }
-
-        .am-nav-tabs {
-            border: none;
-        }
-
-        .am-list > li {
-            background: none;
-            border-color: #444;
-        }
-    </style>
-
     <div id="shijian-container" class="am-tabs" data-am-tabs style="margin-top:10px">
         <div class="am-tabs-bd">
             <div style="padding:0 10px;margin-top:-10px">
@@ -66,13 +32,20 @@
                         <li class="am-g am-list-item-dated">
                             <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:redirectClick">
                                 <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
-                                <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                                <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
                             <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
-                            <span data-bind="text:logicName" style=" position: absolute;left: 120px;top: 10px;"></span>
-                            <!--<span class="am-list-date am-list-date-value-double" style="top:8px" id="c-red">强势板块<span id="c-date" style="color:#aaa"><span style="background:#666"> / </span>板块组一<span style="color:#666"> / </span>板块组二<br>板块组三<span style="color:#666"> / </span>板块组四<span style="color:#666"> / </span>板块组五</span></span>-->
+                            <span data-bind="text:logicName" class="am-list-date-value-double-1" style="font-size:11px;right:-55px;margin-top:1px"></span>
+                            <span class="am-list-date am-list-date-value-double" style="right:0 !important;">
+                                <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
+                            </span>
+                            <span class="am-list-date am-list-date-value-double-1" style="right:0 !important;">
+                                <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                            </span>
                         </li>
                     </ul>
+                    <div class="loadspan"><span class="am-icon-spinner am-icon-spin" style="height:40px"></span></div>
+                    <div class="nomore">没有更多可以显示的内容</div>
                 </div>
             </div>
         </div>
@@ -111,15 +84,6 @@
             <div class="am-modal-bd" data-bind="text:notice"></div>
             <div class="am-modal-footer">
                 <span class="am-modal-btn" data-am-modal-confirm style="color:#fff">确定</span>
-            </div>
-        </div>
-    </div>
-    <!-- Loading -->
-    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
-        <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
-            <!--div class="am-modal-hd">正在载入...</div-->
-            <div class="am-modal-bd">
-                <span class="am-icon-spinner am-icon-spin"></span>
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@ function HomePage() {
         if (!!_this.accessToken && !!_this.openId) {
             localStorage.openId = _this.openId;
             localStorage.accessToken = _this.accessToken;
+            window.location.href = "home.html";
         }
         if (localStorage.openId) {
             _this.wxcheck();

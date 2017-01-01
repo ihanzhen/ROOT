@@ -26,7 +26,7 @@ var BankuaiManagement = function () {
         this.plateCode = plateCode;
         this.plateName = ko.observable(plateName);
         this.stocks = ko.observableArray([]);
-        this.plateType = plateType;//'recommend'or 'strong' or'anticipation'
+        this.plateType = plateType;//'strong' or'anticipation'
         this.detailsClick = function (item) {
             window.location.href = "bankuai_details.html?plateType=" + item.plateType + "&plateCode=" + item.plateCode;
         }
@@ -61,24 +61,24 @@ var BankuaiManagement = function () {
     _this.updateStrongPlateAsync = function () {
         $('#my-modal-loading').modal('open');
         return $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/',
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/0',
             dataType: "jsonp",
             jsonpCallback: "jsonpcallback",
             timeout: 5000,
             type: "GET",
-            success: function (data) {}
+            success: function (data) { }
         });
     }
     _this.updateAnticipationPlateAsync = function () {
         $('#my-modal-loading').modal('open');
         return $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/',
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/0',
             contentType: "application/javascript",
             dataType: "jsonp",
             jsonpcallback: "jsonpcallback",
             timeout: 5000,
             type: "GET",
-            success: function (data) {}
+            success: function (data) { }
         });
     }
 
@@ -100,19 +100,22 @@ var BankuaiManagement = function () {
     function handleRecommendData(data) {
         var length = data.length < 3 ? data.length : 3;
         for (var i = 0; i < length; i++) {
-            var plate = new Plate(data[i].plate_id, data[i].plate_name, 'recommend');
-            var stockLength = data[i].stocks.length < 3 ? data[i].stocks.length : 3;
-            for (var j = 0; j < stockLength; j++) {
-                var apiStock = data[i].stocks[j];
-                var stock = new Stock(apiStock.headstock_code, apiStock.headstock_name);
-                plate.stocks.push(stock);
-                var temp = {
-                    uid: localStorage.uid,
-                    stock_code: apiStock.headstock_code
-                };
-                stock.isValueble(Boolean(parseInt(apiStock.is_jzg)));
-                stock.isSelfSelect(Boolean(parseInt(apiStock.is_zxg)));
-                stock.isRecommend(Boolean(parseInt(apiStock.is_tjg)));
+            var platetype = data[i].type == "蓄势版块" ? 'anticipation' : 'strong';
+            var plate = new Plate(data[i].plate_id, data[i].plate_name, platetype);
+            if (data[i].stocks && data[i].stocks.length > 0) {
+                var stockLength = data[i].stocks.length < 3 ? data[i].stocks.length : 3;
+                for (var j = 0; j < stockLength; j++) {
+                    var apiStock = data[i].stocks[j];
+                    var stock = new Stock(apiStock.headstock_code, apiStock.headstock_name);
+                    plate.stocks.push(stock);
+                    var temp = {
+                        uid: localStorage.uid,
+                        stock_code: apiStock.headstock_code
+                    };
+                    stock.isValueble(Boolean(parseInt(apiStock.is_jzg)));
+                    stock.isSelfSelect(Boolean(parseInt(apiStock.is_zxg)));
+                    stock.isRecommend(Boolean(parseInt(apiStock.is_tjg)));
+                }
             }
             _this.recommendVM.plates.push(plate);
         }
@@ -121,17 +124,19 @@ var BankuaiManagement = function () {
         var length = data.length < 6 ? data.length : 6;
         for (var i = 0; i < length; i++) {
             var plate = new Plate(data[i].windcode, data[i].name, 'strong');
-            var stockLength = data[i].stockslist.length < 3 ? data[i].stockslist.length : 3;
-            for (var j = 0; j < stockLength; j++) {
-                var apiStock = data[i].stockslist[j];
-                var stock = new Stock(apiStock.windcode, apiStock.name);
-                plate.stocks.push(stock);
-                var temp = {
-                    uid: localStorage.uid,
-                    stock_code: apiStock.windcode
-                };
-                stock.isRecommend(true);
-                _this.strongCodeList.push(temp);
+            if (data[i].stockslist && data[i].stockslist.length > 0) {
+                var stockLength = data[i].stockslist.length < 3 ? data[i].stockslist.length : 3;
+                for (var j = 0; j < stockLength; j++) {
+                    var apiStock = data[i].stockslist[j];
+                    var stock = new Stock(apiStock.windcode, apiStock.name);
+                    plate.stocks.push(stock);
+                    var temp = {
+                        uid: localStorage.uid,
+                        stock_code: apiStock.windcode
+                    };
+                    stock.isRecommend(true);
+                    _this.strongCodeList.push(temp);
+                }
             }
             _this.strongVM.plates.push(plate);
         }
@@ -140,17 +145,19 @@ var BankuaiManagement = function () {
         var length = data.length < 3 ? data.length : 3;
         for (var i = 0; i < length; i++) {
             var plate = new Plate(data[i].windcode, data[i].name, 'anticipation');
-            var stockLength = data[i].stockslist.length < 3 ? data[i].stockslist.length : 3;
-            for (var j = 0; j < stockLength; j++) {
-                var apiStock = data[i].stockslist[j];
-                var stock = new Stock(apiStock.windcode, apiStock.name);
-                plate.stocks.push(stock);
-                var temp = {
-                    uid: localStorage.uid,
-                    stock_code: apiStock.windcode
-                };
-                stock.isRecommend(true);
-                _this.anticipationCodeList.push(temp);
+            if (data[i].stockslist && data[i].stockslist.length > 0) {
+                var stockLength = data[i].stockslist.length < 3 ? data[i].stockslist.length : 3;
+                for (var j = 0; j < stockLength; j++) {
+                    var apiStock = data[i].stockslist[j];
+                    var stock = new Stock(apiStock.windcode, apiStock.name);
+                    plate.stocks.push(stock);
+                    var temp = {
+                        uid: localStorage.uid,
+                        stock_code: apiStock.windcode
+                    };
+                    stock.isRecommend(true);
+                    _this.anticipationCodeList.push(temp);
+                }
             }
             _this.anticipationVM.plates.push(plate);
         }
@@ -171,7 +178,7 @@ var BankuaiManagement = function () {
     _this.getPlateData = function () {
         $('#my-modal-loading').modal('open');
         $.when(getRecommendPlate(), _this.updateStrongPlateAsync(), _this.updateAnticipationPlateAsync())
-            .done(function (recommendResult, strongResult,anticipationResult) {
+            .done(function (recommendResult, strongResult, anticipationResult) {
                 var recommendData = JSON.parse(recommendResult[2].responseText).data;
                 var strongData = strongResult[0].data;
                 var anticipationData = anticipationResult[0].data;

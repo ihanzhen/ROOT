@@ -1,4 +1,4 @@
-    ul,li{margin:0;padding:0} 
+   ul,li{margin:0;padding:0} 
     #scrollDiv{height:25px;line-height:25px;overflow:hidden;} 
     #scrollDiv li{padding-left:10px;margin-top:-5px;} 
     .am-btn-primary,.am-btn-primary:focus,.am-btn-primary:hover,.am-btn-primary:active{background: none;border:0 none;color: #fff;}
@@ -29,7 +29,6 @@
     .span-top4{position:relative;top:-2px}
     .span-f18{font-size:18px}
     .icon-red{color:#dd514c}
-    .icon-yellow{color:#ebd842}
     .tip-red{background:#dd514c;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:1px 2px}
     .mgn-top7{margin-top:-3px}
     .mgn-top2{margin-top:-2px}
@@ -55,46 +54,4 @@
     .bg-b{background:#373737}
     .f08rem{font-size:0.8rem;}
     .h23{height:23px;}
-    .fc-a{color:#e74c3c;font-size:13px;}     
-    .progressbar_1 {
-    background-color: #393939;
-    height: 22px;
-    width: 70%;
-    border: 3px solid #393939;
-    color: #222;
-    border-radius: 15px;
-    }
-
-    .progressbar_1 .bar {
-        background-color: #393939;
-        height: 16px;
-        width: 0;
-        border-radius: 15px;
-        line-height: 17px;
-        /*background-image: -moz-linear-gradient(top, #dd514c, #d83832);
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #dd514c), color-stop(1, #d83832));
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dd514c', endColorstr='#d83832', GradientType='0');*/
-        /*linear-gradient(-90deg, rgba(255,255,255,0.5)0%, #324512 60%,#000 100%);*/
-        background-color: transparent;
-        background-image: -webkit-linear-gradient(45deg, #2c9ef7, #d83832);
-        background-image: -moz-linear-gradient(45deg, #2c9ef7, #d83832);
-        background-image: -o-linear-gradient(45deg, #2c9ef7, #d83832);
-        background-image: -ms-linear-gradient(45deg, #2c9ef7, #d83832);
-        background-image: linear-gradient(45deg, #2c9ef7, #d83832); 
-        box-shadow: inset 0 -10px 5px rgba(0, 0, 0, 0.3);           
-    }
-    .barDiv {
-    font-size: 1.3rem;
-    color: #fff;
-}
-
-.proposalBar {
-    width: 60%;
-    text-align: center;
-    padding-left: 0px;
-    color: #fff;
-    text-shadow:0px 0px 1px #444;
-}
-.centerBar {
-    margin: 0 auto !important;
-}
+    .fc-a{color:#e74c3c;font-size:13px;} 

@@ -4,20 +4,24 @@
 })
 var JishuManagement = function () {
     var _this = this;
+    _this.pageNumber = 1; //设置当前页数，全局变量  
     _this.codeList = [];
-    _this.stockDetailsArr = [];
     var jishuVM = {
         tabVM: {
             strongClick: function () {
+                $('.nomore').hide();
+                _this.pageNumber = 1; //设置当前页数，全局变量  
+                $(window).scroll(scrollHandler);
                 jishuVM.strongVM.items([]);
                 _this.codeList = [];
-                _this.stockDetailsArr = [];
                 getStrongList();
             },
             readyClick: function () {
+                $('.nomore').hide();
+                _this.pageNumber = 1; //设置当前页数，全局变量  
+                $(window).scroll(scrollHandler);
                 jishuVM.readyVM.items([]);
                 _this.codeList = [];
-                _this.stockDetailsArr = [];
                 getReadyList();
             },
             volClick: function () {
@@ -52,14 +56,14 @@ var JishuManagement = function () {
         thirdMark: ko.observable(''),
         cancelClick: function () { },
         confirmClick: function () {
-            $('#my-modal-loading').modal('open');
+            window.stock.loading(true);
             $.post('/ihanzhendata/selfStock/saveSelfStock', {
                 uid: localStorage.uid,
                 stock_code: _this.confirmVM.stockCode,
                 stock_name: _this.confirmVM.stockName,
                 b_zx: _this.confirmVM.select()
             }, function (data) {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 if (data.status == 1) {
                     _this.noticeVM.notice('添加自选成功！');
                     $('#notice-alert').modal('open');
@@ -78,7 +82,7 @@ var JishuManagement = function () {
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 _this.noticeVM.notice('添加自选失败！');
                 $('#notice-alert').modal('open');
             });
@@ -91,15 +95,13 @@ var JishuManagement = function () {
         this.isTechnology = ko.observable(false);
         this.isFundamental = ko.observable(false);
         this.isEvent = ko.observable(false);
-        //this.change = ko.observable(change);
-        //this.value = ko.observable(value);
         this.stars = ko.observable(0);
         this.redirectClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode() + "&stockName=" + item.sname();
         };
         this.selectClick = function (item) {
             if (item.isSelfSelect()) {
-                $('#my-modal-loading').modal('open');
+                window.stock.loading(true);
                 $.ajax({
                     url: '/ihanzhendata/selfStock/deleteSelfStock',
                     method: 'POST',
@@ -108,7 +110,7 @@ var JishuManagement = function () {
                         stock_code: item.scode()
                     },
                     success: function (result) {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                         if (result && result.status == 1) {
                             _this.noticeVM.notice('自选股删除成功！');
                             $('#notice-alert').modal('open');
@@ -125,7 +127,7 @@ var JishuManagement = function () {
                         }
                     },
                     error: function () {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                         _this.noticeVM.notice('自选股删除失败！');
                         $('#notice-alert').modal('open');
                     }
@@ -140,9 +142,9 @@ var JishuManagement = function () {
                     $('#confirm-alert').modal();
                 }
                 else {
-                    $('#my-modal-loading').modal('open');
+                    window.stock.loading(true);
                     $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                         if (data && data.data) {
                             var bzdata = data.data;
                             _this.confirmVM.firstMark(bzdata.s_zx1);
@@ -151,16 +153,16 @@ var JishuManagement = function () {
                         }
                         $('#confirm-alert').modal();
                     }).error(function () {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                     });
                 }
             }
         }
     }
     function getStrongList() {
-        $('#my-modal-loading').modal('open');
+        $('.loadspan').show();
         $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksstrong/',
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksstrong/' + _this.pageNumber,
             dataType: "jsonp",
             jsonpcallback: "jsonpcallback",
             timeout: 5000,
@@ -174,21 +176,25 @@ var JishuManagement = function () {
                         _this.codeList.push(arr[i].windcode);
                     }
                     getSelftSelectEvent(_this.codeList);
-                    for (var i = 0; i < _this.codeList.length ; i++) {
-                        getStockDetailAjax(_this.codeList[i]);
-                    }
-                } else {
-                    $('#my-modal-loading').modal('close');
+                    getLabelStars(_this.codeList);
+                } else if (data && data.data && data.data.length == 0) {
+                    $('.loadspan').hide();
+                    $(window).unbind('scroll');
+                    $('.nomore').show();
                 }
             }
         }).error(function () {
-            $('#my-modal-loading').modal('close');
+            $('.loadspan').hide();
         });
+        _this.pageNumber++;
+        if (_this.pageNumber == 2) {
+            getStrongList();
+        }
     };
     function getReadyList() {
-        $('#my-modal-loading').modal('open');
-        return $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksready/',
+        $('.loadspan').show();
+        $.ajax({
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksready/' + _this.pageNumber,
             dataType: "jsonp",
             jsonpcallback: "jsonpcallback",
             timeout: 5000,
@@ -202,16 +208,20 @@ var JishuManagement = function () {
                         _this.codeList.push(arr[i].windcode);
                     }
                     getSelftSelectEvent(_this.codeList);
-                    for (var i = 0; i < _this.codeList.length ; i++) {
-                        getStockDetailAjax(_this.codeList[i]);
-                    }
-                } else {
-                    $('#my-modal-loading').modal('close');
+                    getLabelStars(_this.codeList);
+                } else if (data && data.data && data.data.length == 0) {
+                    $('.loadspan').hide();
+                    $(window).unbind('scroll');
+                    $('.nomore').show();
                 }
             }
         }).error(function () {
-            $('#my-modal-loading').modal('close');
+            $('.loadspan').hide();
         });
+        _this.pageNumber++;
+        if (_this.pageNumber == 2) {
+            getReadyList();
+        }
     };
     function array2urlstr(arr, codenameStr) {
         var tempArr = [];
@@ -221,13 +231,52 @@ var JishuManagement = function () {
         }
         return tempArr.join("&");
     }
+    //查询是否是技术面股池和星级和是否是基本面股池
+    function getLabelStars(arr) {
+        $('.loadspan').show();
+        $.ajax({
+            url: 'http://119.164.253.142:3307/api/v1.0/stockslabel/?' + array2urlstr(arr, 'windcode'),
+            dataType: "jsonp",
+            jsonpcallback: "jsonpcallback",
+            timeout: 5000,
+            type: "GET",
+            success: function (data) {
+                if (data && data.data) {
+                    $('.loadspan').hide();
+                    var resultArr = data.data;
+                    var tab = $('div.am-in.am-active')[0].id;
+                    var vm = null;
+                    switch (tab) {
+                        case 'tab1': vm = jishuVM.strongVM; break;
+                        case 'tab2': vm = jishuVM.readyVM; break;
+                        case 'tab3': vm = jishuVM.volVM; break;
+                        case 'tab4': vm = jishuVM.centerVM; break;
+                    }
+                    for (var i = 0; i < vm.items().length; i++) {
+                        for (var j = 0; j < resultArr.length; j++) {
+                            if (vm.items()[i].scode() == resultArr[j].windcode) {
+                                vm.items()[i].stars(resultArr[j].stars);
+                                vm.items()[i].isTechnology(Boolean(resultArr[j].is_jishu));
+                                vm.items()[i].isFundamental(Boolean(resultArr[j].is_jiben));
+                                break;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }).error(function () {
+            console.log('error');
+            $('.loadspan').hide();
+        });
+    }
     //查询 是否自选 事件
     function getSelftSelectEvent(arr) {
         var url = '/ihanzhendata/logicstocks/selfstocks/' + localStorage.uid;
         var sendData = array2urlstr(arr, "stock_code");
-        $('#my-modal-loading').modal('open');
+        $('.loadspan').show();
         $.get(url, sendData, function (data) {
-            //$('#my-modal-loading').modal('close');
+            //window.stock.loading(false);
             if (data && data.data) {
                 var stockList = data.data;
                 var tab = $('div.am-in.am-active')[0].id;
@@ -243,63 +292,41 @@ var JishuManagement = function () {
                         if (vm.items()[i].scode() == stockList[j].stock_code) {
                             vm.items()[i].isSelfSelect(Boolean(parseInt(stockList[j].is_zxg)));
                             vm.items()[i].isEvent(Boolean(parseInt(stockList[j].is_logic)));
-                             break;
+                            break;
                         }
                     }
                 }
             }
         }).error(function () {
-            $('#my-modal-loading').modal('close');
+            $('.loadspan').hide();
         });
     }
-    function getStockDetailAjax(stockCode) {
-        $('#my-modal-loading').modal('open');
-        $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksbasic/' + stockCode,
-            dataType: "jsonp",
-            jsonpcallback: "jsonpcallback",
-            timeout: 5000,
-            type: "GET",
-            success: function (data) {
-                if (data && data.data) {
-                    var stock = data.data;
-                    var temp = {
-                        stockCode: stockCode,
-                        stars: stock.stars
-                    }
-                    _this.stockDetailsArr.push(temp);
-                    if (_this.stockDetailsArr.length == _this.codeList.length) {
-                        $('#my-modal-loading').modal('close');
-                        var arr = _this.stockDetailsArr;
-                        var tab = $('div.am-in.am-active')[0].id;
-                        var vm = null;
-                        switch (tab) {
-                            case 'tab1': vm = jishuVM.strongVM; break;
-                            case 'tab2': vm = jishuVM.readyVM; break;
-                            case 'tab3': vm = jishuVM.volVM; break;
-                            case 'tab4': vm = jishuVM.centerVM; break;
-                        }
-                        for (var i = 0; i < vm.items().length; i++) {
-                            for (var j = 0; j < arr.length; j++) {
-                                if (vm.items()[i].scode() == arr[j].stockCode) {
-                                    vm.items()[i].stars(arr[j].stars);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-
-            }
-        }).error(function () {
-            console.log('error');
-            $('#my-modal-loading').modal('close');
-        });
-    };
     _this.init = function () {
+        $("#KEY_FRESH").click(function () {
+            window.location.reload();//刷新当前页面.
+        });
         ko.applyBindings(jishuVM, $('#jishu-container')[0]);
         ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
         ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
-        getStrongList();
+        jishuVM.tabVM.strongClick();
     }
+    //==============上拉加载核心代码=============  
+    var winH = $(window).height(); //页面可视区域高度   
+    var scrollHandler = function () {
+        var pageH = $(document.body).height();
+        var scrollT = $(window).scrollTop(); //滚动条top   
+        var aa = (pageH - winH - scrollT) / winH;
+        if (aa < 0.02) {//0.02是个参数  
+            var tab = $('div.am-in.am-active')[0].id;
+            if (tab == 'tab1') {
+                getStrongList();
+            } else if (tab == 'tab2') {
+                getReadyList();
+            }
+
+        }
+    }
+    //定义鼠标滚动事件  
+    $(window).scroll(scrollHandler);
+    //==============上拉加载核心代码=============  
 }

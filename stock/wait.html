@@ -5,6 +5,7 @@
     <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
   <script src="assets/js/head.js"></script>
+    <link type="text/css" rel="stylesheet" href="assets/css/wait.css" />
 </head>
 <body>
 <!-- Header -->
@@ -14,9 +15,26 @@
         <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
       </a>
   </div>  
-  <h1 class="am-header-title">
-    <a href="#title-link">至赢<span class="color-red">┽</span>禅心</a>
-  </h1>
+    <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
+        <button class="am-btn am-btn-primary am-dropdown-toggle mgn-top7" data-am-dropdown-toggle>
+            <span class="span-top4">
+                <img src="assets/images/hanzhenfff.svg" class="h20" />
+            </span>
+            <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
+            <span class="am-badge-danger am-radius tip-red">A股量化</span>
+            <span class="am-icon-caret-down"></span>
+        </button>
+        <ul class="mdl1 am-dropdown-content zindexmax">
+            <li><a href="/stock/home.html"><span class="combox">沪深A股</span></a></li>
+            <li><a href="/futures/index.html"><span class="combox">国内大宗商品</span></a></li>
+            <li><a href="/stockfutures/index.html"><span class="combox">股指期货</span></a></li>
+            <li><a href="/xauusd/index.html"><span class="combox">现货贵金属</span></a></li>
+            <li><a href="/usoil/index.html"><span class="combox">现货原油</span></a></li>
+            <li><a href="/usstocketf/index.html"><span class="combox">美股ETF</span></a></li>
+            <li><a href="/astockoption/index.html"><span class="combox">A股期权</span></a></li>
+            <li><a href="shipanriji.html"><span class="combox">我的实盘日记</span> <span class="am-badge-danger am-radius tip-red">免费</span> </a></li>
+        </ul>
+    </div>
   <div class="am-header-right am-header-nav" style="/*margin-right:40px*/">
       <a href="#left-link" class="">
         <i class="am-header-icon am-icon-refresh" style="font-size:1.6rem;color:#999"></i>
@@ -53,18 +71,26 @@ transition: transform 0.0001s;
 }
 #c-date{
   position: relative;
-  top:1px;
   color:#999;
+  right:57px;
+  top:15px;
 }
+#c-tip{
+  position:relative;
+  right:-16px;
+  top:2px;
+}
+#c-font{font-size:14px;}
 </style>
+
 
 <div class="am-tabs" data-am-tabs>
   <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0" data-am-sticky="{top:49}">
-    <li class="am-active" style="height:25px"><a href="#tab1"><span class="am-icon-eye color-red"></span> 买入建仓</a></li>
-    <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px"><a href="#tab2"><span class="am-icon-eye color-green"></span> 卖出平仓</a></li>
+    <li class="am-active" style="height:25px"><a href="#tab1"><span class="am-icon-sign-in color-red" style="margin-right:5px"></span>买入预警</a></li>
+    <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px"><a href="#tab2"><span class="am-icon-sign-out color-green" style="margin-right:3px"></span>卖出预警</a></li>
   </ul>
 
-  <div class="am-tabs-bd" style="margin-top:7px">
+  <div class="am-tabs-bd" style="margin-top:5px">
     <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="background:#3d3d3d"> 
       <div class="am-list-news-bd">
         <ul class="am-list">
@@ -73,14 +99,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-grap am-list-date-1">关注</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-red am-list-date-2">关注</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span>    
             </li>
             <li class="am-g am-list-item-dated">
@@ -88,14 +110,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">兰花科创<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">600123.SH</span>
                 </a> 
-                <span class="am-list-date bg-red am-list-date-1">等待</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-orange am-list-date-2">等待</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -103,14 +121,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-orange am-list-date-1">准备</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">建仓价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -118,14 +132,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -133,14 +143,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -148,14 +154,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -163,14 +165,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -178,14 +176,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -193,14 +187,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -208,14 +198,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -223,14 +209,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
             <li class="am-g am-list-item-dated">
@@ -238,14 +220,10 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">建仓</span>
-                <span class="am-list-date bg-grap am-list-date-2">建仓</span>
+                <span class="am-list-date bg-green am-list-date-2">建仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
+                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
                 </span> 
             </li>
         </ul>
@@ -260,60 +238,44 @@ transition: transform 0.0001s;
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">等待</span>
-                <span class="am-list-date bg-grap am-list-date-2">平仓</span>
+                <span class="am-list-date bg-green am-list-date-2">平仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-green">
-                  <span id="c-tip">卖出价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
+                  <span id="c-tip">卖出价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
+                </span>  
             </li>
             <li class="am-g am-list-item-dated">
                 <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">等待</span>
-                <span class="am-list-date bg-grap am-list-date-2">平仓</span>
+                <span class="am-list-date bg-green am-list-date-2">平仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-green">
-                  <span id="c-tip">卖出价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
+                  <span id="c-tip">卖出价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
+                </span>  
             </li>
             <li class="am-g am-list-item-dated">
                 <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">等待</span>
-                <span class="am-list-date bg-grap am-list-date-2">平仓</span>
+                <span class="am-list-date bg-green am-list-date-2">平仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-green">
-                  <span id="c-tip">卖出价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
+                  <span id="c-tip">卖出价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
+                </span>  
             </li>
             <li class="am-g am-list-item-dated">
                 <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
                   <span style="position: relative;top:-6px">金科股份<br>
                   <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
                 </a> 
-                <span class="am-list-date bg-green am-list-date-1">等待</span>
-                <span class="am-list-date bg-grap am-list-date-2">平仓</span>
+                <span class="am-list-date bg-green am-list-date-2">平仓</span>
                 <span class="am-list-date am-list-date-value-double" id="c-green">
-                  <span id="c-tip">卖出价</span> 56.51<br>
-                  <span id="c-date">08-25 10:23:15</span>&nbsp;
-                  <span class="am-icon-eye icon2"></span>
-                  <span class="am-icon-star icon2"></span>
-                  <span class="am-icon-bookmark icon2"></span>
-                </span> 
+                  <span id="c-tip">卖出价 <span id="c-font">56.51</span></span> 
+                  <span id="c-date">08-25 10:23:15</span>
+                </span>  
             </li>
         </ul>
       </div> 

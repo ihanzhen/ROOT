@@ -6,20 +6,6 @@
     <script src="assets/js/verifylogin.js"></script>
     <script src="assets/js/head.js"></script>
     <link rel="stylesheet" href="assets/css/trade.css" type="text/css" />
-    <style>
-        * {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        input {
-            -webkit-user-select: auto; /*webkit浏览器*/
-        }
-    </style>
 </head>
 <body>
 
@@ -30,19 +16,36 @@
                 <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
             </a>
         </div>
-        <h1 class="am-header-title">
-            <a href="javascript:void(0);">至赢<span class="color-red">┽</span>禅心</a>
-        </h1>
+        <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
+            <button class="am-btn am-btn-primary am-dropdown-toggle mgn-top7" data-am-dropdown-toggle>
+                <span class="span-top4">
+                    <img src="assets/images/hanzhenfff.svg" class="h20" />
+                </span>
+                <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
+                <span class="am-badge-danger am-radius tip-red">A股量化</span>
+                <span class="am-icon-caret-down"></span>
+            </button>
+            <ul class="mdl1 am-dropdown-content zindexmax">
+                <li><a href="/stock/home.html"><span class="combox">沪深A股</span></a></li>
+                <li><a href="/futures/index.html"><span class="combox">国内大宗商品</span></a></li>
+                <li><a href="/stockfutures/index.html"><span class="combox">股指期货</span></a></li>
+                <li><a href="/xauusd/index.html"><span class="combox">现货贵金属</span></a></li>
+                <li><a href="/usoil/index.html"><span class="combox">现货原油</span></a></li>
+                <li><a href="/usstocketf/index.html"><span class="combox">美股ETF</span></a></li>
+                <li><a href="/astockoption/index.html"><span class="combox">A股期权</span></a></li>
+                <li><a href="shipanriji.html"><span class="combox">我的实盘日记</span> <span class="am-badge-danger am-radius tip-red">免费</span> </a></li>
+            </ul>
+        </div>
         <div id="settingBtn" class="am-header-right am-header-nav" style="/*margin-right:40px*/">
             <a href="#left-link" class="">
                 <i class="am-header-icon am-icon-cog" style="font-size:1.8rem;color:#999"></i>
             </a>
         </div>
-        <div id="refreshBtn" class="am-header-right am-header-nav" style="margin-right:40px">
+        <!--div id="refreshBtn" class="am-header-right am-header-nav" style="margin-right:40px">
             <a href="#left-link" class="">
                 <i class="am-header-icon am-icon-refresh" style="font-size:1.6rem;color:#999"></i>
             </a>
-        </div>
+        </div-->
     </header>
 
     <!-- Menu -->
@@ -70,25 +73,22 @@
             </li>
         </ul>
 
-        <div class="am-tabs-bd" style="margin-top:7px">
+        <div class="am-tabs-bd" style="margin-top:0px">
             <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="background:#3d3d3d">
                 <div class="am-list-news-bd">
                     <ul class="am-list" data-bind="foreach:firstStocks">
-                        <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstart:touchStart,ontouchstartBubble:false}">
+                        <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstartBubble:false}">
                             <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:detailsClick">
                                 <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
-                                <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                                <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
-                            <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
-                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                             <span class="am-list-date am-list-date-value-double">
-                                <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
-                                <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
-                                <span id="c-date" style="color:#aaa;">估值 : <span data-bind="text:valuation">A＋</span>　　</span>
-                                <span class="am-icon-eye icon2" data-bind="visible:isSelect"></span>&nbsp;
-                                <span class="am-icon-star icon2" data-bind="visible:isRecommend"></span>&nbsp;
-                                <span class="am-icon-bookmark icon2" data-bind="visible:isValuable"></span>
+                                <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
                             </span>
+                            <span class="am-list-date am-list-date-value-double-1">
+                                <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                            </span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                         </li>
                     </ul>
                     <div class="loadspan"><span class="am-icon-spinner am-icon-spin"></span></div>
@@ -98,21 +98,18 @@
             <div class="am-tab-panel am-fade" id="tab2" style="background:#3d3d3d">
                 <div class="am-list-news-bd">
                     <ul class="am-list" data-bind="foreach:secondStocks">
-                        <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstart:touchStart,ontouchstartBubble:false}">
+                        <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstartBubble:false}">
                             <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:detailsClick">
                                 <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
-                                <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                                <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
-                            <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
-                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                             <span class="am-list-date am-list-date-value-double">
-                                <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
-                                <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
-                                <span id="c-date" style="color:#aaa;">估值 : <span data-bind="text:valuation">A＋</span>　　</span>
-                                <span class="am-icon-eye icon2" data-bind="visible:isSelect"></span>&nbsp;
-                                <span class="am-icon-star icon2" data-bind="visible:isRecommend"></span>&nbsp;
-                                <span class="am-icon-bookmark icon2" data-bind="visible:isValuable"></span>
+                                <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
                             </span>
+                            <span class="am-list-date am-list-date-value-double-1">
+                                <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                            </span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                         </li>
                     </ul>
                     <div class="loadspan"><span class="am-icon-spinner am-icon-spin"></span></div>
@@ -122,21 +119,18 @@
             <div class="am-tab-panel am-fade" id="tab3" style="background:#3d3d3d">
                 <div class="am-list-news-bd">
                     <ul class="am-list" data-bind="foreach:thirdStocks">
-                        <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstart:touchStart,ontouchstartBubble:false}">
+                        <li class="am-g am-list-item-dated" style="border-top:0 none;" data-bind="event:{mousedown:stockMouseDown,mouseout:stockMouseOut,mouseup:stockMouseUp,mousedownBubble:false,ontouchstartBubble:false}">
                             <a href="javascript:void(0);" class="am-list-item-hd" style="height:45px" data-bind="click:detailsClick">
                                 <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
-                                <span style="font-size:11px;position: relative;top:-11px;color:#777" data-bind="text:scode">000656.SH</span>
+                                <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
-                            <span class="am-list-date bg-green am-list-date-1" data-bind="text:trend">看空</span>
-                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                             <span class="am-list-date am-list-date-value-double">
-                                <span data-bind="text:price,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">3058.51</span>
-                                <span style="color:#666"> / </span><span data-bind="text:priceChange,style:{color:priceChange<0?'#27ae60':'#e74c3c'}">+26.12</span><br>
-                                <span id="c-date" style="color:#aaa;">估值 : <span data-bind="text:valuation">A＋</span>　　</span>
-                                <span class="am-icon-eye icon2" data-bind="visible:isSelect"></span>&nbsp;
-                                <span class="am-icon-star icon2" data-bind="visible:isRecommend"></span>&nbsp;
-                                <span class="am-icon-bookmark icon2" data-bind="visible:isValuable"></span>
+                                <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
                             </span>
+                            <span class="am-list-date am-list-date-value-double-1">
+                                <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                            </span>
+                            <span class="am-list-date bg-grap am-list-date-2" data-bind="click:detailsClick">详情</span>
                         </li>
                     </ul>
                     <div class="loadspan"><span class="am-icon-spinner am-icon-spin"></span></div>
@@ -149,27 +143,15 @@
     <div class="am-modal am-modal-confirm" tabindex="-1" id="confirm-alert">
         <div class="am-modal-dialog">
             <div class="am-modal-hd">备注设置</div>
-            <div class="am-modal-bd">
-                <p>请输入最多7个字的备注：</p>
-                <ul class="am-list">
-                    <li style="text-align:left;padding-left:20px;"><span>自选1：</span>&nbsp;&nbsp;<input data-bind="value:firstMark" /></li>
-                    <li style="text-align:left;padding-left:20px;"><span>自选2：</span>&nbsp;&nbsp;<input data-bind="value:secondMark" /></li>
-                    <li style="text-align:left;padding-left:20px;"><span>自选3：</span>&nbsp;&nbsp;<input data-bind="value:thirdMark" /></li>
-                </ul>
-                <p>您是否确定保存以上设置？</p>
+            <div class="am-modal-bd" style="list-style: none;line-height:40px">
+                <li style="text-align:left;padding-left:20px;"><input data-bind="value:firstMark" placeholder="自选 1" /></li>
+                <li style="text-align:left;padding-left:20px;"><input data-bind="value:secondMark" placeholder="自选 2" /></li>
+                <li style="text-align:left;padding-left:20px;"><input data-bind="value:thirdMark" placeholder="自选 3" /></li>
+                <li>备注限7个字，确认保存？</li>
             </div>
             <div class="am-modal-footer">
                 <span class="am-modal-btn">取消</span>
                 <span class="am-modal-btn" data-bind="click:confirmClick">确定</span>
-            </div>
-        </div>
-    </div>
-    <!-- Loading -->
-    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
-        <div class="am-modal-dialog" style="border-radius:15px;color:#fff;background:none">
-            <!--div class="am-modal-hd">正在载入...</div-->
-            <div class="am-modal-bd">
-                <span class="am-icon-spinner am-icon-spin"></span>
             </div>
         </div>
     </div>
@@ -210,6 +192,7 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/common.js"></script>
     <script src="assets/js/notice.js"></script>
     <script src="assets/js/trade.js"></script>
 </body>

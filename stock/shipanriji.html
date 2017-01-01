@@ -1,0 +1,198 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <script src="assets/js/wecheckhome.js"></script>
+    <script src="assets/js/head.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="apple-touch-fullscreen" content="yes">
+</head>
+<style type="text/css">
+    .am-tabs-bd {
+        border: none;
+    }
+    .am-nav-tabs > li > a {
+        color: #aaa;
+    }
+    .am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {
+        background: none;
+        border: none;
+        color: #fff;
+        margin-top: 1px;
+        margin-left: 1px;
+        font-weight: bold;
+    }
+    .am-tabs-nav > li {
+        background: none;
+        text-align: center;
+    }
+    .am-tabs-nav > li > a {
+        position: relative;
+        top: -8px;
+        left: 3px;
+    }
+    .am-nav-tabs {
+        border: none;
+    }
+    .am-list > li {
+        background: none;
+        border-color: #444;
+    }
+    .am-nav > li > a:focus, .am-nav > li > a:hover {
+        background: none;
+        border: none;
+    }
+    .am-tabs-bd .am-tab-panel {
+    -webkit-transition: -webkit-transform 0.0001s;
+    transition: transform 0.0001s;
+    }　
+    .zline1{height: 180px;margin-top:-15px;padding:0 10px;width: 100%;}
+    .index {height: 150px;margin-top: ;padding: 0 10px;width: 100%;}
+</style>
+<body>
+    <header data-am-widget="header" class="am-header am-header-default">
+       <div class="am-header-left am-header-nav">
+          <a href="search.html" class="">
+            <i class="am-header-icon am-icon-plus header-i" style="font-size:1.7rem;position:relative;z-index:999999"></i>
+          </a>
+       </div>  
+       <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
+        <button class="am-btn am-btn-primary am-dropdown-toggle mgn-top7" data-am-dropdown-toggle>
+          <span class="span-f18">我的实盘日记</span> 
+          <span class="am-badge-danger am-radius tip-red">免费</span> 
+          <span class="am-icon-caret-down"></span>
+        </button>
+        <ul class="mdl1 am-dropdown-content zindexmax">
+          <li><a href="home.html"><span class="combox">沪深A股<span></a></li> 
+          <li><a href="#"><span class="combox">国内大宗商品<span></a></li> 
+          <li><a href="#"><span class="combox">股指期货<span></a></li>
+          <li><a href="#"><span class="combox">现货贵金属<span></a></li>
+          <li><a href="#"><span class="combox">现货原油<span></a></li>
+          <li><a href="#"><span class="combox">美股ETF<span></a></li>
+          <li><a href="#"><span class="combox">A股期权<span></a></li>                            
+        </ul>
+      </div>
+      <div class="am-header-right am-header-nav">
+          <a href="user_message.html" class="">
+            <i class="am-header-icon am-icon-envelope header-i" style="font-size:1.7rem;"></i>
+          </a>
+          <span style="position:absolute;top:11px;left:22px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #343434;"></span>
+      </div>    
+    </header> 
+
+    <div class="am-tabs" data-am-tabs style="">
+        <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0">
+            <li class="am-active" style="height:25px"><a href="#tab1">收益曲线</a></li>
+            <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px"><a href="#tab2">资金曲线</a></li>
+            <li style="height:25px"><a href="#tab3">回撤曲线</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="padding:0">
+                <div id="shouyi" class="index"></div>
+            </div>
+            <div class="am-tab-panel am-fade" id="tab2" style="padding:0">
+                <div id="zijin" class="index"></div>
+            </div>
+            <div class="am-tab-panel am-fade" id="tab3" style="padding:0">
+                <div id="huiche" class="index"></div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+      <ul class="am-avg-sm-3 sliderbd" style="margin-top:-7px">
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">总收益率</div>
+          <div class="slider-a2 cwhite">10.92%</div>
+        </li>
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">资产总额</div>
+          <div class="slider-a2 cwhite">100.77万</div>
+        </li>
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">最大回撤</div>
+          <div class="slider-a2 cwhite">10.11%</div>
+        </li>
+      </ul>      
+    </div>
+    <div class="am-list-news am-list-news-default" style="margin-top: 0px;">
+        <div class="am-list-news-hd am-cf">
+            <a href="##" class="">
+                <h2> 
+                    <span class="am-icon-tachometer color-red"></span>
+                    最新记录
+                    <span class="nobold">&nbsp;New record</span>
+                </h2>
+            </a>
+            <a href="dapan.html" class="">
+                <!--span class="am-list-news-more am-fr am-icon-bullseye"> 大盘预测</span-->
+                <span class="am-list-news-more am-fr">more &raquo;</span>
+            </a>            
+        </div>
+    </div>
+    <section id="cd-timeline" class="cd-container" style="margin:0 10px;margin-top:-7px;">
+        <div class="cd-timeline-block">
+            <div class="cd-timeline-img cd-picture"></div>
+            <div class="cd-timeline-content">
+                <h2>
+                    <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">1小时前</span>
+                    买入操作
+                    <span class="am-badge-danger am-radius tip-red">评级中</span>
+                </h2>
+                <p>
+                    600123.SH 兰花科技／23.45元／5,000手<br>
+                    <b style="color:#ccc">买入原因 : </b>科技板块出现买入机会，MACD指标出现底部背离，后市看到25.00元。<br>
+                    <b style="color:#ccc">卖出计划 : </b>三买结束后减至5成仓。
+                </p>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+        <div class="cd-timeline-block">
+            <div class="cd-timeline-img cd-movie"></div> <!-- cd-timeline-img -->
+            <div class="cd-timeline-content">
+                <h2>
+                    <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+                    卖出操作
+                    <span class="am-badge-danger am-radius tip-red">A＋评级</span>
+                </h2>
+                <p>
+                    600123.SH 兰花科技／23.45元／5,000手<br>
+                    <b style="color:#ccc">买入原因 : </b>科技板块出现买入机会，MACD指标出现底部背离，后市看到25.00元。<br>
+                    <b style="color:#ccc">卖出计划 : </b>三买结束后减至5成仓。
+                </p>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+        <div class="cd-timeline-block">
+            <div class="cd-timeline-img cd-picture"></div> <!-- cd-timeline-img -->
+            <div class="cd-timeline-content">
+                <h2>
+                    <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+                    卖出操作
+                    <span class="am-badge-danger am-radius tip-red">A评级</span>
+                </h2>
+                <p>
+                    600123.SH 兰花科技／23.45元／5,000手<br>
+                    <b style="color:#ccc">买入原因 : </b>科技板块出现买入机会，MACD指标出现底部背离，后市看到25.00元。<br>
+                    <b style="color:#ccc">卖出计划 : </b>三买结束后减至5成仓。
+                </p>
+            </div> <!-- cd-timeline-content -->
+        </div> <!-- cd-timeline-block -->
+    </section> <!-- cd-timeline -->
+
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog" style="border:0 none;color:#fff;background:transparent;box-shadow: none">
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/navbar-riji.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/notice.js"></script>
+    <script src="assets/js/rj_quxian.js"></script>
+</body>
+</html>

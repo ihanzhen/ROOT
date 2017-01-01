@@ -45,32 +45,25 @@ function NoticeManagement() {
             $(this).css({ marginTop: "0px" }).find("li:first").appendTo(this);
         });
     };
-    _this.proposalPredictionAjax = function () {
-        return $.get('/ihanzhendata/stock/main_position');
+    _this.positionAjax = function () {
+        return $.get('/ihanzhendata/stock/market_forecast');
     };
     _this.noticeAjax = function () {
-        return $.get('/ihanzhendata/stock/notifies');
+        return $.get('/ihanzhendata/stock/getoperation');
     };
     _this.getNoticeData = function (vm) {
-        $.when(_this.proposalPredictionAjax(), _this.noticeAjax()).done(function (proposal, notice) {
+        $.when(_this.positionAjax(), _this.noticeAjax()).done(function (position, notice) {
             var noticeData = notice[0].data;
             for (var i = 0; i < noticeData.length; i++) {
-                vm.items.push(new Notice(noticeData[i].notify_title));
+                vm.items.push(new Notice(noticeData[i].operation_content));
             }
-            var proposalData = proposal[0].data;
-            var positionstr = ' 当前大盘建议仓位为' + proposalData.main_position / 10 + '成仓';
-            vm.items.push(new Notice(positionstr));
-            var tendency = proposalData.main_tendency;
-            if (tendency.length >= 18) {
-                tendency = tendency.substr(0, 17) + "...";
+            var dapanData = position[0].data;
+            for (var i = 0; i < dapanData.length; i++) {
+                if (dapanData[i].market_name == '综合仓位') {
+                    var positionstr = ' 当前大盘建议仓位为' + dapanData[i].position / 10 + '成仓';
+                    vm.items.push(new Notice(positionstr));
+                }
             }
-            vm.items.push(new Notice(tendency));
         });
-        //$.get('/ihanzhendata/stock/notifies', function (result) {
-        //    var data = result.data;
-        //    for (var i = 0; i < data.length; i++) {
-        //        vm.items.push(new Notice(data[i].notify_title));
-        //    }
-        //});
     }
 }

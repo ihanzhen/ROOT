@@ -39,7 +39,7 @@ var BankuaiMoreManagement = function () {
             if (result && result.data) {
                 var data = result.data;
                 for (var i = 0; i < length; i++) {
-                    var plate = new Plate(data[i].plate_id, data[i].plate_name,'');
+                    var plate = new Plate(data[i].plate_id, data[i].plate_name, '');
                     plate.headStockCode(data[i].headstock_code);
                     plate.headStockName(data[i].headstock_name);
                     _this.recommendVM.plates.push(plate);
@@ -50,7 +50,7 @@ var BankuaiMoreManagement = function () {
     _this.getStrongPlateData = function () {
         _this.plateVM.titlePlate('强势版块');
         return $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/',
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/0',
             dataType: "jsonp",
             jsonpCallback: "jsonpcallback",
             timeout: 5000,
@@ -61,7 +61,7 @@ var BankuaiMoreManagement = function () {
                     _this.plateVM.plateCount(plateArray.length);
                     for (var i = 0; i < plateArray.length; i++) {
                         var stocklist = plateArray[i].stockslist;
-                        if (stocklist.length > 0) {
+                        if (stocklist && stocklist.length > 0) {
                             _this.plateVM.items.push(new Plate(plateArray[i].windcode, plateArray[i].name, plateArray[i].type, plateArray[i].pct.toFixed(2), (plateArray[i].cap / 100000000).toFixed(2) + '亿', stocklist[0].windcode, stocklist[0].name));
                         } else {
                             _this.plateVM.items.push(new Plate(plateArray[i].windcode, plateArray[i].name, plateArray[i].type, plateArray[i].pct.toFixed(2), (plateArray[i].cap / 100000000).toFixed(2) + '亿', '', ''));
@@ -74,7 +74,7 @@ var BankuaiMoreManagement = function () {
     _this.getAnticipationPlateData = function () {
         _this.plateVM.titlePlate('蓄势版块');
         return $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/',
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/0',
             dataType: "jsonp",
             jsonpCallback: "jsonpcallback",
             timeout: 5000,
@@ -85,7 +85,7 @@ var BankuaiMoreManagement = function () {
                     _this.plateVM.plateCount(plateArray.length);
                     for (var i = 0; i < plateArray.length; i++) {
                         var stocklist = plateArray[i].stockslist;
-                        if (stocklist.length > 0) {
+                        if (stocklist && stocklist.length > 0) {
                             _this.plateVM.items.push(new Plate(plateArray[i].windcode, plateArray[i].name, plateArray[i].type, plateArray[i].pct.toFixed(2), (plateArray[i].cap / 100000000).toFixed(2) + '亿', stocklist[0].windcode, stocklist[0].name));
                         } else {
                             _this.plateVM.items.push(new Plate(plateArray[i].windcode, plateArray[i].name, plateArray[i].type, plateArray[i].pct.toFixed(2), (plateArray[i].cap / 100000000).toFixed(2) + '亿', '', ''));

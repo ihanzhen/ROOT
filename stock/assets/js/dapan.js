@@ -8,7 +8,7 @@ var DapanManagement = function () {
         _this.dapanVM = new DapanVM();
         ko.applyBindings(_this.dapanVM, $("#dapan-container")[0]);
         _this.getPageData();
-        var int=self.setInterval(_this.updatePriceAsync, Math.ceil(Math.random() * 5) * 1000);
+        var int = self.setInterval(_this.updatePriceAsync, Math.ceil(Math.random() * 5) * 1000);
     }
     //view model
     var Market = function (price, name, property, position, url, oldPrice) {
@@ -57,17 +57,19 @@ var DapanManagement = function () {
                 arr.push(_this.getPrice(datastr, 3));
                 arr.push(_this.getPrice(datastr, 1));
                 if (arr[0] != _this.dapanVM.items()[index].price()) {
-                $($('.zhishuNum')[index]).css('background-color', '#444');
-                setTimeout(function () {
-                    $($('.zhishuNum')[index]).css('background-color', '#3d3d3d');
-                }, 500);
-                _this.dapanVM.items()[index].price(arr[0]);
-                _this.dapanVM.items()[index].oldPrice(arr[1]);
+                    $($('.zhishuNum')[index]).css('background-color', '#444');
+                    setTimeout(function () {
+                        $($('.zhishuNum')[index]).css('background-color', '#3d3d3d');
+                    }, 500);
+                    _this.dapanVM.items()[index].price(arr[0]);
+                    _this.dapanVM.items()[index].oldPrice(arr[1]);
                 }
             }
         });
     }
-   
+    _this.queryUserAsset = function () {//资产情况
+        return $.get('/ihanzhendata/stockOrderMn/queryUserAsset', { uid: localStorage.uid }, function (data) { });
+    }
     _this.getPageData = function () {
         $('#my-modal-loading').modal('open');
         var closePrice = [];
@@ -78,17 +80,33 @@ var DapanManagement = function () {
         openPrice.push(_this.getPrice(hq_str_sh000001, 1));
         openPrice.push(_this.getPrice(hq_str_sz399905, 1));
         openPrice.push(_this.getPrice(hq_str_sz399006, 1));
-        $.when(_this.dapanAjax(), _this.proposalPredictionAjax())
-            .done(function (dapanResult, proposalResult) {
+        $.when(_this.dapanAjax(), _this.proposalPredictionAjax(), _this.queryUserAsset())
+            .done(function (dapanResult, proposalResult, asset) {
                 $('#my-modal-loading').modal('close');
-                var dapanData = JSON.parse(dapanResult[2].responseText).data;
+                var dapanData = dapanResult[0].data;
+                var dapanArr = [];
                 for (var i = 0; i < dapanData.length; i++) {
-                    _this.dapanVM.items.push(new Market(closePrice[i], dapanData[i].market_name,
-                        dapanData[i].property, dapanData[i].position / 10 + '成仓', dapanData[i].tendency_url, openPrice[i]));
+                    if (dapanData[i].market_name == '综合仓位') {
+                        option_2.series[0].data[0].value = dapanData[i].position;
+                        option_2.series[0].data[1].value = 100 - dapanData[i].position;
+                        myChart = echarts.init(document.getElementById('main-2'));
+                        myChart.setOption(option_2);
+                    } else {
+                        dapanArr.push(dapanData[i]);
+                    }
                 }
-                var proposalData = JSON.parse(proposalResult[2].responseText).data;
+                for (var i = 0; i < dapanArr.length; i++) {
+                    _this.dapanVM.items.push(new Market(closePrice[i], dapanArr[i].market_name,
+                       dapanArr[i].property, dapanArr[i].position / 10 + '成仓', dapanArr[i].tendency_url +"?id="+ parseInt(Math.random()*1000000000000), openPrice[i]));
+                }
+                var proposalData = proposalResult[0].data;
                 _this.dapanVM.proposalPredictionsVM.position(proposalData.main_position + '%');
                 _this.dapanVM.proposalPredictionsVM.prediction(proposalData.main_tendency);
+                var currentPosition = (asset[0].data.total_value * 100 / 200000).toFixed(0);
+                option_3.series[0].data[0].value = currentPosition;
+                option_3.series[0].data[1].value = 100 - currentPosition;
+                myChart = echarts.init(document.getElementById('main-3'));
+                myChart.setOption(option_3);
             }).fail(function () {
                 console.log('fail');
             });

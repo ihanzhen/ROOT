@@ -6,6 +6,10 @@ var StockDetailsPage = function () {
     var _this = this;
     var stockCode = "";
     var stockName = "";
+    function SalesConsist(consistName, percentage) {
+        this.consistName = ko.observable(consistName),
+        this.percentage = ko.observable(percentage)
+    }
     var stockVM = {
         stars: ko.observable(0),
         boards: ko.observable(''),
@@ -13,7 +17,9 @@ var StockDetailsPage = function () {
         debtAssets: ko.observable(''),
         currentIncome: ko.observable(''),
         priceearning: ko.observable(''),
-        lastYearTotalIncome: ko.observable('')
+        lastYearTotalIncome: ko.observable(''),
+        introduce: ko.observable(''),
+        items:ko.observableArray([])
     };
     _this.noticeVM = {
         notice: ko.observable('')
@@ -23,6 +29,15 @@ var StockDetailsPage = function () {
         firstMark: ko.observable(''),
         secondMark: ko.observable(''),
         thirdMark: ko.observable(''),
+        selectFirstClick: function () {
+            _this.confirmVM.select('1');
+        },
+        selectSecondClick: function () {
+            _this.confirmVM.select('2');
+        },
+        selectThirdClick: function () {
+            _this.confirmVM.select('3');
+        },
         cancelClick: function () { },
         confirmClick: function () {
             $('#my-modal-loading').modal('open');
@@ -52,6 +67,22 @@ var StockDetailsPage = function () {
     }
     function unicode2Chr(str) {
         return unescape(str.replace(/\\/g, "%"))
+    }
+    function date2quarter(date) {
+        var mydate = new Date(date);
+        var month = mydate.getMonth() + 1;
+        var quarter = '';
+        switch (month) {
+            case 3: quarter = '1'; break;
+            case 6: quarter = '2'; break;
+            case 9: quarter = '3'; break;
+            case 12: quarter = '4'; break;
+        }
+        if (quarter == '') {
+            console.log('error occurs in processing quarter date from api');
+        } else {
+            return quarter;
+        }
     }
     _this.initHeader = function () {
         $("#addSelfSelect").click(function () {
@@ -98,20 +129,28 @@ var StockDetailsPage = function () {
             if (stockData && stockData.data) {
                 var stock = stockData.data;
                 stockVM.stars(stock.stars);
-                var boardStr = stock.boards.substring(1, stock.boards.length - 1);
-                var boardArr = boardStr.split(',');
-                var arr = [];
-                for (var i = 0; i < boardArr.length; i++) {
-                    if (boardArr[i]) {
-                        arr.push(unicode2Chr(boardArr[i].substring(2, boardArr[i].length - 1)));
-                    }
-                }
-                stockVM.boards(arr.join(","));
+                var boardArr = stock.boards.split(';');
+                stockVM.boards(stock.boards);
                 stockVM.yesterdayValue((stock.ev / 100000000).toFixed(2) + '亿');
                 stockVM.debtAssets((stock.debt_assets).toFixed(2) + '%');
                 stockVM.currentIncome((stock.or / 100000000).toFixed(2) + '亿');
                 stockVM.priceearning((stock.pe).toFixed(2));
-                //处理图标数据
+                stockVM.lastYearTotalIncome((stock.or_lastyear / 100000000).toFixed(2) + '亿');
+                stockVM.introduce(stock.intro);
+                if (stock.seg_sales) {
+                    var consistArr = stock.seg_sales.split(";");
+                    for (var i = 0; i < consistArr.length; i++) {
+                        var part = consistArr[i].split(':');
+                        stockVM.items.push(new SalesConsist(part[0], part[1]));
+                    }
+                } else {
+                    stockVM.items.push(new SalesConsist('暂无数据', ''));
+                }
+                //处理图表数据
+                var quarterArr = [];
+                for (var i = 0; i < stock.quarter.length; i++) {
+                    quarterArr.push(date2quarter(stock.quarter[i]));
+                }
                 option.series[0].data = stock.roe_basic;
                 myChart = echarts.init(document.getElementById('main'));
                 myChart.setOption(option);
@@ -119,15 +158,19 @@ var StockDetailsPage = function () {
                 myChart = echarts.init(document.getElementById('main1'));
                 myChart.setOption(option1);
                 option2.series[0].data = stock.oper_cash_ps;
+                option2.xAxis[0].data = quarterArr;
                 myChart = echarts.init(document.getElementById('main2'));
                 myChart.setOption(option2);
                 option3.series[0].data = stock.wgsd;
+                option3.xAxis[0].data = quarterArr;
                 myChart = echarts.init(document.getElementById('main3'));
                 myChart.setOption(option3);
                 option4.series[0].data = stock.oper_tr;
+                option4.xAxis[0].data = quarterArr;
                 myChart = echarts.init(document.getElementById('main4'));
                 myChart.setOption(option4);
                 option5.series[0].data = stock.profit;
+                option5.xAxis[0].data = quarterArr;
                 myChart = echarts.init(document.getElementById('main5'));
                 myChart.setOption(option5);
             }

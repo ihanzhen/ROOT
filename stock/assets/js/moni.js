@@ -657,7 +657,9 @@ var MoniPage = function () {
     _this.processDayProfitData = function (profit) {
         var dateArr = [], profitArr = [];
         for (var i = 0; i < profit.length; i++) {
-            dateArr.unshift(new Date(profit[i].time).Format('YYYY/MM/DD').substr(5));
+            var arr = profit[i].time.split(/[- : ]/);
+            var updateTime = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]).Format("MM/DD");
+            dateArr.unshift(updateTime);
             profitArr.unshift(profit[i].dayprofit);
         }
         option.xAxis[0].data = dateArr;

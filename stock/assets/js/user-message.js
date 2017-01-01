@@ -1,66 +1,44 @@
 ﻿$(function () {
-    //var store = $.AMUI.store;
-    //if (!store.enabled) {
-    //    alert('Local storage is not supported by your browser. Please disable "Private Mode", or upgrade to a modern browser.');
-    //    return;
-    //}
-    //var token = localStorage.token, uid = localStorage.uid;
-    //if (!token || !uid) {
-    //    window.location.href = "login.html";
-    //}
-    //$('#my-modal-loading').modal('open');
-    //$.post('/',
-    //  { token: token, uid: uid },
-    //  function (data, textStatus) {
-    //      $('#my-modal-loading').modal('close');
-    //      if (textStatus == "success") {
-    //           debugger;//change according to api
-    //           var messages=data;//messages is Array
-    //           for(var i=0;i<messages.length;i++)
-    //           {
-    //var hasRead = messages[i].hasRead,
-    //    content = messages[i].content,
-    //    mdate = messages[i].mdate;
-    //viewModel.items.push(new Message(hasRead,content,mdate));
-    //           }
-    //           
-    //      } else {
-    //          window.location.href = "login.html";
-    //      }
-    //  });
-    function Message(hasRead, content, mdate) {
-        this.hasRead = ko.observable(hasRead);
-        this.content = ko.observable(content);
-        this.mdate = ko.observable(mdate);
-    }
-    function ViewModel() {
-        var self = this;
-        self.items = ko.observableArray();
-    }
-    var viewModel = new ViewModel();
-    //fake data
-    var messages = [
-       {
-           hasRead: true,
-           content: '拉sdfadfada',
-           mdate: '01/23'
-       },
-       {
-           hasRead: false,
-           content: '拉速度开好快好快好快税',
-           mdate: '10/29'
-       },
-       {
-           hasRead: true,
-           content: 'dfghjk',
-           mdate: '10/23'
-       }];
-    for (var i = 0; i < messages.length; i++) {
-        var hasRead = messages[i].hasRead,
-            content = messages[i].content,
-            mdate = messages[i].mdate;
-        viewModel.items.push(new Message(hasRead, content, mdate));
-    }
-    ko.applyBindings(viewModel, $("#message-container")[0]);
+    var userMsgManagement = new UserMsgManagement();
+    userMsgManagement.init();
 })
-
+var UserMsgManagement = function () {
+    var _this = this;
+    function Message(id, hasRead, title, updateTime, isCreateByMan) {
+        this.notifyId = id;
+        this.hasRead = ko.observable(hasRead);
+        this.title = ko.observable(title);
+        this.updateTime = ko.observable(updateTime);
+        this.isCreateByMan = ko.observable(isCreateByMan);
+        this.contentClick = function (item) {
+            window.location.href = "msg_content.html?notifyId=" + item.notifyId;
+        }
+    }
+    var viewModel = {
+        items: ko.observableArray()
+    }
+    function getPageData() {
+        window.stock.loading(true);
+        $.get('http://hanzhendata.com/ihanzhendata/stock/notifies/' + localStorage.uid, function (data) {
+            window.stock.loading(false);
+            if (data && data.data && data.data.length > 0) {
+                var messages = data.data;
+                for (var i = 0; i < messages.length; i++) {
+                    var id = messages[i].notify_id,
+                        hasRead = Boolean(parseInt(messages[i].is_read)),
+                        title = messages[i].notify_type,
+                        isCreateByMan = messages[i].notify_title == "2" ? true : false;
+                    var arr = messages[i].updatetime.split(/[- : ]/);
+                    var updateTime = new Date(arr[0], arr[1] - 1, arr[2], arr[3], arr[4], arr[5]).Format("MM/DD");
+                    viewModel.items.push(new Message(id, hasRead, title, updateTime, isCreateByMan));
+                }
+            }
+        }).error(function () {
+            window.stock.loading(false);
+        });
+    }
+    _this.init = function () {
+        ko.applyBindings(viewModel, $("#message-container")[0]);
+        getPageData();
+    }
+}

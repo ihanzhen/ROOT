@@ -20,14 +20,14 @@ var BankuaiDetailManagement = function () {
         thirdMark: ko.observable(''),
         cancelClick: function () { },
         confirmClick: function () {
-            $('#my-modal-loading').modal('open');
+            window.stock.loading(true);
             $.post('/ihanzhendata/selfStock/saveSelfStock', {
                 uid: localStorage.uid,
                 stock_code: _this.confirmVM.stockCode,
                 stock_name: _this.confirmVM.stockName,
                 b_zx: _this.confirmVM.select()
             }, function (data) {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 if (data.status == 1) {
                     _this.noticeVM.notice('添加自选成功！');
                     $('#notice-alert').modal('open');
@@ -41,7 +41,7 @@ var BankuaiDetailManagement = function () {
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 _this.noticeVM.notice('添加自选失败！');
                 $('#notice-alert').modal('open');
             });
@@ -81,7 +81,7 @@ var BankuaiDetailManagement = function () {
         };
         this.selectClick = function (item) {
             if (item.isSelfSelect()) {
-                $('#my-modal-loading').modal('open');
+                window.stock.loading(true);
                 $.ajax({
                     url: '/ihanzhendata/selfStock/deleteSelfStock',
                     method: 'POST',
@@ -90,7 +90,7 @@ var BankuaiDetailManagement = function () {
                         stock_code: item.stockCode()
                     },
                     success: function (result) {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                         if (result && result.status == 1) {
                             _this.noticeVM.notice('自选股删除成功！');
                             $('#notice-alert').modal('open');
@@ -102,7 +102,7 @@ var BankuaiDetailManagement = function () {
                         }
                     },
                     error: function () {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                         _this.noticeVM.notice('自选股删除失败！');
                         $('#notice-alert').modal('open');
                     }
@@ -117,9 +117,9 @@ var BankuaiDetailManagement = function () {
                     $('#confirm-alert').modal();
                 }
                 else {
-                    $('#my-modal-loading').modal('open');
+                    window.stock.loading(true);
                     $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                         if (data && data.data) {
                             var bzdata = data.data;
                             _this.confirmVM.firstMark(bzdata.s_zx1);
@@ -128,7 +128,7 @@ var BankuaiDetailManagement = function () {
                         }
                         $('#confirm-alert').modal();
                     }).error(function () {
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                     });
                 }
             }
@@ -136,11 +136,13 @@ var BankuaiDetailManagement = function () {
     }
     _this.getPlateData = function (palteType) {
         switch (palteType) {
-            case 'recommend': _this.plateVM.isShowRecommend(true); break;
+            //case 'recommend':
+            //    _this.plateVM.isShowRecommend(true);
+            //    break;
             case 'strong':
-                $('#my-modal-loading').modal('open');
+                window.stock.loading(true);
                 return $.ajax({
-                    url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/',
+                    url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/0',
                     dataType: "jsonp",
                     jsonpCallback: "jsonpcallback",
                     timeout: 5000,
@@ -148,9 +150,9 @@ var BankuaiDetailManagement = function () {
                     success: function (data) { }
                 }); break;
             case 'anticipation':
-                $('#my-modal-loading').modal('open');
+                window.stock.loading(true);
                 return $.ajax({
-                    url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/',
+                    url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/0',
                     dataType: "jsonp",
                     jsonpCallback: "jsonpcallback",
                     timeout: 5000,
@@ -161,28 +163,36 @@ var BankuaiDetailManagement = function () {
 
     }
     _this.getPageData = function () {
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         $.when(_this.getPlateData(_this.plateType))
             .done(function (result) {
+                window.stock.loading(false);//以后删掉
                 if (result && result.data && result.data.length > 0) {
                     var data = result.data;
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].windcode == _this.plateCode) {
                             $("#boardName").text(data[i].name);
-                            var stocks = data[i].stockslist;
-                            for (var j = 0; j < stocks.length; j++) {
-                                _this.plateVM.stocks.push(new Stock(stocks[j].windcode, stocks[j].name));
-                                _this.codeList.push(stocks[j].windcode);
+                            $("#boardCode").text(data[i].windcode);
+                            if (data[i].stockslist && data[i].stockslist.length > 0) {
+                                var stocks = data[i].stockslist;
+                                for (var j = 0; j < stocks.length; j++) {
+                                    _this.plateVM.stocks.push(new Stock(stocks[j].windcode, stocks[j].name));
+                                    _this.codeList.push(stocks[j].windcode);
+                                }
                             }
                         }
                     }
-                    getSelftSelectEvent(_this.codeList);
-                    for (var i = 0; i < _this.codeList.length ; i++) {
-                        getStockDetailAjax(_this.codeList[i]);
+                    if (_this.codeList.length > 0) {
+                        getSelftSelectEvent(_this.codeList);
+                        for (var i = 0; i < _this.codeList.length ; i++) {
+                            getStockDetailAjax(_this.codeList[i]);
+                        }
+                    } else {
+                        window.stock.loading(false);
                     }
                 }
             }).fail(function () {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 console.log('fail');
             });
     };
@@ -198,9 +208,9 @@ var BankuaiDetailManagement = function () {
     function getSelftSelectEvent(arr) {
         var url = '/ihanzhendata/logicstocks/selfstocks/' + localStorage.uid;
         var sendData = array2urlstr(arr, "stock_code");
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         $.get(url, sendData, function (data) {
-            //$('#my-modal-loading').modal('close');
+            //window.stock.loading(false);
             if (data && data.data) {
                 var stockList = data.data;
                 for (var i = 0; i < _this.plateVM.stocks().length; i++) {
@@ -214,11 +224,11 @@ var BankuaiDetailManagement = function () {
                 }
             }
         }).error(function () {
-            $('#my-modal-loading').modal('close');
+            window.stock.loading(false);
         });
     }
     function getStockDetailAjax(stockCode) {
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         return $.ajax({
             url: 'http://119.164.253.142:3307/api/v1.0/stocksbasic/' + stockCode,
             dataType: "jsonp",
@@ -243,7 +253,7 @@ var BankuaiDetailManagement = function () {
                                 }
                             }
                         }
-                        $('#my-modal-loading').modal('close');
+                        window.stock.loading(false);
                     }
                 }
 

@@ -5,6 +5,7 @@
     <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
     <script src="assets/js/head.js"></script>
+    <link type="text/css" rel="stylesheet" href="assets/css/user.css" />
 </head>
 <body>
     <!-- Header -->
@@ -14,9 +15,26 @@
                 <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
             </a>
         </div>-->
-        <h1 class="am-header-title">
-            <a href="#title-link">至赢<span class="color-red">┽</span>禅心</a>
-        </h1>
+        <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
+            <button class="am-btn am-btn-primary am-dropdown-toggle mgn-top7" data-am-dropdown-toggle>
+                <span class="span-top4">
+                    <img src="assets/images/hanzhenfff.svg" class="h20" />
+                </span>
+                <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
+                <span class="am-badge-danger am-radius tip-red">A股量化</span>
+                <span class="am-icon-caret-down"></span>
+            </button>
+            <ul class="mdl1 am-dropdown-content zindexmax">
+                <li><a href="/stock/home.html"><span class="combox">沪深A股</span></a></li>
+                <li><a href="/futures/index.html"><span class="combox">国内大宗商品</span></a></li>
+                <li><a href="/stockfutures/index.html"><span class="combox">股指期货</span></a></li>
+                <li><a href="/xauusd/index.html"><span class="combox">现货贵金属</span></a></li>
+                <li><a href="/usoil/index.html"><span class="combox">现货原油</span></a></li>
+                <li><a href="/usstocketf/index.html"><span class="combox">美股ETF</span></a></li>
+                <li><a href="/astockoption/index.html"><span class="combox">A股期权</span></a></li>
+                <li><a href="shipanriji.html"><span class="combox">我的实盘日记</span> <span class="am-badge-danger am-radius tip-red">免费</span> </a></li>
+            </ul>
+        </div>
         <!--div class="am-header-right am-header-nav" style="margin-right:40px">
             <a href="#left-link" class="">
                 <i class="am-header-icon am-icon-refresh" style="font-size:1.5rem;color:#999"></i>

@@ -5,56 +5,8 @@
     <script src="assets/js/verifylogin.js"></script>
     <script src="assets/js/head.js"></script>
     <script src="assets/js/echarts.min.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css"> <!-- Resource style -->
-    <!--tabs-->
-    <style type="text/css">
-        .am-tabs-bd {
-            border: none;
-        }
-
-        .am-nav-tabs > li > a {
-            color: #aaa;
-        }
-
-        .am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {
-            background: none;
-            border: none;
-            color: #fff;
-            margin-top: 1px;
-            margin-left: 1px;
-            font-weight: bold;
-        }
-
-        .am-tabs-nav > li {
-            background: none;
-            text-align: center;
-        }
-
-            .am-tabs-nav > li > a {
-                position: relative;
-                top: -8px;
-                left: 3px;
-            }
-
-        .am-nav-tabs {
-            border: none;
-        }
-
-        .am-list > li {
-            background: none;
-            border-color: #444;
-        }
-
-        .am-nav > li > a:focus, .am-nav > li > a:hover {
-            background: none;
-            border: none;
-        }
-        .am-tabs-bd .am-tab-panel {
-        -webkit-transition: -webkit-transform 0.0001s;
-        transition: transform 0.0001s;
-        }　
-        .zline1{height: 180px;margin-top:-15px;padding:0 10px;width: 100%;}
-    </style>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/stock_details.css">
 </head>
 <body>
     <!-- Header -->
@@ -70,6 +22,11 @@
                 </span>
 
             </span>
+        </div>
+        <div class="am-header-right am-header-nav" style="margin-right:80px">
+            <a href="javascript:void(0);" class="">
+                <i class="am-header-icon am-icon-refresh" style="font-size:2rem;color:#999" id="KEY_FRESH"></i>
+            </a>
         </div>
         <div class="am-header-right am-header-nav" style="margin-right:40px">
             <a href="javascript:void(0);" class="">
@@ -138,11 +95,34 @@
         <!--正文-->
         <div style="margin-top:-7px">
             <div style="font-size:14px;line-height:16px;color:#aaa;padding:0 10px;">
-                <p style="text-indent: 2em;">
+                <p style="text-indent: 2em;" data-bind="text:introduce">
                     推荐购买指数0.85，该股业绩优秀，基本面有良好的支撑，技术形态符合上涨趋势特征。中期涨幅区间0.1~0.5之间。(个股简介需要接口获取真实数据)
                 </p>
             </div>
         </div>
+        <div class="am-list-news am-list-news-default" style="margin-top: -5px;margin-bottom: 13px;">
+            <div class="am-list-news-hd am-cf">
+                <a href="##" class="">
+                    <h2>
+                        <span class="am-icon-tachometer color-red"></span>
+                        主营收入构成
+                        <span class="nobold">&nbsp;Index Data</span>
+                    </h2>
+                </a>
+            </div>
+        </div>
+        <style type="text/css">
+            .goucheng_ul{font-size:14px;padding-top:3px;padding-bottom:3px;margin:-10px 0 10px 0;}
+            .goucheng_li{height:16px;line-height:15px}
+            .goucheng_border{border-right:1px solid #444;}
+            .goucheng_padding{padding-top:3px;padding-bottom:3px;}
+        </style>      
+        <div data-bind="foreach:items">
+            <div class="am-g goucheng_ul">
+                <div class="am-u-sm-8 goucheng_li goucheng_border" data-bind="text:consistName">主营收入构成具体名称</div>
+                <div class="am-u-sm-4 goucheng_li" data-bind="text:percentage">7.00%</div>
+            </div>
+        </div>  
         <!--style type="text/css">
         .zline{height: 180px;margin-top:-15px;padding:0 10px;width: 100%;}
         </style>
@@ -378,17 +358,17 @@
             <div class="am-modal-bd">
                 <p>请选择加入以下哪个自选？</p>
                 <ul class="am-list">
-                    <li style="text-align:left;padding-left:20px;">
+                    <li style="text-align:left;padding-left:20px;" data-bind="click:selectFirstClick">
                         <input type="radio" name="selfSelect" value="1" data-bind="checked: select" /> 自选一
-                        <div data-bind="text:firstMark"></div>
+                        <div style="padding-left:20px;font-size: 12px;" data-bind="text:firstMark"></div>
                     </li>
-                    <li style="text-align:left;padding-left:20px;">
+                    <li style="text-align:left;padding-left:20px;" data-bind="click:selectSecondClick">
                         <input type="radio" name="selfSelect" value="2" data-bind="checked: select" /> 自选二
-                        <div data-bind="text:secondMark"></div>
+                        <div style="padding-left:20px;font-size: 12px;" data-bind="text:secondMark"></div>
                     </li>
-                    <li style="text-align:left;padding-left:20px;">
+                    <li style="text-align:left;padding-left:20px;" data-bind="click:selectThirdClick">
                         <input type="radio" name="selfSelect" value="3" data-bind="checked: select" /> 自选三
-                        <div data-bind="text:thirdMark"></div>
+                        <div style="padding-left:20px;font-size: 12px;" data-bind="text:thirdMark"></div>
                     </li>
                 </ul>
             </div>
@@ -425,21 +405,21 @@
     <script src="assets/js/notice.js"></script>
     <script src="assets/js/stock_details.js"></script>
     <script>
-        ////页面加载时绑定按钮点击事件
-        //$(function(){
-        //    $("#KEY_FRESH").click(function(){
-        //        refresh();
-        //    });
-        //});
-        ////点击按钮调用的方法
-        //function refresh(){
-        //    window.location.reload();//刷新当前页面.
+        //页面加载时绑定按钮点击事件
+        $(function(){
+            $("#KEY_FRESH").click(function(){
+                refresh();
+            });
+        });
+        //点击按钮调用的方法
+        function refresh(){
+            window.location.reload();//刷新当前页面.
 
-        //    //或者下方刷新方法
-        //    //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
-        //    // opener.location.reload()刷新父窗口对象（用于单开窗口
-        //   //top.location.reload()刷新最顶端对象（用于多开窗口）
-        //}
+            //或者下方刷新方法
+            //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+            // opener.location.reload()刷新父窗口对象（用于单开窗口
+           //top.location.reload()刷新最顶端对象（用于多开窗口）
+        }
     </script>
 </body>
 </html>

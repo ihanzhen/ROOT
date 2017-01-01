@@ -1,13 +1,13 @@
 ﻿$(function () {
-    var shijianManagement = new ShijianManagement();
-    shijianManagement.init();
+    var jibenManagement = new JibenManagement();
+    jibenManagement.init();
 })
-var ShijianManagement = function () {
+var JibenManagement = function () {
     var _this = this;
     _this.pageNumber = 1; //设置当前页数，全局变量  
     _this.codeList = [];
-    var shijianVM = {
-        items: ko.observableArray([])
+    var jibenVM={
+        items:ko.observableArray([])
     }
     _this.noticeVM = {
         notice: ko.observable('')
@@ -19,22 +19,31 @@ var ShijianManagement = function () {
         firstMark: ko.observable(''),
         secondMark: ko.observable(''),
         thirdMark: ko.observable(''),
+        selectFirstClick: function () {
+            _this.confirmVM.select('1');
+        },
+        selectSecondClick: function () {
+            _this.confirmVM.select('2');
+        },
+        selectThirdClick: function () {
+            _this.confirmVM.select('3');
+        },
         cancelClick: function () { },
         confirmClick: function () {
-            $('.loadspan').show();
+            $('#my-modal-loading').modal('open');
             $.post('/ihanzhendata/selfStock/saveSelfStock', {
                 uid: localStorage.uid,
                 stock_code: _this.confirmVM.stockCode,
                 stock_name: _this.confirmVM.stockName,
                 b_zx: _this.confirmVM.select()
             }, function (data) {
-                $('.loadspan').hide();
+                $('#my-modal-loading').modal('close');
                 if (data.status == 1) {
                     _this.noticeVM.notice('添加自选成功！');
                     $('#notice-alert').modal('open');
+                    jibenVM.items([]);
                     _this.pageNumber = 1; //设置当前页数，全局变量  
                     _this.codeList = [];
-                    shijianVM.items([]);
                     getStocksData();
                 } else if (data.status == 12008) {
                     _this.noticeVM.notice('自选已存在，不用重复添加！');
@@ -44,16 +53,15 @@ var ShijianManagement = function () {
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
-                $('.loadspan').hide();
+                $('#my-modal-loading').modal('close');
                 _this.noticeVM.notice('添加自选失败！');
                 $('#notice-alert').modal('open');
             });
         }
     }
-    function Stock(sname, scode, logicName) {
+    function Stock(sname, scode) {
         this.sname = ko.observable(sname);
         this.scode = ko.observable(scode);
-        this.logicName = ko.observable(logicName);
         this.isSelfSelect = ko.observable(false);
         this.isTechnology = ko.observable(false);
         this.isFundamental = ko.observable(false);
@@ -64,7 +72,7 @@ var ShijianManagement = function () {
         };
         this.selectClick = function (item) {
             if (item.isSelfSelect()) {
-                $('.loadspan').show();
+                $('#my-modal-loading').modal('open');
                 $.ajax({
                     url: '/ihanzhendata/selfStock/deleteSelfStock',
                     method: 'POST',
@@ -73,13 +81,13 @@ var ShijianManagement = function () {
                         stock_code: item.scode()
                     },
                     success: function (result) {
-                        $('.loadspan').hide();
+                        $('#my-modal-loading').modal('close');
                         if (result && result.status == 1) {
                             _this.noticeVM.notice('自选股删除成功！');
                             $('#notice-alert').modal('open');
+                            jibenVM.items([]);
                             _this.pageNumber = 1; //设置当前页数，全局变量  
                             _this.codeList = [];
-                            shijianVM.items([]);
                             getStocksData();
                         } else {
                             _this.noticeVM.notice('自选股删除失败！');
@@ -87,7 +95,7 @@ var ShijianManagement = function () {
                         }
                     },
                     error: function () {
-                        $('.loadspan').hide();
+                        $('#my-modal-loading').modal('close');
                         _this.noticeVM.notice('自选股删除失败！');
                         $('#notice-alert').modal('open');
                     }
@@ -102,9 +110,9 @@ var ShijianManagement = function () {
                     $('#confirm-alert').modal();
                 }
                 else {
-                    $('.loadspan').show();
+                    $('#my-modal-loading').modal('open');
                     $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) {
-                        $('.loadspan').hide();
+                        $('#my-modal-loading').modal('close');
                         if (data && data.data) {
                             var bzdata = data.data;
                             _this.confirmVM.firstMark(bzdata.s_zx1);
@@ -113,7 +121,7 @@ var ShijianManagement = function () {
                         }
                         $('#confirm-alert').modal();
                     }).error(function () {
-                        $('.loadspan').hide();
+                        $('#my-modal-loading').modal('close');
                     });
                 }
             }
@@ -121,28 +129,35 @@ var ShijianManagement = function () {
     }
     function getStocksData() {
         $('.loadspan').show();
-        $.get('/ihanzhendata/logicstocks/' + localStorage.uid + '/' + _this.pageNumber++, function (data) {
-            $('.loadspan').hide();
-            if (data && data.status == 1) {
-                var stocks = data.data;
-                if (stocks.length > 0) {
-                    for (var i = 0; i < stocks.length; i++) {
-                        shijianVM.items.push(new Stock(stocks[i].stock_name, stocks[i].stock_code, stocks[i].logic_name));
-                        _this.codeList.push(stocks[i].stock_code);
+        $.ajax({
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksbasiclist/' + _this.pageNumber++,
+            dataType: "jsonp",
+            jsonpcallback: "jsonpcallback",
+            timeout: 5000,
+            type: "GET",
+            success: function (data) {
+                $('.loadspan').hide();
+                if (data && data.data && data.data.length > 0) {
+                    var arr = data.data;
+                    for (var i = 0; i < arr.length; i++) {
+                        var stock = new Stock(arr[i].name, arr[i].windcode);
+                        jibenVM.items.push(stock);
+                        _this.codeList.push(arr[i].windcode);
                     }
                     getSelftSelectEvent(_this.codeList);
                     getLabelStars(_this.codeList);
-                } else if (stocks.length == 0) {
+                    _this.codeList=[];
+                } else if (data && data.data && data.data.length == 0) {
                     $(window).unbind('scroll');
                     $('.nomore').show();
                 }
             }
-            if (_this.pageNumber == 2) {
-                getStocksData();
-            }
         }).error(function () {
             $('.loadspan').hide();
         });
+        if (_this.pageNumber ==2) {
+            getStocksData();
+        }
     }
     function array2urlstr(arr, codenameStr) {
         var tempArr = [];
@@ -165,12 +180,12 @@ var ShijianManagement = function () {
                 if (data && data.data) {
                     $('.loadspan').hide();
                     var resultArr = data.data;
-                    for (var i = 0; i < shijianVM.items().length; i++) {
+                    for (var i = 0; i < jibenVM.items().length; i++) {
                         for (var j = 0; j < resultArr.length; j++) {
-                            if (shijianVM.items()[i].scode() == resultArr[j].windcode) {
-                                shijianVM.items()[i].stars(resultArr[j].stars);
-                                shijianVM.items()[i].isTechnology(Boolean(resultArr[j].is_jishu));
-                                shijianVM.items()[i].isFundamental(Boolean(resultArr[j].is_jiben));
+                            if (jibenVM.items()[i].scode() == resultArr[j].windcode) {
+                                jibenVM.items()[i].stars(resultArr[j].stars);
+                                jibenVM.items()[i].isTechnology(Boolean(resultArr[j].is_jishu));
+                                jibenVM.items()[i].isFundamental(Boolean(resultArr[j].is_jiben));
                                 break;
                             }
                         }
@@ -192,11 +207,11 @@ var ShijianManagement = function () {
             $('.loadspan').hide();
             if (data && data.data) {
                 var stockList = data.data;
-                for (var i = 0; i < shijianVM.items().length; i++) {
+                for (var i = 0; i < jibenVM.items().length; i++) {
                     for (var j = 0; j < stockList.length; j++) {
-                        if (shijianVM.items()[i].scode() == stockList[j].stock_code) {
-                            shijianVM.items()[i].isSelfSelect(Boolean(parseInt(stockList[j].is_zxg)));
-                            shijianVM.items()[i].isEvent(Boolean(parseInt(stockList[j].is_logic)));
+                        if (jibenVM.items()[i].scode() == stockList[j].stock_code) {
+                            jibenVM.items()[i].isSelfSelect(Boolean(parseInt(stockList[j].is_zxg)));
+                            jibenVM.items()[i].isEvent(Boolean(parseInt(stockList[j].is_logic)));
                             break;
                         }
                     }
@@ -210,7 +225,9 @@ var ShijianManagement = function () {
         $("#KEY_FRESH").click(function () {
             window.location.reload();//刷新当前页面.
         });
-        ko.applyBindings(shijianVM, $('#shijian-container')[0]);
+        //定义鼠标滚动事件  
+        $(window).scroll(scrollHandler);
+        ko.applyBindings(jibenVM, $('#jiben-container')[0]);
         ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
         ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
         getStocksData();
@@ -225,5 +242,5 @@ var ShijianManagement = function () {
             getStocksData();
         }
     }
-    //==============上拉加载核心代码============= 
+    //==============上拉加载核心代码=============  
 }
