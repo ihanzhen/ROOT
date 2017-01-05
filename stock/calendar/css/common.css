@@ -1,0 +1,384 @@
+/* CSS Document */
+@charset "utf-8";
+*{
+    padding: 0;
+    margin: 0;
+    /*border: 0;*/
+    -webkit-tap-highlight-color: transparent;
+        -moz-tap-highlight-color: transparent;
+        -ms-tap-highlight-color: transparent;
+        -o-tap-highlight-color: transparent;
+        tap-highlight-color: transparent;
+      
+}
+*:not(input,textarea) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+/*移动端*/
+html{font-size: 625%; font-size: 100px; }
+body{font-size: 0.16rem;} 
+body{  font-family:Arial,"Microsoft Yahei","微软雅黑";-webkit-font-smoothing: antialiased;}
+
+html,body{
+    height: 100%;
+}
+blockquote, body, dd, dir, dl, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, input[type=checkbox], input[type=radio], input[type=range], listing, menu, ol, p, plaintext, pre, ul, xmp {
+    margin: 0;
+}
+
+button, dir, fieldset, input, input[type=button], input[type=checkbox], input[type=file], input[type=hidden], input[type=image], input[type=password], input[type=radio], input[type=range], input[type=reset], input[type=search], input[type=submit], isindex, legend, menu, ol, textarea, ul {
+    padding: 0;
+}
+
+html * {
+    outline: 0;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+input, select, textarea {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 0
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+button, input, select {
+    color: inherit
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    margin: 0;
+}
+address, cite, dfn, em, i, var {
+    font-style: normal;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: normal;
+}
+
+fieldset, iframe {
+    border: 0;
+}
+
+ol, ul {
+    list-style: none
+}
+a{
+    color: #333;
+    text-decoration:none;
+}
+
+
+ /*IE7不支持的清除浮动*/
+.clearfix:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:".";
+    clear:both;
+    height:0;
+}
+* html .clearfix{
+    zoom:1;
+}
+/*全版本兼容清楚浮动*/
+.clears{ clear:both; line-height:0px; overflow:hidden; font-size:0px; height:0px;}
+input,textarea,select{font-family:Verdana,Arial,"Microsoft Yahei","微软雅黑";}
+a{color: #333;text-decoration: none;}
+a:hover {color: inherit;}
+
+
+.mui-flex {
+    display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box ;           /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox ;          /* TWEENER - IE 10 */
+    display: -webkit-flex ;         /* NEW - Chrome */
+    display: flex ;                /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+.mui-flex .mui-flex {
+    display: -webkit-box !important;      /* OLD - iOS 6-, Safari 3.1-6 */
+    display: -moz-box !important;           /* OLD - Firefox 19- (buggy but mostly works) */
+    display: -ms-flexbox !important;          /* TWEENER - IE 10 */
+    display: -webkit-flex !important;         /* NEW - Chrome */
+    display: flex !important;                /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+.mui-flex, .mui-flex *, .mui-flex:after, .mui-flex:before {
+    box-sizing: border-box
+}
+
+.mui-flex.vertical {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column
+}
+
+.mui-flex.vertical.reverse {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: column-reverse;
+    -ms-flex-direction: column-reverse;
+    flex-direction: column-reverse
+}
+
+.mui-flex.vertical >.cell {
+    width: auto
+}
+
+.mui-flex.vertical > .cell > .inner {
+    position: absolute;
+    width: 100%;
+    height: 100%
+}
+
+.mui-flex.horizental {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.mui-flex.reverse {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse
+}
+
+.mui-flex.justify-start {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start
+}
+
+.mui-flex.justify-end {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end
+}
+
+.mui-flex.justify-center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.mui-flex.justify-between {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+.mui-flex.justify-around {
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around
+}
+
+.mui-flex.align-start {
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start
+}
+
+.mui-flex.align-end {
+    -webkit-box-align: end;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
+.mui-flex.align-center {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.mui-flex.align-stretch {
+    -webkit-box-align: stretch;
+    -webkit-align-items: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch
+}
+
+.mui-flex.align-stretch .cell {
+    height: auto !important
+}
+
+.mui-flex.center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+.mui-flex > .cell {
+    -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 1;         /* OLD - Firefox 19- */
+    /*width: 20%;               /!* For old syntax, otherwise collapses. *!/*/
+    -webkit-flex: 1;          /* Chrome */
+    -ms-flex: 1;              /* IE 10 */
+    flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    width: 0;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    display: block;
+    padding: 0;
+    position: relative
+}
+.mui-flex.vertical > .cell {
+    width: auto;
+    height: 0;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    /*max-height: 100%;*/
+    /*max-width: inherit;*/
+    display: block;
+    padding: 0;
+    position: relative
+}
+
+.mui-flex > .cell.fixed {
+    -webkit-box-flex: 0 !important;
+    -webkit-flex: none !important;
+    -ms-flex: none !important;
+    flex: none !important;
+    width: auto
+}
+
+.mui-flex > .cell.self-start {
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start
+}
+
+.mui-flex > .cell.self-end {
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end
+}
+
+.mui-flex > .cell.self-center {
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center
+}
+
+.cat{
+    -webkit-box-flex: 3;
+    -moz-box-flex: 3;
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+}
+/*common font*/
+.f12{
+ font-size: .06rem;
+}
+.f14{
+ font-size: .07rem;
+}
+.f16{
+ font-size: .08rem;
+}
+.f18{
+ font-size: .09rem;
+}
+.f20{
+ font-size: .1rem;
+}
+.f22{
+ font-size: .11rem;
+}
+.f24{
+ font-size: .12rem;
+}
+.f26{
+ font-size: .13rem;
+}
+.f28{
+ font-size: .14rem;
+}
+.f30{
+ font-size: .15rem;
+}
+.f32{
+ font-size: .16rem;
+}
+.f34{
+ font-size: .17rem;
+}
+.f36{
+ font-size: .18rem;
+}
+.f38{
+ font-size: .19rem;
+}
+.f40{
+    font-size: .2rem;
+}
+.f48{
+    font-size: .24rem;
+}
+.f60{
+    font-size: .3rem;
+}
+
+/*comment margin-top*/
+.m12{
+    margin-top: .06rem;
+}
+.m20{
+    margin-top: .1rem;
+}
+.m22{
+    margin-top: .11rem;
+}
+
+
+/*comment height*/
+.h66{
+    height: .33rem;
+}
+.h90{
+    height: .45rem;
+}
+
+.covers{position: fixed;width: 100%;height: 100%;left: 0px;top: 0px;background: rgba(0,0,0,.8);text-align: center;z-index: 99999999;display: none;}
+.covers img{width: 450px;height: 340px;margin-top: 100px;}

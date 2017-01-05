@@ -1,7 +1,8 @@
 option = {
     color:['#e84c3d'],
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: "{b}年<br/>{c}"
     },
     toolbox: {
         feature: {
@@ -115,7 +116,8 @@ myChart.setOption(option);
 option1 = {
     color: ['#f08c2e'],
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: "{b}年<br/>{c}"
     },
     toolbox: {
         feature: {
@@ -229,7 +231,8 @@ myChart.setOption(option1);
 option2 = {
     color: ['#2fcc71'],
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: "{b}季度<br/>{c}"
     },
     toolbox: {
         feature: {
@@ -343,7 +346,8 @@ myChart.setOption(option2);
 option3 = {
     color:['#1bbc9d'],
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: "{b}季度<br/>{c}"
     },
     toolbox: {
         feature: {
@@ -457,7 +461,8 @@ myChart.setOption(option3);
 option4 = {
     color:['#3398DB'],
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: "{b}季度<br/>{c}"
     },
     toolbox: {
         feature: {
@@ -571,7 +576,8 @@ myChart.setOption(option4);
 option5 = {
     color:['#df77d7'],
     tooltip: {
-        trigger: 'axis'
+        trigger: 'axis',
+        formatter: "{b}季度<br/>{c}"
     },
     toolbox: {
         feature: {

@@ -1,0 +1,131 @@
+.am-tabs-bd {
+    border: none;
+}
+
+.am-nav-tabs > li > a {
+    color: #aaa;
+}
+
+.am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {
+    background: none;
+    border: none;
+    color: #fff;
+    margin-top: 1px;
+    margin-left: 1px;
+    font-weight: bold;
+}
+
+.am-tabs-nav > li {
+    background: none;
+    text-align: center;
+}
+
+    .am-tabs-nav > li > a {
+        position: relative;
+        top: -8px;
+        left: 3px;
+    }
+
+.am-nav-tabs {
+    border: none;
+}
+
+.am-list > li {
+    background: none;
+    border-color: #444;
+}
+
+.am-nav > li > a:focus, .am-nav > li > a:hover {
+    background: none;
+    border: none;
+}
+
+.am-tabs-bd .am-tab-panel {
+    -webkit-transition: -webkit-transform 0.0001s;
+    transition: transform 0.0001s;
+}
+
+¡¡ .zline1 {
+    height: 180px;
+    margin-top: -15px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.index {
+    height: 150px;
+    margin-top:;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.am-list-date-value-double {
+    z-index: -111111;
+    font-size: 1.3rem;
+    position: absolute;
+    right: -20px;
+    top: 0.8rem;
+    border-radius: 4px;
+    width: 220px;
+    height: 15px;
+    line-height: 15px;
+}
+
+.am-list-date-value-double-1 {
+    z-index: -111111;
+    font-size: 1.3rem;
+    position: absolute;
+    right: -20px;
+    top: 2.3rem;
+    border-radius: 4px;
+    width: 220px;
+    height: 15px;
+    line-height: 15px;
+}
+
+.color-grap {
+    color: #383838;
+}
+
+.am-panel {
+    margin-bottom: 10px;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.am-list > li > a {
+    display: block;
+    padding: 0;
+    margin-bottom: -3px;
+}
+
+    .am-list > li > a:visited, .am-list > li > a:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+
+.am-table > tbody > tr > td, .am-table > tbody > tr > th, .am-table > tfoot > tr > td, .am-table > tfoot > tr > th, .am-table > thead > tr > td, .am-table > thead > tr > th {
+    padding: .5rem;
+    line-height: 10px;
+    vertical-align: top;
+    border-top: none;
+}
+
+.am-table > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #444;
+}
+
+.am-list-date-1 {
+    right: 65px;
+    top: 13px;
+}
+
+.am-list-date-1 {
+    right: 65px;
+    top: 13px;
+    width: 50px;
+}

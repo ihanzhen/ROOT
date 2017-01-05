@@ -60,6 +60,9 @@ function HomeManagement() {
             },
             customStocksClick: function () {
                 window.location.href = "tuijian_shijian.html";
+            },
+            zhulichicangClick: function () {
+                window.location.href = "tuijian_zhuli.html";
             }
         }
     }

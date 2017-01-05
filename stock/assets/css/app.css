@@ -192,17 +192,37 @@ a {
     border-radius: 4px;
 }
 /*color*/
+_::-webkit-full-page-media, _:future, :root .bg-green {
+    background: #27ae60;
+    padding: 0 4px;
+    color: #e2e2e2;
+    line-height:21px;
+    height:21px;
+    text-align: center;    
+}
 .bg-green {
     background: #27ae60;
     padding: 0 4px;
     color: #e2e2e2;
+    line-height:23px;
+    height:21px;
+    text-align: center;
 }
-
-.bg-red {
-    background: #e74c3c;
+_::-webkit-full-page-media, _:future, :root .bg-red {
+    background: #f05e4b;
     padding: 0 4px;
-    color: #FFF;
-    line-height: 20px;
+    color: #e2e2e2;
+    line-height:21px;
+    height:21px;
+    text-align: center;
+}
+.bg-red {
+    background: #f05e4b;
+    padding: 0 4px;
+    color: #e2e2e2;
+    line-height:23px;
+    height:21px;
+    text-align: center;
 }
 
 .bg-orange {
@@ -211,12 +231,20 @@ a {
     color: #e2e2e2;
 }
 
-.bg-grap {
+_::-webkit-full-page-media, _:future, :root .bg-grap {
     background: #666666;
-    padding: 0 4px;
+    padding: 0px 4px 0px 4px;
     color: #e2e2e2;
+    line-height:21px;
+    height:21px;    
 }
-
+ .bg-grap {
+    background: #666666;
+    padding: 0px 4px 0px 4px;
+    color: #e2e2e2;
+    line-height:23px;
+    height:21px;
+}
 .am-navbar-default a {
     color: #969696;
 }

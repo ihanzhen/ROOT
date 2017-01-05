@@ -42,7 +42,7 @@
 .liStyle {
     border-right: 1px solid #444;
     padding-right: -1px;
-    padding-bottom:8px;
+    padding-bottom:3px;
     padding-top:5px;
 }
 
@@ -75,10 +75,15 @@
     padding: 3px 0;
 }
 
-.proposalFont {
+_::-webkit-full-page-media, _:future, :root .proposalFont {
     font-size: 10px !important;
     font-weight: 400 !important;
     padding: .25em .4em !important;
+}
+.proposalFont {
+    font-size: 10px !important;
+    font-weight: 400 !important;
+    padding: .4em .4em .1em .4em !important;
 }
 
 .colorDiv {

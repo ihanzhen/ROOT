@@ -23,21 +23,7 @@ transition: transform 0.0001s;
 .am-tabs-bd .am-tab-panel{
   padding: 0 10px 15px;
 }
-.loadspan {
-    position: absolute;
-    left: 50%;
-    margin-left: -5px;
-    margin-top: -10px;
-}
 
-.nomore {
-    display: none;
-    position: absolute;
-    left: 50%;
-    margin-left: -66px;
-    margin-top: -10px;
-    font-size: 12px;
-}
    ul,li{margin:0;padding:0} 
     #scrollDiv{height:25px;line-height:25px;overflow:hidden;} 
     #scrollDiv li{padding-left:10px;margin-top:-5px;} 
@@ -69,7 +55,8 @@ transition: transform 0.0001s;
     .span-top4{position:relative;top:-2px}
     .span-f18{font-size:18px}
     .icon-red{color:#dd514c}
-    .tip-red{background:#dd514c;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:1px 2px}
+    _::-webkit-full-page-media, _:future, :root .tip-red{background:#dd514c;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:1px 2px}
+    .tip-red{background:#dd514c;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:3px 2px 1px 2px}
     .mgn-top7{margin-top:-3px}
     .mgn-top2{margin-top:-2px}
     .zindexmax{z-index:99999;}

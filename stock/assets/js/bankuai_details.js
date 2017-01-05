@@ -136,9 +136,7 @@ var BankuaiDetailManagement = function () {
     }
     _this.getPlateData = function (palteType) {
         switch (palteType) {
-            //case 'recommend':
-            //    _this.plateVM.isShowRecommend(true);
-            //    break;
+            case 'recommend': _this.plateVM.isShowRecommend(true); break;
             case 'strong':
                 window.stock.loading(true);
                 return $.ajax({

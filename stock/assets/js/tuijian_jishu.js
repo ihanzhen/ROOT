@@ -5,7 +5,6 @@
 var JishuManagement = function () {
     var _this = this;
     _this.pageNumber = 1; //设置当前页数，全局变量  
-    _this.codeList = [];
     var jishuVM = {
         tabVM: {
             strongClick: function () {
@@ -13,7 +12,6 @@ var JishuManagement = function () {
                 _this.pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
                 jishuVM.strongVM.items([]);
-                _this.codeList = [];
                 getStrongList();
             },
             readyClick: function () {
@@ -21,7 +19,6 @@ var JishuManagement = function () {
                 _this.pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
                 jishuVM.readyVM.items([]);
-                _this.codeList = [];
                 getReadyList();
             },
             volClick: function () {
@@ -95,6 +92,7 @@ var JishuManagement = function () {
         this.isTechnology = ko.observable(false);
         this.isFundamental = ko.observable(false);
         this.isEvent = ko.observable(false);
+        this.isMain = ko.observable(false);
         this.stars = ko.observable(0);
         this.redirectClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode() + "&stockName=" + item.sname();
@@ -170,13 +168,14 @@ var JishuManagement = function () {
             success: function (data) {
                 if (data && data.data && data.data.length > 0) {
                     var arr = data.data;
+                    var tempStocks = [];
                     for (var i = 0; i < arr.length; i++) {
                         var stock = new Stock(arr[i].name, arr[i].windcode);
                         jishuVM.strongVM.items.push(stock);
-                        _this.codeList.push(arr[i].windcode);
+                        tempStocks.push(arr[i].windcode);
                     }
-                    getSelftSelectEvent(_this.codeList);
-                    getLabelStars(_this.codeList);
+                    getSelftSelectEvent(tempStocks);
+                    getLabelStars(tempStocks);
                 } else if (data && data.data && data.data.length == 0) {
                     $('.loadspan').hide();
                     $(window).unbind('scroll');
@@ -202,13 +201,14 @@ var JishuManagement = function () {
             success: function (data) {
                 if (data && data.data && data.data.length > 0) {
                     var arr = data.data;
+                    var tempStocks = [];
                     for (var i = 0; i < arr.length; i++) {
                         var stock = new Stock(arr[i].name, arr[i].windcode);
                         jishuVM.readyVM.items.push(stock);
-                        _this.codeList.push(arr[i].windcode);
+                        tempStocks.push(arr[i].windcode);
                     }
-                    getSelftSelectEvent(_this.codeList);
-                    getLabelStars(_this.codeList);
+                    getSelftSelectEvent(tempStocks);
+                    getLabelStars(tempStocks);
                 } else if (data && data.data && data.data.length == 0) {
                     $('.loadspan').hide();
                     $(window).unbind('scroll');
@@ -258,6 +258,7 @@ var JishuManagement = function () {
                                 vm.items()[i].stars(resultArr[j].stars);
                                 vm.items()[i].isTechnology(Boolean(resultArr[j].is_jishu));
                                 vm.items()[i].isFundamental(Boolean(resultArr[j].is_jiben));
+                                vm.items()[i].isMain(Boolean(resultArr[j].is_mf));
                                 break;
                             }
                         }

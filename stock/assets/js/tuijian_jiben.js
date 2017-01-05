@@ -5,7 +5,6 @@
 var JibenManagement = function () {
     var _this = this;
     _this.pageNumber = 1; //设置当前页数，全局变量  
-    _this.codeList = [];
     var jibenVM={
         items:ko.observableArray([])
     }
@@ -43,7 +42,6 @@ var JibenManagement = function () {
                     $('#notice-alert').modal('open');
                     jibenVM.items([]);
                     _this.pageNumber = 1; //设置当前页数，全局变量  
-                    _this.codeList = [];
                     getStocksData();
                 } else if (data.status == 12008) {
                     _this.noticeVM.notice('自选已存在，不用重复添加！');
@@ -66,6 +64,7 @@ var JibenManagement = function () {
         this.isTechnology = ko.observable(false);
         this.isFundamental = ko.observable(false);
         this.isEvent = ko.observable(false);
+        this.isMain = ko.observable(false);
         this.stars = ko.observable(0);
         this.redirectClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode() + "&stockName=" + item.sname();
@@ -87,7 +86,6 @@ var JibenManagement = function () {
                             $('#notice-alert').modal('open');
                             jibenVM.items([]);
                             _this.pageNumber = 1; //设置当前页数，全局变量  
-                            _this.codeList = [];
                             getStocksData();
                         } else {
                             _this.noticeVM.notice('自选股删除失败！');
@@ -139,14 +137,14 @@ var JibenManagement = function () {
                 $('.loadspan').hide();
                 if (data && data.data && data.data.length > 0) {
                     var arr = data.data;
+                    var tempStocks = [];
                     for (var i = 0; i < arr.length; i++) {
                         var stock = new Stock(arr[i].name, arr[i].windcode);
                         jibenVM.items.push(stock);
-                        _this.codeList.push(arr[i].windcode);
+                        tempStocks.push(arr[i].windcode);
                     }
-                    getSelftSelectEvent(_this.codeList);
-                    getLabelStars(_this.codeList);
-                    _this.codeList=[];
+                    getSelftSelectEvent(tempStocks);
+                    getLabelStars(tempStocks);
                 } else if (data && data.data && data.data.length == 0) {
                     $(window).unbind('scroll');
                     $('.nomore').show();
@@ -186,6 +184,7 @@ var JibenManagement = function () {
                                 jibenVM.items()[i].stars(resultArr[j].stars);
                                 jibenVM.items()[i].isTechnology(Boolean(resultArr[j].is_jishu));
                                 jibenVM.items()[i].isFundamental(Boolean(resultArr[j].is_jiben));
+                                jibenVM.items()[i].isMain(Boolean(resultArr[j].is_mf));
                                 break;
                             }
                         }
@@ -225,6 +224,7 @@ var JibenManagement = function () {
         $("#KEY_FRESH").click(function () {
             window.location.reload();//刷新当前页面.
         });
+        $(window).scroll(scrollHandler);
         //定义鼠标滚动事件  
         $(window).scroll(scrollHandler);
         ko.applyBindings(jibenVM, $('#jiben-container')[0]);

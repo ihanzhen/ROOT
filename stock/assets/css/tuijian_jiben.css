@@ -30,20 +30,3 @@
 .color-grap{
     color:#383838;
 }
-.loadspan {
-    position: relative;
-    left: 50%;
-    margin-left: -5px;
-    margin-top: -10px;
-    height:30px;
-}
-
-.nomore {
-    display: none;
-    position: relative;
-    left: 50%;
-    margin-left: -66px;
-    margin-top: -10px;
-    font-size: 12px;
-    height:30px;
-}

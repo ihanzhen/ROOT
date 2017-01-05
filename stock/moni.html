@@ -15,9 +15,9 @@
         <div class="swiper-wrapper">
             <!-- Header -->
             <header data-am-widget="header" class="am-header am-header-default" data-am-sticky>
-                <div class="am-header-left am-header-nav">
-                    <a href="javascript:void(0);" class="">
-                        <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
+                <div id="searchBtn" class="am-header-left am-header-nav" style="z-index:99999">
+                    <a href="search.html" class="">
+                        <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#666"></i>
                     </a>
                 </div>
                 <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
@@ -26,7 +26,7 @@
                             <img src="assets/images/hanzhenfff.svg" class="h20" />
                         </span>
                         <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
-                        <span class="am-badge-danger am-radius tip-red">A股量化</span>
+                        <span class="am-badge-danger am-radius tip-red">A股</span>
                         <span class="am-icon-caret-down"></span>
                     </button>
                     <ul class="mdl1 am-dropdown-content zindexmax">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="am-header-right am-header-nav">
                     <a href="javascript:void(0);" class="">
-                        <i class="am-header-icon am-icon-refresh" style="font-size:1.5rem;color:#999" id="KEY_FRESH"></i>
+                        <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="KEY_FRESH"></i>
                     </a>
                 </div>
                 <!-- Menu -->
@@ -67,38 +67,38 @@
                   <ul class="am-avg-sm-6 am-tabs-nav am-nav am-nav-tabs" data-bind="with:tabVM">
                     <li class="am-active" data-bind="click:buyClick">
                       <a href="#tab1" id="t1">
-                        <span class="am-icon-sign-in" style="width:25px;color:#f05e4b;position: relative;top:-6px;font-size:22px;"><br>
-                        <span style="font-size:12px;position: relative;top:-15px;color:#eee;">买入</span>      
+                        <span class="am-icon-sign-in tab-icon" style="color:#f05e4b;"><br>
+                        <span class="tab-text">买入</span>      
                       </a>
                     </li>
                     <li data-bind="click:saleClick">
                       <a href="#tab2" id="t2">
-                        <span class="am-icon-sign-out" style="width:25px;color:#27ae60;position: relative;top:-6px;font-size:22px;"><br>
-                        <span style="font-size:12px;position: relative;top:-15px;color:#eee;">卖出</span>
+                        <span class="am-icon-sign-out tab-icon" style="color:#27ae60;"><br>
+                        <span class="tab-text">卖出</span>
                       </a>
                     </li>
                     <li data-bind="click:cancelClick">
                       <a href="#tab3" id="t3">
-                        <span class="am-icon-times-circle-o" style="width:25px;position: relative;top:-6px;font-size:22px;"><br>
-                        <span style="font-size:12px;position: relative;top:-15px;color:#eee;">撤单</span>
+                        <span class="am-icon-times-circle-o tab-icon"><br>
+                        <span class="tab-text">撤单</span>
                       </a>
                     </li>
                     <li data-bind="click:holdClick">
                       <a href="#tab4" id="t4">
-                        <span class="am-icon-database" style="width:25px;color:#fea356;position: relative;top:-4px;font-size:18px;"><br>
-                        <span style="font-size:12px;position: relative;top:-6px;color:#eee;">持仓</span>
+                        <span class="am-icon-database tab-icon" style="color:#fea356;"><br>
+                        <span class="tab-text">持仓</span>
                       </a>
                     </li>
                     <li data-bind="click:searchClick">
                       <a href="#tab5" id="t5">
-                        <span class="am-icon-search" style="width:25px;color:#12b7f5;position: relative;top:-6px;font-size:20px;"><br>
-                        <span style="font-size:12px;position: relative;top:-10px;color:#eee;">查询</span>
+                        <span class="am-icon-search tab-icon" style="color:#12b7f5;"><br>
+                        <span class="tab-text">查询</span>
                       </a>
                     </li>
                     <li data-bind="click:profitClick">
                       <a href="#tab6" id="t6">
-                        <span class="am-icon-line-chart" style="width:25px;color:#c985f0;position: relative;top:-6px;font-size:20px;"><br>
-                        <span style="font-size:12px;position: relative;top:-10px;color:#eee;">收益</span>
+                        <span class="am-icon-line-chart tab-icon" style="color:#c985f0;"><br>
+                        <span class="tab-text">收益</span>
                       </a>
                     </li>    
                   </ul>
@@ -254,7 +254,7 @@
                             <div class="nomore"><span>没有更多可以显示的内容</span></div>
                         </div>
                         <div class="am-tab-panel am-fade" id="tab4" data-bind="with:holdVM">
-                            <div class="am-tabs" data-am-tabs style="margin: 0px 0 10px 0;font-size:14px">
+                            <div class="am-tabs" data-am-tabs style="margin: -8px 0 10px 0;font-size:14px">
                                 <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="padding:2px 0 1px 0;">
                                     <li>
                                         <span style="position: relative;font-size:12px;">总资产(元)</span>
@@ -307,7 +307,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <table class="am-table" style="font-size:12px;text-align: right;">
+                            <table class="am-table" style="font-size:12px;text-align: right;margin-top:-10px">
                                 <thead>
                                     <tr style="background:#444;color:#fff;font-size:14px;">
                                         <th style="padding-left:15px;">市值</th>
@@ -390,8 +390,8 @@
                 <span data-bind="text:priceType" style="color:#fff"></span>
                 <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close style="margin-top:10px;margin-right:5px">&times;</a>
             </div>
-            <div style="border-top:1px solid #444;width:90%;margin:0 auto;margin-top:5px;margin-bottom:13px;"></div>
-            <div class="am-modal-bd" style="padding: 5px 7px 1px 7px">
+            <div style="width:90%;margin:0 auto;margin-top:5px;margin-bottom:13px;"></div>
+            <div class="am-modal-bd" style="padding: 0 7px 20px 7px">
                 <ul data-bind="foreach:items" style="list-style:none;padding-left: 0px;">
                     <li>
                         <button class="am-btn am-radius" data-bind="click:priceClick,css:{'am-btn-danger':$parent.priceType()=='卖单盘口','am-btn-success':$parent.priceType()=='买单盘口'}" style="font-weight: normal;font-size:14px;width: 90%;margin:2px auto;text-align: left">

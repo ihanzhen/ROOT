@@ -4,40 +4,44 @@
   <meta charset="utf-8">
     <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
-  <script src="assets/js/head.js"></script>
+    <script src="assets/js/head.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
     <link type="text/css" rel="stylesheet" href="assets/css/wait.css" />
+    <link href="assets/css/tuijian_zhuli.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/home.css" />      
 </head>
 <body>
 <!-- Header -->
-<header data-am-widget="header" class="am-header am-header-default" data-am-sticky>
-  <div class="am-header-left am-header-nav">
-      <a href="search.html" class="">
-        <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#999"></i>
-      </a>
-  </div>  
-    <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
-        <button class="am-btn am-btn-primary am-dropdown-toggle mgn-top7" data-am-dropdown-toggle>
-            <span class="span-top4">
-                <img src="assets/images/hanzhenfff.svg" class="h20" />
-            </span>
-            <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
-            <span class="am-badge-danger am-radius tip-red">A股量化</span>
-            <span class="am-icon-caret-down"></span>
-        </button>
-        <ul class="mdl1 am-dropdown-content zindexmax">
-            <li><a href="/stock/home.html"><span class="combox">沪深A股</span></a></li>
-            <li><a href="/futures/index.html"><span class="combox">国内大宗商品</span></a></li>
-            <li><a href="/stockfutures/index.html"><span class="combox">股指期货</span></a></li>
-            <li><a href="/xauusd/index.html"><span class="combox">现货贵金属</span></a></li>
-            <li><a href="/usoil/index.html"><span class="combox">现货原油</span></a></li>
-            <li><a href="/usstocketf/index.html"><span class="combox">美股ETF</span></a></li>
-            <li><a href="/astockoption/index.html"><span class="combox">A股期权</span></a></li>
-            <li><a href="shipanriji.html"><span class="combox">我的实盘日记</span> <span class="am-badge-danger am-radius tip-red">免费</span> </a></li>
-        </ul>
-    </div>
+<header data-am-widget="header" class="am-header am-header-default">
+    <div id="searchBtn" class="am-header-left am-header-nav" style="z-index:99999">
+        <a href="search.html" class="">
+            <i class="am-header-icon am-icon-search" style="font-size:1.7rem;color:#666"></i>
+        </a>
+    </div>  
+  <div class="mdl am-dropdown mgn-0-10" data-am-dropdown>
+      <button class="am-btn am-btn-primary am-dropdown-toggle mgn-top7" data-am-dropdown-toggle>
+          <span class="span-top4">
+              <img src="assets/images/hanzhenfff.svg" class="h20" />
+          </span>
+          <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
+          <span class="am-badge-danger am-radius tip-red">A股</span>
+          <span class="am-icon-caret-down"></span>
+      </button>
+      <ul class="mdl1 am-dropdown-content zindexmax">
+          <li><a href="/stock/home.html"><span class="combox">沪深A股</span></a></li>
+          <li><a href="/futures/index.html"><span class="combox">国内大宗商品</span></a></li>
+          <li><a href="/stockfutures/index.html"><span class="combox">股指期货</span></a></li>
+          <li><a href="/xauusd/index.html"><span class="combox">现货贵金属</span></a></li>
+          <li><a href="/usoil/index.html"><span class="combox">现货原油</span></a></li>
+          <li><a href="/usstocketf/index.html"><span class="combox">美股ETF</span></a></li>
+          <li><a href="/astockoption/index.html"><span class="combox">A股期权</span></a></li>
+          <li><a href="shipanriji.html"><span class="combox">我的实盘日记</span> <span class="am-badge-danger am-radius tip-red">免费</span> </a></li>
+      </ul>
+  </div>
   <div class="am-header-right am-header-nav" style="/*margin-right:40px*/">
       <a href="#left-link" class="">
-        <i class="am-header-icon am-icon-refresh" style="font-size:1.6rem;color:#999"></i>
+        <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="KEY_FRESH"></i>
       </a>
   </div>    
 </header>
@@ -69,165 +73,288 @@ transition: transform 0.0001s;
 .am-tabs-bd .am-tab-panel{
   padding: 0 10px 15px;
 }
-#c-date{
-  position: relative;
-  color:#999;
-  right:57px;
-  top:15px;
-}
-#c-tip{
-  position:relative;
-  right:-16px;
-  top:2px;
-}
-#c-font{font-size:14px;}
+.am-panel{box-shadow: none;}
 </style>
 
 
 <div class="am-tabs" data-am-tabs>
-  <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0" data-am-sticky="{top:49}">
+  <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0" > <!--data-am-sticky="{top:49}"-->
     <li class="am-active" style="height:25px"><a href="#tab1"><span class="am-icon-sign-in color-red" style="margin-right:5px"></span>买入预警</a></li>
-    <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px"><a href="#tab2"><span class="am-icon-sign-out color-green" style="margin-right:3px"></span>卖出预警</a></li>
+    <li style="border-left:1px solid #555;height:25px"><a href="#tab2"><span class="am-icon-sign-out color-green" style="margin-right:3px"></span>持仓卖出预警</a></li>
   </ul>
 
   <div class="am-tabs-bd" style="margin-top:5px">
     <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="background:#3d3d3d"> 
-      <div class="am-list-news-bd">
-        <ul class="am-list">
-            <li class="am-g am-list-item-dated" style="border-top:0 none;">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-red am-list-date-2">关注</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span>    
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">兰花科创<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">600123.SH</span>
-                </a> 
-                <span class="am-list-date bg-orange am-list-date-2">等待</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-            <li class="am-g am-list-item-dated">
-                <a href="stock_details.html" class="am-list-item-hd" style="height:45px">
-                  <span style="position: relative;top:-6px">金科股份<br>
-                  <span style="font-size:11px;position: relative;top:-11px;color:#777">000656.SH</span>
-                </a> 
-                <span class="am-list-date bg-green am-list-date-2">建仓</span>
-                <span class="am-list-date am-list-date-value-double" id="c-red">
-                  <span id="c-tip">买入价 <span id="c-font">56.51</span></span> 
-                  <span id="c-date">08-25 10:23:15</span>
-                </span> 
-            </li>
-        </ul>
-      </div> 
+
+<!--info s-->
+    <ul class="am-avg-sm-3" style="margin-bottom:5px">
+      <li><div id="main-1" class="zline"></div></li>
+      <li><div id="main-2" class="zline"></div></li>
+      <li><div id="main-3" class="zline"></div></li>
+    </ul>
+    <script src="assets/js/jd_huan.js"></script>
+    <div>
+      <ul class="am-avg-sm-3 sliderbd" style="margin-top:-7px;margin-left:-10px;margin-right:-10px;border-bottom:none">
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">总资金</div>
+          <div class="slider-a2 cwhite">200万</div>
+        </li>
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">持仓资金</div>
+          <div class="slider-a2 cwhite">100万</div>
+        </li>
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">剩余资金</div>
+          <div class="slider-a2 cwhite">100万</div>
+        </li>
+      </ul>      
+    </div>    
+<!--info e-->
+
+<style type="text/css">
+    .am-tabs-bd {
+        border: none;
+    }
+    .am-nav-tabs > li > a {
+        color: #aaa;
+    }
+    .am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {
+        background: none;
+        border: none;
+        color: #fff;
+        margin-top: 1px;
+        margin-left: 1px;
+        font-weight: bold;
+    }
+    .am-tabs-nav > li {
+        background: none;
+        text-align: center;
+    }
+    .am-tabs-nav > li > a {
+        position: relative;
+        top: -8px;
+        left: 3px;
+    }
+    .am-nav-tabs {
+        border: none;
+    }
+    .am-list > li {
+        background: none;
+        border-color: #444;
+    }
+    .am-nav > li > a:focus, .am-nav > li > a:hover {
+        background: none;
+        border: none;
+    }
+    .am-tabs-bd .am-tab-panel {
+    -webkit-transition: -webkit-transform 0.0001s;
+    transition: transform 0.0001s;
+    }　   
+
+    .am-panel{
+        margin-bottom: 10px;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .am-list>li>a {
+        display: block;
+        padding: 0;
+        margin-bottom:-3px;
+
+    }
+    .am-list>li>a:visited,.am-list>li>a:hover { 
+        color: #fff; 
+        text-decoration: none; 
+    }           
+</style>
+<!--A and ETF s-->
+<div class="am-tabs" data-am-tabs>
+  <ul class="am-avg-sm-2 am-tabs-nav am-nav am-nav-tabs" style="background:#373737;padding:7px 0;margin-left:-10px;margin-right:-10px">
+    <li class="am-active" style="height:25px"><a href="#tab1">沪深A股</a></li>
+    <li style="border-left:1px solid #555;height:25px"><a href="#tab2">基金ETF</a></li>
+  </ul>
+
+  <div class="am-tabs-bd" style="margin-top:5px">
+    <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="background:#3d3d3d;padding-left:0;padding-right:0"> 
+          <div style="margin-top:-5px">              
+            <ul class="am-list admin-sidebar-list" id="collapase-nav-1">
+              <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#li-1'}">
+                    <span style="position: relative;top:10px">
+                        <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                        <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
+                    </span>
+                    <span class="am-list-date bg-green am-list-date-2">卖3成仓</span>
+                    <span class="am-list-date am-list-date-value-double" style="line-height:14px">
+                      <span style="font-size:11px;color:#999">
+                        当前 <span style="font-size:14px;color:#ddd">56.51</span>&nbsp;&nbsp;&nbsp;涨幅 <span style="font-size:14px;color:#ddd">3.45</span>%
+                      </span><br/>
+                      <span style="font-size:11px;color:#999"> 
+                        收益 <span style="font-size:14px;color:#ddd">3.45</span>%&nbsp;&nbsp;08-25 10:23:15
+                      </span>
+                    </span>  
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="li-1">
+                    <li style="margin-left:5px;margin-right:5px;border-top:none;border-bottom:none;margin-bottom:-10px">
+                        <table class="am-table" style="font-size:12px;text-align: center;">
+                            <thead style="">
+                                <tr style="font-size:12px;text-align: center;color:#ccc">
+                                    <th style="text-align: center;font-weight:600;color:#ccc">买入</th>
+                                    <th style="text-align: center;font-weight:600;color:#ccc">持有</th>
+                                    <th style="text-align: center;font-weight:600;color:#ccc">股数</th>
+                                    <th style="text-align: center;font-weight:600;color:#ccc">金额</th>
+                                    <th style="text-align: center;font-weight:600;color:#ccc">股池</th>
+
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach:items">
+                                <tr>
+                                    <td>23.45</td>
+                                    <td>134天</td>
+                                    <td>100000</td>
+                                    <td>45.45万</td>
+                                    <td>
+                                      <div style="margin-top:-1px">
+                                      <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px"><img src="assets/images/zhu.svg" style="height:11px;margin-right:1px"></div>
+                                    </td>
+                                </tr>                                       
+                            </tbody>
+                        </table>
+                    </li>
+                    <li style="margin-top:-12px;margin-bottom:10px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none">
+                        <div style="font-weight:600;color:#ccc">所属策略</div>
+                        <div style="text-indent:2em;line-height:14px;margin-right:40px">强势;蓄势;突破成交量;突破中枢;价值;主力持仓;事件逻辑
+                        </div>
+                        <a data-bind="click:redirectClick">
+                            <div class="am-header-icon am-icon-angle-right" style="font-size:2.4rem;color:#999;float:right;margin-top:-33px;margin-right:-10px"></div>
+                        </a> 
+                    </li>                           
+                </ul>
+              </li>
+
+              <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#li-2'}">
+                    <span style="position: relative;top:10px">
+                        <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                        <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
+                    </span>
+                    <span class="am-list-date am-list-date-2">
+                      <div class="icongroup">
+                      <img src="assets/images/qiang.svg" style="height:11px;margin-right:1px"><img src="assets/images/xu.svg" style="height:11px;margin-right:1px"><img src="assets/images/liang.svg" style="height:11px;margin-right:1px"><img src="assets/images/shu.svg" style="height:11px;margin-right:1px"><br><img src="assets/images/jia.svg" style="height:11px;margin-right:1px"><img src="assets/images/shi.svg" style="height:11px;margin-right:1px"><img src="assets/images/zhu.svg" style="height:11px;margin-right:1px">
+                      </div>
+                    </span>
+                    <span class="am-list-date am-list-date-value-double" style="line-height:14px">
+                      <span style="font-size:11px;color:#999">
+                        当前 <span style="font-size:14px;color:#ddd">56.51</span>&nbsp;&nbsp;&nbsp;涨幅 <span style="font-size:14px;color:#ddd">3.45</span>%
+                      </span><br/>
+                      <span style="font-size:11px;color:#999"> 
+                        收益 <span style="font-size:14px;color:#ddd">3.45</span>%&nbsp;&nbsp;08-25 10:23:15
+                      </span>
+                    </span>  
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="li-2">
+                    <li style="margin-bottom:10px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none">
+                        <div style="font-weight:600;color:#ccc">所属策略</div>
+                        <div style="text-indent:2em;line-height:14px;margin-right:40px">强势;蓄势;突破成交量;突破中枢;价值;主力持仓;事件逻辑
+                        </div>
+                        <a data-bind="click:redirectClick">
+                            <div class="am-header-icon am-icon-angle-right" style="font-size:2.4rem;color:#999;float:right;margin-top:-33px;margin-right:-10px"></div>
+                        </a>                          
+                    </li>                           
+                </ul>
+              </li>
+            </ul>
+        </div>     
+    </div>
+
+    <div class="am-tab-panel am-fade am-in" id="tab2" style="background:#3d3d3d;padding-left:0;padding-right:0"> 
+          <div style="margin-top:-5px">              
+            <ul class="am-list admin-sidebar-list" id="collapase-nav-1">
+              <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#li-1'}">
+                    <span style="position: relative;top:10px">
+                        <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                        <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
+                    </span>
+                    <span class="am-list-date bg-green am-list-date-2">卖3成仓</span>
+                    <span class="am-list-date am-list-date-value-double" style="line-height:14px">
+                      <span style="font-size:11px;color:#999">
+                        当前 <span style="font-size:14px;color:#ddd">56.51</span>&nbsp;&nbsp;&nbsp;涨幅 <span style="font-size:14px;color:#ddd">3.45</span>%
+                      </span><br/>
+                      <span style="font-size:11px;color:#999"> 
+                        收益 <span style="font-size:14px;color:#ddd">3.45</span>%&nbsp;&nbsp;08-25 10:23:15
+                      </span>
+                    </span>  
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="li-1">
+                    <li style="margin-left:5px;margin-right:5px;border-top:none;border-bottom:none;margin-bottom:-10px">
+                        <table class="am-table" style="font-size:12px;text-align: center;">
+                            <thead style="">
+                                <tr style="font-size:12px;text-align: center;">
+                                    <th style="text-align: center;">买入</th>
+                                    <th style="text-align: center;">持有</th>
+                                    <th style="text-align: center;">股数</th>
+                                    <th style="text-align: center;">金额</th>
+                                    <th style="text-align: center;">股池</th>
+
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach:items">
+                                <tr>
+                                    <td>23.45</td>
+                                    <td>134天</td>
+                                    <td>100000</td>
+                                    <td>45.45万</td>
+                                    <td>
+                                      <div style="margin-top:-3px">
+                                      <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px"></div>
+                                    </td>
+                                </tr>                                       
+                            </tbody>
+                        </table>
+                    </li>
+                    <li style="margin-top:-12px;margin-bottom:10px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none">
+                        <div style="font-weight:600;color:#ccc">所属策略</div>
+                        <div style="text-indent:2em;line-height:14px">强势;蓄势;突破成交量;突破中枢;价值;主力持仓;事件逻辑
+                        </div> 
+                    </li>                           
+                </ul>
+              </li>
+
+              <li class="am-panel">
+                <a data-am-collapse="{parent: '#collapase-nav-1', target: '#li-2'}">
+                    <span style="position: relative;top:10px">
+                        <span style="position: relative;top:-6px" data-bind="text:sname">金科股份</span><br>
+                        <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
+                    </span>
+                    <span class="am-list-date bg-red am-list-date-2">买5成仓</span>
+                    <span class="am-list-date am-list-date-value-double" style="line-height:14px">
+                      <span style="font-size:11px;color:#999">
+                        当前 <span style="font-size:14px;color:#ddd">56.51</span>&nbsp;&nbsp;&nbsp;涨幅 <span style="font-size:14px;color:#ddd">3.45</span>%
+                      </span><br/>
+                      <span style="font-size:11px;color:#999"> 
+                        收益 <span style="font-size:14px;color:#ddd">3.45</span>%&nbsp;&nbsp;08-25 10:23:15
+                      </span>
+                    </span>  
+                </a>
+                <ul class="am-list am-collapse admin-sidebar-sub" id="li-2">
+                    <li style="margin-bottom:10px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none">
+                        <div style="font-weight:600;color:#ccc">所属策略</div>
+                        <div style="text-indent:2em;line-height:14px">强势;蓄势;突破成交量;突破中枢;价值;主力持仓;事件逻辑
+                        </div> 
+                    </li>                           
+                </ul>
+              </li>
+            </ul>
+        </div>     
+    </div>
+  </div>
+</div>
+<!--A and ETF e-->
+
     </div>
 
     <div class="am-tab-panel am-fade" id="tab2" style="background:#3d3d3d">
@@ -288,7 +415,12 @@ transition: transform 0.0001s;
 <script src="assets/js/navbar-wait.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/amazeui.min.js"></script>
-    <script src="assets/js/knockout-3.1.0.js"></script>
-    <script src="assets/js/notice.js"></script>
+<script src="assets/js/knockout-3.1.0.js"></script>
+<script src="assets/js/notice.js"></script>
+<script type="text/javascript">
+  $("#KEY_FRESH").click(function () {
+      window.location.reload();//刷新当前页面.
+  });
+</script>
 </body>
 </html>

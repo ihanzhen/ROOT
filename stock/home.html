@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <script src="assets/js/wecheckhome.js"></script>
     <script src="assets/js/head.js"></script>
-    <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/home.css"/>
     <meta name="apple-touch-fullscreen" content="yes">
 </head>
 <body>
@@ -20,7 +20,7 @@
                     <img src="assets/images/hanzhenfff.svg" class="h20" />
                 </span>
                 <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
-                <span class="am-badge-danger am-radius tip-red">A股量化</span>
+                <span class="am-badge-danger am-radius tip-red">A股</span>
                 <span class="am-icon-caret-down"></span>
             </button>
             <ul class="mdl1 am-dropdown-content zindexmax">
@@ -40,6 +40,11 @@
             </a>
             <span style="position:absolute;top:11px;left:22px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #343434;"></span>
         </div>
+        <div class="am-header-right am-header-nav" style="margin-right:30px">
+            <a href="javascript:void(0);" class="">
+                <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="KEY_FRESH"></i>
+            </a>
+        </div>         
     </header>
     <div id="home-container">
         <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{directionNav:false,controlNav:false,animation: "fade"}'>
@@ -140,34 +145,34 @@
             <ul class="am-avg-sm-4" style="padding:0">
                 <li class="bg-a" data-bind="click:dapanClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #e74c3c;color:#fff;border-radius:50px;margin:10px auto 5px">
-                            <img src="assets/images/explore.svg" style="width:24px;height:24px;">
-                            <div style="display:;position:relative;margin:0 auto;margin-top:-45px;left:24px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #393939;"></div>
+                        <div class="icon-div" style="background: #e74c3c;">
+                            <img src="assets/images/explore.svg" class="icon-img">
+                            <div class="dot-div" style=""></div>
                         </div>
                     </div>
                     <div class="ft11center">大盘预测</div>
                 </li>
                 <li class="bg-a" data-bind="click:bankuaiClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #4262a2;color:#fff;border-radius:50px;margin:10px auto 5px">
-                            <img src="assets/images/layers.svg" style="width:24px;height:24px;">
-                            <div style="display:;position:relative;margin:0 auto;margin-top:-45px;left:24px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #393939;"></div>
+                        <div class="icon-div" style="background: #4262a2;">
+                            <img src="assets/images/layers.svg" class="icon-img">
+                            <div class="dot-div"></div>
                         </div>
                     </div>
                     <div class="ft11center">板块分析</div>
                 </li>
                 <li class="bg-a" data-bind="click:customStocksClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #27ae60;color:#fff;border-radius:50px;margin:10px auto 5px">
-                            <img src="assets/images/filter-tilt-shift.svg" style="width:24px;height:24px;">
+                        <div class="icon-div" style="background: #27ae60;">
+                            <img src="assets/images/filter-tilt-shift.svg" class="icon-img">
                         </div>
                     </div>
                     <div class="ft11center">资金持仓管理</div>
                 </li>
                 <li class="bg-a" data-bind="click:selectedStocksClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #ff6d00;color:#fff;border-radius:50px;margin:10px auto 5px">
-                            <img src="assets/images/note.svg" style="width:24px;height:24px;">
+                        <div class="icon-div" style="background: #ff6d00;">
+                            <img src="assets/images/note.svg" class="icon-img">
                         </div>
                     </div>
                     <div class="ft11center">股市头条</div>
@@ -176,36 +181,36 @@
             <ul class="am-avg-sm-4" style="padding:0">
                 <li class="bg-a" data-bind="click:recommendStocksClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #ffa018;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/local-attraction.svg" style="width:24px;height:24px;">
-                            <div style="display:;position:relative;margin:0 auto;margin-top:-45px;left:24px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #393939;"></div>
+                        <div class="icon-div" style="background: #ffa018;">
+                            <img src="assets/images/local-attraction.svg" class="icon-img">
+                            <div class="dot-div"></div>
                         </div>
                     </div>
                     <div class="ft11center">技术面股池</div>
                 </li>
                 <li class="bg-a" data-bind="click:selectedStocksClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #ff614f;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/box.svg" style="width:24px;height:24px;">
-                            <div style="display:;position:relative;margin:0 auto;margin-top:-45px;left:24px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #393939;"></div>
+                        <div class="icon-div" style="background: #ff614f;">
+                            <img src="assets/images/box.svg" class="icon-img">
+                            <div class="dot-div"></div>
                         </div>
                     </div>
                     <div class="ft11center">基本面股池</div>
                 </li>
                 <li class="bg-a" data-bind="click:customStocksClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #ff772b;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/brightness-7.svg" style="width:24px;height:24px;">
-                            <div style="display:;position:relative;margin:0 auto;margin-top:-45px;left:24px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #393939;"></div>
+                        <div class="icon-div" style="background: #ff772b;">
+                            <img src="assets/images/brightness-7.svg" class="icon-img">
+                            <div class="dot-div"></div>
                         </div>
                     </div>
                     <div class="ft11center">事件逻辑股池</div>
                 </li>
                 <li class="bg-a" data-bind="click:zhulichicangClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #2c9ef7;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/ios-flower.svg" style="width:24px;height:24px;">
-                            <div style="display:;position:relative;margin:0 auto;margin-top:-45px;left:24px;height:12px;width:12px;background:#e84c3d;border-radius:8px;border:2px solid #393939;"></div>
+                        <div class="icon-div" style="background: #2c9ef7;">
+                            <img src="assets/images/ios-flower.svg" class="icon-img">
+                            <div class="dot-div"></div>
                         </div>
                     </div>
                     <div class="ft11center">主力持仓股池</div>
@@ -214,32 +219,32 @@
             <ul class="am-avg-sm-4" style="padding:0">
                 <li class="bg-a" data-bind="click:recommendStocksClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #1fac7f;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/world.svg" style="width:24px;height:24px;">
+                        <div class="icon-div" style="background: #1fac7f;">
+                            <img src="assets/images/world.svg" class="icon-img">
                         </div>
                     </div>
                     <div class="ft11center">全球市场预测</div>
                 </li>
                 <li class="bg-a" data-bind="click:globalPredictClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #515369;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/message.svg" style="width:24px;height:24px;">
+                        <div class="icon-div" style="background: #515369;">
+                            <img src="assets/images/message.svg" class="icon-img">
                         </div>
                     </div>
                     <div class="ft11center">大宗商品期货</div>
                 </li>
                 <li class="bg-a" data-bind="click:backtestingClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #d16ef4;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/screen-rotation.svg" style="width:24px;height:24px;">
+                        <div class="icon-div" style="background: #d16ef4;">
+                            <img src="assets/images/screen-rotation.svg" class="icon-img">
                         </div>
                     </div>
                     <div class="ft11center">交易回测</div>
                 </li>
                 <li class="bg-a" data-bind="click:captialCurveClick">
                     <div class="ft24center">
-                        <div style="line-height:41px;width:46px;height:46px;background: #ffb139;color:#fff;border-radius:50px;margin:0 auto 5px">
-                            <img src="assets/images/swap-calls.svg" style="width:24px;height:24px;">
+                        <div class="icon-div" style="background: #ffb139;">
+                            <img src="assets/images/swap-calls.svg" class="icon-img">
                         </div>
                     </div>
                     <div class="ft11center">资金曲线</div>
@@ -267,5 +272,10 @@
     <script src="assets/js/notice.js"></script>
     <script src="assets/js/common.js"></script>
     <script src="assets/js/home.js"></script>
+    <script type="text/javascript">
+        $("#KEY_FRESH").click(function () {
+            window.location.reload();//刷新当前页面.
+        });
+    </script>    
 </body>
 </html>

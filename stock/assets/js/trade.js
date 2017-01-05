@@ -83,9 +83,8 @@ function TradeManagement() {
                 $('#notice-alert').modal('open');
             });
         },
-        settopClick: function () {
-            //to do....置顶
-
+        detailsClick: function () {
+            window.location.href = "stock_details.html?stockCode=" + _this.mousedownVM.stockObj.scode() + "&stockName=" + _this.mousedownVM.stockObj.sname();
         }
     }
     _this.settingVM = {
@@ -185,17 +184,17 @@ function TradeManagement() {
         this.stars = ko.observable(0);
         this.whichzx = which;
         this.stockMouseDown = function (data, event) {
-            timeout = setTimeout(function () {
-                _this.mousedownVM.stockObj.sname(data.sname());
-                _this.mousedownVM.stockObj.scode(data.scode());
-                _this.mousedownVM.stockObj.whichzx = data.whichzx;
-                switch (data.whichzx) {
-                    case 1: _this.mousedownVM.stockObj.movea(2); _this.mousedownVM.stockObj.moveb(3); break;
-                    case 2: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(3); break;
-                    case 3: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(2); break;
-                }
-                $('#mousedown-alert').modal();
-            }, 50);
+            //timeout = setTimeout(function () {
+            //    _this.mousedownVM.stockObj.sname(data.sname());
+            //    _this.mousedownVM.stockObj.scode(data.scode());
+            //    _this.mousedownVM.stockObj.whichzx = data.whichzx;
+            //    switch (data.whichzx) {
+            //        case 1: _this.mousedownVM.stockObj.movea(2); _this.mousedownVM.stockObj.moveb(3); break;
+            //        case 2: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(3); break;
+            //        case 3: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(2); break;
+            //    }
+            //    $('#mousedown-alert').modal();
+            //}, 50);
             return false;
         },
         this.stockMouseOut = function (data, event) {
@@ -207,6 +206,17 @@ function TradeManagement() {
         this.detailsClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode() + "&stockName=" + item.sname();
         };
+        this.moreClick = function (data) {
+            _this.mousedownVM.stockObj.sname(data.sname());
+            _this.mousedownVM.stockObj.scode(data.scode());
+            _this.mousedownVM.stockObj.whichzx = data.whichzx;
+            switch (data.whichzx) {
+                case 1: _this.mousedownVM.stockObj.movea(2); _this.mousedownVM.stockObj.moveb(3); break;
+                case 2: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(3); break;
+                case 3: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(2); break;
+            }
+            $('#mousedown-alert').modal();
+        }
     };
     _this.init = function () {
         ko.applyBindings(_this.tradeVM, $('#trade-container')[0]);

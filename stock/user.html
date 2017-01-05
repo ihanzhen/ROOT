@@ -6,6 +6,8 @@
     <script src="assets/js/verifylogin.js"></script>
     <script src="assets/js/head.js"></script>
     <link type="text/css" rel="stylesheet" href="assets/css/user.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/app.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
 </head>
 <body>
     <!-- Header -->
@@ -21,7 +23,7 @@
                     <img src="assets/images/hanzhenfff.svg" class="h20" />
                 </span>
                 <span class="span-f18">至赢<span class="icon-red">┽</span>禅心</span>
-                <span class="am-badge-danger am-radius tip-red">A股量化</span>
+                <span class="am-badge-danger am-radius tip-red">A股</span>
                 <span class="am-icon-caret-down"></span>
             </button>
             <ul class="mdl1 am-dropdown-content zindexmax">
@@ -40,6 +42,11 @@
                 <i class="am-header-icon am-icon-refresh" style="font-size:1.5rem;color:#999"></i>
             </a>
         </div-->
+        <div class="am-header-right am-header-nav" style="/*margin-right:40px*/">
+          <a href="#left-link" class="">
+            <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="KEY_FRESH"></i>
+          </a>
+        </div>         
     </header>
 
     <!-- Menu -->
@@ -117,5 +124,10 @@
             $('#nickname').text(localStorage.nickname);
         })
     </script>
+    <script type="text/javascript">
+      $("#KEY_FRESH").click(function () {
+          window.location.reload();//刷新当前页面.
+      });
+    </script>    
 </body>
 </html>

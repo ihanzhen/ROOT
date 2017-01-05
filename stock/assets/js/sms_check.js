@@ -76,7 +76,7 @@ var PhoneManagement = function () {
             $.post('/ihanzhendata/user/' + phoneVM.phone() + '/regist', {
                 vcode: phoneVM.msgvcode(),
                 uid: localStorage.uid,
-                token: localStorage.token != undefined ? localStorage.token : ""
+                token: localStorage.token ? localStorage.token : ""
             }, function (data) {
                 $('#my-modal-loading').modal('close');
                 if (data && data.status == 1) {

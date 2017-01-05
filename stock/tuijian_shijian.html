@@ -18,7 +18,7 @@
         </div>
         <div class="am-header-right am-header-nav" style="margin-right:40px;">
             <a href="javascript:void(0);" class="">
-                <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#999" id="KEY_FRESH"></i>
+                <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="KEY_FRESH"></i>
             </a>
         </div>
     </header>
@@ -35,17 +35,19 @@
                                 <span style="font-size:11px;position: relative;top:-17px;color:#777" data-bind="text:scode">000656.SH</span>
                             </a>
                             <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square" style="top:13px" data-bind="style:{background:isSelfSelect()?'#f05e4b':'#666666'},click:selectClick"> <span data-bind="text:isSelfSelect()?'已加':'自选'">自选</span></span>
-                            <span data-bind="text:logicName" class="am-list-date-value-double-1" style="font-size:11px;right:-55px;margin-top:1px"></span>
+                            <span data-bind="text:logicName" class="am-list-date-value-double-1" style="font-size:11px;right:-65px;margin-top:1px"></span>
                             <span class="am-list-date am-list-date-value-double" style="right:0 !important;">
                                 <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>2" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>3" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>4" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()>5" class="am-icon-star color-red" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<2" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<3" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<4" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<5" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span><span data-bind="visible:stars()<6" class="am-icon-star color-grap" style="font-size:13px;width:15px;text-align: left"></span>
                             </span>
                             <span class="am-list-date am-list-date-value-double-1" style="right:0 !important;">
-                                <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()">
+                                <img src="assets/images/zixuan.svg" style="height:11px;margin-right:1px" data-bind="visible:isSelfSelect"><img src="assets/images/zixuan-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isSelfSelect()"><img src="assets/images/jishu.svg" style="height:11px;margin-right:1px" data-bind="visible:isTechnology"><img src="assets/images/jishu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isTechnology()"><img src="assets/images/jiben.svg" style="height:11px;margin-right:1px" data-bind="visible:isFundamental"><img src="assets/images/jiben-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isFundamental()"><img src="assets/images/shijian.svg" style="height:11px;margin-right:1px" data-bind="visible:isEvent"><img src="assets/images/shijian-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isEvent()"><img src="assets/images/zhu.svg" style="height:11px;margin-right:1px" data-bind="visible:isMain"><img src="assets/images/zhu-1.svg" style="height:11px;margin-right:1px" data-bind="visible:!isMain()">
                             </span>
                         </li>
                     </ul>
-                    <div class="loadspan"><span class="am-icon-spinner am-icon-spin" style="height:40px"></span></div>
-                    <div class="nomore">没有更多可以显示的内容</div>
+                    <div style="height:50px;">
+                        <div style="position: absolute;left: 50%;margin-left: -5px;"><span class="am-icon-spinner am-icon-spin"></span></div>
+                        <div style="display: none;position: absolute;left: 50%;margin-left: -66px;font-size: 12px;"><span>没有更多可以显示的内容</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,15 +59,15 @@
             <div class="am-modal-bd">
                 <p>请选择加入以下哪个自选？</p>
                 <ul class="am-list">
-                    <li style="text-align:left;padding-left:20px;">
+                    <li style="text-align:left;padding-left:20px;" data-bind="click:selectFirstClick">
                         <input type="radio" name="selfSelect" value="1" data-bind="checked: select" /> 自选一
                         <div data-bind="text:firstMark"></div>
                     </li>
-                    <li style="text-align:left;padding-left:20px;">
+                    <li style="text-align:left;padding-left:20px;" data-bind="click:selectSecondClick">
                         <input type="radio" name="selfSelect" value="2" data-bind="checked: select" /> 自选二
                         <div data-bind="text:secondMark"></div>
                     </li>
-                    <li style="text-align:left;padding-left:20px;">
+                    <li style="text-align:left;padding-left:20px;" data-bind="click:selectThirdClick">
                         <input type="radio" name="selfSelect" value="3" data-bind="checked: select" /> 自选三
                         <div data-bind="text:thirdMark"></div>
                     </li>
@@ -91,6 +93,7 @@
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/common.js"></script>
     <script src="assets/js/tuijian_shijian.js"></script>
 </body>
 </html>

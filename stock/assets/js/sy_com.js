@@ -114,7 +114,29 @@ option = {
             name:'用户收益',
             type:'line',
             smooth:true,
-            itemStyle: {normal: {areaStyle: {type: 'default'}}},
+            symbol:'none',
+            itemStyle: {
+                normal: {
+                    /*areaStyle: {
+                        type: 'default'
+                    },*/                  
+                    lineStyle:{
+                        width:0.5,
+                        color:"#c23531",
+                    }
+                }
+            },
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                       offset: 0,
+                       color: 'rgba(252, 40, 40, 0.99)'
+                   }, {
+                       offset: 1,
+                       color: 'rgba(252, 40, 40, 0.1)'
+                   }])
+               }
+            }, 
             data:[
                 //30, 182, 434, 791, 390, 300, 200, 100, 50, 100, 
                 //200, 300, 400, 500, 400, 300, 200, 100, 50, 0 
