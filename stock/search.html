@@ -1,110 +1,30 @@
 ﻿<!doctype html>
 <html class="no-js">
 <head>
-  <meta charset="utf-8">
+    <meta charset="utf-8">
     <script src="assets/js/wecheck.js"></script>
     <script src="assets/js/verifylogin.js"></script>
-  <script src="assets/js/head.js"></script>
-  <script src="assets/js/echarts.min.js"></script>
-  <style>
-  input[type="text"],input[type="email"],input[type="password"],input[type="tel"]
-  {color:#fff;background: none;border: none;box-shadow: 0 none;height:30px;font-size:16px;position: relative;top:-2px;}
-  input[type='text']:focus,input[type='email']:focus,input[type='password']:focus,input[type='tel']:focus
-  {color:#fff;background: none;border: none;box-shadow: 0 none;}
-  .am-btn-default:focus,.am-btn-default:active{box-shadow: none;}
-  input[type='button']:focus{box-shadow: none;}
-  input[type='button']:hover{box-shadow: none;}
-
-  </style>
+    <script src="assets/js/head.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <link href="assets/css/search.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<!-- Header -->
-<header data-am-widget="header" class="am-header am-header-default">
-  <div class="am-header-left am-header-nav">
-      <a href="javascript:history.back();" class="">
-          <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-px;"></i>
-      </a>
-      <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">
-        搜索股票
-      </span>
-  </div>    
-  <div class="am-header-right am-header-nav">
-      <a href="home.html">
-        回首页
-      </a>
-  </div>   
-</header>
-
-<!--tabs-->
-<style type="text/css">
-  .am-tabs-bd{border: none;overflow: visible;}
-  .am-nav-tabs >li > a{color:#aaa;}
-  .am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {background: none;border:none;color:#fff;margin-top: 1px;margin-left: 1px;font-weight: bold}
-  .am-tabs-nav > li{background: none;text-align: center;}
-  .am-tabs-nav > li >a{position: relative;top:-8px;}
-  .am-nav-tabs {border:none;}
-  .am-list > li {background: none;border-color: #444;}
-
-  .wrap{font-size: 12px;}
-  .progressbar_1{background-color:#666;height:18px;width:70%;border:1px solid #666;color:#222;border-radius:15px;} 
-  .progressbar_1 .bar {background-color:#444;height:16px;width:0;border-radius:15px;
-    line-height:17px;
-    background-image: -moz-linear-gradient(top, #555, #444);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #555), color-stop(1, #444));
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#555', endColorstr='#444', GradientType='0');
-  }
-</style> 
-
-<style type="text/css">
-.tag {
-    padding: 0.02em 0.2em;
-    vertical-align: 1px;
-    font-size: 65%;
-    font-weight: normal;
-    border-radius: 2px;
-    border: 0;
-    font-weight: 400;
-    margin-top:3px;
-    margin-right: 15px;
-}
-em {
-    font-style: normal;
-    vertical-align: baseline;
-}
-.tag_green{
-    background:#27ae60 !important;
-    color:#ffffff !important;
-}
-.tag_yellow{
-    background:#ebd842 !important;
-    color:#000000 !important;
-}
-.tag_red{
-    background:#f05e4b !important;
-    color:#ffffff !important;
-}
-.am-list-date-value-double {
-    z-index:-111111;
-    font-size: 1.3rem;
-    position: relative;
-    float:right;
-    border-radius: 4px;
-    top:-36px;
-    right:-30px;
-}
-.am-list-date-value-double-1 {
-    z-index:-111111;
-    font-size: 1.3rem;
-    position: relative;
-    float:right;
-    border-radius: 4px;
-    top:-26px;
-    right:-78px;
-}
-.color-grap{
-    color:#383838;
-}
-</style>
+    <!-- Header -->
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:history.back();" class="">
+                <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-px;"></i>
+            </a>
+            <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">
+                搜索股票
+            </span>
+        </div>
+        <div class="am-header-right am-header-nav">
+            <a href="home.html">
+                回首页
+            </a>
+        </div>
+    </header>
     <div id="search-container">
         <div data-am-widget="header" class="am-header am-header-default" style="background:#2c2c2c;height:40px">
             <div class="am-header-left am-header-nav" style="background:#343434;height:30px;border-radius:3px;margin-top:5px">
@@ -171,28 +91,28 @@ em {
             </div>
         </div>
     </div>
-<!-- Navbar -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/amazeui.min.js"></script>
+    <!-- Navbar -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
     <script src="assets/js/knockout-3.1.0.js"></script>
     <script src="assets/js/jquery.autocomplete.search.js"></script>
     <script src="assets/js/search.js"></script>
-<script>
-//页面加载时绑定按钮点击事件
-$(function(){
-    $("#KEY_FRESH").click(function(){
-        refresh();
-    });
-});
-//点击按钮调用的方法
-function refresh(){
-    window.location.reload();//刷新当前页面.
-     
-    //或者下方刷新方法
-    //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
-    // opener.location.reload()刷新父窗口对象（用于单开窗口
-   //top.location.reload()刷新最顶端对象（用于多开窗口）
-}
-</script>
+    <script>
+        //页面加载时绑定按钮点击事件
+        $(function () {
+            $("#KEY_FRESH").click(function () {
+                refresh();
+            });
+        });
+        //点击按钮调用的方法
+        function refresh() {
+            window.location.reload();//刷新当前页面.
+
+            //或者下方刷新方法
+            //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+            // opener.location.reload()刷新父窗口对象（用于单开窗口
+            //top.location.reload()刷新最顶端对象（用于多开窗口）
+        }
+    </script>
 </body>
 </html>

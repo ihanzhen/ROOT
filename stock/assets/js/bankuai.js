@@ -48,18 +48,18 @@ var BankuaiManagement = function () {
     _this.updatePlateAsync = function () {
         $.when(_this.updateStrongPlateAsync(), _this.updateAnticipationPlateAsync())
             .done(function (strongResult, anticipationResult) {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 var strongData = JSON.parse(strongResult[2].responseText).data;
                 var anticipationData = JSON.parse(anticipationResult[2].responseText).data;
                 _this.handleData(strongData, _this.strongVM);
                 _this.handleData(anticipationData, _this.anticipationVM);
             }).fail(function () {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 console.log('fail');
             });
     }
     _this.updateStrongPlateAsync = function () {
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         return $.ajax({
             url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/0',
             dataType: "jsonp",
@@ -70,7 +70,7 @@ var BankuaiManagement = function () {
         });
     }
     _this.updateAnticipationPlateAsync = function () {
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         return $.ajax({
             url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/0',
             contentType: "application/javascript",
@@ -83,11 +83,11 @@ var BankuaiManagement = function () {
     }
 
     var getRecommendPlate = function () {
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         return $.get('/ihanzhendata/stock/recommendPlate_Stock');
     }
     var getStockProperty = function (codeArray) {//通过用户名和股票代码 从赵佳那查询股票是否是自选股，是否是价值股，返回数组
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         var uid = "";
         var uploadArr = $.map(codeArray, function (item) {
             return {
@@ -176,7 +176,7 @@ var BankuaiManagement = function () {
         }
     }
     _this.getPlateData = function () {
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         $.when(getRecommendPlate(), _this.updateStrongPlateAsync(), _this.updateAnticipationPlateAsync())
             .done(function (recommendResult, strongResult, anticipationResult) {
                 var recommendData = JSON.parse(recommendResult[2].responseText).data;
@@ -194,9 +194,9 @@ var BankuaiManagement = function () {
                 handlePropertyData(_this.strongVM);
                 handlePropertyData(_this.anticipationVM);
             }).done(function () {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
             }).fail(function () {
-                $('#my-modal-loading').modal('close');
+                window.stock.loading(false);
                 // fake data 当没有数据现实的时候为了让用户了解页面大概功能
                 var data = [{
                     id: 0,

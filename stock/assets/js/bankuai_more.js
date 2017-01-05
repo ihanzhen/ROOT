@@ -99,7 +99,7 @@ var BankuaiMoreManagement = function () {
         });
     };
     _this.getPageData = function (plateType) {
-        $('#my-modal-loading').modal('open');
+        window.stock.loading(true);
         switch (plateType) {
             case 'recommend': _this.getRecommendPlateData(); break;
             case 'strong': _this.getStrongPlateData(); break;
