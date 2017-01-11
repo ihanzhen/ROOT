@@ -1,4 +1,21 @@
-﻿$(function () {
+﻿//require.config({
+//    path: {
+//        "jquery": "jquery.min",
+//        "amazeui": "amazeui.min",
+//        "knockout": "knockout-3.1.0",
+//        "dp_index": "dp_index",
+//        "notice": "notice",
+//        "common": "common",
+//        "": "",
+//        "": "",
+//        "": "",
+//    }
+//});
+//require(["jquery", "amazeui.min", "knockout"], function ($) {
+
+//});
+
+$(function () {
     var dapanManagement = new DapanManagement();
     dapanManagement.init();
 })
@@ -69,33 +86,31 @@ var DapanManagement = function () {
     _this.queryUserAsset = function () {//资产情况
         return $.get('/ihanzhendata/stockOrderMn/queryUserAsset', { uid: localStorage.uid }, function (data) { });
     }
-    _this.getTendencyAjax = function (zhishutype,righttype) {
+    _this.getTendencyAjax = function (zhishutype, righttype) {
         window.stock.loading(true);
-        var windcode="";
-        switch(zhishutype){
-            case 1:windcode='000001.SH';break;
-            case 2:windcode='399905.SZ';break;
-            case 3:windcode='399006.SZ';break;
+        var windcode = "";
+        switch (zhishutype) {
+            case 1: windcode = '000001.SH'; break;
+            case 2: windcode = '399905.SZ'; break;
+            case 3: windcode = '399006.SZ'; break;
         }
         $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksindex/?num=18&type=&windcode='+windcode,
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksindex/?num=18&type=&windcode=' + windcode,
             dataType: "jsonp",
             jsonpcallback: "jsonpcallback",
             timeout: 5000,
             type: "GET",
             success: function (data) {
-                if(data&&data.data&&data.data.data){
-                    var closePriceArr=data.data.data;
+                if (data && data.data && data.data.data) {
+                    var closePriceArr = data.data.data;
                     computeSvgGraph(closePriceArr, zhishutype, righttype);
                 }
-                
+
             }
         });
     }
     _this.getLoopGainRatio = function () {
-        window.stock.loading(true);
-        $.get('/ihanzhendata/stock/looplv', {uid:localStorage.uid}, function (data) {
-            window.stock.loading(false);
+        $.get('/ihanzhendata/stock/looplv', { uid: localStorage.uid }, function (data) {
             if (data.status == 1) {
                 var loopGainRatio = parseInt(data.data.looplv);
                 option_1.series[0].data[0].value = loopGainRatio;
@@ -103,8 +118,34 @@ var DapanManagement = function () {
                 myChart = echarts.init(document.getElementById('main-1'));
                 myChart.setOption(option_1);
             }
-        }).error(function () {
-            window.stock.loading(false);
+        });
+    }
+    function getIndexAjax(type) {
+        return $.ajax({
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksindex/?num=17&type=' + type,
+            dataType: "jsonp",
+            jsonpcallback: "jsonpcallback",
+            timeout: 5000,
+            type: "GET",
+            success: function (data) {}
+        });
+    }
+    _this.getIndexGraphData = function () {
+        $.when(getIndexAjax('FUND'), getIndexAjax('Strong'), getIndexAjax('Ready')).done(function (fund, strong, ready) {
+            if (fund[0].data) {
+                option.series[0].data = fund[0].data.data;
+            }
+            if (strong[1].data) {
+                option.series[0].data = strong[0].data.data;
+            }
+            if (ready[0].data) {
+                option.series[2].data = ready[0].data.data;
+            }
+            option.xAxis[0].data = ["12/24", "12/25", "12/26", "12/27", "12/28", "12/29", "12/30", "12/31", "1/01", "1/02", "1/03",
+            "1/04", "1/05", "1/06", "1/07", "1/08", "1/09"];
+            option.grid.left = "0";
+            myChart = echarts.init(document.getElementById('main'));
+            myChart.setOption(option);
         });
     }
     _this.getPageData = function () {
@@ -117,7 +158,8 @@ var DapanManagement = function () {
         openPrice.push(_this.getPrice(hq_str_sh000001, 1));
         openPrice.push(_this.getPrice(hq_str_sz399905, 1));
         openPrice.push(_this.getPrice(hq_str_sz399006, 1));
-        $.when(_this.dapanAjax(), _this.proposalPredictionAjax(), _this.queryUserAsset(), _this.getTendencyAjax(1, 1),_this.getLoopGainRatio(), _this.getTendencyAjax(2, 2), _this.getTendencyAjax(3, 3))
+        $.when(_this.dapanAjax(), _this.proposalPredictionAjax(), _this.queryUserAsset(), _this.getTendencyAjax(1, 1), _this.getLoopGainRatio(),
+            _this.getTendencyAjax(2, 2), _this.getTendencyAjax(3, 3), _this.getIndexGraphData())
             .done(function (dapanResult, proposalResult, asset) {
                 $('#my-modal-loading').modal('close');
                 var dapanData = dapanResult[0].data;
@@ -133,8 +175,8 @@ var DapanManagement = function () {
                     }
                 }
                 for (var i = 0; i < dapanArr.length; i++) {
-                    _this.dapanVM.items.push(new Market(closePrice[i], dapanArr[i].market_name,dapanArr[i].property, dapanArr[i].position / 10 + '成仓', openPrice[i]));
-                    $("div.imgDiv svg")[i].id = "tendgraph_" + (i+1);
+                    _this.dapanVM.items.push(new Market(closePrice[i], dapanArr[i].market_name, dapanArr[i].property, dapanArr[i].position / 10 + '成仓', openPrice[i]));
+                    $("div.imgDiv svg")[i].id = "tendgraph_" + (i + 1);
                 }
 
                 var proposalData = proposalResult[0].data;
@@ -159,7 +201,7 @@ var DapanManagement = function () {
                 different.push(data[i + 1] - data[i]);
             }
         }
-        var ratio = (max - min) /6;
+        var ratio = (max - min) / 6;
         var x, y;
         for (var i = 0; i < 17; i++) {
             x = (i * 21).toString();

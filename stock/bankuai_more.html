@@ -15,8 +15,8 @@
             <a href="javascript:history.back();" class="">
                 <i class="am-header-icon am-icon-arrow-left arrowLeft"></i>
             </a>
-            <span class="titleStyle" data-bind="text:titlePlate">强势板块</span>
-            <span class="titleCount"><span data-bind="text:plateCount">45</span>个</span>
+            <span class="titleStyle" id="boardType"></span>
+            <span class="titleCount"><span id="boardCount"></span></span>
         </div>
     </header>
 
@@ -36,7 +36,7 @@
     <script src="assets/js/bk_qs.js"></script-->
     
     <!--tabs-->
-    <div class="am-tabs-bd mg-top">
+    <div class="am-tabs-bd mg-top" id="bankuai_more">
         <div class="am-tab-panel am-fade am-in am-active" id="tab1">
             <div>
                 <ul class="am-list" data-bind="foreach:items">
@@ -48,13 +48,17 @@
                         </a>
                         <span class="am-list-date bg-grap am-list-date-2 am-header-icon am-icon-plus-square"> 详情</span>
                         <span class="am-list-date am-list-date-value-double" id="c-red">
-                            <span data-bind="text:plateChange,style:{'color':plateChange()>=0?'#f05e4b':'#27ae60'}">0.29%</span>
-                            <!--<span class="color666"> / </span>
-                            <span data-bind="text:plateValue,style:{'color':plateChange()>=0?'#f05e4b':'#27ae60'}">27.1</span> <br>-->
+                            <span data-bind="text:plateChange()+'%',style:{'color':plateChange()>=0?'#f05e4b':'#27ae60'}">0.29%</span>
+                            <span class="color666"> / </span>
+                            <span data-bind="text:plateValue,style:{'color':plateChange()>=0?'#f05e4b':'#27ae60'}">27.1</span> <br>
                             <span id="c-date" class="coloraaa"><span data-bind="text:headStockCode">601009</span>&nbsp;<span data-bind="text:headStockName">南京银行</span></span>
                         </span>
                     </li>
                 </ul>
+                <div style="height:30px;">
+                    <div class="loadspan" style="position: absolute;left: 50%;margin-left: -5px;"><span class="am-icon-spinner am-icon-spin"></span></div>
+                    <div class="nomore" style="display: none;position: absolute;left: 50%;margin-left: -66px;font-size: 12px;"><span>没有更多可以显示的内容</span></div>
+                </div>
             </div>
         </div>
     </div>

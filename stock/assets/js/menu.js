@@ -1,5 +1,5 @@
 ﻿document.write('<nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1" data-am-menu-offcanvas>');
-document.write('  <a href="javascript: void(0)" class="am-menu-toggle">');
+document.write('  <a href="javascript: void(0)" class="am-menu-toggle" style="color:#666">');
 document.write('    <i class="am-menu-toggle-icon am-icon-bars"></i>');
 document.write('  </a>');
 document.write('  <div class="am-offcanvas">');

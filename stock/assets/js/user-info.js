@@ -4,13 +4,9 @@
 })
 var UserInfoPage = function () {
     var _this = this;
-    _this.noticeVM = {
-        notice: ko.observable('')
-    };
     _this.init = function () {
         _this.initRegion();
         ko.applyBindings(userInfoVM, $("#userinfo-container")[0]);
-        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
         _this.initUserInfo();
     };
     //view model
@@ -52,12 +48,12 @@ var UserInfoPage = function () {
                         }
                     })
                 } else {
-                    _this.noticeVM.notice('信息保存失败，请重新保存！');
+                    noticeVM.notice('信息保存失败，请重新保存！');
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
                 $('#my-modal-loading').modal('close');
-                _this.noticeVM.notice('信息保存失败，请重新保存！');
+                noticeVM.notice('信息保存失败，请重新保存！');
                 $('#notice-alert').modal('open');
             });
         }
@@ -119,7 +115,7 @@ function uploads(obj) {//upload photo
         return;
     }
     else if (!obj.value.match(/.jpg|.gif|.png|.bmp|.jpeg/i)) {
-        _this.noticeVM.notice('请选择图片文件！');
+        noticeVM.notice('请选择图片文件！');
         $('#notice-alert').modal('open');
     } else {
         pushImg(obj);
@@ -130,7 +126,7 @@ function pushImg(obj) {
     var url = "/ihanzhendata/user/" + localStorage.uid + "/headpicture";
     var files = $("#fileBtn").get(0).files[0]; //获取file控件中的内容
     if (files.size > 5 * 1024 * 1024) {
-        _this.noticeVM.notice('图片最大为5M！');
+        noticeVM.notice('图片最大为5M！');
         $('#notice-alert').modal('open');
         return;
     }

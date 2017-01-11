@@ -8,9 +8,6 @@ var MoniPage = function () {
     var pageSize = 10;
     _this.moniVM = new MoniVM();
     _this.priceVM = new PriceModelVM();
-    _this.noticeVM = {
-        notice: ko.observable('')
-    };
     _this.confirmVM = {
         stockCode: ko.observable(''),
         stockName: ko.observable(''),
@@ -32,12 +29,12 @@ var MoniPage = function () {
                 $('#my-modal-loading').modal('close');
                 if (data.status == 1) {
                     switch (item.sorder_status) {
-                        case '10': _this.noticeVM.notice('买入委托成功！'); break;
-                        case '11': _this.noticeVM.notice('买入撤单成功！'); break;
-                        case '13': _this.noticeVM.notice('买入部分撤单成功！'); break;
-                        case '20': _this.noticeVM.notice('卖出委托成功！'); break;
-                        case '21': _this.noticeVM.notice('卖出撤单成功！'); break;
-                        case '23': _this.noticeVM.notice('卖出部分撤单成功！'); break;
+                        case '10': noticeVM.notice('买入委托成功！'); break;
+                        case '11': noticeVM.notice('买入撤单成功！'); break;
+                        case '13': noticeVM.notice('买入部分撤单成功！'); break;
+                        case '20': noticeVM.notice('卖出委托成功！'); break;
+                        case '21': noticeVM.notice('卖出撤单成功！'); break;
+                        case '23': noticeVM.notice('卖出部分撤单成功！'); break;
                     }
                     if ($('li.am-active>a')[0].id == 't3') {
                         $.when(_this.queryBuyAndSell(undefined, undefined, 1, pageSize)).done(function (cancelData) {
@@ -48,24 +45,24 @@ var MoniPage = function () {
                     }
                 } else {
                     switch (item.sorder_status) {
-                        case '10': _this.noticeVM.notice('买入委托失败！'); break;
-                        case '11': _this.noticeVM.notice('买入撤单失败！'); break;
-                        case '13': _this.noticeVM.notice('买入部分撤单失败！'); break;
-                        case '20': _this.noticeVM.notice('卖出委托失败！'); break;
-                        case '21': _this.noticeVM.notice('卖出撤单失败！'); break;
-                        case '23': _this.noticeVM.notice('卖出部分撤单失败！'); break;
+                        case '10': noticeVM.notice('买入委托失败！'); break;
+                        case '11': noticeVM.notice('买入撤单失败！'); break;
+                        case '13': noticeVM.notice('买入部分撤单失败！'); break;
+                        case '20': noticeVM.notice('卖出委托失败！'); break;
+                        case '21': noticeVM.notice('卖出撤单失败！'); break;
+                        case '23': noticeVM.notice('卖出部分撤单失败！'); break;
                     }
                 }
                 $('#notice-alert').modal('open');
             }).error(function () {
                 $('#my-modal-loading').modal('close');
                 switch (item.sorder_status) {
-                    case '10': _this.noticeVM.notice('买入委托失败！'); break;
-                    case '11': _this.noticeVM.notice('买入撤单失败！'); break;
-                    case '13': _this.noticeVM.notice('买入部分撤单失败！'); break;
-                    case '20': _this.noticeVM.notice('卖出委托失败！'); break;
-                    case '21': _this.noticeVM.notice('卖出撤单失败！'); break;
-                    case '23': _this.noticeVM.notice('卖出部分撤单失败！'); break;
+                    case '10': noticeVM.notice('买入委托失败！'); break;
+                    case '11': noticeVM.notice('买入撤单失败！'); break;
+                    case '13': noticeVM.notice('买入部分撤单失败！'); break;
+                    case '20': noticeVM.notice('卖出委托失败！'); break;
+                    case '21': noticeVM.notice('卖出撤单失败！'); break;
+                    case '23': noticeVM.notice('卖出部分撤单失败！'); break;
                 }
                 $('#notice-alert').modal('open');
             });
@@ -105,7 +102,7 @@ var MoniPage = function () {
         _vm.getRecommendClick = function (dealType) {
             if (dealType == 'buy') {
                 if (_this.moniVM.buyVM.stockCode() == '') {
-                    _this.noticeVM.notice('请输入股票名称');
+                    noticeVM.notice('请输入股票名称');
                     $('#notice-alert').modal('open');
                     return;
                 }
@@ -135,7 +132,7 @@ var MoniPage = function () {
             }
             else if (dealType == 'sale') {
                 if (_this.moniVM.saleVM.stockCode() == '') {
-                    _this.noticeVM.notice('请输入股票名称');
+                    noticeVM.notice('请输入股票名称');
                     $('#notice-alert').modal('open');
                     return;
                 }
@@ -168,22 +165,22 @@ var MoniPage = function () {
         _vm.dealClick = function (dealType) {//点击买入或卖出操作
             if (dealType == 'buy') {
                 if (!_this.moniVM.buyVM.stockCode()) {
-                    _this.noticeVM.notice('请输入股票名称');
+                    noticeVM.notice('请输入股票名称');
                     $('#notice-alert').modal('open');
                 } else if (!_this.moniVM.buyVM.inputPrice()) {
-                    _this.noticeVM.notice('请输入价格');
+                    noticeVM.notice('请输入价格');
                     $('#notice-alert').modal('open');
                 } else if (!_this.moniVM.buyVM.inputCount()) {
-                    _this.noticeVM.notice('请输入手数');
+                    noticeVM.notice('请输入手数');
                     $('#notice-alert').modal('open');
                 } else if (_this.moniVM.buyVM.inputCount() < 100) {
-                    _this.noticeVM.notice('数量不能小于100');
+                    noticeVM.notice('数量不能小于100');
                     $('#notice-alert').modal('open');
                 } else if (_this.moniVM.saleVM.inputCount() % 100 != 0) {
-                    _this.noticeVM.notice('数量必须是100的整数倍');
+                    noticeVM.notice('数量必须是100的整数倍');
                     $('#notice-alert').modal('open');
                 } else if (_this.priceVM.items()[0].price() && parseFloat(_this.moniVM.buyVM.inputPrice()) > parseFloat(_this.priceVM.items()[0].price()) || parseFloat(_this.moniVM.buyVM.inputPrice()) < parseFloat(_this.priceVM.items()[6].price())) {
-                    _this.noticeVM.notice('超过涨跌限制[' + _this.priceVM.items()[6].price() + '-' + _this.priceVM.items()[0].price() + ']');
+                    noticeVM.notice('超过涨跌限制[' + _this.priceVM.items()[6].price() + '-' + _this.priceVM.items()[0].price() + ']');
                     $('#notice-alert').modal('open');
                 }
                 else {
@@ -201,27 +198,27 @@ var MoniPage = function () {
                         sorder_buy_amount: _this.moniVM.buyVM.inputCount(),
                         sorder_status: '10'
                     };
-                    $('#confirm-alert').modal('open');
+                    $('#weituo-alert').modal('open');
                 }
             }
             else if (dealType == 'sale') {
                 if (!_this.moniVM.saleVM.stockCode()) {
-                    _this.noticeVM.notice('请输入股票名称');
+                    noticeVM.notice('请输入股票名称');
                     $('#notice-alert').modal('open');
                 } else if (!_this.moniVM.saleVM.inputPrice()) {
-                    _this.noticeVM.notice('请输入价格');
+                    noticeVM.notice('请输入价格');
                     $('#notice-alert').modal('open');
                 } else if (!_this.moniVM.saleVM.inputCount()) {
-                    _this.noticeVM.notice('请输入手数');
+                    noticeVM.notice('请输入手数');
                     $('#notice-alert').modal('open');
                 } else if (_this.moniVM.saleVM.inputCount() < 100) {
-                    _this.noticeVM.notice('数量不能小于100');
+                    noticeVM.notice('数量不能小于100');
                     $('#notice-alert').modal('open');
                 } else if (_this.moniVM.saleVM.inputCount() % 100 != 0) {
-                    _this.noticeVM.notice('数量必须是100的整数倍');
+                    noticeVM.notice('数量必须是100的整数倍');
                     $('#notice-alert').modal('open');
                 } else if (_this.priceVM.items()[0].price() && parseFloat(_this.moniVM.saleVM.inputPrice()) > parseFloat(_this.priceVM.items()[0].price()) || parseFloat(_this.moniVM.saleVM.inputPrice()) < parseFloat(_this.priceVM.items()[6].price())) {
-                    _this.noticeVM.notice('超过涨跌限制[' + _this.priceVM.items()[6].price() + '-' + _this.priceVM.items()[0].price() + ']');
+                    noticeVM.notice('超过涨跌限制[' + _this.priceVM.items()[6].price() + '-' + _this.priceVM.items()[0].price() + ']');
                     $('#notice-alert').modal('open');
                 } else {
                     _this.confirmVM.stockCode(_this.moniVM.saleVM.stockCode());
@@ -238,7 +235,7 @@ var MoniPage = function () {
                         sorder_sell_amount: _this.moniVM.saleVM.inputCount(),
                         sorder_status: '20'
                     };
-                    $('#confirm-alert').modal('open');
+                    $('#weituo-alert').modal('open');
                 }
             }
         }
@@ -284,7 +281,7 @@ var MoniPage = function () {
                                 _this.moniVM.buyVM.inputCount(recommendCount);
                             }
                             else {
-                                _this.noticeVM.notice('仓位过重，不建议购买！');
+                                noticeVM.notice('仓位过重，不建议购买！');
                                 $('#notice-alert').modal('open');
                             }
                         }).fail(function () {
@@ -362,7 +359,7 @@ var MoniPage = function () {
                     sorder_status: '21'
                 };
             }
-            $('#confirm-alert').modal();
+            $('#weituo-alert').modal();
         };
         this.searchItemClick = function (item) {
             window.location.href = "order_memo.html?sorderId=" + item.sorderId + "&status=" + item.status();
@@ -446,10 +443,10 @@ var MoniPage = function () {
             items: ko.observableArray([]),//cancelList
             searchClick: function () {
                 if (!_this.moniVM.searchVM.beginDate() || !_this.moniVM.searchVM.endDate()) {
-                    _this.noticeVM.notice('请输入起始日期和结束日期');
+                    noticeVM.notice('请输入起始日期和结束日期');
                     $('#notice-alert').modal('open');
                 } else if (new Date(_this.moniVM.searchVM.beginDate()) > new Date(_this.moniVM.searchVM.endDate())) {
-                    _this.noticeVM.notice('起始日期应该小于结束日期');
+                    noticeVM.notice('起始日期应该小于结束日期');
                     $('#notice-alert').modal('open');
                 } else {
                     var inputEnd = new Date(_this.moniVM.searchVM.endDate());
@@ -513,7 +510,7 @@ var MoniPage = function () {
                                 _this.moniVM.buyVM.inputCount(recommendCount);
                             }
                             else {
-                                _this.noticeVM.notice('仓位过重，不建议购买！');
+                                noticeVM.notice('仓位过重，不建议购买！');
                                 $('#notice-alert').modal('open');
                             }
                         }).fail(function () {
@@ -709,8 +706,7 @@ var MoniPage = function () {
         var queryString = $.request(location.href).queryString;
         ko.applyBindings(_this.moniVM, $("#moni-container")[0]);
         ko.applyBindings(_this.priceVM, $('#price-modal')[0]);
-        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
-        ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
+        ko.applyBindings(_this.confirmVM, $('#weituo-alert')[0]);
         _this.initStockCode();
         _this.refresh();
         if (queryString && queryString.tab == 'tab5') {

@@ -1,16 +1,17 @@
 ﻿$(function () {
     var tradeManagement = new TradeManagement();
     tradeManagement.init();
+    var websocket = new WebSocket("ws://123.57.150.251/ihanzhendata/webchat");
+    websocket.onmessage = function (evt) {
+        var data = evt.data;
+        console.log(data);
+    }
 })
 function TradeManagement() {
     var _this = this;
-    _this.pageNumber = 1; //设置当前页数，全局变量  
-    _this.codeList = [];//方块字属性和星级要用到
-    var timeout;
-    _this.noticeVM = {
-        notice: ko.observable('')
-    };
-    _this.mousedownVM = {
+    var pageNumber = 1; //设置当前页数，全局变量  
+    var haslock = false;//是否锁上上拉加载
+    var moreModalVM = {
         stockObj: {
             scode: ko.observable(''),
             sname: ko.observable(''),
@@ -18,75 +19,129 @@ function TradeManagement() {
             movea: ko.observable(),
             moveb: ko.observable()
         },
+        topClick: function () {
+            $('#more-alert').modal('close');
+            window.stock.loading(true);
+            $.post('/ihanzhendata/selfStock/selfstock_istop', {
+                uid: localStorage.uid,
+                stock_code: moreModalVM.stockObj.scode(),
+                is_top: 9
+            }, function (data) {
+                window.stock.loading(false);
+                if (data.status == 1) {
+                    noticeVM.notice(moreModalVM.stockObj.scode() + '置顶成功！');
+                    noticeVM.show();
+                    switch (moreModalVM.stockObj.whichzx) {
+                        case 1: _this.tradeVM.tab.selectOneClick(); break;
+                        case 2: _this.tradeVM.tab.selectTwoClick(); break;
+                        case 3: _this.tradeVM.tab.selectThreeClick(); break;
+                    }
+                } else {
+                    noticeVM.notice(moreModalVM.stockObj.scode() + '置顶失败！');
+                    noticeVM.show();
+                }
+            }).error(function () {
+                window.stock.loading(false);
+                noticeVM.notice(moreModalVM.stockObj.scode() + '置顶失败！');
+                noticeVM.show();
+            });
+        },
+        bottomClick: function () {
+            $('#more-alert').modal('close');
+            window.stock.loading(true);
+            $.post('/ihanzhendata/selfStock/selfstock_istop', {
+                uid: localStorage.uid,
+                stock_code: moreModalVM.stockObj.scode(),
+                is_top: 0
+            }, function (data) {
+                window.stock.loading(false);
+                if (data.status == 1) {
+                    noticeVM.notice(moreModalVM.stockObj.scode() + '置底成功！');
+                    noticeVM.show();
+                    switch (moreModalVM.stockObj.whichzx) {
+                        case 1: _this.tradeVM.tab.selectOneClick(); break;
+                        case 2: _this.tradeVM.tab.selectTwoClick(); break;
+                        case 3: _this.tradeVM.tab.selectThreeClick(); break;
+                    }
+                } else {
+                    noticeVM.notice(moreModalVM.stockObj.scode() + '置底失败！');
+                    noticeVM.show();
+                }
+            }).error(function () {
+                window.stock.loading(false);
+                noticeVM.notice(moreModalVM.stockObj.scode() + '置底失败！');
+                noticeVM.show();
+            });
+        },
         deleteClick: function () {
-            $('#mousedown-alert').modal('close');
+            $('#more-alert').modal('close');
             window.stock.loading(true);
             $.ajax({
                 url: '/ihanzhendata/selfStock/deleteSelfStock',
                 method: 'POST',
                 data: {
                     uid: localStorage.uid,
-                    stock_code: _this.mousedownVM.stockObj.scode()
+                    stock_code: moreModalVM.stockObj.scode()
                 },
                 success: function (result) {
                     window.stock.loading(false);
                     if (result && result.status == 1) {
-                        _this.noticeVM.notice('自选股删除成功！');
+                        noticeVM.notice('自选股删除成功！');
                         $('#notice-alert').modal('open');
-                        switch (_this.mousedownVM.stockObj.whichzx) {
+                        switch (moreModalVM.stockObj.whichzx) {
                             case 1: _this.tradeVM.tab.selectOneClick(); break;
                             case 2: _this.tradeVM.tab.selectTwoClick(); break;
                             case 3: _this.tradeVM.tab.selectThreeClick(); break;
                         }
                     } else {
-                        _this.noticeVM.notice('自选股删除失败！');
+                        noticeVM.notice('自选股删除失败！');
                         $('#notice-alert').modal('open');
                     }
                 },
                 error: function () {
                     window.stock.loading(false);
-                    _this.noticeVM.notice('自选股删除失败！');
+                    noticeVM.notice('自选股删除失败！');
                     $('#notice-alert').modal('open');
                 }
             });
         },
         moveClick: function (moveto, data, event) {
-            $('#mousedown-alert').modal('close');
+            $('#more-alert').modal('close');
             var b_zx = '';
             if (moveto == 'a') {
-                b_zx = _this.mousedownVM.stockObj.movea();
+                b_zx = moreModalVM.stockObj.movea();
             } else if (moveto == 'b') {
-                b_zx = _this.mousedownVM.stockObj.moveb();
+                b_zx = moreModalVM.stockObj.moveb();
             }
             window.stock.loading(true);
             $.post('/ihanzhendata/selfStock/updateSelfStockB_zx', {
                 uid: localStorage.uid,
-                stock_code: _this.mousedownVM.stockObj.scode(),
+                stock_code: moreModalVM.stockObj.scode(),
                 b_zx: b_zx
             }, function (data) {
                 window.stock.loading(false);
                 if (data.status == 1) {
-                    _this.noticeVM.notice('移动自选股成功！');
+                    noticeVM.notice('移动自选股成功！');
                     $('#notice-alert').modal('open');
-                    switch (_this.mousedownVM.stockObj.whichzx) {
+                    switch (moreModalVM.stockObj.whichzx) {
                         case 1: _this.tradeVM.tab.selectOneClick(); break;
                         case 2: _this.tradeVM.tab.selectTwoClick(); break;
                         case 3: _this.tradeVM.tab.selectThreeClick(); break;
                     }
                 } else {
-                    _this.noticeVM.notice('移动自选股失败！');
+                    noticeVM.notice('移动自选股失败！');
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
                 window.stock.loading(false);
-                _this.noticeVM.notice('移动自选股失败！');
+                noticeVM.notice('移动自选股失败！');
                 $('#notice-alert').modal('open');
             });
         },
         detailsClick: function () {
-            window.location.href = "stock_details.html?stockCode=" + _this.mousedownVM.stockObj.scode() + "&stockName=" + _this.mousedownVM.stockObj.sname();
+            window.location.href = "stock_details.html?stockCode=" + moreModalVM.stockObj.scode() + "&stockName=" + moreModalVM.stockObj.sname();
         }
-    }
+    };
     _this.settingVM = {
         firstMark: ko.observable(''),
         secondMark: ko.observable(''),
@@ -96,7 +151,7 @@ function TradeManagement() {
                 bz2 = _this.settingVM.secondMark(),
                 bz3 = _this.settingVM.thirdMark();
             if (bz1 == "") {
-                bz1="无备注";
+                bz1 = "无备注";
             }
             if (bz2 == "") {
                 bz2 = "无备注";
@@ -105,7 +160,7 @@ function TradeManagement() {
                 bz3 = "无备注";
             }
             if (bz1.length > 7 || bz2.length > 7 || bz3.length > 7) {
-                _this.noticeVM.notice('备注最多为7个字！');
+                noticeVM.notice('备注最多为7个字！');
                 $('#notice-alert').modal('open');
                 return;
             }
@@ -118,7 +173,7 @@ function TradeManagement() {
             }, function (data) {
                 window.stock.loading(false);
                 if (data.status == 1) {
-                    _this.noticeVM.notice('备注保存成功！');
+                    noticeVM.notice('备注保存成功！');
                     $('#notice-alert').modal('open');
                     localStorage.s_zx1 = bz1;
                     localStorage.s_zx2 = bz2;
@@ -129,11 +184,11 @@ function TradeManagement() {
                 }
                 else {
                     window.stock.logmsg(data);
-                    _this.noticeVM.notice('备注保存失败！');
+                    noticeVM.notice('备注保存失败！');
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
-                _this.noticeVM.notice('备注保存失败！');
+                noticeVM.notice('备注保存失败！');
                 $('#notice-alert').modal('open');
             });
         }
@@ -147,24 +202,21 @@ function TradeManagement() {
             thirdRemark: ko.observable(''),
             selectOneClick: function () {
                 $('.nomore').hide();
-                _this.pageNumber = 1; //设置当前页数，全局变量  
-                _this.codeList = [];
+                pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
                 _vm.firstStocks([]);
                 _this.getSelfStockWholeProcess(1);
             },
             selectTwoClick: function () {
                 $('.nomore').hide();
-                _this.pageNumber = 1; //设置当前页数，全局变量  
-                _this.codeList = [];
+                pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
                 _vm.secondStocks([]);
                 _this.getSelfStockWholeProcess(2);
             },
             selectThreeClick: function () {
                 $('.nomore').hide();
-                _this.pageNumber = 1; //设置当前页数，全局变量  
-                _this.codeList = [];
+                pageNumber = 1; //设置当前页数，全局变量  
                 $(window).scroll(scrollHandler);
                 _vm.thirdStocks([]);
                 _this.getSelfStockWholeProcess(3);
@@ -181,48 +233,28 @@ function TradeManagement() {
         this.isTechnology = ko.observable(false);
         this.isFundamental = ko.observable(false);
         this.isEvent = ko.observable(false);
+        this.isMain = ko.observable(false);
         this.stars = ko.observable(0);
         this.whichzx = which;
-        this.stockMouseDown = function (data, event) {
-            //timeout = setTimeout(function () {
-            //    _this.mousedownVM.stockObj.sname(data.sname());
-            //    _this.mousedownVM.stockObj.scode(data.scode());
-            //    _this.mousedownVM.stockObj.whichzx = data.whichzx;
-            //    switch (data.whichzx) {
-            //        case 1: _this.mousedownVM.stockObj.movea(2); _this.mousedownVM.stockObj.moveb(3); break;
-            //        case 2: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(3); break;
-            //        case 3: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(2); break;
-            //    }
-            //    $('#mousedown-alert').modal();
-            //}, 50);
-            return false;
-        },
-        this.stockMouseOut = function (data, event) {
-            clearTimeout(timeout);
-        },
-        this.stockMouseUp = function (data, event) {
-            clearTimeout(timeout);
-        },
         this.detailsClick = function (item) {
             window.location.href = "stock_details.html?stockCode=" + item.scode() + "&stockName=" + item.sname();
         };
         this.moreClick = function (data) {
-            _this.mousedownVM.stockObj.sname(data.sname());
-            _this.mousedownVM.stockObj.scode(data.scode());
-            _this.mousedownVM.stockObj.whichzx = data.whichzx;
+            moreModalVM.stockObj.sname(data.sname());
+            moreModalVM.stockObj.scode(data.scode());
+            moreModalVM.stockObj.whichzx = data.whichzx;
             switch (data.whichzx) {
-                case 1: _this.mousedownVM.stockObj.movea(2); _this.mousedownVM.stockObj.moveb(3); break;
-                case 2: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(3); break;
-                case 3: _this.mousedownVM.stockObj.movea(1); _this.mousedownVM.stockObj.moveb(2); break;
+                case 1: moreModalVM.stockObj.movea(2); moreModalVM.stockObj.moveb(3); break;
+                case 2: moreModalVM.stockObj.movea(1); moreModalVM.stockObj.moveb(3); break;
+                case 3: moreModalVM.stockObj.movea(1); moreModalVM.stockObj.moveb(2); break;
             }
-            $('#mousedown-alert').modal();
+            $('#more-alert').modal();
         }
     };
     _this.init = function () {
         ko.applyBindings(_this.tradeVM, $('#trade-container')[0]);
-        ko.applyBindings(_this.settingVM, $('#confirm-alert')[0]);
-        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
-        ko.applyBindings(_this.mousedownVM, $('#mousedown-alert')[0]);
+        ko.applyBindings(_this.settingVM, $('#setting-alert')[0]);
+        ko.applyBindings(moreModalVM, $('#more-alert')[0]);
         _this.initPageData();
         _this.initEvent();
     };
@@ -230,27 +262,35 @@ function TradeManagement() {
         $('.loadspan').show();
         $.when(_this.getSelfStock(belongzx)).done(function (stockData) {
             $('.loadspan').hide();
-            if (stockData && stockData.data&&stockData.data.length>0) {
+            haslock = false;
+            if (stockData && stockData.data && stockData.data.length > 0) {
                 _this.processStockData(stockData.data, belongzx);
             } else if (stockData && stockData.data && stockData.data.length == 0) {
                 $('.loadspan').hide();
                 $(window).unbind('scroll');
                 $('.nomore').show();
             }
-        });
-        if (_this.pageNumber == 2) {
+            if (pageNumber == 2) {
+                _this.getSelfStockWholeProcess(belongzx);
+            }
+        }).fail(function () {
+            $('.loadspan').hide();
+            haslock = false;
+            pageNumber--;
             _this.getSelfStockWholeProcess(belongzx);
-        }
+        });
     }
     _this.getSelfStock = function (belongzx) {
+        haslock = true;
         return $.get('/ihanzhendata/selfStock/getSelfStock', {
             uid: localStorage.uid,
             b_zx: belongzx,
-            pageNumber: _this.pageNumber++
+            pageNumber: pageNumber++
         }, function (data) { });
     };
     _this.processStockData = function (stockArr, belongzx) {
         if (stockArr.length > 0) {
+            var tempStocks = [];
             for (var j = 0; j < stockArr.length; j++) {
                 var scode = stockArr[j].stock_code,
                     sname = stockArr[j].stock_name;
@@ -259,17 +299,17 @@ function TradeManagement() {
                     case 2: _this.tradeVM.secondStocks.push(new Stock(scode, sname, belongzx)); break;
                     case 3: _this.tradeVM.thirdStocks.push(new Stock(scode, sname, belongzx)); break;
                 }
-                _this.codeList.push(stockArr[j].stock_code);
+                tempStocks.push(stockArr[j].stock_code);
             }
-            getSelftSelectEvent(_this.codeList);
-            getLabelStars(_this.codeList);
+            getSelftSelectEvent(tempStocks);
+            getLabelStars(tempStocks);
         }
     }
     _this.initPageData = function () {
-        window.stock.loading(true);
+        $('.loadspan').show();
         $.when(_this.getSelfBz(), _this.getSelfStock(1)).done(function (beizhuData, stockData) {
-            window.stock.loading(false);
             $('.loadspan').hide();
+            haslock = false;
             if (beizhuData && beizhuData[0].data) {
                 var bzdata = beizhuData[0].data;
                 localStorage.s_zx1 = bzdata.s_zx1;
@@ -279,17 +319,22 @@ function TradeManagement() {
                 _this.tradeVM.tab.secondRemark(localStorage.s_zx2);
                 _this.tradeVM.tab.thirdRemark(localStorage.s_zx3);
             }
-            if (stockData && stockData[0].data&&stockData[0].data.length>0) {
+            if (stockData && stockData[0].data && stockData[0].data.length > 0) {
                 _this.processStockData(stockData[0].data, 1);
             } else if (stockData && stockData[0].data && stockData[0].data.length == 0) {
                 $('.loadspan').hide();
                 $(window).unbind('scroll');
                 $('.nomore').show();
             }
+            _this.getSelfStockWholeProcess(1);
+        }).fail(function () {
+            $('.loadspan').hide();
+            haslock = false;
+            pageNumber = 1;
+            _this.initPageData();
         });
     }
     _this.getSelfBz = function () {
-        window.stock.loading(true);
         return $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) { });
     }
     _this.initEvent = function () {
@@ -341,6 +386,7 @@ function TradeManagement() {
                             if (tempArr()[i].scode() == stockList[j].windcode) {
                                 tempArr()[i].isTechnology(Boolean(stockList[j].is_jishu));
                                 tempArr()[i].isFundamental(Boolean(stockList[j].is_jiben));
+                                tempArr()[i].isMain(Boolean(stockList[j].is_mf));
                                 tempArr()[i].stars(stockList[j].stars);
                                 break;
                             }
@@ -361,15 +407,14 @@ function TradeManagement() {
         $('.loadspan').show();
         $.get(url, sendData, function (data) {
             $('.loadspan').hide();
-            //window.stock.loading(false);
             if (data && data.data) {
                 var stockList = data.data;
                 var tab = $('div.am-in.am-active')[0].id;
                 var tempArr = null;
                 switch (tab) {
-                    case 'tab1':tempArr=_this.tradeVM.firstStocks ;break;
-                    case 'tab2':tempArr=_this.tradeVM.secondStocks ; break;
-                    case 'tab3': tempArr=_this.tradeVM.thirdStocks ;break;
+                    case 'tab1': tempArr = _this.tradeVM.firstStocks; break;
+                    case 'tab2': tempArr = _this.tradeVM.secondStocks; break;
+                    case 'tab3': tempArr = _this.tradeVM.thirdStocks; break;
                 }
                 for (var i = 0; i < tempArr().length; i++) {
                     for (var j = 0; j < stockList.length; j++) {
@@ -392,8 +437,10 @@ function TradeManagement() {
         var scrollT = $(window).scrollTop(); //滚动条top   
         var aa = (pageH - winH - scrollT) / winH;
         if (aa < 0.02) {//0.02是个参数  
-            var tab = $('div.am-in.am-active')[0].id;
-            _this.getSelfStockWholeProcess(tab.substr(3));
+            if (!haslock) {
+                var tab = $('div.am-in.am-active')[0].id;
+                _this.getSelfStockWholeProcess(parseInt(tab.substr(3)));
+            }
         }
     }
     //==============上拉加载核心代码=============  

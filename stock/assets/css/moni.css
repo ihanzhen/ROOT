@@ -1,3 +1,8 @@
+@font-face { 
+font-family: Light; 
+src: url('../fonts/SF-UI-Display-Regular.otf'); 
+}
+.font_Light{font-family: Light;}
 .am-tabs {
     margin-top: -10px;
 }
@@ -47,6 +52,10 @@
     border-bottom: 1px solid #444;
 }
 
+_::-webkit-full-page-media, _:future, :root .am-form input[type="number"] {
+    border-bottom: 0.5px solid #4a4a4a;
+}
+
 .am-form input[type="text"], .am-form input[type="email"], .am-form input[type="password"], .am-form input[type="number"] {
     color: #fff;
     background: none;
@@ -56,13 +65,17 @@
     height: 45px;
 }
 
-    .am-form input[type='text']:focus, .am-form input[type='email']:focus, .am-form input[type='password']:focus, .am-form input[type='number']:focus {
-        color: #fff;
-        background: none;
-        border: none;
-        box-shadow: none;
-        border-bottom: 1px solid #444;
-    }
+_::-webkit-full-page-media, _:future, :root .am-form input[type='text']:focus, .am-form input[type='email']:focus, .am-form input[type='password']:focus, .am-form input[type='number']:focus {
+    border-bottom: 0.5px solid #4a4a4a;
+}
+
+.am-form input[type='text']:focus, .am-form input[type='email']:focus, .am-form input[type='password']:focus, .am-form input[type='number']:focus {
+    color: #fff;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #444;
+}
 
 .am-btn-default:focus, .am-btn-default:active {
     box-shadow: none;
@@ -85,14 +98,21 @@
     vertical-align: bottom;
     font-weight: normal;
 }
-
+_::-webkit-full-page-media, _:future, :root .am-table > tbody > tr > td{
+    border-bottom: 0.5px solid #4a4a4a;
+}
 .am-table > tbody > tr > td, .am-table > tbody > tr > th, .am-table > tfoot > tr > td, .am-table > tfoot > tr > th, .am-table > thead > tr > td, .am-table > thead > tr > th {
-    border-top: 1px solid #444;
+    border-top: none;
+    border-bottom: 1px solid #444;
     line-height: 1.6;
     padding: 0.7rem;
     vertical-align: top;
 }
 
+_::-webkit-full-page-media, _:future, :root .am-tab-panel input[type="text"] {
+    border-bottom: 0.5px solid #4a4a4a;
+}
+
 .am-tab-panel input[type="text"] {
     color: #fff;
     background: none;
@@ -102,18 +122,26 @@
     height: 45px;
 }
 
-    .am-tab-panel input[type='text']:focus {
-        color: #fff;
-        background: none;
-        border: none;
-        box-shadow: none;
-        border-bottom: 1px solid #444;
-    }
+_::-webkit-full-page-media, _:future, :root .am-tab-panel input[type='text']:focus {
+    border-bottom: 0.5px solid #4a4a4a;
+}
+
+.am-tab-panel input[type='text']:focus {
+    color: #fff;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #444;
+}
 
 .am-datepicker {
     box-shadow: none;
 }
 
+_::-webkit-full-page-media, _:future, :root .am-tab-panel input[type="text"] {  
+    border-bottom: 0.5px solid #4a4a4a;
+}
+
 .am-tab-panel input[type="text"] {
     color: #fff;
     background: none;
@@ -123,13 +151,17 @@
     height: 45px;
 }
 
-    .am-tab-panel input[type='text']:focus {
-        color: #fff;
-        background: none;
-        border: none;
-        box-shadow: none;
-        border-bottom: 1px solid #444;
-    }
+_::-webkit-full-page-media, _:future, :root .am-tab-panel input[type='text']:focus {
+    border-bottom: 0.5px solid #4a4a4a;
+}
+
+.am-tab-panel input[type='text']:focus {
+    color: #fff;
+    background: none;
+    border: none;
+    box-shadow: none;
+    border-bottom: 1px solid #444;
+}
 
 .am-datepicker {
     box-shadow: none;
@@ -189,7 +221,7 @@
 }
 
 .am-tabs {
-    overflow: hidden !important; /*��Ԫ�ظ߶�����Ӧ*/
+    overflow: hidden !important; /*¸¸ÔªËØ¸ß¶È×ÔÊÊÓ¦*/
 }
 
 .loadspan {
@@ -201,11 +233,9 @@
 
 .nomore {
     display: none;
-    position: absolute;
-    left: 50%;
-    margin-left: -66px;
-    margin-top: -10px;
+    margin:0 auto;
     font-size: 12px;
+    margin-top: -10px;
 }
 
 .preloader {
@@ -318,8 +348,10 @@
     .span-top4{position:relative;top:-2px}
     .span-f18{font-size:18px}
     .icon-red{color:#dd514c}
-    _::-webkit-full-page-media, _:future, :root .tip-red{background:#dd514c;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:1px 2px}
-    .tip-red{background:#dd514c;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:3px 2px 1px 2px}
+    _::-webkit-full-page-media, _:future, :root .tip-red{background:#f05e4b;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:1px 2px}
+    .tip-red{background:#f05e4b;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:3px 2px 1px 2px}
+    _::-webkit-full-page-media, _:future, :root .tip-green{background:#27ae60;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:1px 2px}
+    .tip-green{background:#27ae60;color:#fff;position:relative;top:-2px;font-size: 10px;font-weight: 400;margin-top:4px;padding:3px 2px 1px 2px}
     _::-webkit-full-page-media, _:future, :root .tab-icon{width:25px;position: relative;top:-6px;font-size:22px;}
     .tab-icon{width:25px;position: relative;top:-3px;font-size:22px;}
     _::-webkit-full-page-media, _:future, :root .tab-text{font-size:12px;position: relative;top:-15px;color:#eee;}

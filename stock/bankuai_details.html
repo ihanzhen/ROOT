@@ -11,13 +11,18 @@
 </head>
 <body>
     <!-- Header -->
-    <header data-am-widget="header" class="am-header am-header-default">
+    <header id="header" data-am-widget="header" class="am-header am-header-default">
         <div class="am-header-left am-header-nav">
             <a href="javascript:history.back();" class="">
                 <i class="am-header-icon am-icon-arrow-left arrowLeft"></i>
             </a>
-            <span id="boardName" class="headerSpan"></span>
-            <span id="boardCode" style="font-size:11px;color:#777"></span>
+            <span id="boardName" class="headerSpan" data-bind="text:boardName"></span>
+            <span id="boardCode" style="font-size:11px;color:#777" data-bind="text:boardCode"></span>
+        </div>
+        <div class="am-header-right am-header-nav" style="margin-right:40px">
+            <a href="javascript:void(0);" class="">
+                <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="KEY_FRESH"></i>
+            </a>
         </div>
     </header>
     <div id="bkdetails-container">
@@ -133,16 +138,6 @@
             </div>
         </div>
     </div>
-    <!-- 保存成功模态窗口提示 -->
-    <div class="am-modal am-modal-alert" tabindex="-1" id="notice-alert">
-        <div class="am-modal-dialog">
-            <div class="am-modal-hd">系统提示</div>
-            <div class="am-modal-bd" data-bind="text:notice"></div>
-            <div class="am-modal-footer">
-                <span class="am-modal-btn" data-am-modal-confirm style="color:#fff">确定</span>
-            </div>
-        </div>
-    </div>
     <!-- Navbar -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/amazeui.min.js"></script>
@@ -151,21 +146,21 @@
     <script src="assets/js/notice.js"></script>
     <script src="assets/js/bankuai_details.js"></script>
     <script>
-        ////页面加载时绑定按钮点击事件
-        //$(function () {
-        //    $("#KEY_FRESH").click(function () {
-        //        refresh();
-        //    });
-        //});
-        ////点击按钮调用的方法
-        //function refresh() {
-        //    window.location.reload();//刷新当前页面.
+        //页面加载时绑定按钮点击事件
+        $(function () {
+            $("#KEY_FRESH").click(function () {
+                refresh();
+            });
+        });
+        //点击按钮调用的方法
+        function refresh() {
+            window.location.reload();//刷新当前页面.
 
-        //    //或者下方刷新方法
-        //    //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
-        //    // opener.location.reload()刷新父窗口对象（用于单开窗口
-        //    //top.location.reload()刷新最顶端对象（用于多开窗口）
-        //}
+            //或者下方刷新方法
+            //parent.location.reload()刷新父亲对象（用于框架）--需在iframe框架内使用
+            // opener.location.reload()刷新父窗口对象（用于单开窗口
+            //top.location.reload()刷新最顶端对象（用于多开窗口）
+        }
     </script>
 </body>
 </html>

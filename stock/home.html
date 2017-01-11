@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <script src="assets/js/wecheckhome.js"></script>
     <script src="assets/js/head.js"></script>
-    <link type="text/css" rel="stylesheet" href="assets/css/home.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
     <meta name="apple-touch-fullscreen" content="yes">
 </head>
 <body>
@@ -44,7 +44,7 @@
             <a href="javascript:void(0);" class="">
                 <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="KEY_FRESH"></i>
             </a>
-        </div>         
+        </div>
     </header>
     <div id="home-container">
         <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{directionNav:false,controlNav:false,animation: "fade"}'>
@@ -52,9 +52,9 @@
                 <li>
                     <ul class="am-avg-sm-3 sliderbd" data-bind="foreach:zhishuItems">
                         <li class="sliderli">
-                            <div class="slider-a1 cwhite" data-bind="text:zhishuName"></div>
-                            <div class="slider-a2 zhishuNum" data-bind="css:{'cgreen':absoluteChange()<0,'cred':absoluteChange()>=0}"><span data-bind="css:{'am-icon-caret-up':absoluteChange()>=0,'am-icon-caret-down':absoluteChange()<0}">&nbsp;</span><span data-bind="text:currentPrice"></span></div>
-                            <div class="slider-a3 cgrap zhishuNum"><span data-bind="text:absoluteChange"></span>&nbsp;<span style="margin-left:5px;" data-bind="text:relativeChange"></span></div>
+                            <div class="slider-a1 cwhite font_Light" data-bind="text:zhishuName"></div>
+                            <div class="slider-a2 zhishuNum font_Light" data-bind="css:{'cgreen':absoluteChange()<0,'cred':absoluteChange()>=0}"><span data-bind="css:{'am-icon-caret-up':absoluteChange()>=0,'am-icon-caret-down':absoluteChange()<0}">&nbsp;</span><span data-bind="text:currentPrice"></span></div>
+                            <div class="slider-a3 cgrap zhishuNum font_Light"><span data-bind="text:absoluteChange"></span>&nbsp;<span style="margin-left:5px;" data-bind="text:relativeChange"></span></div>
                         </li>
                         <!--<li class="sliderli">
                             <div class="slider-a1 cwhite">中证500</div>
@@ -70,10 +70,10 @@
                 </li>
                 <li>
                     <ul class="am-avg-sm-3 sliderbd" data-bind="foreach:boardItems">
-                        <li class="sliderli">
-                            <div class="slider-a1 cwhite" data-bind="text:boardName">家电</div>
-                            <div class="slider-a2" data-bind="css:{'cgreen':change()<0,'cred':change()>=0}"><span data-bind="css:{'am-icon-caret-up':change()>=0,'am-icon-caret-down':change()<0}">&nbsp;</span><span data-bind="text:change()+'%'">2.84%</span></div>
-                            <div class="slider-a3 cgrap"><span data-bind="text:headStock">格力电器</span></div>
+                        <li class="sliderli" data-bind="visible:boardName()">
+                            <div class="slider-a1 cwhite font_Light" data-bind="text:boardName">家电</div>
+                            <div class="slider-a2 font_Light" data-bind="css:{'cgreen':change()<0,'cred':change()>=0}"><span data-bind="css:{'am-icon-caret-up':change()>=0,'am-icon-caret-down':change()<0}">&nbsp;</span><span data-bind="text:change()+'%'">2.84%</span></div>
+                            <div class="slider-a3 cgrap font_Light"><span data-bind="text:headStock">格力电器</span></div>
                         </li>
                         <!--<li class="sliderli">
                             <div class="slider-a1 cwhite">广东自贸区</div>
@@ -89,10 +89,10 @@
                 </li>
                 <li>
                     <ul class="am-avg-sm-3 sliderbd" data-bind="foreach:guchiItems">
-                        <li class="sliderli">
-                            <div class="slider-a1 cwhite" data-bind="text:stockName">宁波东力</div>
-                            <div class="slider-a2" data-bind="css:{'cgreen':change()<0,'cred':change()>=0}"><span data-bind="css:{'am-icon-caret-up':change()>=0,'am-icon-caret-down':change()<0}">&nbsp;</span><span data-bind="text:change()+'%'">10.05%</span></div>
-                            <div class="slider-a3 cgrap"><span data-bind="text:guchi">技术面</span></div>
+                        <li class="sliderli" data-bind="visible:stockName()">
+                            <div class="slider-a1 cwhite font_Light" data-bind="text:stockName">宁波东力</div>
+                            <div class="slider-a2 font_Light" data-bind="css:{'cgreen':change()<0,'cred':change()>=0}"><span data-bind="css:{'am-icon-caret-up':change()>=0,'am-icon-caret-down':change()<0}">&nbsp;</span><span data-bind="text:change()+'%'">10.05%</span></div>
+                            <div class="slider-a3 cgrap font_Light"><span data-bind="text:guchi">技术面</span></div>
                         </li>
                         <!--<li class="sliderli">
                             <div class="slider-a1 cwhite">康莱德</div>
@@ -276,6 +276,6 @@
         $("#KEY_FRESH").click(function () {
             window.location.reload();//刷新当前页面.
         });
-    </script>    
+    </script>
 </body>
 </html>

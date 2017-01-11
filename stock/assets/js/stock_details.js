@@ -12,6 +12,7 @@ var StockDetailsPage = function () {
     }
     var stockVM = {
         stars: ko.observable(0),
+        proposal:ko.observable(''),
         boards: ko.observable(''),
         yesterdayValue: ko.observable(''),
         debtAssets: ko.observable(''),
@@ -21,50 +22,6 @@ var StockDetailsPage = function () {
         introduce: ko.observable(''),
         items:ko.observableArray([])
     };
-    _this.noticeVM = {
-        notice: ko.observable('')
-    };
-    _this.confirmVM = {
-        select: ko.observable('1'),
-        firstMark: ko.observable(''),
-        secondMark: ko.observable(''),
-        thirdMark: ko.observable(''),
-        selectFirstClick: function () {
-            _this.confirmVM.select('1');
-        },
-        selectSecondClick: function () {
-            _this.confirmVM.select('2');
-        },
-        selectThirdClick: function () {
-            _this.confirmVM.select('3');
-        },
-        cancelClick: function () { },
-        confirmClick: function () {
-            $('#my-modal-loading').modal('open');
-            $.post('/ihanzhendata/selfStock/saveSelfStock', {
-                uid: localStorage.uid,
-                stock_code: stockCode,
-                stock_name: stockName,
-                b_zx: _this.confirmVM.select()
-            }, function (data) {
-                $('#my-modal-loading').modal('close');
-                if (data.status == 1) {
-                    _this.noticeVM.notice('添加自选成功！');
-                    $('#notice-alert').modal('open');
-                } else if (data.status == 12008) {
-                    _this.noticeVM.notice('自选已存在，不用重复添加！');
-                    $('#notice-alert').modal('open');
-                } else {
-                    _this.noticeVM.notice('添加自选失败！');
-                    $('#notice-alert').modal('open');
-                }
-            }).error(function () {
-                $('#my-modal-loading').modal('close');
-                _this.noticeVM.notice('添加自选失败！');
-                $('#notice-alert').modal('open');
-            });
-        }
-    }
     function unicode2Chr(str) {
         return unescape(str.replace(/\\/g, "%"))
     }
@@ -86,10 +43,12 @@ var StockDetailsPage = function () {
     }
     _this.initHeader = function () {
         $("#addSelfSelect").click(function () {
+            confirmVM.stockCode = stockCode;
+            confirmVM.stockName = stockName;
             if (localStorage.s_zx1 != undefined && localStorage.s_zx2 != undefined && localStorage.s_zx3 != undefined) {
-                _this.confirmVM.firstMark(localStorage.s_zx1);
-                _this.confirmVM.secondMark(localStorage.s_zx2);
-                _this.confirmVM.thirdMark(localStorage.s_zx3);
+                confirmVM.firstMark(localStorage.s_zx1);
+                confirmVM.secondMark(localStorage.s_zx2);
+                confirmVM.thirdMark(localStorage.s_zx3);
                 $('#confirm-alert').modal();
             }
             else {
@@ -98,9 +57,9 @@ var StockDetailsPage = function () {
                     $('#my-modal-loading').modal('close');
                     if (data && data.data) {
                         var bzdata = data.data;
-                        _this.confirmVM.firstMark(bzdata.s_zx1);
-                        _this.confirmVM.secondMark(bzdata.s_zx2);
-                        _this.confirmVM.thirdMark(bzdata.s_zx3);
+                        confirmVM.firstMark(bzdata.s_zx1);
+                        confirmVM.secondMark(bzdata.s_zx2);
+                        confirmVM.thirdMark(bzdata.s_zx3);
                     }
                     $('#confirm-alert').modal();
                 }).error(function () {
@@ -123,11 +82,17 @@ var StockDetailsPage = function () {
             success: function (data) { }
         });
     }
+    _this.getProposal=function(){
+        window.stock.loading(true);
+        return $.get('/ihanzhendata/logicstocks/' + stockCode + '/details', function (data) {
+        });
+    }
     _this.initPageData = function () {
-        $.when(_this.getStockData()).done(function (stockData) {
+        window.stock.loading(true);
+        $.when(_this.getStockData(), _this.getProposal()).done(function (stockData, proposal) {
             $('#my-modal-loading').modal('close');
-            if (stockData && stockData.data) {
-                var stock = stockData.data;
+            if (stockData && stockData[0].data) {
+                var stock = stockData[0].data;
                 stockVM.stars(stock.stars);
                 var boardArr = stock.boards.split(';');
                 stockVM.boards(stock.boards);
@@ -174,6 +139,9 @@ var StockDetailsPage = function () {
                 myChart = echarts.init(document.getElementById('main5'));
                 myChart.setOption(option5);
             }
+            if (proposal && proposal[0].data) {
+                stockVM.proposal(proposal[0].data.descript);
+            }
         })
     }
     _this.init = function () {
@@ -183,8 +151,6 @@ var StockDetailsPage = function () {
         $('#stockCode').text(stockCode);
         $('#stockName').text(stockName);
         ko.applyBindings(stockVM, $('#stockdetails-container')[0]);
-        ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
-        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
         _this.initHeader();
         _this.initPageData();
     }

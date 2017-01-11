@@ -5,9 +5,6 @@
 var PhoneManagement = function () {
     var _this = this;
     _this.openId = "";
-    _this.noticeVM = {
-        notice: ko.observable('')
-    };
     _this.confirmVM = {
         bodyText: ko.observable(''),
         cancelText: ko.observable(''),
@@ -15,7 +12,6 @@ var PhoneManagement = function () {
     };
     _this.init = function () {
         ko.applyBindings(phoneVM, $("#phone-container")[0]);
-        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
         initGraphCode();
     };
     //view model
@@ -32,7 +28,7 @@ var PhoneManagement = function () {
         verifyClick: function () {
             var phone = this.phone().trim();
             if (_this.code2.verify(phoneVM.graphcode()) == false) {
-                _this.noticeVM.notice('图形验证码输入有误！');
+                noticeVM.notice('图形验证码输入有误！');
                 $('#notice-alert').modal('open');
                 phoneVM.showRight(false);
                 phoneVM.showTanhao(true);
@@ -84,16 +80,14 @@ var PhoneManagement = function () {
                         localStorage.token = data.data.token;
                         localStorage.uid = data.data.uid;
                     }
-                    _this.noticeVM.notice('绑定成功！');
-                    $('#notice-alert').modal('open');
                     window.location.href = "home.html";
                 } else {
-                    _this.noticeVM.notice('提交失败，请重新绑定！');
+                    noticeVM.notice('提交失败，请重新绑定！');
                     $('#notice-alert').modal('open');
                 }
             }).error(function () {
                 $('#my-modal-loading').modal('close');
-                _this.noticeVM.notice('提交失败，请重新绑定！');
+                noticeVM.notice('提交失败，请重新绑定！');
                 $('#notice-alert').modal('open');
             });
         }

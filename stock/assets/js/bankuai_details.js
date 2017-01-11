@@ -8,45 +8,10 @@ var BankuaiDetailManagement = function () {
     _this.plateType = '';
     _this.codeList = [];
     _this.stockDetailsArr = [];
-    _this.noticeVM = {
-        notice: ko.observable('')
-    };
-    _this.confirmVM = {
-        stockCode: '',
-        stockName: '',
-        select: ko.observable('1'),
-        firstMark: ko.observable(''),
-        secondMark: ko.observable(''),
-        thirdMark: ko.observable(''),
-        cancelClick: function () { },
-        confirmClick: function () {
-            window.stock.loading(true);
-            $.post('/ihanzhendata/selfStock/saveSelfStock', {
-                uid: localStorage.uid,
-                stock_code: _this.confirmVM.stockCode,
-                stock_name: _this.confirmVM.stockName,
-                b_zx: _this.confirmVM.select()
-            }, function (data) {
-                window.stock.loading(false);
-                if (data.status == 1) {
-                    _this.noticeVM.notice('添加自选成功！');
-                    $('#notice-alert').modal('open');
-                    _this.plateVM.stocks([]);
-                    _this.getPageData();
-                } else if (data.status == 12008) {
-                    _this.noticeVM.notice('自选已存在，不用重复添加！');
-                    $('#notice-alert').modal('open');
-                } else {
-                    _this.noticeVM.notice('添加自选失败！');
-                    $('#notice-alert').modal('open');
-                }
-            }).error(function () {
-                window.stock.loading(false);
-                _this.noticeVM.notice('添加自选失败！');
-                $('#notice-alert').modal('open');
-            });
-        }
-    };
+    var headerVM = {
+        boardName: ko.observable(''),
+        boardCode:ko.observable('')
+    }
     function News() {
         this.isUp = ko.observable(true);//fake data
         this.newsTitle = ko.observable('三季度十大预增王 预增546倍夺冠');//fake data
@@ -62,9 +27,9 @@ var BankuaiDetailManagement = function () {
         var queryString = $.request(location.href).queryString;
         _this.plateCode = queryString.plateCode;
         _this.plateType = queryString.plateType;
+        headerVM.boardCode(_this.plateCode);
         ko.applyBindings(_this.plateVM, $('#bkdetails-container')[0]);
-        ko.applyBindings(_this.confirmVM, $('#confirm-alert')[0]);
-        ko.applyBindings(_this.noticeVM, $('#notice-alert')[0]);
+        ko.applyBindings(headerVM, $('#header')[0]);
         _this.getPageData();
         //var int = self.setInterval(_this.updatePlateAsync, 5 * 1000);
     }
@@ -80,58 +45,7 @@ var BankuaiDetailManagement = function () {
             window.location.href = "stock_details.html?stockCode=" + item.stockCode() + "&stockName=" + item.stockName();
         };
         this.selectClick = function (item) {
-            if (item.isSelfSelect()) {
-                window.stock.loading(true);
-                $.ajax({
-                    url: '/ihanzhendata/selfStock/deleteSelfStock',
-                    method: 'POST',
-                    data: {
-                        uid: localStorage.uid,
-                        stock_code: item.stockCode()
-                    },
-                    success: function (result) {
-                        window.stock.loading(false);
-                        if (result && result.status == 1) {
-                            _this.noticeVM.notice('自选股删除成功！');
-                            $('#notice-alert').modal('open');
-                            _this.plateVM.stocks([]);
-                            _this.getPageData();
-                        } else {
-                            _this.noticeVM.notice('自选股删除失败！');
-                            $('#notice-alert').modal('open');
-                        }
-                    },
-                    error: function () {
-                        window.stock.loading(false);
-                        _this.noticeVM.notice('自选股删除失败！');
-                        $('#notice-alert').modal('open');
-                    }
-                });
-            } else {
-                _this.confirmVM.stockCode = item.stockCode();
-                _this.confirmVM.stockName = item.stockName();
-                if (localStorage.s_zx1 != undefined && localStorage.s_zx2 != undefined && localStorage.s_zx3 != undefined) {
-                    _this.confirmVM.firstMark(localStorage.s_zx1);
-                    _this.confirmVM.secondMark(localStorage.s_zx2);
-                    _this.confirmVM.thirdMark(localStorage.s_zx3);
-                    $('#confirm-alert').modal();
-                }
-                else {
-                    window.stock.loading(true);
-                    $.get('/ihanzhendata/selfStock/getSelfBz', { uid: localStorage.uid }, function (data) {
-                        window.stock.loading(false);
-                        if (data && data.data) {
-                            var bzdata = data.data;
-                            _this.confirmVM.firstMark(bzdata.s_zx1);
-                            _this.confirmVM.secondMark(bzdata.s_zx2);
-                            _this.confirmVM.thirdMark(bzdata.s_zx3);
-                        }
-                        $('#confirm-alert').modal();
-                    }).error(function () {
-                        window.stock.loading(false);
-                    });
-                }
-            }
+            addorDeleteSelfSelect(item);
         }
     }
     _this.getPlateData = function (palteType) {
@@ -160,17 +74,42 @@ var BankuaiDetailManagement = function () {
         }
 
     }
+    function getIndexAjax(windcode) {
+        return $.ajax({
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksindex/?num=17&type&windcode='+windcode,
+            dataType: "jsonp",
+            jsonpcallback: "jsonpcallback",
+            timeout: 5000,
+            type: "GET",
+            success: function (data) { }
+        });
+    }
+    _this.getChartData=function(){
+        $.when(getIndexAjax('000001.SH'), getIndexAjax(_this.plateCode)).done(function (dapan, board) {
+            if (dapan[0].data) {
+                option.series[0].data = dapan[0].data.data;
+            }
+            if (board[0].data) {
+                option.series[1].data = board[0].data.data;
+            }
+            option.xAxis[0].data = ["12/24", "12/25", "12/26", "12/27", "12/28", "12/29", "12/30", "12/31", "1/01", "1/02", "1/03",
+            "1/04", "1/05", "1/06", "1/07", "1/08", "1/09"];
+            option.grid.left = "0";
+            option.series[1].name = headerVM.boardName();
+            myChart = echarts.init(document.getElementById('main'));
+            myChart.setOption(option);
+        });
+    }
     _this.getPageData = function () {
         window.stock.loading(true);
-        $.when(_this.getPlateData(_this.plateType))
-            .done(function (result) {
+        $.when(_this.getPlateData(_this.plateType), getIndexAjax('000001.SH'), getIndexAjax(_this.plateCode))
+            .done(function (result, dapan, board) {
                 window.stock.loading(false);//以后删掉
-                if (result && result.data && result.data.length > 0) {
-                    var data = result.data;
+                if (result[0] && result[0].data && result[0].data.length > 0) {
+                    var data = result[0].data;
                     for (var i = 0; i < data.length; i++) {
                         if (data[i].windcode == _this.plateCode) {
-                            $("#boardName").text(data[i].name);
-                            $("#boardCode").text(data[i].windcode);
+                            headerVM.boardName(data[i].name);
                             if (data[i].stockslist && data[i].stockslist.length > 0) {
                                 var stocks = data[i].stockslist;
                                 for (var j = 0; j < stocks.length; j++) {
@@ -178,6 +117,7 @@ var BankuaiDetailManagement = function () {
                                     _this.codeList.push(stocks[j].windcode);
                                 }
                             }
+                            break;
                         }
                     }
                     if (_this.codeList.length > 0) {
@@ -189,6 +129,19 @@ var BankuaiDetailManagement = function () {
                         window.stock.loading(false);
                     }
                 }
+                if (dapan[0].data) {
+                    option.series[0].data = dapan[0].data.data;
+                }
+                if (board[0].data) {
+                    option.series[1].data = board[0].data.data;
+                }
+                option.xAxis[0].data = ["12/24", "12/25", "12/26", "12/27", "12/28", "12/29", "12/30", "12/31", "1/01", "1/02", "1/03",
+                "1/04", "1/05", "1/06", "1/07", "1/08", "1/09"];
+                option.grid.left = "0";
+                option.legend.data[1] = headerVM.boardName();
+                option.series[1].name = headerVM.boardName();
+                myChart = echarts.init(document.getElementById('main'));
+                myChart.setOption(option);
             }).fail(function () {
                 window.stock.loading(false);
                 console.log('fail');

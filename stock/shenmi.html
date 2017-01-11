@@ -1,0 +1,647 @@
+﻿<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <script src="assets/js/head.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="assets/css/tuijian_zhuli.css" rel="stylesheet" type="text/css" />
+</head>
+<style type="text/css">
+    .am-tabs-bd {
+        border: none;
+    }
+    .am-nav-tabs > li > a {
+        color: #aaa;
+    }
+    .am-nav-tabs > li.am-active > a, .am-nav-tabs > li.am-active > a:focus, .am-nav-tabs > li.am-active > a:hover {
+        background: none;
+        border: none;
+        color: #fff;
+        margin-top: 1px;
+        margin-left: 1px;
+        font-weight: bold;
+    }
+    .am-tabs-nav > li {
+        background: none;
+        text-align: center;
+    }
+    .am-tabs-nav > li > a {
+        position: relative;
+        top: -8px;
+        left: 3px;
+    }
+    .am-nav-tabs {
+        border: none;
+    }
+    .am-list > li {
+        background: none;
+        border-color: #444;
+    }
+    .am-nav > li > a:focus, .am-nav > li > a:hover {
+        background: none;
+        border: none;
+    }
+    .am-tabs-bd .am-tab-panel {
+    -webkit-transition: -webkit-transform 0.0001s;
+    transition: transform 0.0001s;
+    }　
+    .zline1{height: 180px;margin-top:-15px;padding:0 10px;width: 100%;}
+    .index {height: 150px;margin-top: ;padding: 0 10px;width: 100%;}
+    .am-list-date-value-double {
+        z-index:-111111;
+        font-size: 1.3rem;
+        position: absolute;
+        left: 70px;
+        top: 8px;
+        border-radius: 4px;
+        width:75%;
+        height: 15px;
+        line-height: 15px;
+    }        
+</style>
+<body>
+    <header data-am-widget="header" class="am-header am-header-default">
+        <div class="am-header-left am-header-nav">
+            <a href="javascript:history.back();" class="">
+                <i class="am-header-icon am-icon-arrow-left" style="font-size:1.7rem;color:#999;position: relative;top:-1px;"></i>
+            </a>
+            <span style="font-size:1.8rem;border-left:1px solid #444;padding-left: 15px;margin-left: 3px">
+                <span style="position: relative;top:-6px;font-size:1.6rem">
+                    <span id="stockName">神秘增持股东</span><br>
+                    <span id="stockCode" style="font-size:11px;position: relative;top:-36px;left:60px;color:#777">800001.GD</span>
+                </span>
+
+            </span>
+        </div>
+        <div class="am-header-right am-header-nav">
+            <a href="javascript:void(0);" class="">
+                <i class="am-header-icon am-icon-refresh" style="font-size:1.7rem;color:#666" id="addSelfSelect"></i>
+            </a>
+        </div>
+    </header>
+
+    <!--div class="am-tabs" data-am-tabs style="">
+        <ul class="am-avg-sm-3 am-tabs-nav am-nav am-nav-tabs" style="background:#444;padding:7px 0">
+            <li class="am-active" style="height:25px"><a href="#tab1">收益曲线</a></li>
+            <li style="border-right: 1px solid #555;border-left:1px solid #555;height:25px"><a href="#tab2">资金曲线</a></li>
+            <li style="height:25px"><a href="#tab3">回撤曲线</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1" style="padding:0">
+                <div id="shouyi" class="index"></div>
+            </div>
+            <div class="am-tab-panel am-fade" id="tab2" style="padding:0">
+                <div id="zijin" class="index"></div>
+            </div>
+            <div class="am-tab-panel am-fade" id="tab3" style="padding:0">
+                <div id="huiche" class="index"></div>
+            </div>
+        </div>
+    </div-->
+    <div id="jiben-container" class="am-tabs" data-am-tabs style="margin-top:15px">
+        <div class="am-tabs-bd">
+            <div style="padding:0 10px;">
+                <div>
+                    <ul class="am-list" data-bind="foreach:items">
+                        <li class="am-g am-list-item-dated" style="border:0 none">
+                            <a class="am-list-item-hd" data-bind="click:redirectClick">
+                                <img src="assets/images/404icon.svg" style="width:60px;height:60px">
+                            </a>
+                            <span class="am-list-date am-list-date-value-double">
+                                <span style="color:#eee">综合评级&nbsp;</span>
+                                <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="width:12px;text-align: left"></span>
+                                <span data-bind="visible:stars()>2" class="am-icon-star color-red" style="width:12px;text-align: left"></span>
+                                <span data-bind="visible:stars()>3" class="am-icon-star color-red" style="width:12px;text-align: left"></span>
+                                <span data-bind="visible:stars()<5" class="am-icon-star-o color-red" style="width:12px;text-align: left"></span>
+                                <span data-bind="visible:stars()<6" class="am-icon-star-o color-red" style="width:12px;text-align: left"></span>
+                                <br>
+                                <span style="font-size:12px;font-weight:normal;line-height: 14px;color:#999;">神秘股东文字画像神秘股东文字画像神秘股东文字画像神秘股东文字</span>                               
+                            </span>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--div data-am-widget="list_news" class="am-list-news am-list-news-default">
+        <div class="am-g">
+          <div class="am-u-sm-3">
+            <img src="assets/images/404icon.svg" style="width:60px;height:60px">
+          </div>
+          <div class="am-u-sm-9">
+            <span class="am-list-date am-list-date-value-double" style="float:left;font-size:14px;color:#fff;">
+                综合评级&nbsp;
+                <span data-bind="visible:stars()>1" class="am-icon-star color-red" style="width:12px;text-align: left"></span>
+                <span data-bind="visible:stars()>2" class="am-icon-star color-red" style="width:12px;text-align: left"></span>
+                <span data-bind="visible:stars()>3" class="am-icon-star color-red" style="width:12px;text-align: left"></span>
+                <span data-bind="visible:stars()<5" class="am-icon-star-o color-red" style="width:12px;text-align: left"></span>
+                <span data-bind="visible:stars()<6" class="am-icon-star-o color-red" style="width:12px;text-align: left"></span>
+                <br>
+                <div style="font-size:12px;font-weight:normal;line-height: 16px;color:#999">神秘股东文字画像神秘股东文字画像神秘股东文字画像神秘股东文字</div>
+            </span>
+          </div>
+        </div>
+    </div-->
+    <div>
+      <ul class="am-avg-sm-3 sliderbd" style="margin-top:-5px">
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">持仓市值(亿)</div>
+          <div class="slider-a2 cwhite">299</div>
+        </li>
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">重仓股票</div>
+          <div class="slider-a2 cwhite">12</div>
+        </li>
+        <li class="sliderli">
+          <div class="slider-a1" style="font-size: 12px">重仓板块</div>
+          <div class="slider-a2 cwhite">4</div>
+        </li>
+      </ul>      
+    </div>
+    <!--div class="am-list-news am-list-news-default" style="margin-top: 0px;">
+        <div class="am-list-news-hd am-cf">
+            <a href="##" class="">
+                <h2> 
+                    <span class="am-icon-tachometer color-red"></span>
+                    最新记录
+                    <span class="nobold">&nbsp;New record</span>
+                </h2>
+            </a>
+            <a href="dapan.html" class="">
+                <span class="am-list-news-more am-fr">more &raquo;</span>
+            </a>            
+        </div>
+    </div>
+    <section id="cd-timeline" class="cd-container" style="margin:0 10px;margin-top:-7px;">
+        <div class="cd-timeline-block">
+            <div class="cd-timeline-img cd-picture"></div>
+            <div class="cd-timeline-content">
+                <h2>
+                    <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">1小时前</span>
+                    买入操作
+                    <span class="am-badge-danger am-radius tip-red">评级中</span>
+                </h2>
+                <p>
+                    600123.SH 兰花科技／23.45元／5,000手<br>
+                    <b style="color:#ccc">买入原因 : </b>科技板块出现买入机会，MACD指标出现底部背离，后市看到25.00元。<br>
+                    <b style="color:#ccc">卖出计划 : </b>三买结束后减至5成仓。
+                </p>
+            </div>
+        </div> 
+        <div class="cd-timeline-block">
+            <div class="cd-timeline-img cd-movie"></div> 
+            <div class="cd-timeline-content">
+                <h2>
+                    <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+                    卖出操作
+                    <span class="am-badge-danger am-radius tip-red">A＋评级</span>
+                </h2>
+                <p>
+                    600123.SH 兰花科技／23.45元／5,000手<br>
+                    <b style="color:#ccc">买入原因 : </b>科技板块出现买入机会，MACD指标出现底部背离，后市看到25.00元。<br>
+                    <b style="color:#ccc">卖出计划 : </b>三买结束后减至5成仓。
+                </p>
+            </div> 
+        </div> 
+        <div class="cd-timeline-block">
+            <div class="cd-timeline-img cd-picture"></div> 
+            <div class="cd-timeline-content">
+                <h2>
+                    <span style="position:relative;background: #666;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+                    卖出操作
+                    <span class="am-badge-danger am-radius tip-red">A评级</span>
+                </h2>
+                <p>
+                    600123.SH 兰花科技／23.45元／5,000手<br>
+                    <b style="color:#ccc">买入原因 : </b>科技板块出现买入机会，MACD指标出现底部背离，后市看到25.00元。<br>
+                    <b style="color:#ccc">卖出计划 : </b>三买结束后减至5成仓。
+                </p>
+            </div> 
+        </div> 
+    </section-->
+    <div id="zhuli-container" class="am-tabs" data-am-tabs>
+        <div class="am-tabs-bd">
+            <div style="padding:0;margin-top:-1px">
+                <div>
+                    <ul class="am-list admin-sidebar-list" id="collapase-nav-1" data-bind="foreach:items">
+                        <li class="am-panel"  style="padding:0 10px;">
+                            <a style="height:45px" data-am-collapse="{parent: '#collapase-nav-1', target: '#li-1'}" data-bind="click:dropdownClick">
+                                <span style="position: relative;top:8px">
+                                    <span style="position: relative;" data-bind="text:sname">重仓股票</span>
+                                </span>
+                                <span class="am-list-date bg-grap am-list-date-2" style="top:11px;z-index:999999;right:10px" data-bind="click:moreClick"><i class="am-header-icon am-icon-chevron-circle-down" aria-hidden="true"></i> 更多</span>
+                                <span data-bind="text:type" class="am-list-date-value-double-1" style="font-size:11px;right:-65px;margin-top:1px"></span>
+                            </a>
+                            <ul class="am-list am-collapse admin-sidebar-sub" id="li-1">
+                                <li style="margin-left:5px;margin-right:5px;border-top:none;border-bottom:none;">
+                                    <table class="am-table" style="font-size:12px;text-align: right;">
+                                        <thead style="">
+                                            <tr style="font-size:12px;">
+                                                <th style="text-align: left;font-weight:600;color:#ccc">神秘增持机构/股东</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">比例</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">成本价</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">目标价</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:buyerItems">
+                                            <tr>
+                                                <td style="text-align:left" data-bind="text:buyer">800001.JG</td>
+                                                <td data-bind="text:ratio">10%</td>
+                                                <td data-bind="text:cost">25.22</td>
+                                                <td data-bind="text:target">28.34</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="loadreason" style="display:none;position: absolute;left: 50%;margin-left: -5px;"><span class="am-icon-spinner am-icon-spin"></span></li>
+                                <li style="margin-top:-12px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none" data-bind="if:recommondReason()">
+                                    <div style="font-weight:600;color:#ccc">推荐理由</div>
+                                    <div style="text-indent:2em;line-height:14px" data-bind="text:recommondReason">
+                                        推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由。
+                                    </div>
+                                </li>
+                                <li style="border-top:none">
+                                    <div style="padding:10px 6px 0 6px;font-weight:600;color:#ccc;font-size:12px;">预警记录</div>
+                                    <section id="cd-timeline" class="cd-container" style="margin:0 10px;padding-bottom:3px;">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px;margin-bottom:-12px;">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-red">买入预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <a data-bind="click:redirectClick">
+                                            <div class="am-header-icon am-icon-angle-right" style="font-size:2.4rem;color:#999;float:right;margin-top:-57px"></div>
+                                        </a>
+                                    </section>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="am-panel"  style="padding:0 10px;">
+                            <a style="height:45px" data-am-collapse="{parent: '#collapase-nav-1', target: '#li-2'}" data-bind="click:dropdownClick">
+                                <span style="position: relative;top:8px">
+                                    <span style="position: relative;" data-bind="text:sname">投资收益分析</span>
+                                </span>
+                                <span class="am-list-date bg-grap am-list-date-2" style="top:11px;z-index:999999;right:10px" data-bind="click:moreClick"><i class="am-header-icon am-icon-chevron-circle-down" aria-hidden="true"></i> 更多</span>
+                                <span data-bind="text:type" class="am-list-date-value-double-1" style="font-size:11px;right:-65px;margin-top:1px"></span>
+                            </a>
+                            <ul class="am-list am-collapse admin-sidebar-sub" id="li-2">
+                                <li style="margin-left:5px;margin-right:5px;border-top:none;border-bottom:none;">
+                                    <table class="am-table" style="font-size:12px;text-align: right;">
+                                        <thead style="">
+                                            <tr style="font-size:12px;">
+                                                <th style="text-align: left;font-weight:600;color:#ccc">神秘增持机构/股东</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">比例</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">成本价</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">目标价</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:buyerItems">
+                                            <tr>
+                                                <td style="text-align:left" data-bind="text:buyer">800001.JG</td>
+                                                <td data-bind="text:ratio">10%</td>
+                                                <td data-bind="text:cost">25.22</td>
+                                                <td data-bind="text:target">28.34</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="loadreason" style="display:none;position: absolute;left: 50%;margin-left: -5px;"><span class="am-icon-spinner am-icon-spin"></span></li>
+                                <li style="margin-top:-12px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none" data-bind="if:recommondReason()">
+                                    <div style="font-weight:600;color:#ccc">推荐理由</div>
+                                    <div style="text-indent:2em;line-height:14px" data-bind="text:recommondReason">
+                                        推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由。
+                                    </div>
+                                </li>
+                                <li style="border-top:none">
+                                    <div style="padding:10px 6px 0 6px;font-weight:600;color:#ccc;font-size:12px;">预警记录</div>
+                                    <section id="cd-timeline" class="cd-container" style="margin:0 10px;padding-bottom:3px;">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px;margin-bottom:-12px;">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-red">买入预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <a data-bind="click:redirectClick">
+                                            <div class="am-header-icon am-icon-angle-right" style="font-size:2.4rem;color:#999;float:right;margin-top:-57px"></div>
+                                        </a>
+                                    </section>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="am-panel"  style="padding:0 10px;">
+                            <a style="height:45px" data-am-collapse="{parent: '#collapase-nav-1', target: '#li-3'}" data-bind="click:dropdownClick">
+                                <span style="position: relative;top:8px">
+                                    <span style="position: relative;" data-bind="text:sname">投资偏好分析</span>
+                                </span>
+                                <span class="am-list-date bg-grap am-list-date-2" style="top:11px;z-index:999999;right:10px" data-bind="click:moreClick"><i class="am-header-icon am-icon-chevron-circle-down" aria-hidden="true"></i> 更多</span>
+                                <span data-bind="text:type" class="am-list-date-value-double-1" style="font-size:11px;right:-65px;margin-top:1px"></span>
+                            </a>
+                            <ul class="am-list am-collapse admin-sidebar-sub" id="li-3">
+                                <li style="margin-left:5px;margin-right:5px;border-top:none;border-bottom:none;">
+                                    <table class="am-table" style="font-size:12px;text-align: right;">
+                                        <thead style="">
+                                            <tr style="font-size:12px;">
+                                                <th style="text-align: left;font-weight:600;color:#ccc">神秘增持机构/股东</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">比例</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">成本价</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">目标价</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:buyerItems">
+                                            <tr>
+                                                <td style="text-align:left" data-bind="text:buyer">800001.JG</td>
+                                                <td data-bind="text:ratio">10%</td>
+                                                <td data-bind="text:cost">25.22</td>
+                                                <td data-bind="text:target">28.34</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="loadreason" style="display:none;position: absolute;left: 50%;margin-left: -5px;"><span class="am-icon-spinner am-icon-spin"></span></li>
+                                <li style="margin-top:-12px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none" data-bind="if:recommondReason()">
+                                    <div style="font-weight:600;color:#ccc">推荐理由</div>
+                                    <div style="text-indent:2em;line-height:14px" data-bind="text:recommondReason">
+                                        推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由。
+                                    </div>
+                                </li>
+                                <li style="border-top:none">
+                                    <div style="padding:10px 6px 0 6px;font-weight:600;color:#ccc;font-size:12px;">预警记录</div>
+                                    <section id="cd-timeline" class="cd-container" style="margin:0 10px;padding-bottom:3px;">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px;margin-bottom:-12px;">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-red">买入预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <a data-bind="click:redirectClick">
+                                            <div class="am-header-icon am-icon-angle-right" style="font-size:2.4rem;color:#999;float:right;margin-top:-57px"></div>
+                                        </a>
+                                    </section>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="am-panel"  style="padding:0 10px;">
+                            <a style="height:45px" data-am-collapse="{parent: '#collapase-nav-1', target: '#li-4'}" data-bind="click:dropdownClick">
+                                <span style="position: relative;top:8px">
+                                    <span style="position: relative;" data-bind="text:sname">投资行为分析</span>
+                                </span>
+                                <span class="am-list-date bg-grap am-list-date-2" style="top:11px;z-index:999999;right:10px" data-bind="click:moreClick"><i class="am-header-icon am-icon-chevron-circle-down" aria-hidden="true"></i> 更多</span>
+                                <span data-bind="text:type" class="am-list-date-value-double-1" style="font-size:11px;right:-65px;margin-top:1px"></span>
+                            </a>
+                            <ul class="am-list am-collapse admin-sidebar-sub" id="li-4">
+                                <li style="margin-left:5px;margin-right:5px;border-top:none;border-bottom:none;">
+                                    <table class="am-table" style="font-size:12px;text-align: right;">
+                                        <thead style="">
+                                            <tr style="font-size:12px;">
+                                                <th style="text-align: left;font-weight:600;color:#ccc">神秘增持机构/股东</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">比例</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">成本价</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">目标价</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:buyerItems">
+                                            <tr>
+                                                <td style="text-align:left" data-bind="text:buyer">800001.JG</td>
+                                                <td data-bind="text:ratio">10%</td>
+                                                <td data-bind="text:cost">25.22</td>
+                                                <td data-bind="text:target">28.34</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="loadreason" style="display:none;position: absolute;left: 50%;margin-left: -5px;"><span class="am-icon-spinner am-icon-spin"></span></li>
+                                <li style="margin-top:-12px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none" data-bind="if:recommondReason()">
+                                    <div style="font-weight:600;color:#ccc">推荐理由</div>
+                                    <div style="text-indent:2em;line-height:14px" data-bind="text:recommondReason">
+                                        推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由。
+                                    </div>
+                                </li>
+                                <li style="border-top:none">
+                                    <div style="padding:10px 6px 0 6px;font-weight:600;color:#ccc;font-size:12px;">预警记录</div>
+                                    <section id="cd-timeline" class="cd-container" style="margin:0 10px;padding-bottom:3px;">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px;margin-bottom:-12px;">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-red">买入预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <a data-bind="click:redirectClick">
+                                            <div class="am-header-icon am-icon-angle-right" style="font-size:2.4rem;color:#999;float:right;margin-top:-57px"></div>
+                                        </a>
+                                    </section>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="am-panel"  style="padding:0 10px;">
+                            <a style="height:45px" data-am-collapse="{parent: '#collapase-nav-1', target: '#li-5'}" data-bind="click:dropdownClick">
+                                <span style="position: relative;top:8px">
+                                    <span style="position: relative;" data-bind="text:sname">投资影响分析</span>
+                                </span>
+                                <span class="am-list-date bg-grap am-list-date-2" style="top:11px;z-index:999999;right:10px" data-bind="click:moreClick"><i class="am-header-icon am-icon-chevron-circle-down" aria-hidden="true"></i> 更多</span>
+                                <span data-bind="text:type" class="am-list-date-value-double-1" style="font-size:11px;right:-65px;margin-top:1px"></span>
+                            </a>
+                            <ul class="am-list am-collapse admin-sidebar-sub" id="li-5">
+                                <li style="margin-left:5px;margin-right:5px;border-top:none;border-bottom:none;">
+                                    <table class="am-table" style="font-size:12px;text-align: right;">
+                                        <thead style="">
+                                            <tr style="font-size:12px;">
+                                                <th style="text-align: left;font-weight:600;color:#ccc">神秘增持机构/股东</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">比例</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">成本价</th>
+                                                <th style="text-align: right;font-weight:600;color:#ccc">目标价</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:buyerItems">
+                                            <tr>
+                                                <td style="text-align:left" data-bind="text:buyer">800001.JG</td>
+                                                <td data-bind="text:ratio">10%</td>
+                                                <td data-bind="text:cost">25.22</td>
+                                                <td data-bind="text:target">28.34</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                                <li class="loadreason" style="display:none;position: absolute;left: 50%;margin-left: -5px;"><span class="am-icon-spinner am-icon-spin"></span></li>
+                                <li style="margin-top:-12px;font-size:12px;padding:0 6px;border-bottom:none;border-top:none" data-bind="if:recommondReason()">
+                                    <div style="font-weight:600;color:#ccc">推荐理由</div>
+                                    <div style="text-indent:2em;line-height:14px" data-bind="text:recommondReason">
+                                        推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由推荐理由。
+                                    </div>
+                                </li>
+                                <li style="border-top:none">
+                                    <div style="padding:10px 6px 0 6px;font-weight:600;color:#ccc;font-size:12px;">预警记录</div>
+                                    <section id="cd-timeline" class="cd-container" style="margin:0 10px;padding-bottom:3px;">
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-green">卖出预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="cd-timeline-block">
+                                            <div class="cd-timeline-img cd-movie"></div>
+                                            <div class="cd-timeline-content" style="margin-top:-15px;margin-bottom:-12px;">
+                                                <h2>
+                                                    <span style="color:#969696;position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px; ">2016/12/20 10:30</span>
+
+                                                    <span class="am-badge-danger am-radius tip-red">买入预警</span>
+                                                    <span style="position:relative;top:-1px;padding:0 4px;font-size: 12px;font-weight: normal;border-radius:2px;color:#969696;">22.34</span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <a data-bind="click:redirectClick">
+                                            <div class="am-header-icon am-icon-angle-right" style="font-size:2.4rem;color:#999;float:right;margin-top:-57px"></div>
+                                        </a>
+                                    </section>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="my-modal-loading">
+        <div class="am-modal-dialog" style="border:0 none;color:#fff;background:transparent;box-shadow: none">
+            <div class="am-modal-bd">
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/knockout-3.1.0.js"></script>
+    <script src="assets/js/notice.js"></script>
+    <script src="assets/js/rj_quxian.js"></script>
+</body>
+</html>

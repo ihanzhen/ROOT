@@ -5,6 +5,10 @@
     top: -1px;
 }
 
+_::-webkit-full-page-media, _:future, :root .titleSpan {
+    border-left: 0.5px solid #4a4a4a;
+}
+
 .titleSpan {
     font-size: 1.8rem;
     border-left: 1px solid #444;
@@ -23,6 +27,13 @@
     border-top: 1px solid #444;*/
 }
 
+_::-webkit-full-page-media, _:future, :root .liStyle {
+    border-right: 0.5px solid #4a4a4a;
+    border-top:0.5px solid #4a4a4a;
+    border-bottom:0.5px solid #4a4a4a;
+    margin-top:-0.5px;
+}
+
 .liStyle {
     border-right: 1px solid #444;
     padding-right: -1px;
@@ -39,13 +50,16 @@
     color: #fff;
 }
 
+_::-webkit-full-page-media, _:future, :root .borderDiv {
+    border-top: 0.5px solid #4a4a4a;
+}
+
 .borderDiv {
     text-align: center;
     margin: 0 auto;
     border-top: 1px solid #444;
     padding-bottom: 5px;
     width: 90%;
-
 }
 
 .stockGroup {

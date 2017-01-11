@@ -6,18 +6,24 @@ var BankuaiMoreManagement = function () {
     var _this = this;
     var PlateVM = function () {
         _vm = this;
-        _vm.titlePlate = ko.observable('');
-        _vm.plateCount = ko.observable(0);
         _vm.items = ko.observableArray([]);
 
     };
+    var pageNumber = 1; //设置当前页数，全局变量  
+    var haslock = false;//是否锁上上拉加载
     var plateType = "";
     _this.init = function () {
         _this.plateVM = new PlateVM();
         var queryString = $.request(location.href).queryString;
         plateType = queryString.plateType;
-        ko.applyBindings(_this.plateVM, $('body')[0]);
+        switch (plateType) {
+            case 'recommend': $('#boardType').text('推荐版块'); break;
+            case 'strong': $('#boardType').text('强势版块'); break;
+            case 'anticipation': $('#boardType').text('蓄势版块'); break;
+        }
+        ko.applyBindings(_this.plateVM, $('#bankuai_more')[0]);
         _this.getPageData(plateType);
+        $(window).scroll(scrollHandler);
         //var int = self.setInterval(_this.updatePlateAsync, 5 * 1000);
     }
     function Plate(plateCode, plateName, plateChange, plateValue, code, name) {
@@ -34,9 +40,12 @@ var BankuaiMoreManagement = function () {
         }
     };
     _this.getRecommendPlateData = function () {
-        _this.plateVM.titlePlate('推荐版块');
+        haslock = true;
+        $(window).unbind('scroll');
         $.get('/ihanzhendata/stock/recommendPlate_Stock', function (result) {
-            window.stock.loading(false);
+            $('.loadspan').hide();
+            $('.nomore').show();
+            haslock = false;
             if (result && result.data) {
                 var data = result.data;
                 for (var i = 0; i < length; i++) {
@@ -46,21 +55,24 @@ var BankuaiMoreManagement = function () {
                     _this.recommendVM.plates.push(plate);
                 }
             }
+        }).error(function () {
+            $('.loadspan').hide();
+            haslock = false;
         });
     };
     _this.getStrongPlateData = function () {
-        _this.plateVM.titlePlate('强势版块');
+        haslock = true;
         $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/0',
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardstrong/'+pageNumber++,
             dataType: "jsonp",
             jsonpCallback: "jsonpcallback",
             timeout: 5000,
             type: "GET",
             success: function (data) {
-                window.stock.loading(false);
-                if (data && data.data) {
+                $('.loadspan').hide();
+                haslock = false;
+                if (data && data.data&&data.data.length>0) {
                     var plateArray = data.data;
-                    _this.plateVM.plateCount(plateArray.length);
                     for (var i = 0; i < plateArray.length; i++) {
                         var stocklist = plateArray[i].stockslist;
                         if (stocklist && stocklist.length > 0) {
@@ -69,23 +81,34 @@ var BankuaiMoreManagement = function () {
                             _this.plateVM.items.push(new Plate(plateArray[i].windcode, plateArray[i].name,  plateArray[i].pct.toFixed(2), (plateArray[i].cap / 100000000).toFixed(2) + '亿', '', ''));
                         }
                     }
+                } else if (data && data.data && data.data.length == 0) {
+                    $('.loadspan').hide();
+                    $(window).unbind('scroll');
+                    $('.nomore').show();
+                    $('#boardCount').text(_this.plateVM.items().length+'个');
+                }
+                if (pageNumber == 2) {
+                    _this.getStrongPlateData();
                 }
             }
+        }).error(function () {
+            $('.loadspan').hide();
+            haslock = false;
         });
     };
     _this.getAnticipationPlateData = function () {
-        _this.plateVM.titlePlate('蓄势版块');
+        haslock = true;
          $.ajax({
-            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/0',
+            url: 'http://119.164.253.142:3307/api/v1.0/stocksboardready/'+pageNumber++,
             dataType: "jsonp",
             jsonpCallback: "jsonpcallback",
             timeout: 5000,
             type: "GET",
             success: function (data) {
-                window.stock.loading(false);
-                if (data && data.data) {
+                $('.loadspan').hide();
+                haslock = false;
+                if (data && data.data && data.data.length > 0) {
                     var plateArray = data.data;
-                    _this.plateVM.plateCount(plateArray.length);
                     for (var i = 0; i < plateArray.length; i++) {
                         var stocklist = plateArray[i].stockslist;
                         if (stocklist && stocklist.length > 0) {
@@ -94,18 +117,42 @@ var BankuaiMoreManagement = function () {
                             _this.plateVM.items.push(new Plate(plateArray[i].windcode, plateArray[i].name, plateArray[i].pct.toFixed(2), (plateArray[i].cap / 100000000).toFixed(2) + '亿', '', ''));
                         }
                     }
+                } else if (data && data.data && data.data.length == 0) {
+                    $('.loadspan').hide();
+                    $(window).unbind('scroll');
+                    $('.nomore').show();
+                    $('#boardCount').text(_this.plateVM.items().length+'个');
+                }
+                if (pageNumber == 2) {
+                    _this.getAnticipationPlateData();
                 }
             }
-        });
+         }).error(function () {
+             $('.loadspan').hide();
+             haslock = false;
+         });
     };
     _this.getPageData = function (plateType) {
-        window.stock.loading(true);
+        $('.loadspan').show();
         switch (plateType) {
             case 'recommend': _this.getRecommendPlateData(); break;
             case 'strong': _this.getStrongPlateData(); break;
             case 'anticipation': _this.getAnticipationPlateData(); break;
         }
     }
+    //==============上拉加载核心代码=============  
+    var winH = $(window).height(); //页面可视区域高度   
+    var scrollHandler = function () {
+        var pageH = $(document.body).height();
+        var scrollT = $(window).scrollTop(); //滚动条top   
+        var aa = (pageH - winH - scrollT) / winH;
+        if (aa < 0.02) {//0.02是个参数  
+            if (!haslock) {
+                _this.getPageData(plateType);
+            }
+        }
+    }
+    //==============上拉加载核心代码=============  
 }
 
 

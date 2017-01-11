@@ -79,3 +79,13 @@
     padding: 0 10px;
     width: 100%;
 }
+.goucheng_ul{font-size:14px;padding-top:3px;padding-bottom:3px;margin:-10px 0 10px 0;}
+.goucheng_li{height:16px;line-height:15px}
+.goucheng_border{border-right:1px solid #444;}
+.goucheng_padding{padding-top:3px;padding-bottom:3px;}
+.zline {
+    height: 180px;
+    margin-top: -15px;
+    padding: 0 10px;
+    width: 100%;
+}

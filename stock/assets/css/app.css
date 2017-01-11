@@ -1,5 +1,17 @@
 /* Write your styles */
-
+@font-face { 
+font-family: Light; 
+src: url('../fonts/SF-UI-Display-Regular.otf'); 
+}
+.font_Light{
+	font-family: Light;
+}
+.nomore {
+    display: none;
+    margin:0 auto;
+    font-size: 12px;
+    margin-top: -10px;
+}
 .am-header-default {
     background-color: #343434;
 }
@@ -11,6 +23,7 @@
 body {
     background: #3d3d3d;
     color: #969696;
+    font-family: Light;
 }
 
 .am-list-news-default .am-list-date {
